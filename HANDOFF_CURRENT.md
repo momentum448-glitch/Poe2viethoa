@@ -4,7 +4,7 @@
 
 ## Current phase
 
-**Phase 4 — Local Alpha: implementation ready, Windows/PoE2 QC pending**
+**Phase 4 — Local Alpha: normal Windows session clean, 60-second visual QC pending**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
@@ -290,3 +290,53 @@ Phase 4 remains CURRENT, not PASS/LOCKED, until this Windows/PoE2 checkpoint.
 Python/source-first packaging remains the plan; build an EXE after Local Alpha
 is stable. Translation expansion is a later checkpoint, using the pinned fresh
 sources without lowering confidence to display untranslated lines.
+
+## Phase 4 normal-session review — 2026-10-04 20:10 (+07)
+
+Archive: `ALPHA_RESULT_20261004_200920_160211.zip`.
+Delivered code: `3e20515c6f3b79fc3688c6175f2cc1cabeeeeb04` (PR #2 merged).
+Build: `0.4.0-alpha.1 / alpha-20261004-01`.
+Code fingerprint: `a85cf75e0482540c5f6856382d89a3149d1c61d79c1670f72293bee9966e8b9f`,
+matching the delivered/local code. Windows Python 3.12.10, 1920×1080;
+actual foreground class `POEWindowClass`, title Path of Exile 2.
+
+Technical result: normal session ended cleanly as **STOPPED**, with no reported
+OCR, overlay, runtime or cleanup errors. Archive CRC passed.
+
+- 38.27 active game seconds / 42.16 wall seconds; untimed normal mode.
+- 303 captures, 34 OCR calls, 26 dialogue detections, 13 emitted texts.
+- 6 exact/High matches at 100%, 6 overlay updates across 5 unique reviewed IDs.
+- 13 duplicates suppressed; 7 untranslated texts correctly left without overlay.
+- 0 errors, 0 dropped log entries; 12 transient foreground losses / 1 pause.
+- Normal-right 14 detections; inventory-left 12. Events 17→19 redisplayed the
+  same translated line after the layout changed, rather than suppressing it.
+- Three ZIP entries only: metadata, summary and event log; no screenshots/proofs,
+  as intended for lightweight normal play. Compressed pack size 5,360 bytes.
+
+Independent review recounted event-derived totals and matched the summary.
+All six translations match the local reviewed DB and normalized source exactly.
+All six logged masks contain the complete English OCR rectangle, and all six
+wrapped Vietnamese strings preserve the full translation. Font sizes were 18–20 px.
+Subsequent duplicate events still OCR English while the overlay is logged visible,
+with no observed self-capture in the recorded text. This does not replace visual QC.
+
+The seven MISS texts are exact normalized matches in the pinned fresh corpus,
+all outside the nine-record Vietnamese Alpha DB:
+- Renly / Clearfell: `d36d07b4b366ffa08c4d`, `6061aa2dd44da67d0163`, `7339cdf9c4a48f93f01f`;
+- Renly / Ogham: `fc70663467362963c971`;
+- Renly / Fatherhood_2: `5e32138d2437af6705d0`, `0c44edf04fad4428bdb3`, `a43ba9fa1fbebc488dad`.
+IDs above are the suffixes after `dlg_npctextaudio_`. They are real dialogue,
+not falsely detected UI. Do not lower matching thresholds to display them.
+
+This establishes a clean real Windows normal-runtime/Stop/ZIP checkpoint.
+The log-only archive cannot establish readable rendering, actual Continue-button
+clearance, direct input/focus, restart behavior or every foreground transition.
+No code change or new download is required by this review.
+
+Next user checkpoint (supersedes the pre-release download steps above):
+1. Reuse the current build; choose panel **QC 60 giây** and open Renly Introduction /
+   The Miller. Exercise normal/inventory layouts and Alt+Tab while Vietnamese is visible.
+2. After 60 active seconds, use **Mở file kết quả** and send `QC_PHASE4_RESULT_*.zip`.
+3. Check a second normal Start/Stop and that mouse/keyboard input still works normally.
+
+Phase 4 remains CURRENT; full PASS/LOCKED awaits the Alpha visual/interaction QC.
