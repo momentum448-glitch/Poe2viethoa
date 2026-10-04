@@ -26,7 +26,7 @@ normal_right / inventory_left / not-dialogue
 
 Run `QC_PHASE1.bat`.
 
-During the 90-second window:
+During the **60-second** window:
 
 1. keep PoE2 in the foreground;
 2. open one story NPC;
