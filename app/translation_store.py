@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import sqlite3
 from pathlib import Path
 from typing import Iterable, Any
@@ -62,7 +63,9 @@ def load_vi_entries(path: Path) -> list[dict[str, Any]]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, list):
         raise ValueError(f"{path} must contain a JSON array")
-    return [item for item in payload if isinstance(item, dict)]
+    if any(not isinstance(item, dict) for item in payload):
+        raise ValueError(f"{path} contains a non-object translation entry")
+    return payload
 
 
 def compile_translation_records(
@@ -75,11 +78,20 @@ def compile_translation_records(
     records: list[TranslationRecord] = []
     missing_source = 0
     skipped_empty = 0
+    seen: set[str] = set()
 
     for item in vi_entries:
         source_id = str(item.get("source_id") or "").strip()
-        vi = str(item.get("vi") or "").strip()
+        vi_raw = str(item.get("vi") or "")
+        vi = vi_raw.strip()
         status = str(item.get("status") or "draft")
+
+        if status not in {"draft", "reviewed", "approved"}:
+            raise ValueError(f"Invalid translation status for {source_id}: {status}")
+        if source_id in seen:
+            raise ValueError(f"Duplicate Vietnamese source_id: {source_id}")
+        if source_id:
+            seen.add(source_id)
 
         if not source_id or not vi:
             skipped_empty += 1
@@ -89,6 +101,15 @@ def compile_translation_records(
         if source is None:
             missing_source += 1
             continue
+
+        if "source_sha256" in item:
+            expected = hashlib.sha256(str(source["source"]).encode("utf-8")).hexdigest()
+            if item["source_sha256"] != expected:
+                raise ValueError(f"Source changed since translation review: {source_id}")
+        if "vi_sha256" in item:
+            expected = hashlib.sha256(vi_raw.encode("utf-8")).hexdigest()
+            if item["vi_sha256"] != expected:
+                raise ValueError(f"Vietnamese text changed since review: {source_id}")
 
         records.append(
             TranslationRecord(

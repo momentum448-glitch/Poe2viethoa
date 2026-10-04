@@ -3,8 +3,23 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import uuid
 
 from app.translation_store import build_sqlite, compile_translation_records
+
+
+def build_database(corpus: Path, translations: Path, output: Path) -> dict[str, int]:
+    records, stats = compile_translation_records(corpus, translations)
+    if stats["missing_source"]:
+        raise ValueError("Vietnamese entries are absent from the pinned source; runtime preserved.")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    temporary = output.with_name(f"translations-{uuid.uuid4().hex}.tmp")
+    try:
+        build_sqlite(records, temporary)
+        temporary.replace(output)
+    finally:
+        temporary.unlink(missing_ok=True)
+    return stats
 
 
 def main() -> None:
@@ -26,16 +41,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    records, stats = compile_translation_records(args.corpus, args.translations)
+    stats = build_database(args.corpus, args.translations, args.output)
     print(json.dumps(stats, ensure_ascii=False, indent=2))
 
-    if stats["missing_source"] > 0:
-        raise SystemExit(
-            f"ERROR: {stats['missing_source']} Vietnamese translation entry/entries "
-            "do not exist in the synced source corpus. Refresh/remap before building."
-        )
-
-    build_sqlite(records, args.output)
     print(f"Built {args.output}")
 
 

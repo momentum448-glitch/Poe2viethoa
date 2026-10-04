@@ -92,7 +92,7 @@ behavior, all foreground transitions and other DPI/presentation modes remain
 part of Phase 4 real-session testing. Three unmatched Renly segments are outside
 the nine-segment Alpha corpus; they correctly receive no replacement overlay.
 
-### Phase 4 — Local Alpha — TECHNICAL/VISUAL QC PASS, INTERACTION CONFIRMATION PENDING
+### Phase 4 — Local Alpha — PASS / LOCKED
 - `RUN_ALPHA.bat` checks local readiness, runs first-time setup when needed and opens the control panel;
 - `SETUP_ALPHA.bat` installs dependencies and builds the local DB atomically from pinned sources;
 - native Tk panel: Bắt đầu, QC 60 giây, Dừng & tạo ZIP, Mở file kết quả;
@@ -102,11 +102,12 @@ the nine-segment Alpha corpus; they correctly receive no replacement overlay.
 - controller detects worker failures and packages available diagnostics; no game input is automated;
 - foreground capture requires the native PoE window class, never a browser/document title alone;
 - version/build ID and source fingerprint are recorded in every session;
-- source-first build `0.4.0-alpha.3 / alpha-20261004-03`; Alpha.1 had two clean normal sessions and a completed 60-second technical/visual Renly QC;
+- passing baseline `0.4.0-alpha.3 / alpha-20261004-03`; Alpha.1 had two clean normal sessions and a completed 60-second technical/visual Renly QC;
 - Alpha.2's expanded capture passed visual Una/Renly QC; its larger ROI exposed a chat line falsely anchored by Continue in another column;
-- Alpha.3 associates each paragraph with a nearby footer/header before choosing it; the corrected context selection passed Windows QC, with direct interaction/foreground confirmation still pending.
+- Alpha.3 associates each paragraph with a nearby footer/header before choosing it; the corrected context selection passed Windows QC;
+- the user confirmed Continue/movement/Alt+Tab work normally and declared PASS on 2026-10-04 at 21:46 (+07).
 
-Phase 4 is not PASS/LOCKED yet. The nine-segment Alpha corpus remains unchanged.
+Phase 4 is PASS/LOCKED for the tested Windows/1920×1080 setup. The baseline used nine translations.
 
 Latest real QC `20261004_212425_250828`, verified Alpha.3 fingerprint: 456 captures,
 53 OCR calls, 24 valid dialogue detections, 15 emitted texts, 9 duplicates,
@@ -119,18 +120,34 @@ does not recur; Una's short page is selected correctly beside chat. Four Una and
 three Renly proofs cover English and leave Continue visible; all eight logged
 masks preserve the full translation and cover the complete English OCR box.
 
-Technical/visual QC is PASS on the tested Windows/1920×1080 setup. This session
-has zero foreground transitions, so it does not establish the Alpha.3 Alt+Tab
-path or direct input/focus. Ask for the user's operation result; a new build is
-not required. Once confirmed, lock Phase 4 and begin Phase 5 Translation Factory.
+The ZIP has zero foreground transitions; direct operation/focus validation comes
+from the subsequent user confirmation, not an invented event trace.
 
-### Phase 5 — Translation Factory
-- fresh-source refresh;
-- glossary/canon;
-- AI draft;
-- automated QA;
-- review states;
-- translation memory.
+### Phase 5 — Translation Factory — CURRENT / FIRST BATCH IMPLEMENTED
+- current build `0.5.0-alpha.1 / factory-20261004-01` with 16 reviewed translations;
+- `tools.translation_factory`: exact-source selection from QC MISS, batch creation,
+  local prompt/review bundle, QA, explicit semantic review, publication and human-QC approval;
+- project glossary/style in `translations/glossary.json`; batches bind source/glossary hashes,
+  exact source text, context/page metadata and the original catalog record;
+- translation memory uses reviewed/approved catalog entries as same-speaker references;
+  fuzzy similarity never fills or publishes a draft automatically;
+- AI drafting currently happens in chat from the local bundle; no bulk AI API integration;
+- QA checks source drift, names, placeholders, numeric literals, duplicates, review digests
+  and data changed after review; semantic review remains an explicit authoring step;
+- publish preserves existing entries, rejects conflicting catalog revisions/downgrades,
+  and writes atomically; runtime builds validate source/VI hashes and preserve an old DB on failure;
+- source refresh reuses pinned `tools.source_sync`; meaningful new IDs require new review.
+
+First batch `qc-alpha3-20261004-01`: 3 Una pages (Introduction_4 / Renly) and
+4 Renly Fatherhood_2 pages observed in Alpha.3 QC. Seven AI-reviewed pages passed
+QA with 0 errors/warnings and compile into the 16-record runtime. All 102 tests
+pass; replay of three real QC logs keeps all 22 prior High overlay decisions on
+the same IDs, and all seven latest MISS pages now resolve exactly at 100%.
+
+Phase 5 remains CURRENT, with first-batch in-game typography/translation QC pending.
+The original nine entries are retained byte-for-byte as JSON records. New seven
+entries are `reviewed`, not human `approved`. The next checkpoint is Una
+Introduction/Renly and Renly Fatherhood through the existing panel QC workflow.
 
 ### Phase 6 — Additional modules
 Quest → Tutorial → UI → Skill/Passive → Item/Mechanics.

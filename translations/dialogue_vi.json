@@ -52,5 +52,75 @@
     "vi": "Renly mang đến sức mạnh, Finn mang đến sự lanh trí, còn tôi cố hết sức nâng tinh thần mọi người bằng những bài hát. Hy vọng là thứ duy nhất chúng tôi còn lại lúc này, nhưng nó cũng đang dần cạn.",
     "status": "reviewed",
     "review": "ai_alpha_2026-10-04"
+  },
+  {
+    "source_id": "dlg_npctextaudio_73589ca681a9d260d834",
+    "vi": "Chào mừng bạn đến trại của những người lưu lạc, vị khách lạ. Chúng tôi sống sót, nhưng chỉ còn tồn tại. Tôi là Una.",
+    "status": "reviewed",
+    "review": "codex_ai_factory_20261004",
+    "source_sha256": "ba004d2bca9ecb9fee9584ddf9d080cf1682958add3e7bf8aa9470d3c17cc363",
+    "vi_sha256": "b30f488e138609d665a526fba2eda6216186261c4fa0766afef3cf55dc2dc07a",
+    "factory_batch": "qc-alpha3-20261004-01",
+    "review_note": "AI đã đối chiếu từng câu và các trang cùng chủ đề: giữ người nói/người nghe, tên riêng, tình trạng con trai và các ý chưa chắc chắn. QA cấu trúc đạt; chờ người dùng QC trong game."
+  },
+  {
+    "source_id": "dlg_npctextaudio_e8a97f822abbe36370a9",
+    "vi": "Ông ấy tự nghi ngờ mình, nhưng tôi biết ông ấy sẽ tìm ra cách bảo vệ chúng tôi. Ông ấy là người tốt. Tôi biết ơn vì có ông ấy ở đây.",
+    "status": "reviewed",
+    "review": "codex_ai_factory_20261004",
+    "source_sha256": "ac4c72974a38c6fab2af07fa78cc989f0b5e164df3a637b49790e8fe6aa55b4b",
+    "vi_sha256": "5ecc7a6fb40dd85844d26965d729958dc078613c4f54c863ce538dbc90f302eb",
+    "factory_batch": "qc-alpha3-20261004-01",
+    "review_note": "AI đã đối chiếu từng câu và các trang cùng chủ đề: giữ người nói/người nghe, tên riêng, tình trạng con trai và các ý chưa chắc chắn. QA cấu trúc đạt; chờ người dùng QC trong game."
+  },
+  {
+    "source_id": "dlg_npctextaudio_aa67074040f344406e17",
+    "vi": "Về nhiều mặt, ông ấy khiến tôi nhớ đến cha mình...",
+    "status": "reviewed",
+    "review": "codex_ai_factory_20261004",
+    "source_sha256": "3401f5acb3a47f2c5fbe2fb04be0d69bea5733b990e55929f3c456d77f0bb724",
+    "vi_sha256": "3b54bbe053b452cab3b9370f1e01247d9f17651c9af45f57f48e012ce0947b85",
+    "factory_batch": "qc-alpha3-20261004-01",
+    "review_note": "AI đã đối chiếu từng câu và các trang cùng chủ đề: giữ người nói/người nghe, tên riêng, tình trạng con trai và các ý chưa chắc chắn. QA cấu trúc đạt; chờ người dùng QC trong game."
+  },
+  {
+    "source_id": "dlg_npctextaudio_5e32138d2437af6705d0",
+    "vi": "Chỉ riêng việc bảo vệ ngần ấy người ở đây cũng đã đủ vất vả rồi. Từ khi lính của Bá tước bắt con trai tôi, tôi lo cho nó đến phát ốm.",
+    "status": "reviewed",
+    "review": "codex_ai_factory_20261004",
+    "source_sha256": "2a7f56e37acfb8cdcf104caf1e01a585119a9471bcd9fca20809f83974d0e6fa",
+    "vi_sha256": "6c2a6050e79228f5678b0729968b9bec0f379fa1fa49dc5b04c19d112caa0e99",
+    "factory_batch": "qc-alpha3-20261004-01",
+    "review_note": "AI đã đối chiếu từng câu và các trang cùng chủ đề: giữ người nói/người nghe, tên riêng, tình trạng con trai và các ý chưa chắc chắn. QA cấu trúc đạt; chờ người dùng QC trong game."
+  },
+  {
+    "source_id": "dlg_npctextaudio_0c44edf04fad4428bdb3",
+    "vi": "Tôi hy vọng bạn đã thấy nó trong thời gian bạn bị họ giam giữ. Nó là một chàng trai to lớn, khó mà không nhận ra, bởi... ừm... nó không phải người vùng này.",
+    "status": "reviewed",
+    "review": "codex_ai_factory_20261004",
+    "source_sha256": "19b219ca3a67eecc2d29855ad528b9cdf04b099c688f079b073fc0cd66e03789",
+    "vi_sha256": "d59fa8bf69227c85111d74c584e6a6f3dfeecd0c48d190d9847e83085ab8edc9",
+    "factory_batch": "qc-alpha3-20261004-01",
+    "review_note": "AI đã đối chiếu từng câu và các trang cùng chủ đề: giữ người nói/người nghe, tên riêng, tình trạng con trai và các ý chưa chắc chắn. QA cấu trúc đạt; chờ người dùng QC trong game."
+  },
+  {
+    "source_id": "dlg_npctextaudio_a43ba9fa1fbebc488dad",
+    "vi": "Tôi tìm thấy nó dạt vào bờ sông khi nó còn bé, một đứa trẻ Karui không rõ cha mẹ, có lẽ bị lạc khỏi một toán người đi cướp phá. Nhưng chẳng có ai đến tìm nó cả.",
+    "status": "reviewed",
+    "review": "codex_ai_factory_20261004",
+    "source_sha256": "47dbbb13c82ccbfaa2e2033a2ff2f8b28ec352fd0990d74793ea4db77d5c07c6",
+    "vi_sha256": "b2c61dad7b613e4a9e2e5fdd1aca3201fa6cd76f3b67fc2374b21af2a5c45327",
+    "factory_batch": "qc-alpha3-20261004-01",
+    "review_note": "AI đã đối chiếu từng câu và các trang cùng chủ đề: giữ người nói/người nghe, tên riêng, tình trạng con trai và các ý chưa chắc chắn. QA cấu trúc đạt; chờ người dùng QC trong game."
+  },
+  {
+    "source_id": "dlg_npctextaudio_675b99e134d0178394ad",
+    "vi": "Ngày nào ở Clearfell, tôi cũng dõi mắt ra sông, mong một phép màu sẽ đưa nó dạt vào bãi cát vắng vẻ ấy thêm một lần nữa...",
+    "status": "reviewed",
+    "review": "codex_ai_factory_20261004",
+    "source_sha256": "656201f335a5d5378cf01b1c2b90438240bc8cd5b54f61c92569ab8b61ca6d09",
+    "vi_sha256": "f63e4565f5b001db17013bf3f971183f8778252dbf400fc0762ef68298fb78c1",
+    "factory_batch": "qc-alpha3-20261004-01",
+    "review_note": "AI đã đối chiếu từng câu và các trang cùng chủ đề: giữ người nói/người nghe, tên riêng, tình trạng con trai và các ý chưa chắc chắn. QA cấu trúc đạt; chờ người dùng QC trong game."
   }
 ]
