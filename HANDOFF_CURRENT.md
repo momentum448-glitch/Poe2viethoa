@@ -4,7 +4,7 @@
 
 ## Current phase
 
-**Phase 4 — Local Alpha: Una/Renly visual QC passed; local context-anchor fix awaiting Windows QC**
+**Phase 4 — Local Alpha: Alpha.3 technical/visual QC passed; interaction confirmation pending**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
@@ -487,3 +487,63 @@ and confirm mouse/keyboard input still works normally.
 Phase 4 remains CURRENT / CONTEXT FIX IMPLEMENTED / WINDOWS QC PENDING. Una and
 Renly visual checkpoints passed; the new local anchor selection, direct interaction
 and foreground-transition behavior still need the next real Windows session.
+
+## Phase 4 Alpha.3 Windows QC — technical and visual PASS — 2026-10-04
+
+Archive: `QC_PHASE4_RESULT_20261004_212425_250828.zip` (59,910,561 bytes; CRC passed).
+SHA-256: `8f75ef124346101e2bc4b9b2a89d3013187194bdbfc4ae75d7a937d76941d8a5`.
+Metadata confirms **0.4.0-alpha.3 / alpha-20261004-03**, fingerprint
+`660079cb57bcbfa72906fc0bf613b50650dc43c57b55602aede601f35387e1da`,
+Windows/Python 3.12.10, native `POEWindowClass`, 1920×1080, ROI (230,421,1190,486)
+and the unchanged nine-record DB. Pack: 53 raw PNGs, 7 proofs, 3 logs/metadata files.
+Result **TECHNICAL_PASS**, completed after 60 active seconds / 61.02 wall seconds.
+
+- 456 captures, 53 OCR calls, 24 dialogue detections, 15 emitted texts, 9 duplicates;
+- 8 High matches/overlay updates, all exact at 100%; 0 Medium results;
+- 7 unmatched real dialogue pages correctly hidden; 4 overlay clears;
+- 0 OCR/overlay/runtime errors, dropped log entries, foreground losses or pauses;
+- 5 normal-right and 19 inventory-left detections; all 15 Una detections identify Una.
+
+Independent review verified the code fingerprint, event-derived counters, all
+15 matcher results and all 8 mask rectangles/full wrapped Vietnamese strings.
+All 24 detected texts are exact normalized matches in the pinned fresh corpus.
+All seven proofs were visually inspected: Una at 9/22/24/26, Renly at 32/34/35.
+English is fully covered, Vietnamese is readable/complete and Continue remains
+unobstructed. Raw frames 10 and 23 visibly retain English while the overlay is
+logged visible, supporting capture exclusion without an observed self-OCR loop.
+Event 14 correctly redisplays the same Una translation after Inventory changes
+the layout; this extra update shares a source ID with proof 9.
+
+All 29 rejected raw frames were reviewed in contact sheets. They show topic
+menus, open-world/chat, waypoint or proclamation rather than NPC story paragraphs.
+The previous chat false positive does not recur. In event 19 the short Una page
+"In many ways, he reminds me of my father..." is correctly selected beside chat;
+it matches the fresh source and stays hidden because no reviewed Vietnamese
+record exists. This validates the context fix in the recorded Windows samples,
+without claiming every possible future chat/layout case has been tested.
+
+The seven MISS pages are outside the reviewed DB, all exact fresh-source matches:
+- Una / Introduction_4: `dlg_npctextaudio_73589ca681a9d260d834`;
+- Una / Renly: `dlg_npctextaudio_e8a97f822abbe36370a9`,
+  `dlg_npctextaudio_aa67074040f344406e17`;
+- Renly / Fatherhood_2: `dlg_npctextaudio_5e32138d2437af6705d0`,
+  `dlg_npctextaudio_0c44edf04fad4428bdb3`, `dlg_npctextaudio_a43ba9fa1fbebc488dad`,
+  `dlg_npctextaudio_675b99e134d0178394ad`.
+No new translations or matching-threshold changes are justified by these MISS pages.
+
+No code fix or new build is required by this review. Keep Alpha.3. Technical and
+visual QC are PASS for the recorded Windows/1920×1080 setup. **Phase 4 is not yet
+fully PASS/LOCKED:** the pack records no foreground transitions and cannot establish
+direct mouse/keyboard/focus behavior. The Alpha.3 session does not prove Alt+Tab
+hide/restore merely because earlier builds exercised that path.
+
+Next checkpoint, superseding the previous 60-second download/QC request:
+1. Ask whether Continue, movement and Alt+Tab out/back worked normally while
+   Vietnamese was visible. This is an operation-result confirmation, not publish approval.
+2. If not tried, use current Alpha.3 normal Start with a reviewed Una/Renly page;
+   check Continue/movement, overlay hiding outside PoE2 and restoration on return.
+   The user can report the result directly; request a result ZIP if a problem occurs.
+3. Once the operation result is confirmed, mark Phase 4 PASS/LOCKED and start
+   Phase 5 Translation Factory from pinned source IDs, review states and glossary.
+
+This documentation checkpoint leaves the runtime fingerprint and nine translations unchanged.
