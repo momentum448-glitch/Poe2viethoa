@@ -7,3 +7,5 @@ diagnostics/
 Thumbs.db
 QC_PHASE1_RESULT_*.zip
 LAST_QC_RESULT.txt
+source_data/
+runtime/
