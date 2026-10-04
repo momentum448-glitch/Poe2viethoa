@@ -15,7 +15,7 @@ echo   - detector dialogue
 echo   - phan biet normal / inventory-open layout
 echo.
 echo Hay mo POE2 va dung gan NPC story.
-echo Tool se chay 60 giay va tu dong tao ZIP.
+echo Tool se chay 60 giay va TU DONG tao ZIP.
 echo.
 pause
 
@@ -46,35 +46,19 @@ if errorlevel 1 goto :fail
 echo.
 echo [QC] Bat dau. Hay quay lai POE2 va noi chuyen 3-5 cau.
 echo Neu tien, mo inventory trong mot phan cua hoi thoai.
-echo DE TOOL TU CHAY HET 90 GIAY.
+echo DE TOOL TU CHAY HET 60 GIAY.
 echo.
 
 ".venv\Scripts\python.exe" -X utf8 -m app.phase1_probe --seconds 60
 if errorlevel 1 goto :fail
-
-for /f "delims=" %%D in ('powershell -NoProfile -Command "$d=Get-ChildItem -Directory 'diagnostics\phase1' -ErrorAction SilentlyContinue ^| Sort-Object LastWriteTime -Descending ^| Select-Object -First 1; if($d){$d.FullName}"') do set "LATEST=%%D"
-
-if not defined LATEST goto :fail
-
-for %%D in ("%LATEST%") do set "SESSION_NAME=%%~nxD"
-set "ZIP=%CD%\QC_PHASE1_RESULT_%SESSION_NAME%.zip"
-
-if exist "%ZIP%" del /q "%ZIP%"
-powershell -NoProfile -ExecutionPolicy Bypass -Command "Compress-Archive -Path '%LATEST%\*' -DestinationPath '%ZIP%' -Force"
-if errorlevel 1 goto :fail
-
-> "%CD%\LAST_QC_RESULT.txt" (
-  echo FILE CAN GUI CHO CHATGPT:
-  echo %ZIP%
-)
 
 echo.
 echo ============================================================
 echo   PHASE 1 QC XONG
 echo ============================================================
 echo.
-echo Gui file:
-echo   %ZIP%
+echo File QC_PHASE1_RESULT_*.zip da duoc tao ngay trong thu muc nay.
+echo Xem LAST_QC_RESULT.txt neu can duong dan chinh xac.
 echo.
 start "" explorer.exe "%CD%"
 pause
