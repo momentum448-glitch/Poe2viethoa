@@ -30,6 +30,12 @@ class MatcherTests(unittest.TestCase):
                     status="reviewed",
                 ),
                 TranslationRecord(
+                    id="c",
+                    source="The road ahead is near.",
+                    vi="Con đường phía trước đã gần.",
+                    status="approved",
+                ),
+                TranslationRecord(
                     id="draft",
                     source="This draft must stay hidden.",
                     vi="Bản nháp.",
@@ -65,6 +71,14 @@ class MatcherTests(unittest.TestCase):
         self.assertTrue(r.matched)
         self.assertEqual(r.confidence, "high")
         self.assertEqual(r.record.id, "a")
+
+    def test_ambiguous_fuzzy_high_score_is_hidden_in_normal_mode(self):
+        r = self.matcher.match("The road ahead is cear.")
+        self.assertTrue(r.matched)
+        self.assertEqual(r.confidence, "medium")
+        self.assertFalse(r.should_display_normal)
+        self.assertEqual(r.record.id, "b")
+        self.assertGreaterEqual(len(r.candidates), 2)
 
     def test_draft_not_visible(self):
         r = self.matcher.match("This draft must stay hidden.")
