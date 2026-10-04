@@ -12,7 +12,7 @@ echo Lan chay nay se:
 echo   - test code
 echo   - dong bo fresh source (cache lai cho lan sau)
 echo   - build runtime translation DB
-echo   - chay matcher QC trong 60 giay
+echo   - chay matcher QC 60 giay POE2 foreground
 echo.
 echo Nen mo POE2 va dung gan Renly hoac Una.
 echo Cac topic Alpha da co ban dich:
@@ -57,12 +57,17 @@ if errorlevel 1 goto :fail
 
 echo.
 echo ============================================================
-echo   BAT DAU MATCHER QC - 60 GIAY
+echo   BAT DAU MATCHER QC - 60 GIAY ACTIVE GAME
 echo ============================================================
 echo.
 echo Quay lai POE2, mo mot trong cac topic Alpha o tren.
 echo Co the chuyen qua lai vai cau, inventory dong/mo tuy y.
-echo DE TOOL TU CHAY HET 60 GIAY.
+echo.
+echo Luu y:
+echo   - timer chi tinh khi POE2 dang foreground
+echo   - neu Alt+Tab, timer tu tam dung
+echo   - tool khong capture/OCR app khac
+echo   - de tool chay du 60 giay active
 echo.
 
 ".venv\Scripts\python.exe" -X utf8 -m app.phase2_probe --seconds 60
