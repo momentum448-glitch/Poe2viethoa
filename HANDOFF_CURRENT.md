@@ -4,118 +4,167 @@
 
 ## Current phase
 
-**Phase 2 — Dialogue Matching + Translation Store**
+**Phase 2 — Dialogue Matching + Fresh Translation Store**
 
 Phase 1 is **PASS / LOCKED**.
 
-## Locked decisions
+## Locked product decisions
 
 - Repository: `momentum448-glitch/Poe2viethoa`.
 - Goal: modular PoE2 Vietnamese localization engine, starting with Story Dialogue.
-- Dialogue architecture: **OCR-first**.
-- `Client.txt` is optional future context only, not a runtime dependency.
-- Runtime: local, offline, pretranslated data.
+- Dialogue signal: **OCR-first**.
+- Runtime: local/offline, pretranslated data.
 - No RAM reading, injection, hooking, game-file modification, or automated game input.
-- Normal overlay target: cover English text and replace it with Vietnamese.
-- Uncertain matches: hidden in Normal mode; candidates may appear only in Debug mode.
-- Translation source stays reviewable in Git; runtime SQLite can be generated as a build artifact.
-- Python first; packaged EXE after Local Alpha passes.
-- User-facing QC windows should default to **60 seconds** unless a shorter focused test is sufficient.
+- `Client.txt` is optional future context only.
+- Normal overlay target: cover English and replace it with Vietnamese.
+- Low-confidence matches are hidden in Normal mode.
+- Translation source is reviewable in Git; generated runtime DB is local.
+- User-facing QC defaults to **60 seconds**.
+- **Do not use Remote Desktop for source recovery.**
+- **Do not use the previous project dictionary or old 208-line corpus.**
 
-## Phase 1 architecture — LOCKED
-
-```text
-PoE2 screen
-  ↓
-Foreground guard
-  ↓
-Dialogue capture ROI
-  ↓
-Frame stabilizer / bounded OCR scheduler
-  ↓
-Windows OCR + word/line bbox
-  ↓
-Dialogue context detector
-  ↓
-normal_right / inventory_left / not-dialogue
-```
-
-## Phase 1 final real QC
+## Phase 1 final QC — PASS
 
 Session: `20261004_163219`
 
-Results:
+- captures: 461
+- visual changes: 54
+- OCR calls: 53
+- dialogue detections: 17
+- normal-right: 7
+- inventory-left: 10
+- OCR errors: 0
+- foreground pauses: 0
+- elapsed: 60.06 s
 
-- captures: **461**
-- visual changes: **54**
-- OCR calls: **53**
-- dialogue detections: **17**
-- normal-right detections: **7**
-- inventory-left detections: **10**
-- OCR errors: **0**
-- foreground transient losses: **0**
-- foreground pauses: **0**
-- elapsed: **60.06 s**
-- result: **PASS**
+Real Renly/Una story lines were detected. Topic menus, waypoint/proclamation and unrelated UI were rejected.
 
-Observed dialogue included multiple real Renly and Una story lines.
+## Phase 2 implemented
 
-Observed rejection behavior:
+- `app/text_normalize.py`
+- `app/text_stabilizer.py`
+- `app/translation_models.py`
+- `app/translation_store.py`
+- `app/matcher.py`
+- `app/dialogue_pipeline.py`
+- `app/phase2_probe.py`
+- `tools/build_translation_db.py`
+- `tools/source_sync.py`
+- `SOURCE_SYNC.bat`
+- `QC_PHASE2.bat`
+- matcher/store/source-sync unit tests
 
-- NPC topic-selection screens were not accepted as story dialogue;
-- non-dialogue world/UI text was rejected;
-- waypoint/proclamation screens were rejected;
-- unrelated lower-screen/UI text did not become dialogue output.
-
-OCR timing in this session was roughly ~15 ms per call on average.
-
-## Known Phase 1 behavior carried into Phase 2
-
-Animated game backgrounds can cause OCR to run again while the same dialogue sentence remains visible. In the final QC, some identical dialogue texts appeared 2–3 times.
-
-This is acceptable at the capture/OCR layer because:
-
-- OCR calls remain bounded to about ~1 Hz under continuous animation;
-- OCR cost is low;
-- no OCR exceptions occurred.
-
-Phase 2 must add a **Text Stabilizer / OCR cache** before matching so duplicate normalized dialogue does not trigger repeated matcher/overlay work.
-
-## Phase 2 target flow
+Matcher policy:
 
 ```text
-DialogueContext.text
-    ↓
+OCR dialogue
+  ↓
 Text Stabilizer / dedupe
-    ↓
-Normalization
-    ↓
-Candidate index
-    ↓
+  ↓
+Normalize
+  ↓
 Exact match
-    ↓ fallback
-Fuzzy match
-    ↓
-Confidence policy
-    ↓
-Translation Store
-    ↓
-TranslationResult
+  ↓ miss
+Inverted-token candidate index
+  ↓
+RapidFuzz fallback
+  ↓
+High / Medium / Low confidence
 ```
 
-## Phase 2 first implementation tasks
+## Fresh-source architecture
 
-1. normalized-text dedupe with speaker/layout awareness;
-2. translation record schema;
-3. human-readable JSON source store;
-4. build step to runtime SQLite;
-5. candidate inverted index;
-6. exact-first matching;
-7. fuzzy fallback + confidence bands;
-8. unit tests using real OCR distortions observed in Phase 1.
+Old project data has been abandoned.
+
+Pinned source lock:
+
+```text
+sources/sources.lock.json
+```
+
+Primary English source:
+- `addohm/poe2-en-cn-dict`
+- pinned commit `28d683c99600eb407b4e014ccaf8247532fb4607`
+- uses `NPCTextAudio` and `NPCTalkDialogueTextAudio` English output
+- contains `<continue>` boundaries matching actual on-screen dialogue pages
+
+Optional speaker/topic enrichment:
+- `fireMCG/Exiled-Vault`
+- pinned commit `b3dd7457aa4e7f126021b8d8577f38ef205490c7`
+- 2026-09-30 snapshot
+- context enrichment is optional; source sync continues if this dependency is unavailable
+
+Raw upstream material is downloaded into gitignored `source_data/` and is not committed.
+
+Source segments receive deterministic IDs from table + normalized-English SHA-256 fingerprint.
+
+Committed Vietnamese file:
+
+```text
+translations/dialogue_vi.json
+```
+
+It contains only `source_id + vi + review state`, not the upstream English corpus.
+
+Runtime build joins:
+
+```text
+source_data/dialogue_corpus.jsonl
+        +
+translations/dialogue_vi.json
+        ↓
+runtime/translations.sqlite3
+```
+
+Build fails if a Vietnamese `source_id` no longer exists in the synced source corpus.
+
+## Fresh-source validation already performed
+
+Nine unique Renly/Una dialogue segments captured by real Phase 1 OCR were checked against the pinned 2026 English source.
+
+All 9 were found.
+
+Examples of matched source records included:
+- Renly introduction
+- Renly / The Miller
+- Una / Home
+- Una / Clearfell
+
+The 2026 source correctly retains `<continue>` boundaries. This also fixed a truncation found in an older 2025 public dump, confirming the project should not rely on that older dump.
+
+## Fresh Alpha Vietnamese corpus
+
+Nine Vietnamese translations were recreated from the fresh source and Phase 1 evidence. They were not copied from the old project data.
+
+Current QC coverage:
+- Renly → Introduction
+- Renly → The Miller
+- Una → Home
+- Una → Clearfell
 
 ## Next checkpoint
 
-Build Phase 2 against the real OCR evidence already collected.
+User downloads a fresh repo copy and runs:
 
-No additional Phase 1 QC is required.
+```text
+QC_PHASE2.bat
+```
+
+The launcher performs source sync, DB build and a 60-second end-to-end matcher QC.
+
+Expected output:
+
+```text
+QC_PHASE2_RESULT_YYYYMMDD_HHMMSS.zip
+```
+
+Pass criteria:
+
+1. source sync completes;
+2. all committed Alpha translation IDs resolve;
+3. runtime DB builds with 9 records;
+4. text dedupe suppresses repeated OCR of the same visible sentence;
+5. at least one Alpha dialogue produces a high-confidence Vietnamese match;
+6. OCR/runtime errors = 0.
+
+If pass: lock Phase 2 and begin **Phase 3 — Replacement Overlay**.
