@@ -4,11 +4,17 @@
 
 ## Current phase
 
-**Phase 5 — Translation Factory: first milestone implemented; seven new pages awaiting in-game QC**
+**Phase 5 — Translation Factory: first-batch technical/visual QC verified; larger milestone planned**
 
 Phase 1, Phase 2 and Phase 4 are **PASS / LOCKED** on the tested Windows setup.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
 Current build: **0.5.0-alpha.1 / factory-20261004-01**.
+
+Latest checkpoint: QC `20261004_223644_671889` verifies all seven new pages,
+13 High overlay shows and zero runtime errors. An existing Renly proof has a
+small exposed edge glyph; a long Una page uses 14 px. Next scope and cleanup:
+[docs/ROADMAP_NEXT.md](docs/ROADMAP_NEXT.md). The user requested a plan for a
+longer implementation milestone; no cleanup or new 180–220-page pack has been executed yet.
 
 ## Locked product decisions
 
@@ -610,3 +616,57 @@ check one existing Renly Introduction page. Send `QC_PHASE4_RESULT_*.zip` and
 language/readability feedback. Expect version `0.5.0-alpha.1` and 16 runtime records.
 After the user's new-page QC passes, approve/publish this batch using the factory
 workflow, then prepare the next batch from exact MISS pages observed during play.
+
+## Latest QC and larger-milestone planning — 2026-10-04
+
+This checkpoint supersedes the previous pending Windows-rendering request and
+the proposed practice of making each release from a few QC MISS pages.
+The user supplied `QC_PHASE4_RESULT_20261004_223644_671889.zip`, requested its
+review, a longer implementation milestone and a plan to remove unused old files.
+
+Evidence: build `0.5.0-alpha.1 / factory-20261004-01`, fingerprint
+`e43b03f657bb70dda726a24f2948d31333e7c864e3a9f207576020604ac4bc76`, 16 runtime
+records, Windows/Python 3.12.10 and 1920×1080. ZIP SHA-256
+`7a4ef93ce26863e798ca5c400ca0ea960c5ad816fb1a7a38e2f00f99feed4b44`, CRC clean.
+
+QC result:
+- 60 active seconds / 67.89 wall seconds; 448 captures and 53 OCR calls;
+- 32 detected pages, 13 emitted/High shows, 19 duplicate suppressions;
+- 11 emitted exact matches at 100%; 2 correct Una Home fuzzy matches at 96.16/95.78;
+- all 32 detected texts resolve to the correct catalog page: 26 full exact and
+  6 same-page OCR prefixes where chat obscures the final line;
+- 12 unique proof images inspected at native detail, including every new page;
+- all seven new translations fit, cover the English and preserve Continue;
+- all 13 logged masks contain the OCR box and preserve the complete Vietnamese text;
+- all 20 rejected logged frames show topic menus/open world/chat, not missed NPC story pages;
+- 0 MISS, Medium, OCR/overlay/runtime errors or dropped log entries;
+- 1 foreground pause; 12 transient-loss loop samples, not 12 individual actions;
+  event 33 was discarded after a foreground change while OCR was pending.
+
+Do not label overall visual coverage perfect: proof 36 (existing Renly Introduction
+page 1) has a small exposed glyph at the right mask edge. The raw OCR frame does
+not show that glyph in the same position, so investigate layout/page changes
+between frames as well as mask padding; do not assert a root cause from one image.
+Existing Una Home proof 17 uses 14 px, readable at native detail but small.
+These are planned follow-ups for the larger release; the seven new pages pass
+technical/visual QC. New user wording approval has not been reported, so the
+batch/catalog remain `reviewed`, not `approved`. Phase 5 is not PASS/LOCKED as a whole.
+
+Plan saved in `docs/ROADMAP_NEXT.md`: one release targeting roughly 180–220 total
+reviewed Act 1 dialogue pages across Una/Renly/Finn/The Hooded One, source/topic
+allowlist, factory batch/coverage support, layout fixes, corpus-scale ambiguity
+checks, regression replay and cleanup. Native speaker counts are 109/88/78/131;
+these 406 candidates include vendor/combat/callout/other-Act content and are not
+406 eligible Story Dialogue pages. Raw English and generated runtime stay ignored.
+
+Cleanup is planned, not executed. Retire Phase 2/3 launchers/probes after dependency
+and lifecycle-test migration, move active developer launchers out of the user root,
+compact current docs and keep architecture/review data/current runtime. Preserve
+all milestone QC originals and their compact replay evidence before considering
+deletion of duplicate extracted screenshots. No user-PC files were modified.
+
+Next execution starts with source-ID/topic manifest, then internal drafting/review
+batches of 30–50 complete pages. Release/QC only after the entire agreed milestone
+passes its exit checks; do not repeatedly ask the user to QC 5–10 additional pages.
+The current turn changes documentation only; code fingerprint and 16 translations
+remain identical to the QC build.
