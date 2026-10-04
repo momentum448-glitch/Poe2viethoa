@@ -79,3 +79,48 @@ Session: `20261004_134633`
 - Spike 001B added to locate the active PoE2 installation from the running process and inspect the recent Client.txt tail without requiring another full NPC test.
 
 Next: run `QC_LOG_ONLY.bat` while PoE2 is open, send `QC_LOG_RESULT_*.zip`, then lock Dialogue signal architecture.
+
+
+## Architecture Decision — 2026-10-04
+
+### Dialogue signal source: OCR-FIRST — LOCKED
+
+Evidence from real QC:
+
+- Spike 001 captured at least 10 distinct Renly story-dialogue lines through Windows OCR.
+- OCR returned usable word/line bounding boxes.
+- Both normal dialogue layout and inventory-open shifted layout were observed and readable.
+- Main OCR noise came from nearby chat/UI text, so Phase 1 must add dialogue-panel/layout filtering before matching.
+- Spike 001B/V4/V5 repeatedly failed to locate a reliable `Client.txt` on the test machine.
+- V5 did detect a running `PathOfExile.exe` process and Steam root `E:\Steam`, but found no usable PoE2 manifest/log path.
+
+Decision:
+
+```text
+Screen
+  ↓
+Dialogue layout detector
+  ↓
+Frame stability gate
+  ↓
+Windows OCR + bounding boxes
+  ↓
+Text stabilizer
+  ↓
+Context resolver
+  ↓
+Candidate index
+  ↓
+Exact → fuzzy matcher
+  ↓
+Translation
+  ↓
+Replacement overlay
+```
+
+`Client.txt` is now optional future context only. Do not block development on it.
+
+### Phase transition
+
+Phase 0 signal validation is complete.
+Next: **Phase 1 — Core Capture + Dialogue Context**.
