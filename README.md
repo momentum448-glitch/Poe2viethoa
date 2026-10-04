@@ -27,6 +27,8 @@ Text dedupe
   ↓
 Exact / fuzzy matcher
   ↓
+Ambiguity guard
+  ↓
 Fresh source corpus
   ↓
 Vietnamese translation
@@ -66,6 +68,13 @@ The launcher automatically:
 5. runs a 60-second end-to-end matcher QC;
 6. creates `QC_PHASE2_RESULT_*.zip`.
 
+QC safety behavior:
+
+- the 60-second timer counts only while PoE2 is the foreground app;
+- Alt+Tab pauses the timer;
+- another foreground application is never captured or OCRed;
+- fuzzy results that are nearly tied with another candidate are hidden from Normal mode.
+
 For the current Alpha corpus, test one or more of:
 
 - Renly → **Introduction**
@@ -93,7 +102,7 @@ translations/dialogue_vi.json
 - OCR-first for Story Dialogue.
 - `Client.txt` is optional future context only.
 - Normal overlay will cover English and replace it with Vietnamese.
-- Low-confidence matches are hidden in Normal mode.
+- Low-confidence and ambiguous fuzzy matches are hidden in Normal mode.
 - Raw source data, runtime caches and generated DBs are not committed.
 - Python first; packaged EXE after Local Alpha passes.
 
