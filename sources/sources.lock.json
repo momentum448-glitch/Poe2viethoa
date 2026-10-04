@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "notes": "Raw upstream content is downloaded only into gitignored source_data/. Do not commit upstream game text.",
+  "sources": {
+    "poe2_en": {
+      "repo": "addohm/poe2-en-cn-dict",
+      "ref": "28d683c99600eb407b4e014ccaf8247532fb4607",
+      "files": [
+        "dictionary/tables/NPCTextAudio.json",
+        "dictionary/tables/NPCTalkDialogueTextAudio.json"
+      ],
+      "role": "English source text and <continue> segment boundaries"
+    },
+    "dialogue_context": {
+      "repo": "fireMCG/Exiled-Vault",
+      "ref": "b3dd7457aa4e7f126021b8d8577f38ef205490c7",
+      "archive": "https://codeload.github.com/fireMCG/Exiled-Vault/zip/b3dd7457aa4e7f126021b8d8577f38ef205490c7",
+      "role": "Current PoE2 speaker/topic transcript context; local validation only"
+    }
+  }
+}
