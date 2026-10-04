@@ -5,3 +5,4 @@ diagnostics/
 *.log
 .DS_Store
 Thumbs.db
+QC_RESULT_*.zip
