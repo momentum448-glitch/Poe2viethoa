@@ -123,7 +123,7 @@ masks preserve the full translation and cover the complete English OCR box.
 The ZIP has zero foreground transitions; direct operation/focus validation comes
 from the subsequent user confirmation, not an invented event trace.
 
-### Phase 5 — Translation Factory — CURRENT / FIRST BATCH IMPLEMENTED
+### Phase 5 — Translation Factory — CURRENT / FIRST BATCH QC VERIFIED
 - current build `0.5.0-alpha.1 / factory-20261004-01` with 16 reviewed translations;
 - `tools.translation_factory`: exact-source selection from QC MISS, batch creation,
   local prompt/review bundle, QA, explicit semantic review, publication and human-QC approval;
@@ -144,10 +144,30 @@ QA with 0 errors/warnings and compile into the 16-record runtime. All 102 tests
 pass; replay of three real QC logs keeps all 22 prior High overlay decisions on
 the same IDs, and all seven latest MISS pages now resolve exactly at 100%.
 
-Phase 5 remains CURRENT, with first-batch in-game typography/translation QC pending.
-The original nine entries are retained byte-for-byte as JSON records. New seven
-entries are `reviewed`, not human `approved`. The next checkpoint is Una
-Introduction/Renly and Renly Fatherhood through the existing panel QC workflow.
+First-batch Windows QC `20261004_223644_671889` verifies the actual build fingerprint
+and all seven new pages. It completed 60 active seconds / 67.89 wall seconds:
+448 captures, 53 OCR calls, 32 detections, 13 High shows (11 exact and 2 correct
+fuzzy matches), 19 duplicates, 12 proof images, no MISS or OCR/overlay/runtime errors.
+The 2 fuzzy matches are existing Una Home pages with their final OCR line obscured
+by chat; manual source/image review confirms the correct page. All seven new
+pages are readable, cover English and leave Continue unobstructed in the observed layouts.
+
+Two follow-ups belong to the next larger milestone: a small exposed glyph at the
+right mask edge of an existing Renly Introduction proof, and the 14-pixel font on
+a long existing Una Home page. The exposed glyph's cause is not established;
+check mask bounds and changes between the OCR frame and proof capture before fixing it.
+The ZIP records one foreground pause; its 12 transient-loss counts are loop samples,
+not 12 distinct Alt+Tab actions. Event 33 was discarded during a foreground change,
+consistent with the guard; logging reports no dropped entries.
+
+Phase 5 remains CURRENT. The original nine entries are retained unchanged; the
+new seven remain `reviewed`, with no invented human wording approval. The user
+requested larger implementation batches and a cleanup plan. The proposed next
+deliverable is one Act 1 Story Dialogue pack targeting 180–220 reviewed pages in
+total across Una/Renly/Finn/The Hooded One, with factory scaling, layout follow-ups,
+regression checks and retirement of superseded files. Topic/source validation
+determines final eligible coverage; speaker totals include barks and other Acts.
+See [the next milestone](docs/ROADMAP_NEXT.md) for scope, exit checks and exact cleanup candidates.
 
 ### Phase 6 — Additional modules
 Quest → Tutorial → UI → Skill/Passive → Item/Mechanics.

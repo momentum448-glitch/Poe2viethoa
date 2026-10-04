@@ -100,10 +100,19 @@ rollback, review tampering, human promotion and old-runtime preservation.
 
 Replaying three prior QC logs keeps all 22 prior High overlay decisions on their
 existing IDs. In Alpha.3 QC, all 15 emitted pages now match exactly, including
-the seven previously untranslated pages. This is matcher/build validation; new
-Vietnamese rendering and final language acceptance still need the user's game QC.
+the seven previously untranslated pages. That replay is matcher/build validation.
+
+Actual Windows QC `20261004_223644_671889` subsequently verifies every new page:
+13 High shows (11 exact and 2 correct fuzzy matches on older Una Home pages),
+12 unique proofs, no MISS or runtime errors. The seven new Vietnamese pages fit,
+cover English and preserve Continue. An older Renly proof has an exposed edge
+glyph and a long older Una page uses 14 px; both follow-ups are in the next milestone.
+This is technical/visual review, not a fabricated user wording approval. The
+seven entries therefore remain `reviewed` until the user confirms that acceptance.
 
 User pages: Una → Introduction / Renly (3 new pages), Renly → Fatherhood (4 pages).
 Hold each page 3–4 seconds, exercise Inventory, and check one existing Renly
-Introduction page. Send the panel QC ZIP and any wording feedback. Subsequent
-batches should prioritize exact MISS pages observed in actual play.
+Introduction page. The current QC pack already covers these pages; another tiny
+release/QC cycle is not required to establish that coverage. Subsequent work now
+uses the larger [milestone and cleanup plan](ROADMAP_NEXT.md), with complete
+source/topic groups and internal drafting batches rather than only the latest MISS list.

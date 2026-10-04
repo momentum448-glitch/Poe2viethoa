@@ -4,7 +4,7 @@ Local-first Vietnamese localization engine for Path of Exile 2.
 
 ## Current phase
 
-**Phase 5 — Translation Factory: first batch implemented, awaiting in-game text QC**
+**Phase 5 — Translation Factory: seven new pages passed technical/visual QC; larger milestone planned**
 
 Phase 1, Phase 2 and Phase 4 are **PASS / LOCKED** on the tested Windows setup.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
@@ -21,7 +21,13 @@ Phase 4 đã được chốt; các cấu hình/DPI khác chưa nằm trong phạ
 Lô Factory đầu tiên thêm 7 đoạn Una/Renly từ các MISS đã xác minh, đưa bộ dịch
 lên **16 đoạn**. Lô đã được AI soát nghĩa và qua QA cấu trúc: 0 lỗi, 0 cảnh báo.
 Công cụ tạo nháp, glossary, gói nguồn/context, bộ nhớ bản dịch, duyệt và đưa vào
-catalog đã có; **102 kiểm thử đạt**. Bảy đoạn mới chờ QC chữ/hiển thị trong game.
+catalog đã có; **102 kiểm thử đạt**. QC `20261004_223644_671889` đã xác minh đủ
+7 đoạn mới trong game: 13 lượt High (11 exact, 2 fuzzy đúng trang), 0 MISS,
+0 lỗi OCR/overlay/runtime. Bảy đoạn mới rõ chữ, che đủ tiếng Anh và để trống Continue.
+Một ảnh Renly cũ còn vệt ký tự ở mép mặt nạ; đoạn Una Home dài dùng chữ 14 px.
+Hai điểm này nằm trong chặng tiếp theo cùng gói Story Dialogue khoảng 180–220 trang.
+Xem [kế hoạch chặng lớn và dọn dẹp](docs/ROADMAP_NEXT.md). Lượt này chỉ cập nhật
+kết quả QC/kế hoạch; code, 16 bản dịch và fingerprint giữ nguyên.
 
 ## Chạy Local Alpha
 
