@@ -4,18 +4,19 @@ Local-first Vietnamese localization engine for Path of Exile 2.
 
 ## Current phase
 
-**Phase 4 — Local Alpha: implemented, awaiting Windows/PoE2 QC**
+**Phase 4 — Local Alpha: technical/visual QC passed; interaction confirmation pending**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
 Alpha build: **0.4.0-alpha.3 / alpha-20261004-03**.
 
-QC Alpha.2 `20261004_205252_628160`: 60 giây trong game, 9 lần hiện bản dịch,
-0 lỗi OCR/overlay/runtime. Cả 7 ảnh Una/Renly đều rõ chữ, che đủ tiếng Anh và
-không đè Continue; vùng chụp mới đã lấy đủ hộp Una. Một sự kiện nhận nhầm chat
-giao dịch thành lời thoại, nhưng không hiện bản dịch vì điểm match thấp.
-Alpha.3 gắn Continue/tên NPC theo từng đoạn thoại và chọn đoạn có đúng vị trí
-xác nhận; cần QC lại bản sửa này trên Windows trước khi khóa Phase 4.
+QC Alpha.3 `20261004_212425_250828`: 60 giây trong game, 8 lần hiện bản dịch
+khớp 100%, 0 lỗi OCR/overlay/runtime. Cả 7 ảnh Una/Renly đều rõ chữ, che đủ
+tiếng Anh và không đè Continue. Cả 24 lần nhận diện đều là lời thoại thật;
+không còn nhận nhầm chat trong phiên này. Bảy câu chưa dịch nằm ngoài bộ Alpha.
+Kỹ thuật và hình ảnh đã đạt trên cấu hình Windows/1920×1080 được thử. Phiên này
+không ghi nhận chuyển foreground; phần Continue/di chuyển và Alt+Tab cần anh
+xác nhận để chốt Phase 4. Tiếp tục dùng bản Alpha.3 hiện tại.
 
 ## Chạy Local Alpha
 
@@ -37,9 +38,9 @@ Timer chỉ tính thời gian PoE2 ở foreground. QC thu ảnh vùng hội tho�
 **QC_PHASE4_RESULT_*.zip** và hiện tên file sau khi hoàn tất. Gửi ZIP đó lại trong chat.
 Nếu bấm Dừng trước đủ 60 giây, kết quả là `INTERRUPTED`, không phải PASS.
 
-QC Alpha.3: thử **Una → Home / Clearfell** và một đoạn Renly → Introduction /
-The Miller, cả khi mở/đóng Inventory. Giữ chat hiện nếu đang có; không cần gửi
-tin nhắn. Giữ mỗi đoạn 3–4 giây, thử Alt+Tab lúc đang hiện tiếng Việt, rồi gửi ZIP QC.
+Checkpoint còn lại: khi đang hiện tiếng Việt, bấm Continue/di chuyển và thử
+Alt+Tab ra rồi quay lại game. Overlay cần ẩn ngoài game và hiện lại khi trở về
+đoạn đã dịch. Báo kết quả thao tác; QC đã có đủ ảnh cho bản Alpha.3.
 
 Bản Alpha vẫn có **9 đoạn hội thoại đã dịch**: Renly Introduction / The Miller,
 Una Home / Clearfell. Các câu ngoài bộ này giữ nguyên tiếng Anh.
