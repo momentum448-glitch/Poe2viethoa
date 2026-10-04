@@ -92,7 +92,7 @@ behavior, all foreground transitions and other DPI/presentation modes remain
 part of Phase 4 real-session testing. Three unmatched Renly segments are outside
 the nine-segment Alpha corpus; they correctly receive no replacement overlay.
 
-### Phase 4 — Local Alpha — CURRENT / IMPLEMENTED, WINDOWS QC PENDING
+### Phase 4 — Local Alpha — TECHNICAL/VISUAL QC PASS, INTERACTION CONFIRMATION PENDING
 - `RUN_ALPHA.bat` checks local readiness, runs first-time setup when needed and opens the control panel;
 - `SETUP_ALPHA.bat` installs dependencies and builds the local DB atomically from pinned sources;
 - native Tk panel: Bắt đầu, QC 60 giây, Dừng & tạo ZIP, Mở file kết quả;
@@ -104,19 +104,25 @@ the nine-segment Alpha corpus; they correctly receive no replacement overlay.
 - version/build ID and source fingerprint are recorded in every session;
 - source-first build `0.4.0-alpha.3 / alpha-20261004-03`; Alpha.1 had two clean normal sessions and a completed 60-second technical/visual Renly QC;
 - Alpha.2's expanded capture passed visual Una/Renly QC; its larger ROI exposed a chat line falsely anchored by Continue in another column;
-- Alpha.3 associates each paragraph with a nearby footer/header before choosing it; the corrected context selection and direct input/focus still need Windows QC.
+- Alpha.3 associates each paragraph with a nearby footer/header before choosing it; the corrected context selection passed Windows QC, with direct interaction/foreground confirmation still pending.
 
 Phase 4 is not PASS/LOCKED yet. The nine-segment Alpha corpus remains unchanged.
 
-Latest real QC `20261004_205252_628160`: 454 captures, 52 OCR calls, 38 reported
-detections, 9 High overlay updates (7 exact, 2 fuzzy), 7 readable proof images,
-no OCR/overlay/runtime errors, 60.00 active seconds / 61.08 wall seconds. Four Una
-and three Renly proofs cover English and leave Continue visible; the lower popup
-is no longer clipped. Two Medium matches correctly stay hidden. Of three MISS
-texts, two are fresh-source Una dialogue outside the reviewed DB; event 20 is
-global chat incorrectly selected while Una's short paragraph is visible. It
-received no overlay, but this context defect prevents locking Phase 4. Alpha.3
-adds five regressions plus a lower Una speaker assertion; all 82 tests pass.
+Latest real QC `20261004_212425_250828`, verified Alpha.3 fingerprint: 456 captures,
+53 OCR calls, 24 valid dialogue detections, 15 emitted texts, 9 duplicates,
+8 exact/High overlay updates at 100%, 7 readable proof images, no errors,
+60.00 active seconds / 61.02 wall seconds. All 24 detected texts match the fresh
+source; seven untranslated Una/Renly pages outside the reviewed DB stay hidden.
+All 29 rejected frames show topic menus, open-world/chat, waypoint or proclamation,
+consistent with the NPC Story Dialogue scope. The prior chat-selection defect
+does not recur; Una's short page is selected correctly beside chat. Four Una and
+three Renly proofs cover English and leave Continue visible; all eight logged
+masks preserve the full translation and cover the complete English OCR box.
+
+Technical/visual QC is PASS on the tested Windows/1920×1080 setup. This session
+has zero foreground transitions, so it does not establish the Alpha.3 Alt+Tab
+path or direct input/focus. Ask for the user's operation result; a new build is
+not required. Once confirmed, lock Phase 4 and begin Phase 5 Translation Factory.
 
 ### Phase 5 — Translation Factory
 - fresh-source refresh;
