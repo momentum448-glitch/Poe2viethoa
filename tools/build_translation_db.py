@@ -27,8 +27,15 @@ def main() -> None:
     args = parser.parse_args()
 
     records, stats = compile_translation_records(args.corpus, args.translations)
-    build_sqlite(records, args.output)
     print(json.dumps(stats, ensure_ascii=False, indent=2))
+
+    if stats["missing_source"] > 0:
+        raise SystemExit(
+            f"ERROR: {stats['missing_source']} Vietnamese translation entry/entries "
+            "do not exist in the synced source corpus. Refresh/remap before building."
+        )
+
+    build_sqlite(records, args.output)
     print(f"Built {args.output}")
 
 
