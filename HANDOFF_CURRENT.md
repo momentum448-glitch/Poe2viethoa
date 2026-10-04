@@ -64,3 +64,18 @@ Run Spike 001 against a real PoE2 NPC conversation and inspect:
 - dialogue layout changes.
 
 Then lock the Dialogue signal architecture and begin Phase 1 implementation.
+
+
+## Spike 001 result — first real QC
+
+Session: `20261004_134633`
+
+- Windows OCR available and functioning.
+- Capture: 1920x1080 primary monitor, ROI 1267x302.
+- OCR successfully captured at least 10 distinct Renly story dialogue lines with line/word bounding boxes.
+- Two stable dialogue horizontal layouts were observed, consistent with normal vs inventory-open states.
+- Main OCR contamination came from chat/UI text outside the dialogue panel, which supports adding panel/context filtering before matching.
+- `Client.txt` was not auto-detected in this run, so Log-first vs Hybrid is **not yet decided**.
+- Spike 001B added to locate the active PoE2 installation from the running process and inspect the recent Client.txt tail without requiring another full NPC test.
+
+Next: run `QC_LOG_ONLY.bat` while PoE2 is open, send `QC_LOG_RESULT_*.zip`, then lock Dialogue signal architecture.
