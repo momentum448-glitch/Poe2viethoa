@@ -61,7 +61,7 @@ Lý do: real QC đã chứng minh Windows OCR đọc tốt nhiều câu story c�
 - Spike 001: Client.txt + OCR + layout evidence. **PASS**
 - Dialogue signal architecture: **OCR-first — LOCKED**.
 
-### Phase 1 — Core capture/context — IMPLEMENTED, AWAITING REAL QC
+### Phase 1 — Core capture/context — PASS / LOCKED
 - game foreground detection;
 - screen capture;
 - dialogue-panel/layout detection;
@@ -71,7 +71,7 @@ Lý do: real QC đã chứng minh Windows OCR đọc tốt nhiều câu story c�
 - one-click QC packager.
 - optional log adapter may be explored later, but is not on the critical path.
 
-### Phase 2 — Dialogue v0.1
+### Phase 2 — Dialogue matching + translation store — CURRENT
 - Clearfell dataset;
 - normalization;
 - candidate index;
