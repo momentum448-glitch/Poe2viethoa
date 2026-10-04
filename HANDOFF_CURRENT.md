@@ -17,9 +17,10 @@ Phase 1 is **PASS / LOCKED**.
 - No RAM reading, injection, hooking, game-file modification, or automated game input.
 - `Client.txt` is optional future context only.
 - Normal overlay target: cover English and replace it with Vietnamese.
-- Low-confidence matches are hidden in Normal mode.
+- Low-confidence and ambiguous fuzzy matches are hidden in Normal mode.
 - Translation source is reviewable in Git; generated runtime DB is local.
-- User-facing QC defaults to **60 seconds**.
+- User-facing QC defaults to **60 seconds of active PoE2 foreground time**.
+- Phase 2 diagnostics must never capture/OCR another foreground application.
 - **Do not use Remote Desktop for source recovery.**
 - **Do not use the previous project dictionary or old 208-line corpus.**
 
@@ -54,6 +55,13 @@ Real Renly/Una story lines were detected. Topic menus, waypoint/proclamation and
 - `QC_PHASE2.bat`
 - matcher/store/source-sync unit tests
 
+Phase 2 hardening completed before live QC:
+
+- the 60-second QC budget now counts only while PoE2 is actually foreground;
+- Alt+Tab pauses the QC timer instead of silently consuming the session;
+- no screenshot/OCR is performed while another application is foreground, including the 1.5-second focus debounce window;
+- fuzzy matches with a high score but a near-tied runner-up are downgraded from High to Medium, so Normal mode hides them instead of guessing.
+
 Matcher policy:
 
 ```text
@@ -68,6 +76,8 @@ Exact match
 Inverted-token candidate index
   ↓
 RapidFuzz fallback
+  ↓
+Top-candidate ambiguity guard
   ↓
 High / Medium / Low confidence
 ```
@@ -152,6 +162,12 @@ QC_PHASE2.bat
 
 The launcher performs source sync, DB build and a 60-second end-to-end matcher QC.
 
+Runtime behavior during this QC:
+
+- the timer starts/counts only while PoE2 is foreground;
+- if the user Alt+Tabs away, the timer pauses;
+- another foreground application is never captured or OCRed.
+
 Expected output:
 
 ```text
@@ -165,6 +181,7 @@ Pass criteria:
 3. runtime DB builds with 9 records;
 4. text dedupe suppresses repeated OCR of the same visible sentence;
 5. at least one Alpha dialogue produces a high-confidence Vietnamese match;
-6. OCR/runtime errors = 0.
+6. ambiguous fuzzy results remain hidden from Normal mode;
+7. OCR/runtime errors = 0.
 
 If pass: lock Phase 2 and begin **Phase 3 — Replacement Overlay**.
