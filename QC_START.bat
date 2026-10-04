@@ -54,7 +54,7 @@ echo ============================================================
 echo.
 echo Bay gio hay quay lai POE2 va noi chuyen voi NPC.
 echo Tool se tu dung sau 120 giay.
-echo Co the nhan Ctrl+C neu da thu du 3-5 cau.
+echo Neu da thu du 3-5 cau, hay DE CUA SO CHAY HET 120 GIAY de tu dong dong goi.\r\nREM Neu lo bam Ctrl+C va khong co ZIP, chay QC_PACKAGE_RESULT.bat.
 echo.
 
 ".venv\Scripts\python.exe" -X utf8 spikes\spike001_signal_audit.py --seconds 120
