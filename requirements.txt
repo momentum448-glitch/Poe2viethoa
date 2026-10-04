@@ -6,3 +6,4 @@ winrt-windows-globalization>=3,<4
 winrt-windows-graphics-imaging>=3,<4
 winrt-windows-media-ocr>=3,<4
 winrt-windows-storage-streams>=3,<4
+rapidfuzz>=3.9,<4
