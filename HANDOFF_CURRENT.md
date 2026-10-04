@@ -4,11 +4,11 @@
 
 ## Current phase
 
-**Phase 4 — Local Alpha: normal Windows sessions clean, 60-second visual QC pending**
+**Phase 4 — Local Alpha: Renly technical/visual QC passed; Una capture fix awaiting Windows QC**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
-Current build: **0.4.0-alpha.1 / alpha-20261004-01**.
+Current build: **0.4.0-alpha.2 / alpha-20261004-02**.
 
 ## Locked product decisions
 
@@ -372,3 +372,59 @@ in the same extracted project folder. Otherwise reopen `RUN_ALPHA.bat` and choos
 **QC 60 giây**, the middle button between Bắt đầu and Dừng & tạo ZIP. Wait for QC
 hoàn tất after 60 active game seconds, then send its result ZIP. Keep the current
 build; no engine change or new download is required by this review.
+
+## Phase 4 panel QC review and Una capture fix — 2026-10-04
+
+Archive: `QC_PHASE4_RESULT_20261004_202906_038009.zip`, build Alpha.1.
+ZIP CRC passed; 53 raw screenshots, 5 overlay proof PNGs and 3 logs/metadata files.
+Result: **TECHNICAL_PASS**, 60.00 active game seconds / 64.05 wall seconds.
+468 captures, 53 OCR calls, 34 detections, 7 emitted texts, 27 duplicates suppressed,
+5 exact/High matches at 100%, 5 overlay updates/proofs, 2 untranslated texts hidden.
+0 OCR/overlay/runtime errors or dropped entries; 12 transient foreground losses,
+1 pause. Event-derived counters, matcher results and delivered code fingerprint
+were independently verified.
+
+All five proof images were visually reviewed:
+- events 6, 14, 20, 27: Renly in inventory-left layout;
+- event 33: Renly in normal-right layout;
+- Vietnamese readable and complete, English entirely covered, Continue unobstructed;
+- every logged mask encloses the full English OCR bounding box;
+- subsequent raw frames 7, 15, 21, 28, 34 contain English while the overlay is logged
+  visible, confirming capture exclusion in these samples without an observed loop.
+
+The two MISS frames 42/43 show real Renly / Clearfell dialogue absent from the
+nine-record reviewed Alpha DB. They are exact normalized matches in the fresh
+source corpus and correctly remain untranslated. Frame 41 is the rejected topic
+menu; frame 49 exposes a separate capture limitation.
+
+**Do not lock Phase 4 from the Renly-only visual pass.** In frame 49, Una's popup
+header is around y=625 and its text begins around y=665 in screen coordinates;
+the old ROI ends at y=691. The screenshot visibly cuts the paragraph and omits
+Continue. Its lower text also falls into the detector's excluded bottom strip,
+so it is logged as no dialogue. Frame 50 similarly clips Una's lower topic menu.
+This is a capture-coverage defect even though the runtime reports no exceptions.
+
+Fix implemented in **0.4.0-alpha.2 / alpha-20261004-02**:
+- `ScreenCapture.default_dialogue_region` expands monitor-relative height from
+  25% to 45%; at 1920×1080 the ROI is now (230,421,1190,486), ending at y=907.
+- Capture extends through the lower paragraph/Continue area and stays above the
+  bottom HUD. Matching thresholds and reviewed translation data are unchanged.
+- New regressions exercise lower-popup/Continue coverage, resolution/origin scaling,
+  complete lower dialogue recovery and continued rejection of topic menus/bottom chat.
+- **All 77 tests passed** on Linux/Python 3.12; compileall and diff whitespace checks passed.
+- New code fingerprint: `d7cd08c0cd6c6d1071273159ed9c4b7103f589430dfb64e7a473bbf8983233d8`.
+
+The missing pixels below the original PNG cannot be recovered locally. The
+expanded ROI was tested with simulated geometry/OCR; actual Windows OCR/overlay
+and performance with the larger capture still require the next user QC.
+
+Next checkpoint (supersedes previous QC requests):
+1. Download the corrected Alpha.2 build, extract a fresh folder and run `RUN_ALPHA.bat`.
+2. Select **QC 60 giây** and exercise **Una → Home / Clearfell**, then one known
+   Renly Introduction / The Miller segment to check the existing overlay layout.
+3. Send `QC_PHASE4_RESULT_*.zip`; metadata must identify Alpha.2, and screenshots
+   must contain the complete Una paragraph and Continue. Confirm game input works.
+
+Phase 4 remains CURRENT / FIX IMPLEMENTED / WINDOWS QC PENDING. The Renly visual
+checkpoint is passed on Alpha.1; full Alpha locking and translation expansion
+wait for validation of the observed Una crop fix.
