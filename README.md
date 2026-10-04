@@ -65,6 +65,19 @@ QC_PHASE3_RESULT_*.zip
 
 Send that ZIP back to the project chat.
 
+The pre-QC code review fixed native window selection, 64-bit HWND handling,
+English-mask coverage, text overflow, quick Alt+Tab/reopen recovery, and ZIP
+creation after runtime failure or interruption.
+
+Result labels:
+- `TECHNICAL_PASS`: the automated checks completed; real-game visual QC is still required.
+- `NEEDS_REVIEW`: the session completed but one or more technical checks did not pass.
+- `ERROR` / `INTERRUPTED`: the session failed or stopped early; send the partial result ZIP.
+
+Phase 3 needs Windows 10 build 19041 or newer for capture exclusion. Window
+stacking, click-through behavior, capture exclusion with MSS, and readability
+still need confirmation on the actual PoE2 session.
+
 ## Phase 2 QC result
 
 Final Phase 2 real-game QC: **PASS**.

@@ -138,6 +138,38 @@ Current Phase 3 proof design:
 - use `SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE)` so runtime OCR does not read the Vietnamese overlay back into itself;
 - QC-only overlay proof screenshots temporarily allow capture without running OCR on those frames.
 
+## Phase 3 pre-QC code review — 2026-10-04
+
+User requested another error review before running the proof.
+
+Fixed:
+1. Native styles and capture affinity now target Tk's actual top-level wrapper HWND,
+   not its child HWND. Win32 argument/return types preserve 64-bit handles.
+2. Overlay stays topmost with `SWP_NOACTIVATE`; the native styles and affinity
+   are checked. Windows builds older than 19041 stop with a diagnostic ZIP.
+3. The mask covers the full English OCR bounding box, even when Vietnamese is
+   shorter or the source is wider/taller than the old 520×108 limit. The actual
+   OCR Continue position bounds the mask when available.
+4. Vietnamese uses pixel-sized fonts. Complete text must fit within the mask;
+   long words wrap, and overflow is hidden/reported instead of spilling into controls.
+5. Fast Alt+Tab and closing/reopening the same dialogue reset display/dedupe state.
+   A confirmed non-dialogue result or OCR error clears stale translations.
+6. Foreground is checked around capture, after async OCR, and around QC proof
+   capture. A skipped proof is retried later; failed affinity restoration stops capture.
+7. Runtime/setup failures and graceful interruptions close resources and package
+   partial diagnostics. The launcher shows the ZIP path on probe failure too.
+8. Automatic success is `TECHNICAL_PASS`, with `visual_qc_required=true`.
+   It does not lock Phase 3 or advance to Phase 4 without real-game visual QC.
+
+Validation:
+- 47 automated tests passed on Linux/Python 3.12, including simulated Win32/Tk
+  boundaries and complete probe lifecycle tests.
+- Replayed all 16 detected dialogue bounding boxes from latest user QC
+  `20261004_175216`: 16/16 masks cover the complete English bounding box.
+- No Remote Desktop and no previous project dictionary/corpus were used.
+- Native Windows/Tk/MSS/PoE2 integration and visual readability remain unverified
+  until the next user QC pack. The automated tests use mocks for those platform boundaries.
+
 ## Current open risks for Phase 3 QC
 
 Must be verified on the real Windows/PoE2 session:
@@ -179,7 +211,12 @@ Phase 3 PASS requires:
 3. at least one QC overlay proof screenshot;
 4. OCR errors = 0;
 5. overlay errors = 0;
-6. no self-capture loop;
-7. visual placement/readability acceptable on real PoE2.
+6. runtime errors = 0 and the full 60 active seconds completed;
+7. no self-capture loop;
+8. visual placement/readability acceptable on real PoE2.
+
+The probe writes `TECHNICAL_PASS` when its automated checks pass, `NEEDS_REVIEW`
+for incomplete technical checks, and `ERROR`/`INTERRUPTED` for early termination.
+The project phase remains Phase 3 until real-game visual QC is accepted.
 
 If Phase 3 passes, proceed to **Phase 4 — Local Alpha packaging/runtime UX**.

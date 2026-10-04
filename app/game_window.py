@@ -4,6 +4,8 @@ import ctypes
 from dataclasses import dataclass
 import sys
 
+from .win32 import get_user32
+
 
 @dataclass(frozen=True)
 class ForegroundWindow:
@@ -29,10 +31,10 @@ class GameWindowProbe:
     def __init__(self) -> None:
         if sys.platform != "win32":
             raise RuntimeError("GameWindowProbe is Windows-only.")
-        self._user32 = ctypes.windll.user32
+        self._user32 = get_user32()
 
     def foreground(self) -> ForegroundWindow:
-        hwnd = int(self._user32.GetForegroundWindow())
+        hwnd = int(self._user32.GetForegroundWindow() or 0)
         if not hwnd:
             return ForegroundWindow(0, "", "")
 

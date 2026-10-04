@@ -68,8 +68,9 @@ echo Neu match thanh cong, anh se thay chu Viet thay cho chu Anh.
 echo Tool se tu an overlay khi Alt+Tab.
 echo.
 
+if exist "LAST_QC_RESULT.txt" del "LAST_QC_RESULT.txt"
 ".venv\Scripts\python.exe" -X utf8 -m app.phase3_probe --seconds 60
-if errorlevel 1 goto :fail
+if errorlevel 1 goto :probe_fail
 
 echo.
 echo ============================================================
@@ -82,6 +83,19 @@ echo.
 start "" explorer.exe "%CD%"
 pause
 exit /b 0
+
+:probe_fail
+echo.
+echo [ERROR] Phase 3 QC dung som hoac gap loi.
+if exist "LAST_QC_RESULT.txt" (
+  type "LAST_QC_RESULT.txt"
+  echo Gui file ZIP tren cho em de kiem tra loi.
+  start "" explorer.exe "%CD%"
+) else (
+  echo Chup man hinh cua so nay gui cho em.
+)
+pause
+exit /b 1
 
 :no_python
 echo.
