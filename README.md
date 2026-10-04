@@ -8,7 +8,7 @@ Local-first Vietnamese localization engine for Path of Exile 2.
 
 Architecture decision from real QC: **OCR-first**.
 
-Current runtime probe now includes:
+Current runtime probe includes:
 
 - foreground POE2 guard;
 - screen capture via MSS;
@@ -25,7 +25,7 @@ Current runtime probe now includes:
 2. Extract it.
 3. Open Path of Exile 2 and stand near a story NPC.
 4. Double-click **`QC_PHASE1.bat`**.
-5. During the 90-second probe:
+5. During the **60-second** probe:
    - talk through 3–5 story lines;
    - keep each line visible briefly;
    - if convenient, test part of the conversation with inventory closed and part with inventory open;
@@ -77,6 +77,6 @@ Replacement overlay
 run_tests.bat
 ```
 
-## Historical probes
+## Current QC entry point
 
-Spike 001 and the log-only probes remain in the repository as research evidence. New QC should use **`QC_PHASE1.bat`**.
+Use only **`QC_PHASE1.bat`**. Obsolete spike/log-probe scripts have been removed from the repository.
