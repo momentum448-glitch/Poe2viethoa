@@ -4,9 +4,9 @@ Local-first Vietnamese localization engine for Path of Exile 2.
 
 ## Current phase
 
-**Phase 2 — Dialogue Matching + Fresh Translation Store**
+**Phase 3 — Replacement Overlay**
 
-Phase 1 (capture/OCR/context) is **PASS / LOCKED**.
+Phase 1 and Phase 2 are **PASS / LOCKED**.
 
 Current flow:
 
@@ -32,63 +32,64 @@ Ambiguity guard
 Fresh source corpus
   ↓
 Vietnamese translation
-```
-
-## No old project data
-
-The current project does **not** use the previous `Translate PJ` dictionary and does not require Remote Desktop.
-
-Fresh dialogue source is recreated locally from pinned public 2026 upstream snapshots:
-
-- English table output: `addohm/poe2-en-cn-dict`
-- optional speaker/topic enrichment: `fireMCG/Exiled-Vault`
-
-Raw upstream English text is downloaded only into gitignored `source_data/`. It is not committed to this repository.
-
-Pinned versions live in:
-
-```text
-sources/sources.lock.json
+  ↓
+Replacement overlay
 ```
 
 ## Current QC
 
-Download the repo, extract it, open PoE2, then run:
+Download/extract a fresh repo copy, open PoE2, then run:
 
 ```text
-QC_PHASE2.bat
+QC_PHASE3.bat
 ```
 
-The launcher automatically:
-
-1. prepares Python environment;
-2. runs unit tests;
-3. syncs the fresh source corpus;
-4. builds `runtime/translations.sqlite3`;
-5. runs a 60-second end-to-end matcher QC;
-6. creates `QC_PHASE2_RESULT_*.zip`.
-
-QC safety behavior:
-
-- the 60-second timer counts only while PoE2 is the foreground app;
-- Alt+Tab pauses the timer;
-- another foreground application is never captured or OCRed;
-- fuzzy results that are nearly tied with another candidate are hidden from Normal mode.
-
-For the current Alpha corpus, test one or more of:
-
+Recommended Alpha topics:
 - Renly → **Introduction**
 - Renly → **The Miller**
 - Una → **Home**
 - Una → **Clearfell**
 
-Send the generated ZIP back to the project chat.
+When a High-confidence translation is found, the Phase 3 proof should:
+- cover the English dialogue text;
+- draw Vietnamese at the OCR-derived position;
+- stay click-through/topmost;
+- disappear when PoE2 is not foreground;
+- stay excluded from OCR capture so it does not read itself.
 
-## Fresh Alpha translations
+The QC runs for 60 seconds of active PoE2 foreground time and creates:
 
-The initial Phase 2 corpus contains 9 newly-created Vietnamese segments derived from the pinned 2026 source plus real OCR evidence from the Phase 1 QC.
+```text
+QC_PHASE3_RESULT_*.zip
+```
 
-They are stored without raw English text in:
+Send that ZIP back to the project chat.
+
+## Phase 2 QC result
+
+Final Phase 2 real-game QC: **PASS**.
+
+Session `20261004_175216`:
+- 54 OCR calls;
+- 16 dialogue detections;
+- 6 duplicate suppressions;
+- 5 High matches;
+- 0 OCR/runtime errors;
+- 60.00 seconds active game time.
+
+The observed MISS lines were valid untranslated Renly dialogue, not false UI matches.
+
+## Fresh-source policy
+
+The project does **not** use the previous project dictionary and does not require Remote Desktop.
+
+Fresh dialogue source is recreated locally from pinned public snapshots:
+- `addohm/poe2-en-cn-dict`
+- optional context: `fireMCG/Exiled-Vault`
+
+Raw upstream English text stays in gitignored `source_data/`.
+
+Vietnamese work is stored in:
 
 ```text
 translations/dialogue_vi.json
@@ -101,21 +102,7 @@ translations/dialogue_vi.json
 - No RAM reading, DLL injection, game hooking, game-file modification, or automated game input.
 - OCR-first for Story Dialogue.
 - `Client.txt` is optional future context only.
-- Normal overlay will cover English and replace it with Vietnamese.
+- Normal overlay covers English and replaces it with Vietnamese.
 - Low-confidence and ambiguous fuzzy matches are hidden in Normal mode.
 - Raw source data, runtime caches and generated DBs are not committed.
-- Python first; packaged EXE after Local Alpha passes.
-
-## Developer tests
-
-```bat
-run_tests.bat
-```
-
-## Useful build command
-
-To refresh source/build data without running QC:
-
-```text
-SOURCE_SYNC.bat
-```
+- Python first; package an EXE after Local Alpha stabilizes.
