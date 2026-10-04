@@ -47,12 +47,12 @@ if errorlevel 1 goto :fail
 
 echo.
 echo [SOURCE] Dong bo fresh source...
-".venv\Scripts\python.exe" -X utf8 tools\source_sync.py
+".venv\Scripts\python.exe" -X utf8 -m tools.source_sync
 if errorlevel 1 goto :fail
 
 echo.
 echo [BUILD] Tao runtime translation DB...
-".venv\Scripts\python.exe" -X utf8 tools\build_translation_db.py
+".venv\Scripts\python.exe" -X utf8 -m tools.build_translation_db
 if errorlevel 1 goto :fail
 
 echo.
