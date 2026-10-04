@@ -12,36 +12,32 @@ Xây một engine Việt hóa Path of Exile 2 chạy local trên Windows, bắt 
 - Không đọc RAM, không injection/hooking, không tự động gửi input vào game.
 - Overlay Normal mode hướng tới **che text tiếng Anh và thay bằng tiếng Việt**.
 - Khi match không chắc chắn: Normal mode không hiện; Debug mode được phép hiện candidate/confidence.
-- Translation source giữ dạng dễ review trong Git; runtime database có thể build sang SQLite sau.
+- Git chỉ giữ bản dịch Việt theo source_id; raw English source sync local vào thư mục gitignored. Runtime SQLite được build local.
 - Alpha cập nhật dữ liệu bằng release thủ công; updater để sau.
 - Python/source-first; đóng EXE sau khi Local Alpha ổn định.
 
 ## Kiến trúc mục tiêu sơ bộ
 
 ```text
-                  POE2
-                   │
-        ┌──────────┴──────────┐
-        │                     │
-   Client.txt               Screen
-        │                     │
- area / events          Capture Scheduler
- NPC signal?                 │
-        │              Frame Stabilizer
-        │                     │
-        │                    OCR
-        │                     │
-        └──────────┬──────────┘
-                   ↓
-            Context Resolver
-                   ↓
-             Candidate Index
-                   ↓
-          Exact / Fuzzy Matcher
-                   ↓
-            Translation Store
-                   ↓
-          Replacement Overlay
+PoE2 screen
+  ↓
+Foreground guard
+  ↓
+Capture scheduler
+  ↓
+Windows OCR + bbox
+  ↓
+Dialogue context
+  ↓
+Text stabilizer
+  ↓
+Candidate index
+  ↓
+Exact / fuzzy matcher
+  ↓
+Local runtime translation DB
+  ↓
+Replacement overlay
 ```
 
 ### Dialogue signal decision — LOCKED
@@ -71,12 +67,15 @@ Lý do: real QC đã chứng minh Windows OCR đọc tốt nhiều câu story c�
 - one-click QC packager.
 - optional log adapter may be explored later, but is not on the critical path.
 
-### Phase 2 — Dialogue matching + translation store — CURRENT
-- Clearfell dataset;
-- normalization;
-- candidate index;
+### Phase 2 — Dialogue matching + fresh translation store — CURRENT
+- fresh-source sync from pinned 2026 public snapshots;
+- source/text separation;
+- normalized-text dedupe;
+- candidate inverted index;
 - exact then fuzzy matching;
-- confidence policy.
+- confidence policy;
+- JSON Vietnamese entries → local SQLite runtime;
+- 60-second end-to-end matcher QC.
 
 ### Phase 3 — Replacement overlay
 - text bounding box;
@@ -93,12 +92,12 @@ Lý do: real QC đã chứng minh Windows OCR đọc tốt nhiều câu story c�
 - test on real PoE2 sessions.
 
 ### Phase 5 — Translation Factory
-- extraction;
+- fresh source sync / patch refresh;
 - glossary/canon;
 - AI draft;
 - automated QA;
 - review state;
-- version-independent translation memory keyed by source/context.
+- translation memory keyed by deterministic source fingerprints/context.
 
 ### Phase 6 — Additional modules
 Quest → Tutorial → UI → Skill/Passive → Item/Mechanics.
@@ -114,3 +113,12 @@ Quest → Tutorial → UI → Skill/Passive → Item/Mechanics.
 ## Rule for future work
 
 Do not assume old code or old guide claims are still correct. Revalidate important behavior against the current PoE2 client and keep evidence under tests/diagnostics.
+
+
+## Fresh-source rule
+
+Do not recover or import the previous project dictionary.
+
+Raw upstream PoE2 text is reconstructed locally from pinned public 2026 source snapshots listed in `sources/sources.lock.json`. Raw source/cache/runtime DB directories are gitignored.
+
+Before any public distribution of a large translation corpus, re-check current upstream/GGG licensing and distribution constraints.
