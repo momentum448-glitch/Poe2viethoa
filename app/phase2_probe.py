@@ -23,6 +23,7 @@ from .translation_store import TranslationStore
 
 
 FOREGROUND_GRACE_SECONDS = 1.5
+FOREGROUND_START_TIMEOUT_SECONDS = 300.0
 
 
 def append_jsonl(path: Path, payload: dict[str, Any]) -> None:
@@ -97,7 +98,8 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
     screenshots = session / "screenshots"
     screenshots.mkdir(parents=True, exist_ok=True)
 
-    started = time.monotonic()
+    wall_started = time.monotonic()
+    active_elapsed = 0.0
     stats = {
         "captures": 0,
         "ocr_calls": 0,
@@ -135,6 +137,9 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                     "duration_seconds": seconds,
                     "capture_interval_seconds": capture_interval,
                     "foreground_grace_seconds": FOREGROUND_GRACE_SECONDS,
+                    "foreground_start_timeout_seconds": FOREGROUND_START_TIMEOUT_SECONDS,
+                    "duration_policy": "active PoE2 foreground time only",
+                    "capture_policy": "never capture when PoE2 is not foreground",
                     "monitor": monitor,
                     "capture_region": region.as_mss(),
                     "architecture": "OCR-first / Phase 2 matcher",
@@ -151,33 +156,28 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
             print("Nen test cac topic Alpha da co ban dich moi:")
             print("- Renly: Introduction / The Miller")
             print("- Una: Home / Clearfell")
-            print("- de tool tu chay het 60 giay")
+            print("- 60 giay chi duoc tinh khi POE2 dang foreground")
+            print("- tool se khong chup/OCR khi game khong foreground")
             print()
 
-            deadline = time.monotonic() + seconds
             event_no = 0
             game_active = False
+            first_game_seen_at: float | None = None
             last_game_seen_at: float | None = None
             pause_announced = False
 
-            while time.monotonic() < deadline:
+            while active_elapsed < seconds:
                 loop_started = time.monotonic()
-                now = time.monotonic()
+                now = loop_started
                 foreground = game_window.foreground()
 
-                if foreground.is_poe2:
-                    last_game_seen_at = now
-                    if not game_active:
-                        print(f"[GAME] foreground: {foreground.title or foreground.class_name}")
-                        stabilizer.reset()
-                        game_active = True
-                        pause_announced = False
-                else:
+                if not foreground.is_poe2:
                     within_grace = (
                         game_active
                         and last_game_seen_at is not None
                         and now - last_game_seen_at <= FOREGROUND_GRACE_SECONDS
                     )
+
                     if within_grace:
                         stats["foreground_transient_losses"] += 1
                     else:
@@ -185,10 +185,32 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                             stats["foreground_pauses"] += 1
                         game_active = False
                         if not pause_announced:
-                            print("[PAUSE] POE2 khong o foreground. Cho game active lai...")
+                            print("[PAUSE] POE2 khong o foreground. Timer QC dang tam dung...")
                             pause_announced = True
-                        await asyncio.sleep(max(0.10, capture_interval))
-                        continue
+
+                    # Foreground guard is strict: never capture or OCR another app,
+                    # even during the short grace window used to debounce focus loss.
+                    if (
+                        first_game_seen_at is None
+                        and time.monotonic() - wall_started >= FOREGROUND_START_TIMEOUT_SECONDS
+                    ):
+                        raise RuntimeError(
+                            "POE2 was not foreground within 300 seconds; QC was cancelled "
+                            "without capturing another application."
+                        )
+
+                    await asyncio.sleep(max(0.10, capture_interval))
+                    continue
+
+                if first_game_seen_at is None:
+                    first_game_seen_at = now
+
+                last_game_seen_at = now
+                if not game_active:
+                    print(f"[GAME] foreground: {foreground.title or foreground.class_name}")
+                    stabilizer.reset()
+                    game_active = True
+                    pause_announced = False
 
                 frame = capture.grab(region)
                 stats["captures"] += 1
@@ -298,7 +320,9 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                         print(f"[ERROR] {type(exc).__name__}: {exc}")
 
                 elapsed = time.monotonic() - loop_started
-                await asyncio.sleep(max(0.02, capture_interval - elapsed))
+                sleep_for = max(0.02, capture_interval - elapsed)
+                await asyncio.sleep(sleep_for)
+                active_elapsed += time.monotonic() - loop_started
 
     finally:
         store.close()
@@ -311,7 +335,8 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
     summary = {
         **stats,
         "finished_at": datetime.now().isoformat(timespec="seconds"),
-        "elapsed_seconds": round(time.monotonic() - started, 2),
+        "active_seconds": round(active_elapsed, 2),
+        "elapsed_seconds": round(time.monotonic() - wall_started, 2),
         "result": result_status,
     }
     write_json(session / "summary.json", summary)
