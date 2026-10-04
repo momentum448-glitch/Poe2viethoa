@@ -75,3 +75,18 @@ Vẫn cứ hoàn thành QC. Screenshot và OCR vẫn được thu. Sau đó gử
 ### OCR lỗi
 
 Vẫn gửi ZIP. Spike được thiết kế để phần log/screenshot không chết theo OCR.
+
+
+## Nếu đã bấm Ctrl+C và không thấy ZIP
+
+Dữ liệu thường vẫn nằm trong `diagnostics/spike001/`.
+
+Chỉ cần chạy:
+
+```text
+QC_PACKAGE_RESULT.bat
+```
+
+File này sẽ tìm session mới nhất, nén thành `QC_RESULT_*.zip` và mở Explorer chọn đúng file cần gửi.
+
+Để tránh trường hợp này ở lần sau, cứ để QC tự chạy hết 120 giây.
