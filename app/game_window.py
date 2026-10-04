@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import ctypes
-from ctypes import wintypes
 from dataclasses import dataclass
 import sys
 
@@ -14,10 +13,11 @@ class ForegroundWindow:
 
     @property
     def is_poe2(self) -> bool:
-        title = self.title.casefold()
-        cls = self.class_name.casefold()
+        title = self.title.casefold().strip()
+        cls = self.class_name.casefold().strip()
         return (
             cls == "poewindowclass"
+            or cls.startswith("poe")
             or "path of exile 2" in title
             or title == "path of exile"
         )
@@ -43,7 +43,11 @@ class GameWindowProbe:
         class_buf = ctypes.create_unicode_buffer(256)
         self._user32.GetClassNameW(hwnd, class_buf, len(class_buf))
 
-        return ForegroundWindow(hwnd, title_buf.value, class_buf.value)
+        return ForegroundWindow(
+            hwnd=hwnd,
+            title=title_buf.value,
+            class_name=class_buf.value,
+        )
 
     def is_game_foreground(self) -> bool:
         return self.foreground().is_poe2
