@@ -3,8 +3,8 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 
-VERSION = "0.5.0-alpha.1"
-BUILD_ID = "factory-20261004-01"
+VERSION = "0.5.0-alpha.2"
+BUILD_ID = "act1-20261004-01"
 
 
 def build_info(root: Path) -> dict[str, str]:
@@ -13,6 +13,7 @@ def build_info(root: Path) -> dict[str, str]:
     paths += [root / "requirements.txt", root / "sources/sources.lock.json",
               root / "translations/dialogue_vi.json", root / "translations/glossary.json"]
     paths += list((root / "translations/batches").glob("*.json"))
+    paths += list((root / "translations/manifests").glob("*.json"))
     digest = hashlib.sha256()
     for path in sorted(paths):
         if path.is_file():

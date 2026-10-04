@@ -1,134 +1,87 @@
-# Chặng tiếp theo: Story Dialogue Act 1 và dọn dự án
+# Chặng Act 1 Story Dialogue và dọn dự án
 
-Ngày lập: 2026-10-04. Trạng thái: **kế hoạch đề xuất, chưa triển khai chặng mới**.
-Baseline: `0.5.0-alpha.1 / factory-20261004-01`, 16 đoạn đã soát, 102 kiểm thử đạt.
-Nguồn và runtime tiếp tục theo [Project Guide](../PROJECT_GUIDE.md).
+Ngày: 2026-10-04. Người dùng đã cho thực thi trọn chặng.
+**Đã triển khai: 0.5.0-alpha.2 / act1-20261004-01; chờ QC native Windows.**
+Mục tiêu 180–220 trang đã đạt bằng 196 trang có nguồn; không tăng bằng bark/vendor.
 
-## Kết quả QC vừa nhận
+## Kết quả
 
-File: `QC_PHASE4_RESULT_20261004_223644_671889.zip`.
-SHA-256: `7a4ef93ce26863e798ca5c400ca0ea960c5ad816fb1a7a38e2f00f99feed4b44`.
-CRC sạch; phiên bản, 16 bản dịch và fingerprint khớp bản đã phát hành.
-
-| Kiểm tra | Kết quả |
+| Công việc | Kết quả |
 | --- | --- |
-| Thời gian game / tổng | 60 / 67,89 giây |
-| Capture / OCR | 448 / 53 |
-| Nhận diện / phát ra / bỏ trùng | 32 / 13 / 19 |
-| Match High | 13: 11 exact, 2 fuzzy đúng trang Una Home |
-| MISS / lỗi OCR / overlay / runtime | 0 / 0 / 0 / 0 |
-| Ảnh bằng chứng | 12 trang khác nhau, đã xem ở kích thước gốc |
-| 7 đoạn dịch mới | Đủ cả 7; rõ chữ, che tiếng Anh, không đè Continue |
-| Foreground | 1 lần pause; 12 mẫu bộ đếm transient, không phải 12 lần Alt+Tab |
+| Chốt nguồn | 196 source ID duy nhất, 105 nhóm nguồn với đầy đủ Continue và trang dùng chung |
+| Factory | Lô theo manifest/NPC/topic, resume ổn định sau publish, coverage và bundle đủ biến thể |
+| Dịch/soát | Thêm 180 trang trong 7 lô; giữ nguyên 16 trang baseline; 8 lô QA 0 lỗi/cảnh báo |
+| Runtime | DB 196 records, exact đúng cả 196; bỏ kết quả stale và kiểm tra nguồn sau proof |
+| Hiển thị | Padding ngang 18 px, dùng khoảng trống trên Continue, tối đa 22 px; không cắt nội dung để tăng font |
+| Hồi quy | 128 tests; 35 High cũ đúng ID, 392 mẫu OCR nhiễu không High sai, 71 cặp cùng trang ổn định |
+| Dọn | Bỏ launcher/probe cũ, giữ test shared runtime, dev scripts riêng, docs rút gọn, results/pin/preview cleanup |
+| Phát hành | Một source ZIP cố định cho cả chặng; không phát hành từng lô nội bộ |
 
-Hai match fuzzy đạt 96,16 và 95,78 vì chat che dòng cuối của OCR. Đối chiếu ảnh
-và nguồn xác nhận đúng trang; toàn bộ tiếng Việt vẫn có trong phần render.
-20 frame bị từ chối là menu hội thoại/thế giới/chat, đúng phạm vi Story Dialogue.
-Event 33 không có log vì guard bỏ kết quả OCR khi foreground đổi; bộ đếm dropped=0.
+| NPC | Tổng | Thêm mới |
+| --- | ---: | ---: |
+| Una | 64 | 57 |
+| Renly | 71 | 62 |
+| Finn | 30 | 30 |
+| The Hooded One | 31 | 31 |
+| Tổng | 196 | 180 |
 
-**Lô 7 đoạn mới đạt kỹ thuật/hiển thị.** Còn hai việc thật cần giải quyết:
+105 nhóm là các source group/biến thể, không phải 105 topic menu khác nhau.
+5528 từ nguồn và 6319 từ VI đếm trên 196 trang duy nhất; câu VI dài nhất 287 ký tự.
+Manifest `translations/manifests/act1_story.json` giữ page ID/order/full-group hash,
+source lock, baseline và thuật ngữ. Những trang lặp qua biến thể được tham chiếu
+ở mọi nhóm; corpus dedupe không được dùng để cắt mất trang của nhóm gốc.
 
-- Proof 36 của trang Renly Introduction cũ có một vệt ký tự ở mép phải mặt nạ.
-  Chưa kết luận nguyên nhân; soát phần che chữ và thay đổi trang giữa frame OCR
-  và frame proof. Không chỉ nới mặt nạ khi chưa kiểm tra giới hạn panel/Continue.
-- Una Home dài dùng cỡ chữ 14 px. Cần cải thiện độ dễ đọc khi mở rộng dữ liệu.
+## Bằng chứng và giới hạn
 
-Trạng thái bản dịch vẫn `reviewed`; việc gửi ZIP không tự tạo lời xác nhận của
-người dùng về câu chữ. Phase 5 tiếp tục ở CURRENT, không khóa toàn bộ từ lô đầu.
+Baseline `QC_PHASE4_RESULT_20261004_223644_671889.zip`, SHA-256
+`7a4ef93ce26863e798ca5c400ca0ea960c5ad816fb1a7a38e2f00f99feed4b44`:
+60 giây game / 67,89 tổng, 448 captures, 53 OCR, 32 detections, 13 High,
+19 duplicates, 12 proofs, không MISS/lỗi. Bảy trang lô đầu đủ chữ, che English,
+chừa Continue. Hai fuzzy Una Home đúng trang khi chat che dòng cuối OCR.
+Một pause và 12 mẫu transient-loss không phải 12 lần Alt+Tab. Event 33 bị guard
+loại khi foreground đổi; dropped=0.
 
-## Mục tiêu chặng lớn
+Proof 36 Renly cũ có glyph ở mép; raw tương ứng không có glyph đó. Nguyên nhân
+chưa được chứng minh. Bản mới nới vùng che có giới hạn ROI/Continue, so glyph
+trước khi hiển thị, ẩn khi nguồn đổi và loại proof đã lỗi thời. Các kiểm thử xử lý
+được page change trong khi OCR/proof đang chờ; chưa có proof Windows của bản mới.
 
-Một bản phát hành có thể chơi phần hội thoại đầu Act 1 rộng hơn: **mục tiêu từ
-16 lên khoảng 180–220 trang đã soát**, ưu tiên Una, Renly, Finn và The Hooded One.
-Số cuối cùng chốt bằng danh sách source ID/topic đủ điều kiện, không thêm câu
-vendor/combat hoặc bản trùng chỉ để đạt số lượng. Nếu số trang đúng phạm vi ít
-hơn mục tiêu, ghi rõ số thực và lý do; hoàn thành trọn các topic được chọn.
+Una Home cũ dùng 14 px. Bản mới tận dụng chiều cao đã đo phía trên Continue.
+Audit DejaVu Sans/Pillow trên Linux giữ đủ cả 196 VI: 19–22 px trong envelope
+173 px, 16–22 px trong hai envelope nhỏ hơn lấy theo vị trí ảnh QC. Continue của
+kiểm tra bổ sung được ước lượng từ ảnh; không coi đây là đo font Segoe UI/Windows.
+TK/Xvfb chỉ kiểm tra cấu trúc panel bằng fallback font; không chứng nhận glyph native.
 
-| NPC | Trang có metadata trong snapshot | Ý nghĩa cho việc chọn nguồn |
-| --- | ---: | --- |
-| Una | 109 | Có hội thoại, vendor và callout; bộ lọc sơ bộ còn khoảng 72 ứng viên |
-| Renly | 88 | Có hội thoại và vendor; bộ lọc sơ bộ còn khoảng 63 ứng viên |
-| Finn | 78 | Có vendor/bark và tên topic boss lẫn vào; cần đọc context, không lấy tất cả |
-| The Hooded One | 131 | Có nhiều Act; chọn rõ các topic thuộc Act 1 |
-| Tổng | 406 | Là ứng viên có metadata, chưa phải 406 trang Story Dialogue Act 1 |
+Replay matcher trên 4 log QC giữ đúng cả 35 High cũ. Log Alpha.2 có chat từng bị
+context nhận sai: chat vẫn Low, đoạn trộn/thiếu mơ hồ vẫn bị giữ lại; detector hiện
+hành có tests cho footer khác cột. Đây là replay dữ liệu, không phải chạy game mới.
 
-Các con số ứng viên lấy trực tiếp từ corpus 25.062 trang theo hai snapshot đã pin.
-Bộ lọc sơ bộ chỉ dùng để ước lượng; manifest theo nguồn/context là kết quả có thẩm quyền.
-Giữ nguyên 16 bản dịch đã QC. Chặng này vẫn là Story Dialogue; chưa thêm Quest/UI,
-dịch trong lúc chơi, updater hay EXE để tránh làm loãng mục tiêu.
+Toàn bộ bản mới là `reviewed` sau soát nghĩa AI/author; chưa tự gắn `approved`.
+QC native sau chặng: hai phiên 60 giây, Una/Renly và Finn/Hooded theo topic đang mở;
+ưu tiên Home dài, Introduction cũ, Inventory và Alt+Tab. Có thể chơi thường thêm
+10–15 phút để tìm MISS. Phase 5 chỉ khóa sau bằng chứng phù hợp và xác nhận người dùng.
 
-## Trình tự thực hiện trong một chặng
+## Dọn đã thực hiện và cách giữ bằng chứng
 
-| Bước | Công việc | Đầu ra cần có |
-| --- | --- | --- |
-| 1. Chốt nguồn | Liệt kê source ID theo NPC/topic/nhóm nguồn và toàn bộ trang Continue; loại bark, vendor, topic khác Act và context chưa chắc | Manifest phạm vi, số trang/từ, các mục loại trừ có lý do |
-| 2. Mở rộng Factory | Tạo lô theo manifest/NPC/topic, tiếp tục lô dở, thống kê độ phủ và xuất gói review đủ ngữ cảnh | Quy trình làm 30–50 trang mỗi lô nội bộ; không nhập ID thủ công từng câu |
-| 3. Dịch và soát | Dịch trọn nhóm, nhất quán giọng/tên/quan hệ/cốt truyện; đọc nguồn và trang liền kề; QA từng lô trước publish | Khoảng 180–220 trang tổng; mọi entry có nguồn, reviewer và review digest hợp lệ |
-| 4. Hiển thị | Xử lý vệt mép mask; soát vùng an toàn và trang đổi khi OCR đang chạy; cải thiện đoạn dài/cỡ chữ | Toàn bộ VI không bị cắt; che đủ tiếng Anh và chừa Continue; báo rõ trang cần xử lý |
-| 5. Hồi quy và dọn | Replay các QC hiện tại với catalog lớn hơn; kiểm tra trường hợp mơ hồ/chat; bỏ đường chạy cũ sau kiểm tra dependency | Test/QA đạt, dữ liệu cũ giữ nguyên, root và handoff gọn |
-| 6. Phát hành | Kiểm tra bản tải sạch, setup, số records, phiên bản/hash; merge và cấp một ZIP cố định | Một build cùng checklist QC mẫu cho cả gói |
+| Nhóm | Trạng thái hiện hành |
+| --- | --- |
+| QC_PHASE2/3.bat và phase2/3_probe.py | Bỏ; shared runtime/panel thay thế, lịch sử giữ trong Git |
+| test_phase3_probe.py | Đổi thành test_session_runtime.py, giữ toàn bộ lifecycle tests |
+| SOURCE_SYNC/run_tests.bat | Chuyển vào dev/, sửa cwd và reference |
+| RUN_ALPHA/SETUP_ALPHA.bat | Giữ root |
+| README/Guide/Handoff | Chỉ hướng dẫn và trạng thái hiện hành; handoff dưới 200 dòng |
+| ADR/glossary/batches/manifest/source lock | Giữ vì còn là dependency/provenance |
+| ZIP mới | results/; con trỏ cũ ở root vẫn đọc được |
+| ZIP/chẩn đoán cũ | Preview thủ công, giữ ≥5 mới nhất + LAST + pin + mốc PASS |
+| Source cache/DB/dependencies | Giữ, không xóa dữ liệu chạy offline |
 
-Batches 30–50 trang là đơn vị làm việc/review nội bộ, **không phải mỗi lô gửi anh
-một ZIP**. Cập nhật tiến độ bằng số trang đã soát, nhóm đã xong và việc còn lại.
-Chỉ đưa bản QC khi hoàn thành cả chặng, trừ khi xuất hiện một quyết định thật sự
-cần người dùng chốt. Không tự gắn `approved` cho nội dung chưa được người dùng chấp nhận.
+Cleanup chỉ xét ZIP theo tên kết quả trong root/results; chặn symlink và ZIP hỏng.
+Thư mục diagnostics chỉ xóa khi mọi file khớp bản đã xác minh trong ZIP; file
+độc nhất không bị đụng. Apply recheck toàn bộ selection và giữ runtime lock trước
+khi xóa. Nếu pointer/pin/file đổi sau preview, kế hoạch bị từ chối và cần xem lại.
+Không tự dọn lúc khởi động, không xóa file ngoài bản cài và không giả định đã dọn
+thư mục trên máy Windows của người dùng.
 
-## Điều kiện hoàn thành trước khi đưa anh QC
-
-- Manifest có source ID duy nhất, pin/context rõ ràng và đủ trang của topic đã chọn.
-- QA mọi lô: 0 lỗi; cảnh báo được đọc và xử lý/giải thích từng trang, không bỏ qua hàng loạt.
-- Soát nghĩa toàn bộ bản mới; không coi match exact hay QA cấu trúc là chứng nhận nghĩa dịch.
-- 16 entry baseline giữ nguyên trừ sửa câu chữ được ghi rõ; DB build đủ records, không thiếu nguồn.
-- Replay cả các log Alpha.1/2/3/Factory đã lưu: giữ đúng source ID cho các trang đã biết,
-  không nâng chat/menu thành match High, kiểm tra ambiguity khi nhiều bản dịch gần nhau.
-- Kiểm tra layout của trang ngắn/dài ở hai vị trí panel, đủ VI và không đè Continue;
-  đo bằng font Windows khi xác minh cỡ chữ. Mục tiêu ưu tiên 16–22 px trên cấu hình
-  đã thử; không tăng font bằng cách cắt nội dung hoặc che nút. Trang không đạt phải có xử lý rõ ràng.
-- Kiểm thử thích hợp cho code thay đổi và kiểm tra dependency sau dọn; giữ các test lifecycle.
-- Bản source ZIP sạch chạy được setup; runtime giữ offline; bản phát hành có version/hash cố định.
-
-QC người dùng sau cả chặng: hai phiên 60 giây theo nhóm NPC, ưu tiên trang ngắn,
-trang dài, mở/đóng Inventory và Alt+Tab; có thể chơi thường 10–15 phút để tìm MISS.
-Không yêu cầu người dùng đọc lại từng trang trong một buổi. 60 giây QC vẫn giữ
-nguyên; chế độ chơi thường vẫn không giới hạn thời gian.
-
-## Kế hoạch dọn file theo dependency thực tế
-
-Lượt lập kế hoạch **chưa xóa file**. Việc dọn thực hiện trong chặng, trước bản
-phát hành mới, có diff và kiểm tra hồi quy. Chỉ xử lý trong repo/thư mục kết quả
-được chỉ định; không suy đoán hoặc xóa các thư mục khác trên máy người dùng.
-
-| File/nhóm | Hành động dự kiến | Điều kiện và phần cần giữ |
-| --- | --- | --- |
-| `QC_PHASE2.bat`, `app/phase2_probe.py` | Retire khỏi bản hiện hành | Probe cũ lặp vòng capture/OCR; panel/shared runtime đã thay thế. Kiểm tra import/reference trước khi bỏ; lịch sử còn trong Git |
-| `QC_PHASE3.bat`, `app/phase3_probe.py` | Retire entrypoint cũ sau khi bảo đảm panel/đường chạy kiểm thử đủ dùng | `phase3_probe` là wrapper shared runtime, không xóa `app/session_runtime.py` |
-| `tests/test_phase3_probe.py` | Đổi tên thành test shared runtime, sửa tên/path fixture lỗi thời | Test này thực tế kiểm tra `session_runtime`; giữ toàn bộ kiểm thử lifecycle/foreground/Stop/ZIP |
-| `SOURCE_SYNC.bat`, `run_tests.bat` | Chuyển vào `dev/` | Đây là công cụ còn dùng, không phải rác; sửa cwd, hướng dẫn và thông báo tương ứng; chức năng sync/build vẫn có |
-| `RUN_ALPHA.bat`, `SETUP_ALPHA.bat` | Giữ ở root | Hai điểm vào cho người dùng: chạy bình thường và thiết lập lại |
-| README | Rút lịch sử dài khỏi trang chạy hiện tại | Giữ setup, cách chơi/QC, phiên bản, độ phủ và link hướng dẫn |
-| PROJECT_GUIDE | Giữ quy tắc và roadmap; rút số liệu QC lặp | Không bỏ quyết định offline/OCR/pins/không Remote Desktop/không dữ liệu cũ |
-| HANDOFF_CURRENT | Rút còn trạng thái mới nhất, bằng chứng cần thiết, việc tiếp theo | Mục tiêu dưới 200 dòng; lịch sử đầy đủ vẫn tra Git, không mất checkpoint PASS |
-| ADR, tài liệu Factory, kế hoạch này | Giữ, sửa link nếu cần | Là kiến trúc và quy trình còn hiệu lực; không xóa chỉ vì có ngày cũ |
-| `translations/dialogue_vi.json`, glossary, `translations/batches/`, source lock | Giữ | Là dữ liệu/provenance đang dùng; không xóa batch đã publish để giảm số file |
-| `app/`, `tools/`, các test đang được import/chạy | Giữ | Chỉ bỏ module sau khi chứng minh superseded và thay thế đủ hành vi |
-| ZIP kết quả và `diagnostics/` cũ | Gom output mới vào `results/`, dọn có dry-run | Giữ tối thiểu 5 ZIP gần nhất, mọi QC được pin làm mốc PASS và file kết quả cuối cùng; đọc được đường dẫn cũ khi chuyển |
-| Ảnh QC đã giải nén/các contact sheet tạm | Xóa bản trùng khi đủ điều kiện | Bản ZIP gốc CRC/SHA hợp lệ phải còn, và giữ log/metadata/summary làm replay; không xóa bằng chứng duy nhất |
-| `__pycache__`, file tạm của phiên đã kết thúc | Có thể dọn | Không đụng file/lock đang dùng; liệt kê file và dung lượng trước khi apply |
-| `source_data/`, `runtime/`, môi trường Python | Giữ dữ liệu đang hoạt động | Cần chạy offline; không xóa bừa cache/DB/dependencies và buộc người dùng tải lại |
-
-Công cụ dọn kết quả phải xuất danh sách/bytes theo dry-run, bảo vệ phiên đang
-chạy, file cuối cùng, mốc QC được giữ và chỉ xóa các đường dẫn đã liệt kê khi apply.
-Không tự xóa kết quả cũ mỗi lần mở app. Không gộp dọn repo với xóa file người dùng.
-
-Trong workspace kiểm tra hiện tại, các bản QA đã giải nén chiếm khoảng 222 MiB,
-gồm cả phiên mới và các phiên hồi quy. Đây là số đo workspace của phiên phát triển,
-không phải số đo máy Windows của người dùng; chưa đưa chúng vào diện xóa khi còn
-cần replay hoặc chưa xác minh bản ZIP gốc và checkpoint thay thế.
-
-## Checkpoint và hành động mở đầu
-
-GitHub tiếp tục là nơi lưu dự án. Kế hoạch/QC này chỉ đổi tài liệu, không đổi
-fingerprint runtime và không tạo bản tải nhỏ mới. Khi bắt đầu triển khai, tạo
-nhánh chặng mới từ main, lập manifest nhóm thoại Act 1 và thống kê số trang hợp
-lệ trước; tiếp đó làm Factory, dịch/soát, layout, cleanup và kiểm thử trong cùng
-chặng. Handoff ghi tiến độ theo nhóm và số trang để hội thoại mới tiếp quản được.
+Các ảnh/log QA đang dùng cho hồi quy chưa bị xóa khi chưa xác minh được bản ZIP
+gốc thay thế. Không xóa bằng chứng độc nhất chỉ để giảm dung lượng. Lịch sử đầy đủ
+ở [checkpoint trước chặng](https://github.com/momentum448-glitch/Poe2viethoa/blob/e4ac909629db04b770be8b17b1aacd17f64698fd/HANDOFF_CURRENT.md).

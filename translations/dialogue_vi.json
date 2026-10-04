@@ -122,5 +122,1805 @@
     "vi_sha256": "f63e4565f5b001db17013bf3f971183f8778252dbf400fc0762ef68298fb78c1",
     "factory_batch": "qc-alpha3-20261004-01",
     "review_note": "AI đã đối chiếu từng câu và các trang cùng chủ đề: giữ người nói/người nghe, tên riêng, tình trạng con trai và các ý chưa chắc chắn. QA cấu trúc đạt; chờ người dùng QC trong game."
+  },
+  {
+    "source_id": "dlg_npctextaudio_95a2c1e825cf9129d04e",
+    "vi": "Bạn giết Devourer ngay trong hang ổ của nó sao? Can đảm thật đấy, người hùng. Ít ra giờ chúng tôi không chết đói! Bớt được một kiểu chết, tôi đoán vậy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "0df4b1cff42749d2d49977b92327e644fee57c0d413e5143535aee4038e106c0",
+    "vi_sha256": "37b3677c69854f6be29a817ebf88ec734b24011ca1e3d5a40ad9f81b08a41bd2",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_75c318f970bd00c23fe6",
+    "vi": "Vậy là... tôi lo cũng đúng. Chúng vẫn xây những bàn thờ chết tiệt ấy. Mà cái này còn lớn hơn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f5159327d777e41b817f90c52de2a5e88036d29108790060e78e0744d9ec8553",
+    "vi_sha256": "7266590f7e1858bae424e7a76bd01da3b612798733eb0fd7973c4a3428cad722",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_15d0e372a2c7958ebdbf",
+    "vi": "Có gì đó không ổn, người hùng. Chắc chắn không ổn. Tôi cứ tưởng tiếng thì thầm trong bóng tối ban đêm trên đó là do mình tưởng tượng. Tưởng chỉ bị bọn giáo đồ làm hoảng... nhưng có lẽ không phải.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "7fd56825d00435dbffdba701d9f83d13b34e1cab85bee73321e47d7172f7daba",
+    "vi_sha256": "37a5556cc41f245b117cdc67a7a2085da592fba39715617d5854d9a4a94ea771",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_f92c6e5bd17b6778ca94",
+    "vi": "Xin... ghé xem khu cư trú ấy. Tôi sẽ chuồn khi còn chuồn được.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "33477f5dfc1e50da8155bac4e434a880733e15c534f24234573ef6effb63dafe",
+    "vi_sha256": "85672a2fda31838d08bc7da960cbd273b0e25741288f836e0148afe6c5445651",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_d979b2a71fdb7cf2d500",
+    "vi": "Tôi có một nhiệm vụ vĩ đại cho bạn, người hùng. Loại nhiệm vụ sẽ đưa bạn vào huyền thoại. Hoàn toàn chẳng phải chuyện riêng vụn vặt mà bạn có thể bỏ qua đâu.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "22c4524b74ccd7f14098794b71eaa59791695a86958fa10c7f63320aa594afae",
+    "vi_sha256": "b9ac707f4ac785de48b253474b55500440bb3ceda797b5ef185d9adb3595528b",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_c039c6d75952727c8780",
+    "vi": "Giải thích sao đây? Trước khi đến chốn ảm đạm này, có thể nói tôi là một... ừm... kẻ lang thang. Có khu cư trú của những người không thuộc thị tộc nào tên là Freythorn, dựng trên cây cao gần Hunting Grounds. Những năm qua họ từng giúp tôi đôi lần.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f8d92661df2ac9e89b243623c6d0655ad1768fd6abd0ef5a14f7406555bba406",
+    "vi_sha256": "763fdac48035e13de504bc4304056a438a63b693584682e367ca5d10d456bb9f",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_dd6538cdae068d9bf728",
+    "vi": "Một thời gian trước, có nhóm người lạ từ rừng sâu đến. Họ dựng những bàn thờ kỳ lạ, rồi thì thầm với mọi người về 'tôn giáo' của mình. Đó là lúc tôi quyết định rời đi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "569c81885234d97b6f99ccf4b00bcbea51ff33bbb9c5fea7c13c38e7a87e6767",
+    "vi_sha256": "131b2237d96ecb57b6c4625a719849843b800cb3c1c0be6ecb58948c9db0227a",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_cd8268fa52927673acee",
+    "vi": "Giờ tôi nghĩ thế này: nếu Bá tước Geonor và lính của ông ta điên đến mức đốt làng, thì có lẽ những người không có thị tộc cũng đang gặp nguy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f46e447c25c84dbe26b3864560979a1280ec00454f260211289bffd76f2f07ca",
+    "vi_sha256": "a2c1d02d37e97f122ee2ffd27cb1a41482cf2de9e086b913d9dcf69bea3c50d1",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_12ecb36252486495554b",
+    "vi": "Bạn ghé thăm họ được không? Trước đây tôi cũng hơi quý kha khá người trong số họ.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "15c1664b925caea06cae1ed82d90021a2edc3846485eab0956077f6db75744b3",
+    "vi_sha256": "156d4e8a2b9eba7ec3ef9e70ebf59609ff51380935169d351d563b26000e79cf",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_dcdd8f66bd3050b66084",
+    "vi": "Mọi người tôi quen ở Freythorn, cả lũ khốn khổ, vô lại, trộm cắp ấy... đều đã chết hoặc hóa điên.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f0ce862e8676ce16f0a780eb601067105dd0ad4ad6beab39efa1ab7c607a5edb",
+    "vi_sha256": "ee35c4616222121a63547ed1c245bf4c0a4508a6fda9ae9981424c841bd7b374",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_dc626e40423b1cd6a964",
+    "vi": "Giờ tôi chỉ còn Clearfell. Nếu tôi là người uống rượu, nghĩ đến chuyện đó chắc cũng tỉnh cả người.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "9219683ca3822a16f22955a30f45faa9c830338265c4c77a05a7961fefd0b04f",
+    "vi_sha256": "c56d62702469c564f5140c4849260e63da3d304022c45b13f16842908575587b",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_220e3a4c5719a7f0bb75",
+    "vi": "Tôi chưa bao giờ ưa lão Bá tước Geonor. Đâm lão một hai nhát giúp tôi nhé.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "467550c8f682cbecf0c3c3a5a2edf28c58161254b441ee31d8aa74af9d4b65cf",
+    "vi_sha256": "50c1ce2be927febba6a394d754b054fff61949a249f4165ce05d7b7d6523b24a",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_bc728c6ed3f3b2806d32",
+    "vi": "Các thủ lĩnh thị tộc đều đã chết, nhưng vẫn còn một người đủ sức dẫn dắt chúng tôi tiếp tục. Cha bạn sẽ chăm lo cho chúng tôi, vốn ông ấy là người như thế.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "6cca9c46c2b09ee89ccaef6cb758121770ced1495dd1cbd82d5589611d8e63ef",
+    "vi_sha256": "1da215bd1ac740ac356fd1ff6c0ff8f214483bcbc637466bf816513d0783b5aa",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_455de6da1c0f6d7de4fa",
+    "vi": "Chúng tôi sẽ ổn thôi, người hùng. Bạn có thể ngẩng cao đầu mà rời nơi này. Nhưng nói thật đấy, tôi mong một ngày bạn quay lại, dù chỉ để bảo vệ sau lưng tôi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "0fcaed646ae012bbb09fe052d5e455e891f48d51562a471b787244549789864a",
+    "vi_sha256": "a68bb0c306c17c252def01b8c6522a864b2af6662887caf1bc68cdaf630f140d",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_9deb2d36cdb58661d3e7",
+    "vi": "Các thủ lĩnh thị tộc đều đã chết, nhưng vẫn còn một người đủ sức dẫn dắt chúng tôi tiếp tục. Renly sẽ chăm lo cho chúng tôi, vốn ông ấy là người như thế.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "07d559330bc5633759f16824b479e1c5e755968655c0ddbe03484683e26c14ed",
+    "vi_sha256": "4dfcebfaa1bdbbbe3983199a49cd1c7ac8af5a04c0ecfc17f1ab2ff292e0fc25",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_fea541272879a98f038d",
+    "vi": "Tôi là người đầu tiên nhận ra bàn tay của Bá tước điên đang siết lấy vùng đất này. Ông ta cứ bắt những người như tôi... bằng những lý do bốc mùi như phân sói.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f1459b8169112e28ebc7642d8bc2657c4f43900cd4c34eb2eda3998ac571ade0",
+    "vi_sha256": "32f1a8650cc5c9816606813cea7af99b0e6f78a52fb20b47719414104908fffd",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_3eff043cc5956481ad32",
+    "vi": "Nhưng tôi là con cá khá trơn, nên vẫn tránh được lưới. Rồi lính đánh thuê của ông ta bắt đầu săn những người tôi thực sự quý, và tôi biết đã có chuyện.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "319c6aefcbc3938de9b61bf7fe53e7b8f2f4fb9fa15725ed348beab909c55ade",
+    "vi_sha256": "f20a6cedd5d4f4eda2054eac689647d7824d7d20efc4d56b2276370b33a685ea",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_7d83ff5ca9c89616534c",
+    "vi": "Dân làng vẫn bênh vực việc ông ta làm. Tôi không hiểu sao họ không thấy. Có lẽ họ không muốn thấy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "5726f9fac7a4dcefe85d8599dcfa713d77c6d867f320117daff8cb60c22e4f9a",
+    "vi_sha256": "59f7b5933f7ee568ac9189b22d9dd9e7821a98af650fd5589c61711d24c85877",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_24c31e5e182f51224ad1",
+    "vi": "Ồ, Una ấy à? Ừ, ừ, tôi biết cô ấy. Lúc Bá tước định bắt cả nhà cô ấy, tôi, ờ... ở chỗ khác... nhưng chắc chắn tôi có nghe! Cả hai cùng đến đây chỉ là trùng hợp thôi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "7312922b13ed465889ae94a49c868481b6cabdcf72fd03ba807b6dacffbb5e65",
+    "vi_sha256": "498c010be943521f90b69e7f06a9d17de42b0ce8e01e668eabc90707d8ab1703",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_e458ae37773237ac62b6",
+    "vi": "Đừng hiểu lầm. Tôi chẳng đi theo cô ấy hay gì đâu. Làm gì có chuyện một cô gái có thị tộc với một kẻ bị ruồng bỏ lại... thôi, dù bạn đang nghĩ gì, đừng nghĩ nữa.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f277f1b91d596c03d679b68b3637a45ab127f6c80909d5323d3c20894685d35c",
+    "vi_sha256": "b163b2cec7aa0e2725882bd9b3a51733257ac7a413b1ba855f5b535cddc6dc28",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_ecc2716744f48aa2676f",
+    "vi": "Tôi nghĩ vậy đấy. Phải đứng vững trong đời thực. Đừng mắc kẹt vào những điều không bao giờ thành được. Chỉ khiến trái tim bạn tan vỡ thôi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "a908cfd3aa2f8bf9ac11a4d955d27085a5cc3e19fd196ec5872f0c990050f25d",
+    "vi_sha256": "ee6a90bd942f762d2d7f7658b964769d6ebd1813ecc3307fcb4dda68029f6d72",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_bb4d082b1ab45eba5284",
+    "vi": "Có vẻ giờ chúng tôi ra ngoài kiếm thức ăn được rồi, nhờ người hùng địa phương kịp thời can thiệp và hạ Devourer đáng sợ.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "5cd4777981b9c667a8ba4dec685e876aa74e90429ad00c5870d64c17414bb93c",
+    "vi_sha256": "798f51f84d4721f7c59a58a625b8ae0ee05e5708bb300c44f5e00e0dc49a4338",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_5d01c77a49e5b7d78002",
+    "vi": "Chúc mừng, bạn đã cứu chúng tôi khỏi đói. Giờ đến lượt quái vật trong rừng giết chúng tôi!",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "1a864a4be94a8543295232a12d75f515fc072c7fb667440a81fd635964ad2cc4",
+    "vi_sha256": "1f9d0c090038c4a9c65e9037a2ed91317dcfa040057258f0696b815792f69cc7",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_eb178ac0142e55791541",
+    "vi": "Đôi mắt xanh phát sáng ấy khiến tôi khó ngủ. Tôi định đeo gì đó che mặt cho đỡ chói, nhưng thật ngớ ngẩn, tôi bỏ quên khăn che mặt khi ngủ ở cung điện của mình rồi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "3129fafa2e5f71e9f69b36c15d5795af67f19cea5fbd1918a985331a1f2eb73c",
+    "vi_sha256": "7a72c34b2a8756256aba71aa3710cb70229a9f0ceb18c38066c6e3a803f195a1",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_04e92515e3dac3a2e2ff",
+    "vi": "Tôi thấy cha bạn rất được. Chưa bao giờ nói một lời cay nghiệt. Trân trọng những gì bạn có, nghe chưa?",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ee30adf47f1b0720b80ca0911cc334764d47f84cda737e32014a71bee477fd99",
+    "vi_sha256": "e7353e0e4aa5bd0e33f7b441ecd952ff77bfd18adfa55f5d803fa97a9691b6ad",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_4da7aaa1cff88d536778",
+    "vi": "Renly là người tốt. Ông ấy là người duy nhất trong làng không đuổi tôi khỏi thị trấn mỗi khi thấy tôi. Có lẽ vì ông ấy chẳng có con gái để phải bảo vệ.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "048c3d1ccbe35526ba228854d1f7dbaa17e19534a5a9df991f0660bd0ce4db86",
+    "vi_sha256": "99fdc95291391fad846dd95e39dab56ecd157b1bdfe2fa40bc0335635ebb5a0a",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_c1edfd41a52f027b3d5e",
+    "vi": "Tôi... không tin nổi. Cả cái nơi chết tiệt ấy hóa điên rồi. Bọn giáo đồ đáng nguyền rủa!",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "c782fbc7f8ca0bde74f0a6f57c60cfa892d165066fe33bf363e42852a548e7f0",
+    "vi_sha256": "f4c9820306afe246ef0df58cbb8b665b0d4800e944eb0602c52a2935a526174b",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_43d902aaea343f8c9567",
+    "vi": "Xin bạn, người hùng. Tìm những bàn thờ khác và... phá bỏ chúng. Chấm dứt chuyện này đi. Tôi sẽ tìm quanh đây xem còn ai sống sót mà... tỉnh táo không.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "863b52d0419ea78652e266f46fcc2ce3dead18180a42f44ae3bb76e27788024e",
+    "vi_sha256": "2545f8ca7fad80ba146cb3469a72ed6bc28f86e654b9773d05ae2313fd8fd81a",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_6134bdd2b3bfe1c56146",
+    "vi": "Vậy là bọn giáo đồ thực sự có một ông vua lẩn trong bóng tối. Tiếc thật. Có lẽ tôi cũng theo ông ta nếu ông ta chỉ hứa cho ăn tử tế.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "5a6644ca6f40f60e8782f3d0ec936e672d9cddb9df160f090cb923306577d4d4",
+    "vi_sha256": "bae60b51e699d3f91af3dd3a59c71a41a15dad818bd13d876156d9e09b64dd14",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_28bbcd701ced08a0cb71",
+    "vi": "Cảm ơn bạn, người hùng. Không phải kết quả tôi mong, nhưng ít ra tôi biết sự thật. Giờ tôi chỉ còn Clearfell. Nếu tôi là người uống rượu, nghĩ đến chuyện đó chắc cũng tỉnh cả người.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "d22539c9f4a4ebd81706c40eb729e19cb55c7e1ba575bf7b46589a3c8c61011d",
+    "vi_sha256": "e18be128afc84659cee54317713fcf8f5e003d5bdca83e952fe94ac0eaa2bd3c",
+    "factory_batch": "act1-story-20261004-finn-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ giọng mỉa mai, sự phủ nhận vụ nổ, chuyện người có thị tộc và kẻ bị ruồng bỏ; giữ cách nói bỏ lửng và các chi tiết nhiệm vụ, không tự xác nhận điều nhân vật chỉ nghi ngờ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_b1690dab39482eac6421",
+    "vi": "Con đã ở đâu vậy? Ta lo đến phát ốm! Sau khi bọn lính đến bắt con, ta tìm khắp nơi. Nhưng chẳng thấy dấu vết nào, ta đành nghĩ rằng...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "a1e2ac5d53d9fe268582d34d1dfddb95c20963ac4f9dca88fab5ce30c881ae92",
+    "vi_sha256": "df16e9439cb46a7210b215ecf1d1b637d5f406aeb1409974217011f70dc6a165",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_47d9eb718e6032e24fe8",
+    "vi": "Con thoát được thứ 'công lý' của Bá tước là tốt rồi, cứ nói vậy đi. Có vẻ Những Đấng Đầu Tiên đã ban may mắn cho chúng ta.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "5a179ba05995cdd7f6859db34d8bd9914f9eaba572826378816bc747b5a18178",
+    "vi_sha256": "7816932260ed56610e27498da28da600b54e44a6e9315521b192df58e63dbfe5",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_88963b5544b6c5c5e32c",
+    "vi": "Trong những ngày đen tối này, chúng ta rất cần sức mạnh của con.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f5a8aa916436ae9f9a18464de5ab141d191927b980924b28e676c9a4647cfdbf",
+    "vi_sha256": "7707f88bae3f71d72d33b2945808d5233e5ad6407f4ce218f18e2110d6aaf724",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_0638f4b201f0ec1de33a",
+    "vi": "Một con quái vật mang sức mạnh hắc ám đang rình rập chúng tôi ngoài vùng đốn gỗ. Nó đi dưới đất, không ai thấy, rồi tấn công bất ngờ. Chúng tôi không thể ra khỏi tường trại tìm thức ăn, còn tôi vẫn chưa dồn được nó vào đường cùng để giết.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ef31e1d9277365d58753a10d6a014beb754b42c2e90627efa80e88bc9ef68fa2",
+    "vi_sha256": "b85b5e5751bd70cc0c3a85c3ac99e1b200f2a8464d14081f2ee3787853a7f381",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_935a7a9447f932fd84f2",
+    "vi": "Nếu bạn dùng sức mạnh ấy để diệt 'Devourer', như Finn gọi nó, chúng tôi sẽ mang ơn bạn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "d3854ec12de03fb26a8a268c35d4ebeb27d4e3dbf33d0420e19148c0fabff3a1",
+    "vi_sha256": "b8ba38a589754ba7861630754f7ea6d9e86c5fe177b174a51093d2c135e53e3b",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_9b2521ea6c9cacc9080b",
+    "vi": "Cuối cùng cũng xong! Bạn hạ được Devourer rồi sao? Thật khó tin! Đây là thắng lợi thực sự đầu tiên của chúng tôi trước bóng tối. Giờ chúng tôi có thể thở dễ hơn, có lẽ còn ra ngoài kiếm thức ăn được.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "3d55603ef5bbfd454483824ae787708fcc449e316dcd5116a7b15722f71be60a",
+    "vi_sha256": "2c10f62c6764d4e4965a60544d51a0f7a61276616b39debce56054f91673fe18",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_73d7b4be6fd9056aab7a",
+    "vi": "Chừng này chẳng bù nổi món nợ với bạn, còn lâu mới đủ, nhưng xin nhận như lời cảm ơn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "a89fcc70e1315bbac6d570a4827576c61a4f669da44a6c06b1f65956c627f853",
+    "vi_sha256": "53141509feaf4d51c9667222ddd288a4d638b886bd1b073f3da265c735a5f201",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_6bdd3bc9d41c7b3dc618",
+    "vi": "Chưa thể rèn cổ tự lúc này, vị khách lạ. Devourer vẫn liên tục tấn công chúng tôi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "7c3bf7aefd4a58655a4ea213f70a059a612e74d7615a3ce062524509c0037731",
+    "vi_sha256": "86760e882547605a4d8f6d5709396a61bf738915f6bfa36ee03ee2780e5e73f4",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_34b1a049f93be2b6b1e4",
+    "vi": "Đinh của bạn đây, nhưng... hãy cẩn thận. Sau khi rèn, chúng vẫn ấm dù tôi tôi nguội bao nhiêu lần.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "11e8794d4d3e685fd74a7e2654b1913263c7577f01a19ea33455a7560e079a7c",
+    "vi_sha256": "05605ba8a79b46717267127c997f12b868d16b3e5832b5d1bcafcfc97e066b71",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_8a498d69ab2546d798c9",
+    "vi": "Tôi muốn hỏi bạn cần chúng làm gì, nhưng tôi sẽ đặt lòng tin vào bạn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "62d707f6217a0bab67854b6f93d661a11641c4a019dafcf809327fb8e4f6f8e1",
+    "vi_sha256": "86f52f51502631e87996284bae149664a4ed3be206f72ddc72d44e8051789256",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_44ea82ab40d0967e161f",
+    "vi": "Người hầu đứng đầu của Bá tước chết rồi sao? Đó chẳng phải điềm tốt cho tình hình trong dinh thự.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "8509d64f2bea951755b9d456ccf539dfc7ad941b23316f2db3afc99ebf0111d0",
+    "vi_sha256": "826716a626d4c5ef00f795c0e03d278884ff930bc766bf240d86e373aea8c12f",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_42eb062313dc2084af5d",
+    "vi": "Chúng tôi vẫn cố cầm cự, hy vọng làng đến cứu, nhưng nhiều tuần rồi chẳng có tin. Bạn đã tỏ ra rất có năng lực. Bạn có thể về làng xem họ cần giúp không? Nếu họ vẫn ổn, mà chắc là vậy, xin lấy giúp ít vật liệu tôi bỏ lại ở lò rèn. Chúng tôi có thể dùng chúng làm vũ khí bảo vệ Clearfell.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "becebe05198cc9d4f00528fb7bceca7366570d3fe7c566af6116b7bf316e4919",
+    "vi_sha256": "64574b4f424833d9a7999c05216a5dc1783dc2b251610b14166a2a4df86bc5e9",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_c772fec39b170605a2f5",
+    "vi": "Vậy là làng đã bị phá hủy. Một số người sống sót đang tìm đến đây, và xem ra Clearfell giờ là nhà. Chúng tôi không biết cảm ơn bạn sao cho đủ. Số sắt bạn lấy từ lò rèn... là tất cả những gì tôi còn lại của nơi ấy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "6782b76a71c21dd434d8731ac05e6f4ecc4e567b62107f22a64fda8c249fc67f",
+    "vi_sha256": "b02cd45db6d0302e135015265da2195c49672efc05e5caa3fbbfa7764ece1a4c",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_fff8bd48cd3472c005c6",
+    "vi": "Làng chúng ta thành đống đổ nát đang cháy... Chưa bao giờ ngày tháng tăm tối đến thế. Một sự thật phũ phàng đã rõ: Bá tước Geonor, người có bổn phận cai quản Ogham từ khi sinh ra, đã phản bội chúng ta.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "8b710b1f32c8b18f3502748ff89e3c73d96a5e5e951b1ec5486bc27b30be4886",
+    "vi_sha256": "71dff420722264708c8d74f354c780e1001171e012506517e873f83a9d6cfd16",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_90e74e011528b4bdd0b8",
+    "vi": "Ban luật tàn nhẫn đã đủ tệ, nhưng tấn công chính dân mình sao? Tôi ghét bản thân vì yêu cầu này, nhưng phải nhờ bạn vào dinh thự và tước quyền của ông ta.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "7a3e43dcebe52855180118757fdbbf7e07cd05605b3661ed643968ee47fce63d",
+    "vi_sha256": "8258a55f560a69feda92083c91ec809514f2215a1cbca175bf6ec65505152f5a",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_2f1a170e3ecf299eed7d",
+    "vi": "Ông ta đã thành một bạo chúa điên loạn. Nếu bạn phải dùng đến bạo lực... thì đành vậy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "a0e11c1aa64be751d327ac7f4148ec3db4648fe8eede6b7fd2bde9cdce7995d6",
+    "vi_sha256": "fb086cbd320b12427f15120d08033181a4eb0bd79183cc5a364ff0bf608a90ad",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_281189e1e24eb26811c0",
+    "vi": "Bá tước Geonor đã chết. Tôi chưa từng nghĩ sẽ có ngày nghe câu ấy mà thấy nhẹ nhõm.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "70e3d290b656c0b151b617b2f5ca78f643a26306b46154b8e1b0d70c7ba8a5ab",
+    "vi_sha256": "2a19948f71a4ddb6bd7554d4a07229cfe22314b29de0802da6a805d8cd02e660",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_bd5676a9865023bedbbd",
+    "vi": "Cuối cùng chúng ta có thể dựng lại Ogham đáng thương đã bị tàn phá. Sẽ là một cuộc vật lộn dài và khó nhọc, nhưng đâu phải lần đầu người Ezomyte chúng ta phải đứng lên từ tro tàn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "2906396c33364bab764b5b4a51e70d1e313d5440f2a8586a3f7e7629806ee668",
+    "vi_sha256": "6b90aab55a99576a1949b2b1bc66188d67e164694050d62a65d411767d1a2ca4",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_d36d07b4b366ffa08c4d",
+    "vi": "Nơi này vốn đâu được xây để chứa ngần ấy người, nhất là người bệnh và bị thương, nhưng chúng tôi chẳng còn chỗ nào khác để đi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "4ecf6bf7142dce47f83f5fd18916885ba092b503264fe165cd4a57cdb841bd94",
+    "vi_sha256": "43d5bbfac52bd70491fa411b1e308b4aa39e03551535c57889d9552c0664ae54",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_6061aa2dd44da67d0163",
+    "vi": "Quái vật từ rừng bò ra khiến chúng tôi mắc kẹt sau những bức tường gỗ. Sự bạo ngược của Bá tước biến tất cả thành kẻ ngoài vòng pháp luật, nên sẽ chẳng ai đến cứu.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "d1d84f823ebffd00813c614cddba7bf377b2c1259aa3f9874d082ca28f794bc0",
+    "vi_sha256": "09c9f5978556b36d72c16d629bc581323fe9074aa085450ea65d49af7ab28a95",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_7339cdf9c4a48f93f01f",
+    "vi": "Tôi không đành nói với mọi người rằng mình chẳng thấy cách nào sống sót qua chuyện này. Tôi vẫn cố tỏ ra can đảm, nhưng đó là sự thật.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "4d149f41d953e200f55e5e29f2c15da00c0865d97010cecd2b73efc72dc87cbf",
+    "vi_sha256": "fd0088bbf017cccbccaab9b6f699caa9777d89debc3867e43f59c5b6b453ac12",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_785e510ffc6dd2a9bc63",
+    "vi": "Devourer chết rồi, chúng tôi có thể ra ngoài kiếm thức ăn. Có lẽ tình thế thực sự sẽ đổi khác! Bạn đã mang lại hy vọng giữa những ngày đen tối này.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "9fbe80e07ef75b31f2a47b7a293b5302adc0e075813ccc0f5a8de1373284ae0d",
+    "vi_sha256": "7015f23d1fb6c647db55d27ca33eb8a59a718a71b4cb8631a8009b8bfa7b3390",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_53e40dda563f9838a8b8",
+    "vi": "Nơi này là khởi đầu mới của chúng tôi. Trại Clearfell vốn chỉ là một bãi đốn gỗ, nhưng giờ là hạt mầm của người Ezomyte ở Ogham. Chúng tôi phải đẩy lùi bóng tối và xây dựng lại. Sẽ cần tất cả sức lực, thậm chí nhiều hơn thế, nhưng tôi tin chúng tôi làm được.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "a1ee51a2ba28a257628737b7e9409d5aa220912db574aaf4e6cab8125ccd77a8",
+    "vi_sha256": "5ad1b634a15ac21928ac0ad8769fe91ee59dd1574e65b784d12afca4fd7fabd9",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_7425e5692f11c2590a3a",
+    "vi": "Có vài thứ quanh lò rèn biến mất mỗi khi Finn ở gần, nhưng tôi không nỡ trách cậu ấy. Cha không chịu nhận cậu ấy, nên từ nhỏ cậu ấy đã không thuộc thị tộc nào.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "2a567a97f2d394f49bbfb3dd5b60b1df64059acf4e83dd74e417aee3c592ef03",
+    "vi_sha256": "0d9fe2826988b62a4da7113bd37689ad216c1fe09473038564336fa222b60b89",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_dd671e9d9f628c701942",
+    "vi": "Dưới vẻ khoác lác ấy chỉ là... thôi, chắc ai cũng thấy, kể cả người lạ. Mẹ cậu ấy là người tử tế, thật thà. Tiếc là cậu ấy chẳng giống bà.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "057f6fd5f0f3a358a3925d436969e7acc3b37da1c4e5874a4e4c382a5a363d89",
+    "vi_sha256": "f593c19e947ce329ae82ed91537fafb04b3bece58360590ae2a7b900bfdde837",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_32fdda7270e69fce1c35",
+    "vi": "Cô gái ấy là ánh sáng giữa thời buổi tăm tối. Nếu không có âm nhạc của cô ấy, tôi... thật chẳng biết mình sẽ thế nào.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "b9214f963981415dde44b91946bb4bc8894046effc5db60d1f2beff1a3c60439",
+    "vi_sha256": "b1bd8ed343bd538c90eda98a4f363fab5ac83f7a3edf2092fe1456afbd89f288",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_06c4a359e769a0004971",
+    "vi": "Mỗi lần nghe cô ấy hát, tôi biết mình phải cố hơn để bảo vệ nơi này, mặc kệ mọi sợ hãi hay lời bao biện.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f02e02b65dfe4f711ee95d99a53359aa77f97cb89fe58b97cff8c3850afab833",
+    "vi_sha256": "df724f476631d9c74fc40bcca1c3783c787cf51aa35a81f524829667d513ae04",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_9408a20e6a7447a885c5",
+    "vi": "Tôi chưa gặp Leitis, nhưng có nghe về cô ấy. Giới quý tộc không chấp nhận cô ấy lấy người thường... Tôi chẳng tin nổi họ đã để mối hằn học ấy đi xa đến vậy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "42df1ff7c88d24d98485e5c5fabaa8b786f31f2952c98f89cc649965c03e5b9b",
+    "vi_sha256": "4f783c2342f9c72825273a15fcb2e3ee9393e97b67e115fcc84da16a0eb68908",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_836851da5927e646a498",
+    "vi": "Chồng cô ấy là người tốt.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "a37b805f0483d90934e235906f4e996394b9cf84253a9cf6ba2aecbadafdf237",
+    "vi_sha256": "8456682a1908a8d209a4f2bd90f0f55b4e2f15290852c0d5329293206d16eb7e",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_4a126a5170055fc5fd8e",
+    "vi": "Vùng này của Phaaryl đã là quê nhà yên lành cho nhiều thế hệ Ezomyte. Các thị tộc không phải lúc nào cũng hòa thuận, nhưng chúng tôi phải dẹp thù riêng khi người Eternal giáng gót giày tàn bạo xuống đầu mình.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "c53c523660503982e014e6dd89689040d0b23e8afbb86ac32da3f72f89c8c100",
+    "vi_sha256": "fc2f27306f2c254942486c86ce4f3b0993892592fddbce1e4f010cb5547f7694",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_fc70663467362963c971",
+    "vi": "Chúng tôi không tham gia được cuộc khởi nghĩa Bloody Flowers, nhưng ở đây cũng phải chiến đấu với họ. Phế tích của họ nằm chồng lên phế tích của chúng tôi, như một cuộc chiến câm lặng bằng đá.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "54091b7701ec7f47aceaca11ef2e2aae93ddc4b34b24485ee73e0e0952b913fe",
+    "vi_sha256": "a2d205599da2a65d9594911692f25cb19fbd7b89868265705654d138eff70734",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_5aa2763224badff6702a",
+    "vi": "Ta biết ta không phải cha ruột của con, nhưng ta đã cố hết sức nuôi dạy con. Ta không biết người Karui sẽ dạy con ra sao, nhưng ta nghĩ con vẫn sẽ trở thành người như hôm nay.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "6a315eb25acf78c2bce5bdb59da065f22017d02cfe89105d811fb893673f809a",
+    "vi_sha256": "465c10540c4c70b38fb5df91afcbcfb052dbf554a6dd29937d1805ae68ae4b3a",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_cb6866470e4ee525a57b",
+    "vi": "Con luôn có ý chí mạnh mẽ. Chính điều đó khiến con là một người Ezomyte thực thụ, bất kể con sinh ở đâu.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "1d71c9fb42d86c2aeeaaf896b4a27497c9b41d018960b481eacb9e56cb31ef68",
+    "vi_sha256": "5bcd768719972a611a023e17af81711059398b5b5a261d8977dd1720e893398f",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_a6772640d7549a754cfe",
+    "vi": "Vùng đất này đã bị nguyền rủa. Una cảm thấy vậy, tôi cũng nói vậy. Muông thú Ogham vốn thân thiện với con người, cho đến khi một bóng đen bắt đầu rỉ ra từ dinh thự.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "c116f683f4443701e97859d4ff7fdd3866a5eb0825d7b800997bde54863eec6a",
+    "vi_sha256": "b8e01f0059e7d4ab0477f6277878371d4ac73838b0415d1d8c54ef3eb91fa85e",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_e880d25992813c8829a4",
+    "vi": "Những con vật điên dại, méo mó này chẳng có lỗi. Một thứ chúng ta không thấy, chỉ cảm nhận tận xương tủy, đã khiến chúng hóa điên. Lần cuối tôi thấy cảm giác này, tôi còn trẻ hơn nhiều...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "45b3bcddd059fe2ff3966e6cdcff8b9fa251fd364269828b4a744f7bc6f75e8b",
+    "vi_sha256": "590d277c4b734ece8270f587d2d1b31693a5dc338c665e5e213b3e5ce4a7a621",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_b762d3abd737e5bc497f",
+    "vi": "Ngày trước đó là khu rừng hiền hòa, ấm áp. Ta từng đưa con đến chơi hồi nhỏ, nếu con còn nhớ.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "9a103d087de178a48adbf42d647976e0f740911cd08b5957d80dd6e251c2daaa",
+    "vi_sha256": "7ecc3db06017e737cda35d50f38b46675f70646e7ad7f02200e51343bc32b5b8",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_3d7143291df0a8bd00f3",
+    "vi": "Giờ nó là một vực tối, nơi phần lớn người bước vào chẳng có đường ra. Nếu đến đó, hãy cảnh giác và nhớ những kỹ năng ta đã dạy con.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "bc94283f1ebd28eefe6c6a5518671a6d626f43beb571bb1b07fb5f07a111d134",
+    "vi_sha256": "304f0f250c9c716ac1e952d06cde1c8ed276244054ac05f0d93f5247d429f8a0",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_381989d35d4a69a93c1c",
+    "vi": "Ngày trước đó là khu rừng hiền hòa, ấm áp. Hồi trẻ tôi còn từng chơi ở đó.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "df1ea6d794cbeb08d127f5f90816aa3673e2a830334abbd4fa2273ec1f3a67af",
+    "vi_sha256": "963d540386914d1aa9ae87674bc6ef0629030a91a9ed4ab6ee72e52dae2d7c68",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_92a113b4c0881fad721e",
+    "vi": "Giờ nó là một vực tối, nơi phần lớn người bước vào chẳng có đường ra. Tôi muốn đi cùng bạn, nhưng còn phải bảo vệ mọi người ở đây.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "c96f37bcb33a9f6a8d3b1d37521c964aaa311d2d1faa6287243f6bb0a91f4dbc",
+    "vi_sha256": "198b29aa828ebb11f5cf4045cabce2dff486c870f7c81f2fae12c1c1a6bd9b7e",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_c67a4aab371febba060b",
+    "vi": "Người Trùm Mũ ấy thật kỳ lạ, nhưng nếu con nghĩ ông ấy đáng tin, ta sẽ ủng hộ. Mong là con đúng.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ac82738ebf90bdaaf5ae18dc461bcaad42239f8e6d42a22ef4621bda622b9a8e",
+    "vi_sha256": "2cf9c1bb76bf13c8a266d3473beda14f1e3b7d6bcc22f3ba80878f1724c775c5",
+    "factory_batch": "act1-story-20261004-renly-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_3590cf19e122840a7dca",
+    "vi": "Tôi cho 'Người Trùm Mũ' ở đây vì danh dự của bạn. Đừng xem đây là lời đe dọa, nhưng bạn sẽ mất đầu nếu ông ấy xấu xa như vẻ ngoài.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "af663e1a8ea4b3aef9107910738751c2733ec5a98eec50306b11f807d89cfa53",
+    "vi_sha256": "1dcdd3f0f96e8d79b0c741ceef78bf8bac3020adfa17adc45181f96696e3dc41",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_408f944c5a78f64a981a",
+    "vi": "Con sắp về làng sao? Chắc con cũng đã nghĩ đến rồi: nếu mang được dụng cụ về, chúng ta có thể rèn cho ra trò.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "6bfbb820155a9040df958cd4469aa559f9f3852109c33d9debe8ddfb4ced1ef5",
+    "vi_sha256": "a3f6693167e9ff3639631dcc673e58ad9261ba236cc649d44fcf205badfa515c",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_b40adbaadc16504f202e",
+    "vi": "Chúng hẳn vẫn ở gần lò rèn, đúng chỗ ta để. Mang về đây, chúng ta sẽ dựng bàn rèn. Làm việc chân chính có lẽ sẽ khiến tinh thần khá lên nhiều.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "b91404680af48caf000355a0622448e9f5c05ec99c377c840686cc69ecd6cd48",
+    "vi_sha256": "61d78e459ffc32a39aa4b6bd8cd0453ead50107963eddfac8dc5aa0825092d88",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_76cfa8b2d5f7074e8d92",
+    "vi": "Nghe nói bạn sắp về làng. Khi chạy trốn, tôi chẳng kịp lấy dụng cụ rèn. Nếu đến được lò rèn của tôi, hãy tìm và mang chúng về. Tôi sẽ dựng bàn rèn, rồi chúng ta có thể xem việc gia công trang bị cho bạn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "0b1c3411fafb2ce6e79e1be4e5d349f460a331fca245d0d11f390afbb631157c",
+    "vi_sha256": "81cccd706ad6482adeac529ecf01109d5ecef6c0cb82701a413f75bd0f8e05ba",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_6789bb4162a7a0fbd373",
+    "vi": "Dụng cụ của chúng ta! Tuyệt quá, con à. Không có lò rèn tử tế, ta cứ thấy thiếu thiếu. Giờ ta có thể dựng bàn rèn đàng hoàng cho con.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "6d264adf30a3096c3336e502b9d074ba8f08a3373435626ce89cb463b45d71eb",
+    "vi_sha256": "9e2c6a81548e09f36b1d36596ccaf7c124816604ffe4b7b60504ee9714fb7746",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_cb46bfe508f1ed1a6d95",
+    "vi": "Bạn tìm được dụng cụ của tôi rồi! Ô hô, tuyệt quá. Giờ tôi có thể dựng bàn rèn đàng hoàng cho bạn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "df6710757cec851536ae8ac4a7c6f7bffebad98282767cc50aa53637dcc8e6ac",
+    "vi_sha256": "e0dc9f264d29268980556104cb0c5009527b44d8e61d93f2baeb60b12ddfb71c",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_dc05e54a58a1930eca1a",
+    "vi": "Cứ giẫm mạnh chân tùy thích. Khi chiếm được nơi này, người Eternal đặt mộ của họ lên khắp mộ của chúng tôi. Giờ nếu những ngôi mộ ấy bật tung và thả người chết ra, hãy báo thù giúp chúng tôi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "6b9a4b6a6e33c567e0298642b00cc7498a23094f08a5cc54c167a3cc12763546",
+    "vi_sha256": "f529cdc7e455879bfe27af891e1b515a82b2fc0b411a26ce8d157c0a50f7eb7c",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_25d539d21dc13145d78a",
+    "vi": "Có người còn kể rằng lúc đêm tối nhất, tổ tiên chúng tôi vẫn đánh nhau với tổ tiên họ giữa các lăng mộ. Tôi chẳng nghi ngờ gì. Người Ezomyte thực thụ không bao giờ nhường đất, kể cả khi đã chết.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "0e6d264890ec8c7e6482b4f0eee805e6d9f880ffc8baa39c7e47fe30f92cbec8",
+    "vi_sha256": "7d7f3e7ca7c57bd3f6e2a2415c32768cf2b5b05e6253e2aa15457db3d22bce39",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_c95a0cb9cee312811182",
+    "vi": "Nếu định về làng, con phải cẩn thận. Bọn tay chân Bá tước Geonor thuê tàn ác hơn lính của chúng ta nhiều. Con thấy rồi đấy. Mỗi cáo buộc lại vô lý hơn lần trước.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ed896a604eac4862d0fc46e2b8b5489a63e4f3f7c2c59764baff5d76d85f6305",
+    "vi_sha256": "15ec85767e6c8fd6e08ac9cd58fdc35086747f8ffb0318f071717d12b039bd11",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_119d21bca0436cdf41a9",
+    "vi": "Khi chúng đến lò rèn đòi vũ khí miễn phí, ta từ chối. Lúc ấy ta đã tìm con rất lâu mà chẳng thấy đâu, nên nghĩ đến điều tệ nhất rồi chạy đến Clearfell.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "db30bfdf4dbe87d52578507613ac6d23acef0cf69973ffa61e23b676b22cb074",
+    "vi_sha256": "0527f385612268e7fcae681fee7ebcbab197b25d7c1d00b972c11f3a071f7a4b",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_a78ab5d586550e5b2159",
+    "vi": "Ta xin lỗi, con à. Ta chỉ mừng vì con vẫn bình an.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "82a3976397971ee3fc5c9d32f2a9266b500f554c662ee442885986762b4bd309",
+    "vi_sha256": "6c007f31d09df9f09dafc25ee3907369e2b03f3cbb8ea71086181ce18060ceda",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_8a1fcb8b4a410f0bd07d",
+    "vi": "Tôi có lò rèn ở quê nhà, nhưng chẳng dám về. Bá tước Geonor thuê những tên côn đồ tàn ác hơn đội gác làng nhiều, và chúng ngày càng bắt thêm nhiều người lương thiện.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "70450bf6f4e23e79a0fd7c3d9f4751039b0a1a4e3f22c9c9d2994e4ce95789f7",
+    "vi_sha256": "1b006a0f92479275d365532c8e226d856273a4c70508987b6b1bcdbe7e3640cd",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_a34ee4b33ee4946267a8",
+    "vi": "Mỗi cáo buộc lại vô lý hơn lần trước. Vài tên có ánh mắt lạnh lùng đến lò rèn đòi tôi làm vũ khí miễn phí, nhưng tôi từ chối.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "852a2ee94166036f772f4b2b72081a4fdd8b5dcb9f4166fb257ae309a9b8ccf1",
+    "vi_sha256": "ddd8a464f89732d0fc4842e9f5d2effa12f0b644c6bdc81dc6876453fb9561d2",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_98a40dd55fef140dfdcc",
+    "vi": "Tôi biết chẳng bao lâu chúng sẽ trút giận lên mình, nên bỏ trốn và tạm trú tại Clearfell.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "68cc43c9a60ec9731ce3ae680a9f36b29a019a2c150d65b51ad3142a6b0e6c1f",
+    "vi_sha256": "ec45079cd2177d9993d71cbb5b0ae47c876e3548b78818cd260c35fd7fc4bffe",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_5dc24d87cc665b995d1d",
+    "vi": "Có người chẳng phải giành lấy danh dự, mà sinh ra đã có nhờ địa vị. Geonor càng đáng gọi là quái vật khi vứt bỏ thứ người khác tìm kiếm cả đời.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "8e359149bea85693bdc0aea32c290e7fd1d5e1ac7ca4f77187edaebe0f0afb92",
+    "vi_sha256": "1784584d61beeb7dc63ab3f221fd118a4cec304e3c326f24c6e7991804b40a6c",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_f7a853ba32005c644241",
+    "vi": "Ông ta sinh ra đã có vị trí ấy, chứ không được thị tộc chọn. Giờ ông ta phí hoài nó, đặt bản thân lên trên tất cả. Tôi từng tin ông ta, nhưng giờ nghĩ đến thôi cũng không chịu nổi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "a5c2baadad49eb3e5fe35ad474abbee2f1b5ffde0389937a23df41638f2574f2",
+    "vi_sha256": "818d077d4a5d4e5cbb7274729c79dbef68488b24579b096fbc98eb5f33273d1e",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_b82742366bdeae228ce6",
+    "vi": "Đi đi, con. Thấy những gì con làm được, giờ ta hiểu vì sao Những Đấng Đầu Tiên đưa con đến đây từ nhỏ. Nuôi dạy con là vinh dự của ta, nhưng giờ con đã trưởng thành và có đường riêng.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "6c0c3e0f6c863e41f113488b7beb5a99fe80d41af407dec3e9db096b01725065",
+    "vi_sha256": "b63870600d888328d364193e976e573199b66268cba9f4dae8896483951335b9",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_dd60cbb69b03a07cce1b",
+    "vi": "Hãy làm điều con phải làm, rồi sống mà về nhà. Khi con trở về, ta vẫn sẽ ở đây. Ta hứa.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "0665fcf9014058a2ae7bcfe4e059620166c7444bac27328c4484a29d10df1c05",
+    "vi_sha256": "b62cbb0b0200c33e9dc32ace0075d2fb89a9510c76db666aaab5c9235eac24d4",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_39b6438c3f2aa77f8ac3",
+    "vi": "Lời nguyền trên vùng đất này đã bị phá, cuối cùng chúng tôi có thể bắt đầu xây dựng lại.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ea4956398a82845d3cb729277c9766c4e31f03487fabd35ae16879720e1cfd2f",
+    "vi_sha256": "77c54a0796132b84a447c6b9845adec593237880b87c4f1b575535f94398badd",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_c641ccd62cc4d059ab90",
+    "vi": "Chắc chắn vẫn có người sống sót rải rác khắp Ogham. Chúng tôi sẽ tìm họ và bắt đầu chặng đường dài, gian khó phía trước.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "140db7947f94ec912f66ce14965fee5c418939e345e10301a1e43ff9688e2b31",
+    "vi_sha256": "472890f6cc4f8e6b098cfaa18c0fb754be3ee7f23b62258f0c29240c01e177f9",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_3d8c4dd8f1cecfbc1e41",
+    "vi": "Cảm ơn bạn, người bạn của tôi. Tôi hiểu bạn sắp đi đuổi theo thứ ghê rợn đứng sau mọi chuyện. Cầu mong Những Đấng Đầu Tiên giúp cuộc săn của bạn thành công.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "65f5f12e571277c3fa8b6612f944e2aae8ab19cc4abd1fecf3d16613320d3a42",
+    "vi_sha256": "907d43d67c8cc2d122ad55dc53613d801b2898557aaac3f72364f5cc90a4890e",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_b7305b056a46713bb8fe",
+    "vi": "Tên Bá tước sẽ không được nhớ trong những bài ca của chúng tôi. Hah! Khuất đi cho rồi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "d1245b76495bdb18ced83e154163cd569c05acba27ef7103a81d88bc9c40811f",
+    "vi_sha256": "1f528e1b06117c0ea36b0e187ba87a98e46fd5bb060c3b1e5a9d5e52efef9653",
+    "factory_batch": "act1-story-20261004-renly-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ ta/con ở biến thể con nuôi, tôi/bạn với người lạ; không đổi cha nuôi thành cha ruột. Giữ lời đe dọa, điều kiện nhiệm vụ và các biến thể trước/sau sự kiện."
+  },
+  {
+    "source_id": "dlg_npctextaudio_1c738fe70353af7146a8",
+    "vi": "Cảm ơn bạn, người phàm, đã giải thoát tôi. Tôi muốn đồng hành nếu bạn chấp nhận sự giúp đỡ. Tôi đã đi khắp thế gian này từ lâu, nên có lẽ sẽ chỉ dẫn được cho bạn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "6cdcb08d204436fb95111816d63636c731a4a4c38585d379c818ba439607bc9e",
+    "vi_sha256": "1907919ace3d61d1bae74f4b62ac2cad6d963dce2711da42cd9edd587e4618fd",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_86b04a4d562be9b42edb",
+    "vi": "Những chuyện kỳ lạ này: thú hoang hóa điên, người chết sống dậy. Đó không phải ngẫu nhiên. Nguồn cơn tai họa có lẽ nằm ở làng Ogham.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "6b7e40bd3d324b9e1b06a47e1baa9be1e84f52aae0421cb4e7ec7481a56e0b7e",
+    "vi_sha256": "d8b912c96368003c11be38ab6387c29288c8bc74e31010a251665f0e89e2d1a2",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_cfe99073c48824eeedd0",
+    "vi": "Bá tước đã đánh cắp một thứ không thể để trong tay người phàm. Nếu không can thiệp nhanh, tất cả chúng ta đều gặp nguy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "2a96074444579957572e69cf7f0a39afc5a63d4d7508cc7703c0a98ad6048f9c",
+    "vi_sha256": "f113abcfb9f1be3f110132cacb4dbfd0093005d0d13c62d3a214311cabfe09f0",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_2ae71da662371e025c71",
+    "vi": "Tree of Souls gắn liền với khu rừng cổ này. Nó biết đường nhanh hơn. Tôi sẽ... thuyết phục nó... cho chúng ta đi qua.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "0dd9e7c8de9157bbb2abe63186bfc1817d263cff55418d151d13bf5b3735b8de",
+    "vi_sha256": "0c1f08efc365a897fc017649ff1164cd0020ebd9e07574a1f30ab9724fbf0854",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_a389e18213170a229ce1",
+    "vi": "Không thể chỉ bằng lời mà diễn tả những nỗi kinh hoàng vô tận khi Tha Hóa bị sử dụng sai. Mong chúng ta tìm và kiềm chế được Hạt Giống trước khi quá muộn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "960104071030ea3a1e7c2751dfefde016b99f7263e8c938505a78af3d91b8bc5",
+    "vi_sha256": "89bb8bf584bd40eecf9344a0c7a75bd5ba7a3b968aa7128b4f749fc48e65c88a",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_91d5c3a0d7a8545b2670",
+    "vi": "Bá tước chặn tôi và lấy một vật vô cùng nguy hiểm: Hạt Giống tôi giấu khỏi loài người. Bằng cách nào đó ông ta biết tôi giữ nó. Ông ta chẳng thể hiểu nó nguy hiểm đến đâu. Cố khai thác sức mạnh ấy sẽ chuốc lấy thảm họa.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "20daed4e7263b0598199c517f3175ee337135734faef55f28a4058da21049053",
+    "vi_sha256": "b5d06fca71645ed6947aeb7dd8508e855156fb0edf693dd145a3592faa43a2b8",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_fe37ae4188d526e17c18",
+    "vi": "Bạn phải mau đến dinh thự. Ít nhất những người còn tỉnh táo có lẽ sẽ chịu ngăn những chuyện tất yếu xảy ra nếu họ nuôi dưỡng Hạt Giống Tha Hóa.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "aa33b57dbab9b614caae5943f627c3776515c64687a290fee4656c497cde1781",
+    "vi_sha256": "4f4b83b44901d8d19baac81ef1cbc7aace680fa816a027aa598048ad5e371847",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_fcbccaee4e506b8b4e01",
+    "vi": "Trẻ con đều có bạn tưởng tượng. Phần lớn lớn lên rồi bỏ qua chuyện ấy. Một số ít không chịu buông, biến hư thành thực chỉ bằng sự bướng bỉnh.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f4fd2101d59feec17df7046b3bfbbf45d1e7c18095882fe9bc87b14390089856",
+    "vi_sha256": "528b4345107a0c1314c5eca36cc7ee98d30cfa0969c50aed31175c732cf81a7b",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_249548fa7d721dbe8f68",
+    "vi": "Thần linh sinh ra từ con người chắc chắn có, nhưng liệu một con hổ đỏ khổng lồ tên Farrul từng chạy khắp đồng bằng thời nguyên thủy không? Chẳng cách nào biết. Thế giới có kết thúc nếu bà ấy và những kẻ hoang dã cùng loài trở lại không?",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "7459fabe10eef8dc87cae1e732ddd1c5e606232d5ce92958cdfea0103cc7b0e7",
+    "vi_sha256": "21381639ec3125d55e85b4e17b4d6b021d91d53672d6235c40b5515e011f9331",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_ab74ba1ef5daeb6227c6",
+    "vi": "Tôi nghĩ câu trả lời thuộc về những người đứng lên chiến đấu ngày ấy. Hãy mừng vì hôm nay chưa phải ngày đó... theo những gì tôi biết.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "7908c20ffb9350625e30bf104b865389cfec00111c21aab6eaf874997497c433",
+    "vi_sha256": "9c3948a255db61c9b845d39b78b78646508edd4265b4c458aa4f12ca1d1dde80",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_fb1a602012486eea8934",
+    "vi": "Tha Hóa từng có một mục đích. Cứ gọi nó là thứ đảo lộn những gì lẽ ra có trật tự. Một hệ quả của sự hỗn loạn ấy là làm méo mó các lối đi, cả trong rừng lẫn trong tâm trí.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "2389d78bac8aa7d3731cf85d114988f11e510cdc93cc20d7535fe45131162ce4",
+    "vi_sha256": "9261f1f377486739777061f964658abf2bee398e01368674111fced0dab511e4",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_b39eb729c4dc001434a8",
+    "vi": "Vùng đất nhiễm Tha Hóa chẳng còn giống lần trước khi bạn bước lên lần thứ hai. Người nhiễm nó không biết mình ở đâu, lúc nào, chỉ biết mình đau đớn. Trong giác quan méo mó của họ, bạn hiện ra như một sinh vật kinh khủng.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "534fa94082d896055651a29e36beca51968d8833e9e4d8b5810596b52df9f293",
+    "vi_sha256": "a484e675cc7e90ad5c96c65dd956de99175e244047d9ee40d45ce9a05e6a995b",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_3befa85111b7eae0fc84",
+    "vi": "Làng đã bị phá hủy sao? Vậy sự điên loạn trong đầu lính của Bá tước đã lên đến đỉnh điểm.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "2b64a07aee5ac944ce04c3aef281805e92703f0c44181d68108b9be32257e598",
+    "vi_sha256": "ee9e6a042cb39adf86fe54fc549e8251e9d3f2c2d2b53d5d29cc5ed1d837dbdf",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_0ffa038aad37bf16f73d",
+    "vi": "Bạn phải lẻn vào dinh thự và ngăn chuyện này bằng mọi cách cần thiết. Số phận làng Ogham mới chỉ là một giọt mưa trong cơn bão sắp đến.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "509b8116529b8197f12dfd808aefb553f133566997cf877131142e3f9ebe0c10",
+    "vi_sha256": "60c185eedfe8006f4463261a117ed1f9608f13cb3711da81da33d240eca8fb5b",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_fb88bc002316e17a896a",
+    "vi": "Nếu định đối mặt Bá tước, tôi phải cảnh báo: một sức mạnh tha hóa cổ xưa đã khiến ông ta điên loạn. Chẳng ai biết bạn sẽ gặp gì trong dinh thự.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "0d153c8168854ce6fbd9e417e50813c469e317a8b28297037e68d7bab8bc6f80",
+    "vi_sha256": "87753a5f433af9756743f8e5e30c2ab3dd19d32d3a9553ee33086ff5120cb027",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_933ba42478739466d4b6",
+    "vi": "Nơi Hạt Giống Tha Hóa bén rễ, sự sống uốn thành những hình dạng trái tự nhiên, còn tâm trí con người trở nên cuồng loạn. Dù gặp nỗi kinh hoàng không sao hiểu nổi, Hạt Giống ấy mới là mối nguy thực sự giữa lòng dinh thự.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "fe7d4f4b89dfff40e86fbb5940e9c21d733a1d5a6b7f65a799c221e3f1eee438",
+    "vi_sha256": "c0efc86acaa3bca8331225450327c73a227c0d5be11b9bad66b624ebd44f3f72",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_ad279c133a360c7cd6a5",
+    "vi": "Chúng ta phải đuổi theo Oriana! Hạt Giống Tha Hóa đã bắt đầu lớn, nhưng vẫn còn cơ hội chấm dứt chuyện này trước khi quá muộn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "3d0991829b75f0bb2c61ed49b83b24b64af28e2c1154680eaa6a288f35e64438",
+    "vi_sha256": "3d735bf3dc566ab82e4eb39494c9a7ef3fcea5f9e4fe6dabf8f579dd161fe85d",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_fef838f3583d6776106c",
+    "vi": "Quái Thú non trẻ để lại Tha Hóa trên đường đi, nên chúng ta có dấu vết để theo. Khi bạn sẵn sàng rời nơi này, chúng ta có thể đi ngay.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "4adf890f48e587781e6555e9a9bc9c66ade0a8dedc6f7e6549ef4451fc73150c",
+    "vi_sha256": "26967cb64f0a2b7420d0119f9052bb508544871164fcb9f7bdc35dc7da49afb2",
+    "factory_batch": "act1-story-20261004-the-hooded-one-01",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_be58f356cb1eea7b724f",
+    "vi": "Đã bao lâu rồi? Tôi bị săn đuổi... Bá tước... Ông ta lấy một thứ nguy hiểm ngoài sức tưởng tượng... Nó sẽ gây bệnh... Rồi gây điên loạn...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "fc2ff6304d793368e8842c9da9a7247c52f6f9215fe9a184b97680a7e0f53f5f",
+    "vi_sha256": "b648eda876c7f93a0eee7eff554757fb52a26cf267f4c070de1378cb6734ca48",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_61aa5e9c8647f5d51dd8",
+    "vi": "Vẫn có thể kiềm chế nó... Chúng ta phải trả Hạt Giống về chỗ cũ...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "24ad209d1275be0e385f30195a68905dd5e76b01f52535314a2f1173c03f5e5c",
+    "vi_sha256": "7a21b37b691dbdc3dfdd62108d0ccaded62f87149feb1570c3f3efe78dbe19fd",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_2cebf381975110dbc065",
+    "vi": "Đúng... xin bạn... tìm nó... Tôi vẫn quá yếu... tình hình sẽ chỉ tệ hơn...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "75ab8bca7b4c9630fe0cc1028a3b7ed4e9810227b63bf4ea655f2e18f6b163b0",
+    "vi_sha256": "9f6fb988bdeb6252e4df55865db71909d2353b027844dc3a9ee87f6f77723466",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_7e43083300e7120316c9",
+    "vi": "Tôi phải... cảm ơn bạn... đã giải thoát tôi. Tôi... mang ơn bạn... nhưng bạn phải tìm Hạt Giống. Tôi sẽ giúp bằng mọi cách có thể. Tôi vẫn yếu, nhưng có một ít kiến thức hữu ích.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "feb098c9207413917ec317749a6015e29521e095b8d034ceb62890135ad1a79a",
+    "vi_sha256": "041a3ea7988720c4253c14419fe5c5eacbe817edd52647843398f8d507fbf77b",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_f8eb61c8a343f139e376",
+    "vi": "Hãy mang những vật phẩm phép thuật bạn tìm được đến đây. Tôi có thể giám định chúng giúp bạn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "614ae59801f96e3c51595d754527b6eddc55126e971b2dc0e0e4c00ddaae6121",
+    "vi_sha256": "9dc7c52abb29e1780bb0e76c439f6218c208336a09e7684bc32d5fbebcd5bd63",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_bd7b43ab4b78d26459cf",
+    "vi": "Bá tước chặn tôi và lấy một vật vô cùng nguy hiểm: Hạt Giống tôi giấu khỏi loài người. Bằng cách nào đó ông ta biết tôi giữ nó. Ông ta chẳng thể hiểu nó nguy hiểm đến đâu. Cố khai thác sức mạnh ấy sẽ chuốc lấy thảm họa.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "4b128cd90b30077390555f9cf8be255945526ca41a24436115cdbf0cfc624209",
+    "vi_sha256": "b5d06fca71645ed6947aeb7dd8508e855156fb0edf693dd145a3592faa43a2b8",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_437ba5e41ac3d12a7f83",
+    "vi": "Bạn phải mau đến làng. Ít nhất những người còn tỉnh táo có lẽ sẽ chịu giúp kiềm chế Hạt Giống.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "8504e06536b4868ef5d8db6b67c9812eab79c62d151a015ca9792949e69f014b",
+    "vi_sha256": "ffba6bc9fd609be533e6690af9bb1a79d04e4154cdd25fb182047d54f1be2b86",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_3b8d08bdf5ad843e97ef",
+    "vi": "Dấu vết Tha Hóa dẫn về phía đông, vậy chúng ta sẽ đi hướng ấy. Xem ra số phận đang tìm cách đưa tôi trở lại Plains of Vastiri...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ce7901bb634e5ac076f6c2a895c9e35c98bf7fe688f8417d3444ea12ee0df5e9",
+    "vi_sha256": "be04db14774b6c3c993a4732ed4c28e8662d6b6350a5505132b735ec8db4bf31",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_5fdb402447d14deb2718",
+    "vi": "Không thể chỉ bằng lời mà diễn tả những nỗi kinh hoàng vô tận khi Tha Hóa bị sử dụng sai. Tôi chỉ mong bạn tìm và kiềm chế được Hạt Giống trước khi quá muộn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "af7522f7c49b8948a1f0330598b1c983e3b2f35796bdc80e22be8d00579ad954",
+    "vi_sha256": "083820b93929f35edff5f7fa7e52aaed6fb40786cc3c3ceeda1c5bc2170fe4ee",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_c229f1cbbd5b070187c8",
+    "vi": "Hai mươi năm trước, sau những biến cố lớn lao ấy, loài người mải lo sống còn. Chẳng ai tìm tôi, chẳng ai thấy tôi. Tôi lẩn ở chốn cao, chốn tối, cố giữ Hạt Giống khỏi tay những kẻ tham vọng.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "3d19a3cc12cd262dad83364107d2ca787ebbc87dfecd2cf3bef764d18a8073d0",
+    "vi_sha256": "b722b074285cb4eaf18c4f9291a66c43dcb5c391bb85fe41e0fa7f0a7aee6661",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_e67c70a027cc7326c3ce",
+    "vi": "Nhưng những năm gần đây, tôi liên tục phải chuyển chỗ. Lúc nào cũng thêm một thợ săn, một toán tuần tra, một khu rừng bị đốn hay hang động bị đào.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "2b970f8398b39c4e5a49d7fe5b5cc7260ae2f9c1db48d29b6e8b913ff887ce37",
+    "vi_sha256": "fd06e64d5cb087de1db64357b3455056a9c0ac84480001bb10954d5abc7e5def",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_0ab00655d5b9ed236fab",
+    "vi": "Không còn chỗ trốn, và con đường cứ đưa tôi đến đây... dường như đúng nơi ai đó muốn tôi đến.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "355a6c15eb76df717b2e93a5489e81dde71d57ea6e2e21a3ff39f827ebca82c5",
+    "vi_sha256": "6bebd721a0966dbfe05d1df2fc7f9c81d7489bae3dbbc34e7b4e53a5019fe7ef",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_332c0593aaf10e0474a0",
+    "vi": "Tất cả là một cái bẫy dựng suốt nhiều năm, với phí tổn khổng lồ. Có kẻ muốn Hạt Giống bằng mọi giá, hẳn chẳng báo điều lành về ý đồ của chúng...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "07d86b4fa2409404561dddf4925e9a1eb101af610fefe918da3e687ea0f050ad",
+    "vi_sha256": "abfac81048fe2942a75950060e47a81391d76318a7d668e7d73e8643dbea90f8",
+    "factory_batch": "act1-story-20261004-the-hooded-one-02",
+    "review_note": "Soát từng trang với nguồn đã pin và đủ các trang Continue. Giữ khác biệt Hạt Giống, Quái Thú, Tha Hóa và Những Đấng Đầu Tiên; giữ sự hoài nghi trong lời kể cổ xưa. Chỉ các nhóm Act 1 được chọn trong manifest, loại lời gọi/cutscene ngắn."
+  },
+  {
+    "source_id": "dlg_npctextaudio_19814ea798df950a43dd",
+    "vi": "Chào mừng bạn đến trại của những người lưu lạc. Tôi là Una.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "9a16fb08be044c72207d181abdf33713aea01b057789b4b37d510e333d67f384",
+    "vi_sha256": "c5aaccf6777f6ea1980bab1ab1bea30d0d914a8d1ce0d2967755b67ea1f264a5",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_32120dc453ae060f1250",
+    "vi": "Tôi biết chúng ta chưa từng gặp nhau trong làng, nhưng từ lúc đến đây, Renly đã lo cho bạn đến phát ốm. Đây là tin vui đầu tiên ông ấy nhận được, nên tôi rất mừng khi thấy bạn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "1d63d79768bd66cea7b30ef06961e92d570e28b5ff7039423d9f86750ded4831",
+    "vi_sha256": "d7d4e706f5fc965028f15d80e4495aae713b3d2f7fa0df7aa2dc29fb5828f675",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_56b1cc286f9b8ae54984",
+    "vi": "Chào mừng ngài Druid đáng kính đến trại của những người lưu lạc. Tôi là Una.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "926bba56f2fc441a0255b0c4073beb8a9e27b89df4e3056766c091eb904056ba",
+    "vi_sha256": "a675f61434733dae2cc6dd260b5d8a8ce07cb1df31b57011d033fe269820de8f",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_50be81f00b9cc03d5815",
+    "vi": "Tôi chỉ có thể nghĩ rằng sự hiện diện của bạn là dấu hiệu Những Đấng Đầu Tiên đã để mắt đến cảnh khốn cùng của chúng tôi. Chính mảnh đất này đang đau đớn kêu than, và bạn có lẽ là người chúng tôi cần.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "c02fc638dfdfe92a6ae67216bb52de9f96f4c13c2771c9292a476063ee0b62e5",
+    "vi_sha256": "4489bd1891bb4c59057238bbe26a79220dbb407bfd0a20d5e3fb5e08e17fb870",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_f1984483d7d7166cea3c",
+    "vi": "Có lẽ nghe hơi lạ, nhưng gần đây tôi mơ thấy một người theo tín ngưỡng cổ đến đây... Có lẽ bạn đến đây vì một lý do nào đó...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "141fd3b47cc1dc3edc16bc945095e75b845929636fa16545ebad78d046f44be6",
+    "vi_sha256": "43e3b371f865c3045cd8235ce30c3f9983b7d2dc3cb2fcf9a8fb99ffe1255161",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_3d68b8458b5c9ea7f6dd",
+    "vi": "Tôi không biết phải nhờ bạn chuyện này thế nào... nhưng khi chạy trốn, tôi buộc phải bỏ lại một vật vô cùng quý giá: cây đàn lute của mình. Mẹ tôi đã tự tay đẽo nó khi lần đầu dạy tôi hát.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "9afc38084004f8674962559bb41a0560e819c97d87f42c410310621778eb7256",
+    "vi_sha256": "b8c92b6d0999e827c65de34d209710f8234faf484d1fddcc062430f81efb6b8b",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_9ce501abd1fc20168c3a",
+    "vi": "Nó ở... nhà gia đình tôi... trong vùng ruộng đồng... Nếu có dịp đi ngang qua đó, tôi sẽ vô cùng biết ơn nếu bạn tìm giúp.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "0dfb446313f02cab0b6dbaa6ab14e222a0853b555e1ac083dfa4e80711786b5f",
+    "vi_sha256": "a3d8686c3f352cfb9f25387677cd5bb843c2334add4a57d9adce8834045a05cf",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_f4fea2dfaa6c4efe4cc6",
+    "vi": "Bạn tìm được đàn lute của tôi rồi! Tôi gần như không tin nổi mắt mình. Cứ như có một phần nhỏ của gia đình trở về. Tôi không biết cảm ơn bạn sao cho đủ.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "88d203af06a0bbf1050335061215e3e58767bc96efaa5c6eec1321cdf2bb97da",
+    "vi_sha256": "2d00d15888e2f36e2568a9f3fc5252545ce225fc81ff98eb9c81d3eaa1217593",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_857b7226f9d781501f86",
+    "vi": "Tôi nghĩ mình sẽ bắt đầu bằng một bài hát về bạn. Còn lúc này, nếu bạn muốn, tôi rất sẵn lòng đàn cho bạn nghe.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "2ec0039e09807f7242b411fad7e0d4be557c85de7109a20ef7b13ffd7660d085",
+    "vi_sha256": "8726824e3046ec6652daba7cba28dd8dd1ffae15647f666303161b93f5ec92b5",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_8ee3f3563ec1bf265d44",
+    "vi": "Bạn đã làm rất tốt. Bạn xứng đáng có một vai trò nổi bật trong câu chuyện chúng tôi hát, và tôi sẽ tự hào cất tiếng. Tôi biết Renly sẽ rất nhớ bạn... nhưng ông ấy cũng vô cùng tự hào về bạn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "53d3954bd4727c28289027bc931bc11d1bda577da3d7e3fc71a1c255d91ec31e",
+    "vi_sha256": "37fc2ef45bc1d450d9bd15ba0202fdd52e0e89d3c05aa6fced9d55c164ffe7f3",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_bdc164b7810902f866aa",
+    "vi": "Bóng tối len vào vùng đất của chúng ta đã bị buộc phải tháo chạy, và tôi có cảm giác bạn sẽ đuổi theo nó đến tận cùng thế giới.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "366e31e235025c1937348ffc2407f22574d60f0d462c1113f195a5bd88393829",
+    "vi_sha256": "ef23dc2b8456efff2e1812bb2526ede5e3a5ca313fec93512792c6b8728a5060",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_45fe5a3bbb2a69456bb2",
+    "vi": "Cầu mong Những Đấng Đầu Tiên ban phước cho bạn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "04879af684472bf7afa0547defd267eb0a150a526da145a046ec7b1debf65c1c",
+    "vi_sha256": "0e4f3e4c2c493f781d3ffcd428076413cf4c7067c2e0cd98574870e359ab887a",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_90cfe740964978ee0827",
+    "vi": "Bạn đã làm rất tốt, vị khách lạ. Không, giờ bạn đâu còn là khách lạ nữa. Bạn đã trở thành một phần trong câu chuyện chúng tôi hát, và tôi sẽ tự hào cất tiếng.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "63dbd2f6c6de640c1190f35a1ae06e72f1d74e0a03d83b0f8a68620b8e83b52d",
+    "vi_sha256": "20995a7e0eb3d42714f5d2b2ca035c982634bab4140605e84e7fc493b4647b15",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_47c9258d6bd8facf5864",
+    "vi": "Chúc bạn may mắn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "c335ece48c720abf09657e17b259ee51e9ff9138082c27a2e7a5facc34c16a5a",
+    "vi_sha256": "42d7d8787d1fdcf6481fea1be89c115d45fe5238ffe7b6fbeb9b213ac59d96c3",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_1cd6d640e85bcdb59979",
+    "vi": "Bóng hồn này thật kỳ lạ. Có một bóng đen mắt xanh trong trại dõi theo chúng tôi quả là khác thường, nhưng từ khi bạn giải thoát ông ấy, mọi chuyện thực sự đã tốt dần lên.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "041d12653ee850d3b6aa8221299bcd1a541b6841ddba226b035ec3c40a868b71",
+    "vi_sha256": "9ecdb3e3b4f5de2d001987235fdb2d5114eeade71573a5226b4677c0032855f9",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_67a50c40a41df87bb28b",
+    "vi": "Một số người ở đây xem sự hiện diện của ông ấy là điềm may... dù tôi tự hỏi liệu chính bạn mới là người mang đến vận may ấy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "a97ed30e4d103530c4ac9e7f19569fc7ebf65b2ed9a4d9076bbe02705102a4e3",
+    "vi_sha256": "ec4a815cd091e4a34434c65969a7cbde1e3ad5132e217e71feb1a203f14c829c",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_427be67fd3a4d5d14dfe",
+    "vi": "Anh ấy đeo một chiếc mặt nạ bằng những lời hoa mỹ. Tôi nghi chẳng ai ở đây từng thấy thứ nằm bên dưới. Suốt nhiều mùa hè, tôi nhìn anh ấy khéo léo lượn quanh quảng trường làng, đổi hết bạn nhảy này đến bạn nhảy khác, như đang dự một vũ hội hóa trang nổi tiếng của người Eternal.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "5d08c72efd5fc1e2dc0a9c0aab164c7c219aa8074261692a1c9c930f564f6c13",
+    "vi_sha256": "07882835fce0f97fff28b6d6748ee7e5c35c173fca943238433cebdcbe8d4186",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_68dd24792a45084fe02a",
+    "vi": "Luôn đeo mặt nạ, luôn giả làm một người khác, chẳng bao giờ nghiêm túc. Thật đáng tiếc, vì khi vũ hội kết thúc, những người sống thật đều về nhà, còn anh ấy vẫn cứ nhảy múa, đeo mặt nạ và cô độc.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "3d4ea2ab085cb04776f6506b32a82a83562a3ac16a96bb0d6ac7d5f9cc0cf8c1",
+    "vi_sha256": "a0e47c18b4a93d41fbb490d130cb02fe571b12cdb2c3c04776fa91569804c7df",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_df8ec0f9100b40bad6b2",
+    "vi": "Leitis thuộc một gia đình danh giá trong thị tộc của cô ấy, nên tôi không quen cô ấy lắm, nhưng việc cô ấy làm đã cho tôi hy vọng. Nếu một quý cô có thể lấy người thường, thì có lẽ một cô gái thường dân cũng được tự do lấy người mình muốn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "d48c3cf6f22666efd1f68f042d3a4efcb56759737e7787d1a87d941d07ab81a9",
+    "vi_sha256": "4b1605b89b27a6e56bba74e1e748d379efe9a31f66ea1ee5f7fedce4e33837c8",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_e45512cf361c3b3ef29f",
+    "vi": "Điều đó khiến tôi nghĩ đến lần cuối nói chuyện với cha. Đó là... một cuộc cãi vã. Dù lòng đau như xé, tôi vẫn chọn tin rằng sâu thẳm trong lòng, cha đã hiểu tôi.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "0117d52937df9d7599323327942c161c262ba577f7d425641861a23de055cf91",
+    "vi_sha256": "4ecada7e8f0da50fb7f292cef64f5446b6df90b30ae67396812fa47d691c1a33",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_8d67317d96d4ce964c54",
+    "vi": "Giờ đây là nhà của chúng tôi. Những bài ca kể về thời kỳ đổi mới, khi máu đổ, xung đột và lòng can đảm tạo nên những mối gắn bó bền chặt hơn. Chúng tôi sẽ nhìn thời kỳ này của Ogham như thế, và nhớ đến bạn như thế trong những bài ca.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "cf4656fc8dc754538283e3563136dc17209f540e7bec71974ee253b0d50db881",
+    "vi_sha256": "aa212d4133a0e1804021a15f77b542bbc04776dc2035c1e621a9f51e379e4b03",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_6e36cdee9d6c2ebf1213",
+    "vi": "Thuở xưa, Những Đấng Đầu Tiên rong ruổi khắp Grelwood, săn bắt và đánh nhau tùy ý. Người ta kể rằng các linh hồn trong rừng dõi theo họ và thấy... thích thú.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f005eed4166c11eb2a2beb15312f515de2392aa1a181f60582fcaa904f0830fd",
+    "vi_sha256": "f659ce8a76be0b3eda9df6fa4821eb29aef7e9046d24ec9818b4b2b947ad5618",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_43a29d38a48529b31f5a",
+    "vi": "Qua thời gian, niềm vui và phép thuật cổ của các linh hồn ấy khiến khu rừng tràn đầy sức sống. Đó là nơi sự sống và linh hồn hòa làm một. Giờ chốn đẹp đẽ ấy đã trở nên tăm tối và chết chóc.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "88a46694b15f4f01f25fa6afff187e66dcd96496ed72cc420c4c8c2d6dbab142",
+    "vi_sha256": "be6baa8519510112925a9b94b8dcd60b04eb350d7b92da4b3f5e3f6356bfa89e",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_67fd3c48ce3eaeb0b374",
+    "vi": "Lời nguyền trên vùng đất này đã khiến những lối quen thuộc trong Grelwood trở nên ngoằn ngoèo, hiểm trở, đến mức chúng tôi chẳng còn về nhà được nữa.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "853648a7726e1adc9a79b12852b334205457e01a8d869fcab3abbd1bdbfbbee4",
+    "vi_sha256": "3c62d9c7bac00727a642672fe862151a5695a8cf8387b56ce70309d6e15606f4",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_a89c8900ac2edd8c2627",
+    "vi": "Mộ của người chúng tôi nằm dưới lăng mộ của người Eternal. Dù họ cố chôn vùi di sản của chúng tôi, chúng tôi vẫn còn đây. Giờ họ đã mất, còn chúng tôi vẫn sống.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "8778f6af98d970765bf56039c9390bf53d486916b89a97ad8cd129ef8a8d34a2",
+    "vi_sha256": "9a1dacf58c3cea5e31083bd10a8162ca62c9101f1c829fdf98c9fcfa338641f3",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_18ab85c65ada601ce0b4",
+    "vi": "Đó là vòng đời mà chúng tôi luôn biết. Ai rồi cũng chết, nhưng thị tộc vẫn tồn tại, và vinh quang lớn nhất một người Ezomyte có thể đạt được là sống mãi trong một bài ca hay bài thơ.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "de052c5fdc7906b4c42d9570d7afe1210e9674dde34ca0e820ea5e3704cfbcf3",
+    "vi_sha256": "8608b45061a73371a4b56af7d946e6c0c0be1a99efc2d6aecc69d3cd2207cdbd",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_93843465c7bf5be24fe2",
+    "vi": "Vì thế chúng tôi không chống chọi với gỗ đá để giành lại những ngôi mộ bị chôn lấp. Người Eternal chưa bao giờ hiểu: chúng tôi không cần những ngôi mộ. Chúng tôi vẫn có các bài ca và câu chuyện quý giá. Họ chẳng bao giờ lấy được những thứ ấy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "dd62ed1995e978673852de0b6b0bc63ee250e9e905960d91e11b065dc2bb6846",
+    "vi_sha256": "e52308657a96c5f5c4e8cfe015fa38b3e55a413c110d4b5da73991a67fc35fae",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_33b2635afd5a724c2e7b",
+    "vi": "Vậy đây là nguồn cơn những giấc mơ tăm tối của tôi... Không phải Cây, mà là bóng hồn trên đó.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "8e29b9cf903bdb23c7dc268a4460d29a3cf695dea0e721ed1b48b8919cba3da4",
+    "vi_sha256": "dfc7e60ae32beabce85867e871cf1c32bea537573093e8b79b92d07e2e77177b",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_217ba6d9ea2f8c5d51aa",
+    "vi": "Dù nghe kỳ lạ, tôi tin chúng ta nên giúp sinh linh này. Bá tước trói nó vào cây, nên hẳn nó có liên quan đến mọi chuyện. Ogham đang có điều gì đó rất sai, và có thể nó biết chuyện ấy.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ca378f71e1cc3e16a8106951749fdfbe54a31c150e67ac9c90e4c1c14a5ec066",
+    "vi_sha256": "6015edb54662109dee763cb072bfb88a34706eea7eaa111d179063538363c2df",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_cd8ef1d7a1bef004b486",
+    "vi": "Red Vale là nơi diễn ra trận đánh cuối cùng và đẫm máu nhất trong vô số cuộc xung đột. Chính giữa thung lũng ấy, chúng tôi chiến đấu chống người Eternal để giành tự do.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "c10da84ca74e5b26e8caa50efcf490ec6e4c7fb198d1ab4d7fc5bcd7a90f9671",
+    "vi_sha256": "f1ee61ab2db693a630270999fbad80ddbb0e2349fad060f4a2f95e64ba31bc64",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_b83c2c9bbff44cf7ce23",
+    "vi": "Chúng tôi đã thắng... theo một nghĩa nào đó... nhưng cái giá lớn hơn rất nhiều so với mọi người tưởng.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ae7a2880a4667fe52fddb47e0c5d2c3f9b71662284f1522b680a012cf2032d87",
+    "vi_sha256": "277717b222ff32fb55748b2008726c7a8f4fc81551f477851fbc282268b53efd",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_d706bf12d806b7a622ea",
+    "vi": "Nhiều thế hệ trai gái khỏe mạnh đã bỏ mạng để đẩy lùi gót giày áp bức. Các thị tộc Ogham chưa từng trở lại như xưa, dù nhiều thế kỷ đã trôi qua.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "32357036ecde0a7aaa6588a9903f9b43575907bad13811b8325c5895aa78fc0c",
+    "vi_sha256": "724d7008c782643527daf1d4cb6f44e78995f68f3ab86e140651268ba7155acf",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_680b78f7ee3e92f69bec",
+    "vi": "Dù thế nào, giải thoát bóng hồn cũng là một việc nhân từ. Xét cho cùng, chẳng ai biết một khoảnh khắc tử tế nhỏ bé có thể đem lại điều gì. Tôi tin chúng ta đã làm đúng.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "138b6319a22f8062466a788eca4f90a315b3f0bbf9886f0c10c844fe053437a7",
+    "vi_sha256": "110abe38867f2607a8f291e90add98e1f0ccda1f8f6703bb72d9d49e6794ba47",
+    "factory_batch": "act1-story-20261004-una-01",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_320e6f2ac81bbe749200",
+    "vi": "Bóng hồn này... Nó... còn sống sao? Có lẽ nó sẽ cho chúng ta câu trả lời. Chỉ thanh kiếm của Bá tước mới có sức mạnh trói linh hồn vào Cây như thế. Chúng ta phải tìm cách giải thoát nó.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "1cb3afe5a6793bf0784fe49d3937535e8b019778a7e744ec78945e27644314d8",
+    "vi_sha256": "28b7f88cbc34b88b6b50c93eca70983dabca30275418660e502db27d68305931",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_c4aba2a214f3f91f5d6e",
+    "vi": "Để giải thoát sinh linh ấy khỏi Tree of Souls, cắt dây trói thôi chưa đủ... Những cổ tự trên lưỡi kiếm của bá tước tạo ra ràng buộc này, và chỉ cổ tự mới phá được nó.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "df851f050e2f18e61575df2f7bfa29e522337884f812bb3df946c9a73a7e8e2c",
+    "vi_sha256": "63c45bf25478c6c57b74d4d5806490dbe2b792bbf2ed5513a7c230d87082e6bf",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_fe1188acacff0774ff02",
+    "vi": "Không xa đây có một chiến trường đỏ màu gỉ sét, nơi vũ khí và giáp của vô số người Ezomyte vẫn còn... Chúng tôi gọi nó là Red Vale. Bạn nên tìm ở đó. Có lẽ những di vật hàng trăm năm tuổi vẫn còn sức mạnh.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "57c00721d6783bde6e52f6add5a7e9f039651dc2126557323c594b597b5a7d9e",
+    "vi_sha256": "7dd195306bb2813ba2bf19c9cb4c1956283ab139b83c911c7ded25482c32b4a6",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_3689cce6d725dc779fb9",
+    "vi": "Renly sẽ biết cách rèn chúng. Hãy mang cổ tự đến cho ông ấy, rồi có lẽ chúng ta sẽ tìm được câu trả lời.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ec6c2cd1666221e1d67a429a58187427c41d0d44633f6d3924df346b68b7ab2d",
+    "vi_sha256": "7edd365573206f2c5de14805c3da27a61503d838256012cef8d350d94eb0deec",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_309c1820617c5093ee07",
+    "vi": "Tôi thấy bạn đã tìm được thung lũng và một ít cổ tự chúng ta cần. Nhưng tôi nghĩ vẫn chưa đủ. Hãy quay lại thung lũng tìm thêm. Renly sẽ biết cách rèn chúng.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "051f7ac0c3f6ffc49605c966afa7b9010a8e67215f12b142ba4c9201d2c4b91d",
+    "vi_sha256": "fbd881543d3ede2079d3ad8494057fe41d982a150f317230097675a80751af6d",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_1c6e2d1aec5e68aeb141",
+    "vi": "Tôi thấy bạn đã tìm được những di vật mang cổ tự chúng ta cần. Thật may mắn! Những Đấng Đầu Tiên quả đang dõi theo chúng ta.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "3f1a5048e141b955d9bc136a75f35e5151fb1e1699c03a0456fb7f8dd11116c2",
+    "vi_sha256": "94e8d551cabc0b3abe9ae6b5635c369a253a979c831b14d6dc2fd59ce04c470c",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_447d4227e7bf14f98990",
+    "vi": "Renly sẽ biết cách rèn chúng. Mang những gì bạn tìm được đến cho ông ấy, rồi có lẽ chúng ta sẽ tìm được câu trả lời.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "25111886b3cd1ac2090b88eceecd1d38391d519cd43b69a0ba43660a5d1a1249",
+    "vi_sha256": "a9a3143b40d7ea59b7142443bad9eeadf49d4c0f6c40a71cf5314b79400c06d8",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_cc1fa60325e4aa4b756f",
+    "vi": "Bà ngoại từng kể cho tôi về Cây này. Tổ tiên chúng tôi dùng nó để thu hút các linh hồn tiên, cho đến khi người Eternal biến nó thành một thứ tàn ác hơn.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "bf5f0c386312303f392ea899f91a6fa1cc5e31b55eb688a60733d49df6f46639",
+    "vi_sha256": "e074b9626ee21f159cfa3b0a8731c877afd3745f6b84fb9559a08dd2311fa7c9",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_d6da645a9137e7708de3",
+    "vi": "Họ treo người Ezomyte trên cây... còn sống... để chết đói... để chim rỉa...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "4248f588d606e7599adc18e126b82d13f6ca4b1bd685e960f70714758ef2be59",
+    "vi_sha256": "13a35298a1cb5b5ed4bf81006b4e80d49a1611f2d9387fc9236a440dc56c81a8",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_2b02d500866b668b5a8d",
+    "vi": "Renly đã rèn những cây đinh ấy rất tốt. Hãy gặp tôi ở Tree of Souls.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "1d61f07b745e9fa0fb8ea22bf5d29ff0009c2116dcb611513f2db6cb80934ff4",
+    "vi_sha256": "df594eb74afebdcceab7b59de456aec73a9ec34f3957b4d941447e91b3164cb6",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_92d20b31af52dd8fd2fd",
+    "vi": "Ông ấy bất tỉnh, nhưng vẫn thở. Dù... vết thương này... Chúng ta nên đưa ông ấy về Clearfell. Có lẽ chỉ ông ấy biết chuyện gì thực sự đã xảy ra ngoài này.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "2ce4d51f3c4a5aaac8b16be8091b3f7702a0e61b233c3ca9b9160d839b822d2b",
+    "vi_sha256": "14525f7fdbbff30f28c06fbc9e8890316be19d75e96d8d3235c9cdd7877fab88",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_ecee53c3c0221fc1ebf5",
+    "vi": "Vết thương... Lẽ ra nó phải chí mạng, nhưng bằng cách nào đó ông ấy vẫn bám lấy sự sống... Tôi e bài ca của ông ấy sắp kết thúc. Chừng nào ràng buộc của bá tước còn tác dụng, ông ấy sẽ không bao giờ lành lại.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "f1e20a7a5a99d9cc54daf0018a41774d762c1eaa70f5401a92a4ccf32f285e4a",
+    "vi_sha256": "dfd7c0f3ccad6e7021ce20ebf0e8a88c619fbeec17ecfbe76333d7f1fa37684d",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_883251b5d0a2233ee776",
+    "vi": "Chỉ bàn tay một Bá tước mới tháo được ràng buộc này. Tôi biết một chuyện cổ về chiếc nhẫn có thể tìm lại, đã được chôn ba thế kỷ trước trong nghĩa địa tổ tiên... Nhẫn ấn của một bá tước, mang cổ tự Quyền Uy. Nhưng làm sao đến đó kịp...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "9414652e7c37937c3437dbb01f11fb3da8dc8fed2af6ea4310dfea4043d6a155",
+    "vi_sha256": "7bddec84e1abf8b6457d9488d0649e9444e5efb35a06e04dcf0bfb01b7d0842c",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_418ba70fbc7b763872b2",
+    "vi": "Grim Tangle! Những hố sụt và khe rãnh um tùm chạy bên dưới Ogham có thể dẫn bạn đến đó. Đường đi nguy hiểm, nhưng... hãy trở lại Grelwood, tìm lối vào. Chúng ta sẽ xem các linh hồn nơi này còn muốn giúp bạn vượt qua hay không.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "31f2d06cfd831528a4ffef44db3c86be0450a98f56326e27c7ff3bde64173794",
+    "vi_sha256": "5f7bd66b3940c5eab73c491f019f3d82e2e8a9eb6127a4a255f36a668d43aa59",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_84baddf664a79004137e",
+    "vi": "Nếu các linh hồn tiên còn dõi theo, tôi tin họ sẽ giúp chúng ta. Xin đợi một lát.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "14d35cd3e2b40bc5a16a362f7a5eff6e4a8b04adc0bdc62d541f62d5316a6d1c",
+    "vi_sha256": "807ea61d8c26c1f30f4dfe5a020c4c07418fb7f976b09a35fd87d527b38701ff",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_d2b2e94db840061893ef",
+    "vi": "Phép thuật cổ vẫn còn mạnh mẽ! Lối đi đã mở. Xin hãy mau lên.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "b421f0c8a5063220bf41787dfdae9772f516e8db3a1fe9656a3478a6b0d16d77",
+    "vi_sha256": "9e40a231a130984a265c2961f234fa9bed57f4ed0bdfce42fb67de4a2bdc21c5",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_77c55fd9605530008a9b",
+    "vi": "Bạn tìm được nhẫn rồi! Chắc chắn nó sẽ phá được ràng buộc của Bá tước. Cho tôi một lát...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "b6b9018db1ec0fc0dbd42300f685b901321c6e5719f9ed6d3de55a25e508e499",
+    "vi_sha256": "da216a2a8b21cd50b21a631e7744687fc32894a2bb764386026f07731f9c2e5a",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_497768dcaa658a46005a",
+    "vi": "'Hạt Giống'... này... là nguồn cơn tai họa của Ogham sao?",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "5dd72b70acc666c4cf3e7aef01d772c69dc2d8510e3ee2a028a69b5a70b2d9a5",
+    "vi_sha256": "c99616a93ca39a7b0069f55f7db255da87f014c7200d75d549fa39ce38474eeb",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_2d58c5f49c9726ab0a87",
+    "vi": "Vậy muốn chữa lành vùng đất này, chúng ta phải tìm 'Hạt Giống' ấy. Qua khu mộ của thị tộc là Hunting Grounds. Băng qua đó để đến làng. Xin đi thật nhanh và xem bạn tìm được gì. Tôi e thời gian không còn nhiều!",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "a6910fd2850142e57785bb8f2fe37abd44d82be94b5631a86464719b33925aa5",
+    "vi_sha256": "929dc78d7cbddec4a13be41ab64c6ab8c1d3e1cad94aaed9a89ba1c7a530c1db",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_a53585b91a76a500ea7a",
+    "vi": "Hồi nhỏ, mẹ và tôi thường đến đây hái nấm. Ervig, một Druid sống ở Grelwood, ra đón và cho chúng tôi vào. Ông ấy rất thông thạo ngôn ngữ của phép thuật cổ.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "caf1de8cf3589415c1b31cb7f3f2bc6255d34917251adc81e2efa65f5c5b765f",
+    "vi_sha256": "34946b2a12ca938dd6f1da3a91c0f2f749770835de1654b52e0ef3305df5b624",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_1a0c647898d903f9652d",
+    "vi": "Nhưng giờ... thời thế đã khác rồi. Xin đừng ăn bất cứ cây nấm nào. Chúng tôi cần bạn sống!",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "58c0fa6a973ed56db4642ebffa556ae97aca6656706a1f9f12b4d5190eab709a",
+    "vi_sha256": "81d128ea75f3dac8bb8f9f025148c9ac68233e55b0a1f456fb5e55512787bd42",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_642afa661b11376cda94",
+    "vi": "Thấy các linh hồn trong rừng đáp lại lời gọi của mình khiến lòng tôi đầy vui mừng. Điều đó cho thấy... trên đời này vẫn còn những sức mạnh muốn giúp chúng ta.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "960f82787d77c610e9eec260ca3814b89a998388e3c8100683e896e8e1bb46e9",
+    "vi_sha256": "7f39d425c46ed5ee46681220b676f596a4e4b795aa09eb3be29a8b2ea0e27a06",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_98ad504ea500d1b5dbd1",
+    "vi": "Bạn đã gặp Druid ấy? Ervig? Ôi không... Tôi buồn khi biết ông ấy cũng mắc căn bệnh này. Bạn sẽ làm gì với ông ấy là tùy bạn...",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "ef61bbdcda42902e533e6498d841bd49849d4058e357597bf819920fd67d8f53",
+    "vi_sha256": "aa9039b06f4f653ecc1845e81bb12a9615f7a1dc340804b76de92511857f5fe4",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
+  },
+  {
+    "source_id": "dlg_npctextaudio_3702c596e352faa0ffb5",
+    "vi": "Tôi hiểu bạn đã làm điều cần làm. Xin... đừng nhắc thêm nữa.",
+    "status": "reviewed",
+    "review": "Codex (AI semantic review)",
+    "source_sha256": "229b1438469deb5dfeb48864927a19e9204976a776eff662363f7dd02466753f",
+    "vi_sha256": "f6aca7c9be70b819af071f28f87d7ca5f7b06926aa82a27ee5c9ba3539ae888c",
+    "factory_batch": "act1-story-20261004-una-02",
+    "review_note": "Soát từng trang với nguồn đã pin và các trang Continue cùng nhóm. Giữ giọng trầm, hoài nghi và những điều chưa chắc; giữ tên riêng, các liên hệ gia đình và biến thể thời điểm của nhiệm vụ."
   }
 ]

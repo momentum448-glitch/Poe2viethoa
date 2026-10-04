@@ -107,7 +107,7 @@ def build_overlay_rect(
     dialogue_box: Rect,
     capture_region: CaptureRegion,
     *,
-    horizontal_padding: int = 10,
+    horizontal_padding: int = 18,
     vertical_padding: int = 6,
     continue_box: Rect | None = None,
 ) -> OverlayRect:
@@ -134,7 +134,10 @@ def build_overlay_rect(
     top = max(roi_top, source_top - vertical_padding)
     minimum_height = source_bottom - top
     desired_height = max(58, minimum_height + vertical_padding + 24)
-    height = min(max(minimum_height, min(108, desired_height)), safe_bottom - top)
+    # Use the measured free space above Continue for long Vietnamese pages.
+    # The old 108px ceiling forced 14px text despite unused panel space.
+    height = (safe_bottom - top if continue_box is not None else
+              min(max(minimum_height, min(108, desired_height)), safe_bottom - top))
 
     return OverlayRect(left=left, top=top, width=width, height=height)
 
@@ -168,7 +171,8 @@ def estimate_cover_color(frame: CapturedFrame, dialogue_box: Rect) -> str:
     crop = image.crop((x0, y0, x1, y1))
     dark: list[tuple[int, int, int]] = []
 
-    for r, g, b in crop.getdata():
+    pixels = getattr(crop, "get_flattened_data", crop.getdata)()
+    for r, g, b in pixels:
         luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
         if luminance <= 95:
             dark.append((r, g, b))
@@ -372,7 +376,7 @@ class ReplacementOverlay:
         max_width: int,
         max_height: int,
     ) -> tuple[int, list[str], int]:
-        for size in range(23, 11, -1):
+        for size in range(22, 11, -1):
             # Negative Tk font sizes are physical pixels, independent of DPI.
             font = self._tkfont.Font(family="Segoe UI", size=-size)
             lines = self._wrap_pixels(text, font, max_width)

@@ -1,0 +1,2010 @@
+{
+  "schema": 1,
+  "manifest_id": "act1-story-20261004",
+  "scope": "Act 1 NPC Story Dialogue; selected pinned-source variants",
+  "created_at": "2026-10-04",
+  "source_lock_sha256": "68b640c0d1ecd8db92269f840f6ed604ab644f905fcc307c3f784d75e4e2de1c",
+  "groups": [
+    {
+      "speaker": "Una",
+      "topic": "Introduction",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7516,
+      "source_sha256": "3db1ba523d7087bb2657208898c371f6b3751e06371f85e775b67bf9e9e9837c",
+      "page_ids": [
+        "dlg_npctextaudio_19814ea798df950a43dd",
+        "dlg_npctextaudio_32120dc453ae060f1250"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Introduction_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7517,
+      "source_sha256": "e391a3252c51363657f73abd8369d547a3fcd4ddd6491adcd3df4f250ec66936",
+      "page_ids": [
+        "dlg_npctextaudio_56b1cc286f9b8ae54984",
+        "dlg_npctextaudio_50be81f00b9cc03d5815"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Introduction_3",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7518,
+      "source_sha256": "148c85bc9941efe302a210d1c456d32020eaf63cd44b54f6a34bcf3c2e908b21",
+      "page_ids": [
+        "dlg_npctextaudio_19814ea798df950a43dd",
+        "dlg_npctextaudio_f1984483d7d7166cea3c"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Introduction_4",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7519,
+      "source_sha256": "ba004d2bca9ecb9fee9584ddf9d080cf1682958add3e7bf8aa9470d3c17cc363",
+      "page_ids": [
+        "dlg_npctextaudio_73589ca681a9d260d834"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Lost Lute",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7521,
+      "source_sha256": "009a0bcb6bc379d9809a390899c40f0f178197fe700ba6546eaaddde2ef4158c",
+      "page_ids": [
+        "dlg_npctextaudio_3d68b8458b5c9ea7f6dd",
+        "dlg_npctextaudio_9ce501abd1fc20168c3a"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Lost Lute Found",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7522,
+      "source_sha256": "f7714a6b239b41c6532c6dc792b898fe45b3d86ca35ad4ec269d56c897c01c95",
+      "page_ids": [
+        "dlg_npctextaudio_f4fea2dfaa6c4efe4cc6",
+        "dlg_npctextaudio_857b7226f9d781501f86"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Death of the Count",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7525,
+      "source_sha256": "f260b45d4e8880eae8ed22c7196667cf24945c524129893cdb67389694a91c34",
+      "page_ids": [
+        "dlg_npctextaudio_8ee3f3563ec1bf265d44",
+        "dlg_npctextaudio_bdc164b7810902f866aa",
+        "dlg_npctextaudio_45fe5a3bbb2a69456bb2"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Death of the Count_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7526,
+      "source_sha256": "c41edf2b6426c0b28610ace3a678601213f56fc8b9e987a570ece240310c8300",
+      "page_ids": [
+        "dlg_npctextaudio_90cfe740964978ee0827",
+        "dlg_npctextaudio_bdc164b7810902f866aa",
+        "dlg_npctextaudio_47c9258d6bd8facf5864"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Hooded One",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7527,
+      "source_sha256": "2ca12293bf6e2e6e0c4a9ebea3ccaca70bbd1c794c71e9a3108aa0fb395ebe46",
+      "page_ids": [
+        "dlg_npctextaudio_1cd6d640e85bcdb59979",
+        "dlg_npctextaudio_67a50c40a41df87bb28b"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Renly",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7529,
+      "source_sha256": "2c895b916cf4db5545abfda74dce2175042389f7b1ed61364866992e6efc76ca",
+      "page_ids": [
+        "dlg_npctextaudio_e8a97f822abbe36370a9",
+        "dlg_npctextaudio_aa67074040f344406e17"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Finn",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7530,
+      "source_sha256": "51d98b02d7501b2994bec669eecf0e04b9df473ae27af53672b727eda1767b7a",
+      "page_ids": [
+        "dlg_npctextaudio_427be67fd3a4d5d14dfe",
+        "dlg_npctextaudio_68dd24792a45084fe02a"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Leitis",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7531,
+      "source_sha256": "3e44f48608d231641dfabb3e6fe36e7d536ed7dac6863c5ecb509a618d41128c",
+      "page_ids": [
+        "dlg_npctextaudio_df8ec0f9100b40bad6b2",
+        "dlg_npctextaudio_e45512cf361c3b3ef29f"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Clearfell",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7532,
+      "source_sha256": "37afbdec66d9e0650eb6d970e14ffac6850e4240a7d15744b418efa97337654f",
+      "page_ids": [
+        "dlg_npctextaudio_08cb2266fdf7c7635614"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Clearfell_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7533,
+      "source_sha256": "cf4656fc8dc754538283e3563136dc17209f540e7bec71974ee253b0d50db881",
+      "page_ids": [
+        "dlg_npctextaudio_8d67317d96d4ce964c54"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Grelwood",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7534,
+      "source_sha256": "680e91214f2178c6a830c00b726d66e9f698a8f10f2290fe2b3a8d93a250ba29",
+      "page_ids": [
+        "dlg_npctextaudio_6e36cdee9d6c2ebf1213",
+        "dlg_npctextaudio_43a29d38a48529b31f5a",
+        "dlg_npctextaudio_67fd3c48ce3eaeb0b374"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Cemetery of the Eternals",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7535,
+      "source_sha256": "1be928682902e0cb9e3abf426d59aaec8476faf298bc3571311bd18fe001a4fd",
+      "page_ids": [
+        "dlg_npctextaudio_a89c8900ac2edd8c2627",
+        "dlg_npctextaudio_18ab85c65ada601ce0b4",
+        "dlg_npctextaudio_93843465c7bf5be24fe2"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Home",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7536,
+      "source_sha256": "9b691935604e912597623c338778d1d6fb3b1470428665416197bee7c21d9989",
+      "page_ids": [
+        "dlg_npctextaudio_0b83f196920188fb833e",
+        "dlg_npctextaudio_fec04587570d8639e669",
+        "dlg_npctextaudio_005c2574c742a8d3c0b8"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Shadowed Dreams",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7537,
+      "source_sha256": "0658dc883103d4f1f616236babfdded8ce5357da73930fadcd2a58f8b17ed5b4",
+      "page_ids": [
+        "dlg_npctextaudio_33b2635afd5a724c2e7b",
+        "dlg_npctextaudio_217ba6d9ea2f8c5d51aa"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Red Vale",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7550,
+      "source_sha256": "db31194a889c77c48a785e14842ab32b2ed26de5c0e4e038d1479c73091e7e99",
+      "page_ids": [
+        "dlg_npctextaudio_cd8ef1d7a1bef004b486",
+        "dlg_npctextaudio_b83c2c9bbff44cf7ce23",
+        "dlg_npctextaudio_d706bf12d806b7a622ea"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "UnaEndTreeOfSouls",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7551,
+      "source_sha256": "138b6319a22f8062466a788eca4f90a315b3f0bbf9886f0c10c844fe053437a7",
+      "page_ids": [
+        "dlg_npctextaudio_680b78f7ee3e92f69bec"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Introduction",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7552,
+      "source_sha256": "b2e278f455aa0289eb9a37b7ae626518a8aa77947f9aa8ee499da7bee62a562b",
+      "page_ids": [
+        "dlg_npctextaudio_b1690dab39482eac6421",
+        "dlg_npctextaudio_47d9eb718e6032e24fe8",
+        "dlg_npctextaudio_88963b5544b6c5c5e32c"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Introduction_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7553,
+      "source_sha256": "bfd2004a131b29c2133d9094e214d7105a68a2de41a475805c244a3c4127da67",
+      "page_ids": [
+        "dlg_npctextaudio_5669a0f9bdcec22aba7d",
+        "dlg_npctextaudio_dcf5b32da6cfddbe0acb",
+        "dlg_npctextaudio_7bc29b6d00550cd0c2c6"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "The Devourer",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7554,
+      "source_sha256": "f32f5c6150cc2e5fd09fffe43513e27ba874d1402684e396f84c4e98b4b208d0",
+      "page_ids": [
+        "dlg_npctextaudio_0638f4b201f0ec1de33a",
+        "dlg_npctextaudio_935a7a9447f932fd84f2"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Devourer Slain",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7555,
+      "source_sha256": "5923136ff5ba1c04a33a7fa742b31d598c41b62098fcddf1e8d2885c87765668",
+      "page_ids": [
+        "dlg_npctextaudio_9b2521ea6c9cacc9080b",
+        "dlg_npctextaudio_73d7b4be6fd9056aab7a"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "RenlyDevourerAdvice",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7556,
+      "source_sha256": "7c3bf7aefd4a58655a4ea213f70a059a612e74d7615a3ce062524509c0037731",
+      "page_ids": [
+        "dlg_npctextaudio_6bdd3bc9d41c7b3dc618"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Runed Spikes",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7557,
+      "source_sha256": "7d7074ead0426d0c25d962dec863f953b3ba75d9676392e7fcfd27e9e002733f",
+      "page_ids": [
+        "dlg_npctextaudio_34b1a049f93be2b6b1e4",
+        "dlg_npctextaudio_8a498d69ab2546d798c9"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "RenlyBitterGuyPostFight",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7558,
+      "source_sha256": "8509d64f2bea951755b9d456ccf539dfc7ad941b23316f2db3afc99ebf0111d0",
+      "page_ids": [
+        "dlg_npctextaudio_44ea82ab40d0967e161f"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "RenlySiegeQuestIntro",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7559,
+      "source_sha256": "becebe05198cc9d4f00528fb7bceca7366570d3fe7c566af6116b7bf316e4919",
+      "page_ids": [
+        "dlg_npctextaudio_42eb062313dc2084af5d"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "RenlySiegeQuestEnd",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7560,
+      "source_sha256": "6782b76a71c21dd434d8731ac05e6f4ecc4e567b62107f22a64fda8c249fc67f",
+      "page_ids": [
+        "dlg_npctextaudio_c772fec39b170605a2f5"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "The Mad Wolf",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7561,
+      "source_sha256": "20ef96cfb42229e0546f68a9b340135aec9f0141c15460c3012f113d4d1124fb",
+      "page_ids": [
+        "dlg_npctextaudio_fff8bd48cd3472c005c6",
+        "dlg_npctextaudio_90e74e011528b4bdd0b8",
+        "dlg_npctextaudio_2f1a170e3ecf299eed7d"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Death of the Count",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7562,
+      "source_sha256": "cf91972b1bae472bae32af3dd62d48578722be49d890b0d7137d4a73ed4fa4e8",
+      "page_ids": [
+        "dlg_npctextaudio_281189e1e24eb26811c0",
+        "dlg_npctextaudio_bd5676a9865023bedbbd"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Clearfell",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7563,
+      "source_sha256": "6207c64f56d601103141fde79bd20be774b393f4c223dbd20df98f698935e854",
+      "page_ids": [
+        "dlg_npctextaudio_d36d07b4b366ffa08c4d",
+        "dlg_npctextaudio_6061aa2dd44da67d0163",
+        "dlg_npctextaudio_7339cdf9c4a48f93f01f"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "RenlyClearfellDevourer",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7564,
+      "source_sha256": "9fbe80e07ef75b31f2a47b7a293b5302adc0e075813ccc0f5a8de1373284ae0d",
+      "page_ids": [
+        "dlg_npctextaudio_785e510ffc6dd2a9bc63"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "RenlyClearfellVillage",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7565,
+      "source_sha256": "a1ee51a2ba28a257628737b7e9409d5aa220912db574aaf4e6cab8125ccd77a8",
+      "page_ids": [
+        "dlg_npctextaudio_53e40dda563f9838a8b8"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Finn",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7566,
+      "source_sha256": "bffc1d6f459f59c23aa0277683f2747a2eae38e06c50c2570abf35e54906516f",
+      "page_ids": [
+        "dlg_npctextaudio_7425e5692f11c2590a3a",
+        "dlg_npctextaudio_dd671e9d9f628c701942"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Una's Music",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7568,
+      "source_sha256": "00b2236903d4f68d9df2f9ce9c2cf0295781b8b8ad84b4ecdc31569174ed5a73",
+      "page_ids": [
+        "dlg_npctextaudio_32fdda7270e69fce1c35",
+        "dlg_npctextaudio_06c4a359e769a0004971"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "RenlyLeitis",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7569,
+      "source_sha256": "8dd84dceda3f07036502a3138fd362b78f00d4dd0bf7cbf99d716e80c6123f02",
+      "page_ids": [
+        "dlg_npctextaudio_9408a20e6a7447a885c5",
+        "dlg_npctextaudio_836851da5927e646a498"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Ogham",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7570,
+      "source_sha256": "604cf55414fe65c7b5b95c3f3f090fdb02240ab7d10da266e5bd8b8d8bd60286",
+      "page_ids": [
+        "dlg_npctextaudio_4a126a5170055fc5fd8e",
+        "dlg_npctextaudio_fc70663467362963c971"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "The Miller",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7571,
+      "source_sha256": "aa5410b70e5517863de68e13b3d9155c01306344b71c4385ca64d347691f7c6f",
+      "page_ids": [
+        "dlg_npctextaudio_c5657b6ecdd5e14d6299",
+        "dlg_npctextaudio_30ebbe5cc5a85749d2c9"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Fatherhood",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7572,
+      "source_sha256": "42d1caf74de1a946236617548b6ccdb9e126c454959d1e76b38d413d5a4842fc",
+      "page_ids": [
+        "dlg_npctextaudio_5aa2763224badff6702a",
+        "dlg_npctextaudio_cb6866470e4ee525a57b"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Fatherhood_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7573,
+      "source_sha256": "7f913fe5cef1289ad0108e3ed901b7859282447fe11d24fe9acc39105af840bd",
+      "page_ids": [
+        "dlg_npctextaudio_5e32138d2437af6705d0",
+        "dlg_npctextaudio_0c44edf04fad4428bdb3",
+        "dlg_npctextaudio_a43ba9fa1fbebc488dad",
+        "dlg_npctextaudio_675b99e134d0178394ad"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Twisted Animals",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7574,
+      "source_sha256": "6cc3f5c60539cf53bed2e0358d29c51e22e1dcf4ff66defde118e997beda690f",
+      "page_ids": [
+        "dlg_npctextaudio_a6772640d7549a754cfe",
+        "dlg_npctextaudio_e880d25992813c8829a4"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "The Grelwood",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7575,
+      "source_sha256": "40f90d0baa0589ff8e8cc3495c914b45d2a81a232dd1f1801e20e32dbe9bfb71",
+      "page_ids": [
+        "dlg_npctextaudio_b762d3abd737e5bc497f",
+        "dlg_npctextaudio_3d7143291df0a8bd00f3"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "The Grelwood_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7576,
+      "source_sha256": "7d89db740b062d54daa15220bcae76c7b3df94dab917d3d432140a7ec406b13f",
+      "page_ids": [
+        "dlg_npctextaudio_381989d35d4a69a93c1c",
+        "dlg_npctextaudio_92a113b4c0881fad721e"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "The Hooded One",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7577,
+      "source_sha256": "ac82738ebf90bdaaf5ae18dc461bcaad42239f8e6d42a22ef4621bda622b9a8e",
+      "page_ids": [
+        "dlg_npctextaudio_c67a4aab371febba060b"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "The Hooded One_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7578,
+      "source_sha256": "af663e1a8ea4b3aef9107910738751c2733ec5a98eec50306b11f807d89cfa53",
+      "page_ids": [
+        "dlg_npctextaudio_3590cf19e122840a7dca"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Renly's Tools",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7579,
+      "source_sha256": "5a47df997af3b5e0b3025eb3f0d35e3145538d24fd3e727128b378efce2afe2f",
+      "page_ids": [
+        "dlg_npctextaudio_408f944c5a78f64a981a",
+        "dlg_npctextaudio_b40adbaadc16504f202e"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Renly's Tools_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7580,
+      "source_sha256": "0b1c3411fafb2ce6e79e1be4e5d349f460a331fca245d0d11f390afbb631157c",
+      "page_ids": [
+        "dlg_npctextaudio_76cfa8b2d5f7074e8d92"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Tools Found",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7581,
+      "source_sha256": "6d264adf30a3096c3336e502b9d074ba8f08a3373435626ce89cb463b45d71eb",
+      "page_ids": [
+        "dlg_npctextaudio_6789bb4162a7a0fbd373"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Tools Found_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7582,
+      "source_sha256": "df6710757cec851536ae8ac4a7c6f7bffebad98282767cc50aa53637dcc8e6ac",
+      "page_ids": [
+        "dlg_npctextaudio_cb46bfe508f1ed1a6d95"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Cemetery of the Eternals",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7583,
+      "source_sha256": "3c05335d82e5a3e8062f437f00bb3755f2b47e6233edd523ad2b8fc08742030e",
+      "page_ids": [
+        "dlg_npctextaudio_dc05e54a58a1930eca1a",
+        "dlg_npctextaudio_25d539d21dc13145d78a"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Home",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7584,
+      "source_sha256": "e833a22cd63b79c71e5b7cc2569c78b0f5f7255a3ec4378d1c592613c52b3c59",
+      "page_ids": [
+        "dlg_npctextaudio_c95a0cb9cee312811182",
+        "dlg_npctextaudio_119d21bca0436cdf41a9",
+        "dlg_npctextaudio_a78ab5d586550e5b2159"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Home_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7585,
+      "source_sha256": "c6e07f1d652749e0c91da05bef48793eb2e38398f86be36931545680c793e259",
+      "page_ids": [
+        "dlg_npctextaudio_8a1fcb8b4a410f0bd07d",
+        "dlg_npctextaudio_a34ee4b33ee4946267a8",
+        "dlg_npctextaudio_98a40dd55fef140dfdcc"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "The Count",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7587,
+      "source_sha256": "85f3ca120465afa823d0305b730658a1c5a1daad0bad864283f8263b5cbf04fa",
+      "page_ids": [
+        "dlg_npctextaudio_5dc24d87cc665b995d1d",
+        "dlg_npctextaudio_f7a853ba32005c644241"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Onwards",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7588,
+      "source_sha256": "0e7a6ab66bd8f8a72eb074b335003b531c0fe2547bec17fcf7c018e1e49203c9",
+      "page_ids": [
+        "dlg_npctextaudio_b82742366bdeae228ce6",
+        "dlg_npctextaudio_dd60cbb69b03a07cce1b"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Onwards_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7589,
+      "source_sha256": "76d8b581cf0f32c541eea475fa09ed8457c859ba910b6f9a29e686c4e1bd71fe",
+      "page_ids": [
+        "dlg_npctextaudio_39b6438c3f2aa77f8ac3",
+        "dlg_npctextaudio_c641ccd62cc4d059ab90",
+        "dlg_npctextaudio_3d8c4dd8f1cecfbc1e41"
+      ]
+    },
+    {
+      "speaker": "Renly",
+      "topic": "Count Geonor",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7590,
+      "source_sha256": "d1245b76495bdb18ced83e154163cd569c05acba27ef7103a81d88bc9c40811f",
+      "page_ids": [
+        "dlg_npctextaudio_b7305b056a46713bb8fe"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Survival",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7632,
+      "source_sha256": "0df4b1cff42749d2d49977b92327e644fee57c0d413e5143535aee4038e106c0",
+      "page_ids": [
+        "dlg_npctextaudio_95a2c1e825cf9129d04e"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Ominous Altars_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7639,
+      "source_sha256": "d29992a64adea8858b1357f3af2a08b1d202c3d778c38f0d1ce34a39396cd4a1",
+      "page_ids": [
+        "dlg_npctextaudio_75c318f970bd00c23fe6",
+        "dlg_npctextaudio_15d0e372a2c7958ebdbf",
+        "dlg_npctextaudio_f92c6e5bd17b6778ca94"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Ominous Altars_3",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7640,
+      "source_sha256": "9c60eec1df064714eee734d790daa9e3f9f341bba4426c52a7959beb861c9451",
+      "page_ids": [
+        "dlg_npctextaudio_d979b2a71fdb7cf2d500",
+        "dlg_npctextaudio_c039c6d75952727c8780",
+        "dlg_npctextaudio_dd6538cdae068d9bf728",
+        "dlg_npctextaudio_cd8268fa52927673acee",
+        "dlg_npctextaudio_12ecb36252486495554b"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Ominous Altars_4",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7641,
+      "source_sha256": "8726837e2cf743d8d5ac81aa917e6c650121caa757b7542d67e9ad55f3f84dcd",
+      "page_ids": [
+        "dlg_npctextaudio_dcdd8f66bd3050b66084",
+        "dlg_npctextaudio_dc626e40423b1cd6a964"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Count Geonor",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7644,
+      "source_sha256": "467550c8f682cbecf0c3c3a5a2edf28c58161254b441ee31d8aa74af9d4b65cf",
+      "page_ids": [
+        "dlg_npctextaudio_220e3a4c5719a7f0bb75"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Death of the Count",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7645,
+      "source_sha256": "13c5d95e8747372fe0c32b556e954bb0a75835723e31a86b4870eba7a3dca750",
+      "page_ids": [
+        "dlg_npctextaudio_bc728c6ed3f3b2806d32",
+        "dlg_npctextaudio_455de6da1c0f6d7de4fa"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Death of the Count_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7646,
+      "source_sha256": "e2718a423074388b346786e71a8bd32a22f56ab4bdc2301776f1e969cf9ec37e",
+      "page_ids": [
+        "dlg_npctextaudio_9deb2d36cdb58661d3e7",
+        "dlg_npctextaudio_455de6da1c0f6d7de4fa"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Count Geonor_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7648,
+      "source_sha256": "c02c7fab5b321eccbc1cd8146357356836980db8e8dcff113361c25d2486b73b",
+      "page_ids": [
+        "dlg_npctextaudio_fea541272879a98f038d",
+        "dlg_npctextaudio_3eff043cc5956481ad32",
+        "dlg_npctextaudio_7d83ff5ca9c89616534c"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Una",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7650,
+      "source_sha256": "fe9ec3634d724a9425bdecd78e55877f8b9dbeef8f8daaf108c1846e9b8b6d7b",
+      "page_ids": [
+        "dlg_npctextaudio_24c31e5e182f51224ad1",
+        "dlg_npctextaudio_e458ae37773237ac62b6",
+        "dlg_npctextaudio_ecc2716744f48aa2676f"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "FinnClearfellAfterDevourer",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7652,
+      "source_sha256": "7a015f0fc92e0f7b3fb3d3abb646202bf6147667978c786b35f6b2caa6b52895",
+      "page_ids": [
+        "dlg_npctextaudio_bb4d082b1ab45eba5284",
+        "dlg_npctextaudio_5d01c77a49e5b7d78002"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "The Hooded One_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7654,
+      "source_sha256": "3129fafa2e5f71e9f69b36c15d5795af67f19cea5fbd1918a985331a1f2eb73c",
+      "page_ids": [
+        "dlg_npctextaudio_eb178ac0142e55791541"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Renly",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7656,
+      "source_sha256": "ee30adf47f1b0720b80ca0911cc334764d47f84cda737e32014a71bee477fd99",
+      "page_ids": [
+        "dlg_npctextaudio_04e92515e3dac3a2e2ff"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Renly_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7657,
+      "source_sha256": "048c3d1ccbe35526ba228854d1f7dbaa17e19534a5a9df991f0660bd0ce4db86",
+      "page_ids": [
+        "dlg_npctextaudio_4da7aaa1cff88d536778"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "Freythorn",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7658,
+      "source_sha256": "9ab55ac6f27890618103f667f2d67aeed7b719d57102fce0a240e7873f8904ce",
+      "page_ids": [
+        "dlg_npctextaudio_c1edfd41a52f027b3d5e",
+        "dlg_npctextaudio_43d902aaea343f8c9567"
+      ]
+    },
+    {
+      "speaker": "Finn",
+      "topic": "The King in the Mists",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7659,
+      "source_sha256": "e517e150a62e3a7338a9b12f7506bda21ef98ed663e0063ce4405e0a37f8bd8a",
+      "page_ids": [
+        "dlg_npctextaudio_6134bdd2b3bfe1c56146",
+        "dlg_npctextaudio_28bbcd701ced08a0cb71"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "HoodedOneReleasedTalk",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7707,
+      "source_sha256": "6cdcb08d204436fb95111816d63636c731a4a4c38585d379c818ba439607bc9e",
+      "page_ids": [
+        "dlg_npctextaudio_1c738fe70353af7146a8"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "HoodedOneGiveQuest",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7708,
+      "source_sha256": "51ed95bfbf26d7abd9d01b2113b5a1ff43448edc3567f0862c12e7ad514cc159",
+      "page_ids": [
+        "dlg_npctextaudio_86b04a4d562be9b42edb",
+        "dlg_npctextaudio_cfe99073c48824eeedd0",
+        "dlg_npctextaudio_2ae71da662371e025c71"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "HoodedOneSeedOfCorruptionGossip",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7710,
+      "source_sha256": "960104071030ea3a1e7c2751dfefde016b99f7263e8c938505a78af3d91b8bc5",
+      "page_ids": [
+        "dlg_npctextaudio_a389e18213170a229ce1"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "HoodedOneIronCountGossip",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7711,
+      "source_sha256": "0066fa601cb19b2ecd34d45c321206daccd5ed9b971acbef5e895714359b4284",
+      "page_ids": [
+        "dlg_npctextaudio_91d5c3a0d7a8545b2670",
+        "dlg_npctextaudio_fe37ae4188d526e17c18"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "The First Ones",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7712,
+      "source_sha256": "b300715c6303f83cd1b8fb740c412fcd29bbb8575cba1640a7ae65526d8e04f2",
+      "page_ids": [
+        "dlg_npctextaudio_fcbccaee4e506b8b4e01",
+        "dlg_npctextaudio_249548fa7d721dbe8f68",
+        "dlg_npctextaudio_ab74ba1ef5daeb6227c6"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "Madness",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7713,
+      "source_sha256": "f2e904c304d4d30f3d9a4cfe61119a69e96867714ebf7d85adcbefb5bd22577e",
+      "page_ids": [
+        "dlg_npctextaudio_fb1a602012486eea8934",
+        "dlg_npctextaudio_b39eb729c4dc001434a8"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "The Village",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7714,
+      "source_sha256": "a059cd4c97f255122149d83980d404cb432e0cc45761fd42c9d647b194634c6c",
+      "page_ids": [
+        "dlg_npctextaudio_3befa85111b7eae0fc84",
+        "dlg_npctextaudio_0ffa038aad37bf16f73d"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "Count Geonor",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7715,
+      "source_sha256": "64e418958c183031b69c86c4c11888366b2bca2941bbe8207035f2341eaa6913",
+      "page_ids": [
+        "dlg_npctextaudio_fb88bc002316e17a896a",
+        "dlg_npctextaudio_933ba42478739466d4b6"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "Death of the Count",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 7716,
+      "source_sha256": "6c6079a4f1be1b1b4822f9e7786d87cddff4b8a3e28d0a28742591d0155f9f50",
+      "page_ids": [
+        "dlg_npctextaudio_ad279c133a360c7cd6a5",
+        "dlg_npctextaudio_fef838f3583d6776106c"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Hooded One_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9759,
+      "source_sha256": "1f53cafafbcd54f254c7a9d9051e044ee8c2c5851a84a1adc66575f6ae1ef554",
+      "page_ids": [
+        "dlg_npctextaudio_320e6f2ac81bbe749200",
+        "dlg_npctextaudio_c4aba2a214f3f91f5d6e"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Gather the Runes",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9761,
+      "source_sha256": "55b43918ea617b6e5e120f88a1a8febe26d8e596636de2c2b4cd6aa5141e481d",
+      "page_ids": [
+        "dlg_npctextaudio_fe1188acacff0774ff02",
+        "dlg_npctextaudio_3689cce6d725dc779fb9"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Gather more Runes",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9762,
+      "source_sha256": "051f7ac0c3f6ffc49605c966afa7b9010a8e67215f12b142ba4c9201d2c4b91d",
+      "page_ids": [
+        "dlg_npctextaudio_309c1820617c5093ee07"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Forge the Runes",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9763,
+      "source_sha256": "9e255d6c7c8974e489a067c40a491a12f4fb06c60efe29d5d172bc8855ee07b8",
+      "page_ids": [
+        "dlg_npctextaudio_1c6e2d1aec5e68aeb141",
+        "dlg_npctextaudio_447d4227e7bf14f98990"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Tree of Souls_3",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9764,
+      "source_sha256": "5fcf68f0f8bdc738d5d4f5c52c6d2a0869175f6021a23cec3c73773466710847",
+      "page_ids": [
+        "dlg_npctextaudio_cc1fa60325e4aa4b756f",
+        "dlg_npctextaudio_d6da645a9137e7708de3"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Secrets in the Dark_3",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9765,
+      "source_sha256": "1d61f07b745e9fa0fb8ea22bf5d29ff0009c2116dcb611513f2db6cb80934ff4",
+      "page_ids": [
+        "dlg_npctextaudio_2b02d500866b668b5a8d"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Wound",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9766,
+      "source_sha256": "2ce4d51f3c4a5aaac8b16be8091b3f7702a0e61b233c3ca9b9160d839b822d2b",
+      "page_ids": [
+        "dlg_npctextaudio_92d20b31af52dd8fd2fd"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Count's Binding",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9767,
+      "source_sha256": "641e50a63f9ed7cfdad16f6e961f481e6a4cb2119562a276b21e047e9e3f292a",
+      "page_ids": [
+        "dlg_npctextaudio_ecee53c3c0221fc1ebf5",
+        "dlg_npctextaudio_883251b5d0a2233ee776",
+        "dlg_npctextaudio_418ba70fbc7b763872b2"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Fey Spirits",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9768,
+      "source_sha256": "14d35cd3e2b40bc5a16a362f7a5eff6e4a8b04adc0bdc62d541f62d5316a6d1c",
+      "page_ids": [
+        "dlg_npctextaudio_84baddf664a79004137e"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Fey Spirits_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9769,
+      "source_sha256": "b421f0c8a5063220bf41787dfdae9772f516e8db3a1fe9656a3478a6b0d16d77",
+      "page_ids": [
+        "dlg_npctextaudio_d2b2e94db840061893ef"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Count Lachlann's Ring",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9770,
+      "source_sha256": "b6b9018db1ec0fc0dbd42300f685b901321c6e5719f9ed6d3de55a25e508e499",
+      "page_ids": [
+        "dlg_npctextaudio_77c55fd9605530008a9b"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Seed",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9773,
+      "source_sha256": "5dd72b70acc666c4cf3e7aef01d772c69dc2d8510e3ee2a028a69b5a70b2d9a5",
+      "page_ids": [
+        "dlg_npctextaudio_497768dcaa658a46005a"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Find the Seed",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9774,
+      "source_sha256": "a6910fd2850142e57785bb8f2fe37abd44d82be94b5631a86464719b33925aa5",
+      "page_ids": [
+        "dlg_npctextaudio_2d58c5f49c9726ab0a87"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "The Grim Tangle",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9775,
+      "source_sha256": "2cc002c2d34641d81ba305413ee38c449a4bf15b7bed4fbf88ac059268bf44a7",
+      "page_ids": [
+        "dlg_npctextaudio_a53585b91a76a500ea7a",
+        "dlg_npctextaudio_1a0c647898d903f9652d"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Spirits of the Grelwood",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9776,
+      "source_sha256": "960f82787d77c610e9eec260ca3814b89a998388e3c8100683e896e8e1bb46e9",
+      "page_ids": [
+        "dlg_npctextaudio_642afa661b11376cda94"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Ervig",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9777,
+      "source_sha256": "ef61bbdcda42902e533e6498d841bd49849d4058e357597bf819920fd67d8f53",
+      "page_ids": [
+        "dlg_npctextaudio_98ad504ea500d1b5dbd1"
+      ]
+    },
+    {
+      "speaker": "Una",
+      "topic": "Ervig_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9778,
+      "source_sha256": "229b1438469deb5dfeb48864927a19e9204976a776eff662363f7dd02466753f",
+      "page_ids": [
+        "dlg_npctextaudio_3702c596e352faa0ffb5"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "A Warning",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9779,
+      "source_sha256": "94193f9f46e917ba32fc3e7c4b9970e468dcc4e539112ad8abe2e6d095564dc2",
+      "page_ids": [
+        "dlg_npctextaudio_be58f356cb1eea7b724f",
+        "dlg_npctextaudio_61aa5e9c8647f5d51dd8"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "Find the Seed",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9780,
+      "source_sha256": "75ab8bca7b4c9630fe0cc1028a3b7ed4e9810227b63bf4ea655f2e18f6b163b0",
+      "page_ids": [
+        "dlg_npctextaudio_2cebf381975110dbc065"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "HoodedOneNewReleaseThanks",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9781,
+      "source_sha256": "879333ef41f6b932bc2c127e11f6621c096a706250799acc21f2fb575474cce2",
+      "page_ids": [
+        "dlg_npctextaudio_7e43083300e7120316c9",
+        "dlg_npctextaudio_f8eb61c8a343f139e376"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "Count Geonor_2",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9782,
+      "source_sha256": "b33c743657128abf512672041d3aee6300847aaf2a9a0d20887d63f0d0d3e20b",
+      "page_ids": [
+        "dlg_npctextaudio_bd7b43ab4b78d26459cf",
+        "dlg_npctextaudio_437ba5e41ac3d12a7f83"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "HoodedOneNewTravelEast",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9783,
+      "source_sha256": "ce7901bb634e5ac076f6c2a895c9e35c98bf7fe688f8417d3444ea12ee0df5e9",
+      "page_ids": [
+        "dlg_npctextaudio_3b8d08bdf5ad843e97ef"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "The Seed of Corruption",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9784,
+      "source_sha256": "af7522f7c49b8948a1f0330598b1c983e3b2f35796bdc80e22be8d00579ad954",
+      "page_ids": [
+        "dlg_npctextaudio_5fdb402447d14deb2718"
+      ]
+    },
+    {
+      "speaker": "The Hooded One",
+      "topic": "Hunted",
+      "source_table": "NPCTextAudio",
+      "upstream_index": 9785,
+      "source_sha256": "accd611084a9b7da2f3a38d58700285bbbc2c8a442bc3301860325a32cab2263",
+      "page_ids": [
+        "dlg_npctextaudio_c229f1cbbd5b070187c8",
+        "dlg_npctextaudio_e67c70a027cc7326c3ce",
+        "dlg_npctextaudio_0ab00655d5b9ed236fab",
+        "dlg_npctextaudio_332c0593aaf10e0474a0"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "source_id": "dlg_npctextaudio_19814ea798df950a43dd",
+      "source_sha256": "9a16fb08be044c72207d181abdf33713aea01b057789b4b37d510e333d67f384"
+    },
+    {
+      "source_id": "dlg_npctextaudio_32120dc453ae060f1250",
+      "source_sha256": "1d63d79768bd66cea7b30ef06961e92d570e28b5ff7039423d9f86750ded4831"
+    },
+    {
+      "source_id": "dlg_npctextaudio_56b1cc286f9b8ae54984",
+      "source_sha256": "926bba56f2fc441a0255b0c4073beb8a9e27b89df4e3056766c091eb904056ba"
+    },
+    {
+      "source_id": "dlg_npctextaudio_50be81f00b9cc03d5815",
+      "source_sha256": "c02fc638dfdfe92a6ae67216bb52de9f96f4c13c2771c9292a476063ee0b62e5"
+    },
+    {
+      "source_id": "dlg_npctextaudio_f1984483d7d7166cea3c",
+      "source_sha256": "141fd3b47cc1dc3edc16bc945095e75b845929636fa16545ebad78d046f44be6"
+    },
+    {
+      "source_id": "dlg_npctextaudio_73589ca681a9d260d834",
+      "source_sha256": "ba004d2bca9ecb9fee9584ddf9d080cf1682958add3e7bf8aa9470d3c17cc363"
+    },
+    {
+      "source_id": "dlg_npctextaudio_3d68b8458b5c9ea7f6dd",
+      "source_sha256": "9afc38084004f8674962559bb41a0560e819c97d87f42c410310621778eb7256"
+    },
+    {
+      "source_id": "dlg_npctextaudio_9ce501abd1fc20168c3a",
+      "source_sha256": "0dfb446313f02cab0b6dbaa6ab14e222a0853b555e1ac083dfa4e80711786b5f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_f4fea2dfaa6c4efe4cc6",
+      "source_sha256": "88d203af06a0bbf1050335061215e3e58767bc96efaa5c6eec1321cdf2bb97da"
+    },
+    {
+      "source_id": "dlg_npctextaudio_857b7226f9d781501f86",
+      "source_sha256": "2ec0039e09807f7242b411fad7e0d4be557c85de7109a20ef7b13ffd7660d085"
+    },
+    {
+      "source_id": "dlg_npctextaudio_8ee3f3563ec1bf265d44",
+      "source_sha256": "53d3954bd4727c28289027bc931bc11d1bda577da3d7e3fc71a1c255d91ec31e"
+    },
+    {
+      "source_id": "dlg_npctextaudio_bdc164b7810902f866aa",
+      "source_sha256": "366e31e235025c1937348ffc2407f22574d60f0d462c1113f195a5bd88393829"
+    },
+    {
+      "source_id": "dlg_npctextaudio_45fe5a3bbb2a69456bb2",
+      "source_sha256": "04879af684472bf7afa0547defd267eb0a150a526da145a046ec7b1debf65c1c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_90cfe740964978ee0827",
+      "source_sha256": "63dbd2f6c6de640c1190f35a1ae06e72f1d74e0a03d83b0f8a68620b8e83b52d"
+    },
+    {
+      "source_id": "dlg_npctextaudio_47c9258d6bd8facf5864",
+      "source_sha256": "c335ece48c720abf09657e17b259ee51e9ff9138082c27a2e7a5facc34c16a5a"
+    },
+    {
+      "source_id": "dlg_npctextaudio_1cd6d640e85bcdb59979",
+      "source_sha256": "041d12653ee850d3b6aa8221299bcd1a541b6841ddba226b035ec3c40a868b71"
+    },
+    {
+      "source_id": "dlg_npctextaudio_67a50c40a41df87bb28b",
+      "source_sha256": "a97ed30e4d103530c4ac9e7f19569fc7ebf65b2ed9a4d9076bbe02705102a4e3"
+    },
+    {
+      "source_id": "dlg_npctextaudio_e8a97f822abbe36370a9",
+      "source_sha256": "ac4c72974a38c6fab2af07fa78cc989f0b5e164df3a637b49790e8fe6aa55b4b"
+    },
+    {
+      "source_id": "dlg_npctextaudio_aa67074040f344406e17",
+      "source_sha256": "3401f5acb3a47f2c5fbe2fb04be0d69bea5733b990e55929f3c456d77f0bb724"
+    },
+    {
+      "source_id": "dlg_npctextaudio_427be67fd3a4d5d14dfe",
+      "source_sha256": "5d08c72efd5fc1e2dc0a9c0aab164c7c219aa8074261692a1c9c930f564f6c13"
+    },
+    {
+      "source_id": "dlg_npctextaudio_68dd24792a45084fe02a",
+      "source_sha256": "3d4ea2ab085cb04776f6506b32a82a83562a3ac16a96bb0d6ac7d5f9cc0cf8c1"
+    },
+    {
+      "source_id": "dlg_npctextaudio_df8ec0f9100b40bad6b2",
+      "source_sha256": "d48c3cf6f22666efd1f68f042d3a4efcb56759737e7787d1a87d941d07ab81a9"
+    },
+    {
+      "source_id": "dlg_npctextaudio_e45512cf361c3b3ef29f",
+      "source_sha256": "0117d52937df9d7599323327942c161c262ba577f7d425641861a23de055cf91"
+    },
+    {
+      "source_id": "dlg_npctextaudio_08cb2266fdf7c7635614",
+      "source_sha256": "37afbdec66d9e0650eb6d970e14ffac6850e4240a7d15744b418efa97337654f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_8d67317d96d4ce964c54",
+      "source_sha256": "cf4656fc8dc754538283e3563136dc17209f540e7bec71974ee253b0d50db881"
+    },
+    {
+      "source_id": "dlg_npctextaudio_6e36cdee9d6c2ebf1213",
+      "source_sha256": "f005eed4166c11eb2a2beb15312f515de2392aa1a181f60582fcaa904f0830fd"
+    },
+    {
+      "source_id": "dlg_npctextaudio_43a29d38a48529b31f5a",
+      "source_sha256": "88a46694b15f4f01f25fa6afff187e66dcd96496ed72cc420c4c8c2d6dbab142"
+    },
+    {
+      "source_id": "dlg_npctextaudio_67fd3c48ce3eaeb0b374",
+      "source_sha256": "853648a7726e1adc9a79b12852b334205457e01a8d869fcab3abbd1bdbfbbee4"
+    },
+    {
+      "source_id": "dlg_npctextaudio_a89c8900ac2edd8c2627",
+      "source_sha256": "8778f6af98d970765bf56039c9390bf53d486916b89a97ad8cd129ef8a8d34a2"
+    },
+    {
+      "source_id": "dlg_npctextaudio_18ab85c65ada601ce0b4",
+      "source_sha256": "de052c5fdc7906b4c42d9570d7afe1210e9674dde34ca0e820ea5e3704cfbcf3"
+    },
+    {
+      "source_id": "dlg_npctextaudio_93843465c7bf5be24fe2",
+      "source_sha256": "dd62ed1995e978673852de0b6b0bc63ee250e9e905960d91e11b065dc2bb6846"
+    },
+    {
+      "source_id": "dlg_npctextaudio_0b83f196920188fb833e",
+      "source_sha256": "44bd4787829b7ea6ea41308699c3e6ee83497ad6cd8be13768f95d14b21ada82"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fec04587570d8639e669",
+      "source_sha256": "7912e8856b9be5cde3034246628f4b977ba3508881328da4daee903ecda86d59"
+    },
+    {
+      "source_id": "dlg_npctextaudio_005c2574c742a8d3c0b8",
+      "source_sha256": "703716241b5c8233b16516dfd4a057cbd9319d36fecfc6937ae40abe3a15d9f9"
+    },
+    {
+      "source_id": "dlg_npctextaudio_33b2635afd5a724c2e7b",
+      "source_sha256": "8e29b9cf903bdb23c7dc268a4460d29a3cf695dea0e721ed1b48b8919cba3da4"
+    },
+    {
+      "source_id": "dlg_npctextaudio_217ba6d9ea2f8c5d51aa",
+      "source_sha256": "ca378f71e1cc3e16a8106951749fdfbe54a31c150e67ac9c90e4c1c14a5ec066"
+    },
+    {
+      "source_id": "dlg_npctextaudio_cd8ef1d7a1bef004b486",
+      "source_sha256": "c10da84ca74e5b26e8caa50efcf490ec6e4c7fb198d1ab4d7fc5bcd7a90f9671"
+    },
+    {
+      "source_id": "dlg_npctextaudio_b83c2c9bbff44cf7ce23",
+      "source_sha256": "ae7a2880a4667fe52fddb47e0c5d2c3f9b71662284f1522b680a012cf2032d87"
+    },
+    {
+      "source_id": "dlg_npctextaudio_d706bf12d806b7a622ea",
+      "source_sha256": "32357036ecde0a7aaa6588a9903f9b43575907bad13811b8325c5895aa78fc0c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_680b78f7ee3e92f69bec",
+      "source_sha256": "138b6319a22f8062466a788eca4f90a315b3f0bbf9886f0c10c844fe053437a7"
+    },
+    {
+      "source_id": "dlg_npctextaudio_b1690dab39482eac6421",
+      "source_sha256": "a1e2ac5d53d9fe268582d34d1dfddb95c20963ac4f9dca88fab5ce30c881ae92"
+    },
+    {
+      "source_id": "dlg_npctextaudio_47d9eb718e6032e24fe8",
+      "source_sha256": "5a179ba05995cdd7f6859db34d8bd9914f9eaba572826378816bc747b5a18178"
+    },
+    {
+      "source_id": "dlg_npctextaudio_88963b5544b6c5c5e32c",
+      "source_sha256": "f5a8aa916436ae9f9a18464de5ab141d191927b980924b28e676c9a4647cfdbf"
+    },
+    {
+      "source_id": "dlg_npctextaudio_5669a0f9bdcec22aba7d",
+      "source_sha256": "c4be9f063c37c76cc51feb5c344f86e8b800e803d0caf5c9de891ed0bcc848b0"
+    },
+    {
+      "source_id": "dlg_npctextaudio_dcf5b32da6cfddbe0acb",
+      "source_sha256": "ad44d8411910aaccdfb27ab068d4c33b82feecdfcc3d75326e43b1d35aeeec6d"
+    },
+    {
+      "source_id": "dlg_npctextaudio_7bc29b6d00550cd0c2c6",
+      "source_sha256": "8c9690a60305bc456312c46776fbbfe727358af31935acff6c1996df6c00b1a4"
+    },
+    {
+      "source_id": "dlg_npctextaudio_0638f4b201f0ec1de33a",
+      "source_sha256": "ef31e1d9277365d58753a10d6a014beb754b42c2e90627efa80e88bc9ef68fa2"
+    },
+    {
+      "source_id": "dlg_npctextaudio_935a7a9447f932fd84f2",
+      "source_sha256": "d3854ec12de03fb26a8a268c35d4ebeb27d4e3dbf33d0420e19148c0fabff3a1"
+    },
+    {
+      "source_id": "dlg_npctextaudio_9b2521ea6c9cacc9080b",
+      "source_sha256": "3d55603ef5bbfd454483824ae787708fcc449e316dcd5116a7b15722f71be60a"
+    },
+    {
+      "source_id": "dlg_npctextaudio_73d7b4be6fd9056aab7a",
+      "source_sha256": "a89fcc70e1315bbac6d570a4827576c61a4f669da44a6c06b1f65956c627f853"
+    },
+    {
+      "source_id": "dlg_npctextaudio_6bdd3bc9d41c7b3dc618",
+      "source_sha256": "7c3bf7aefd4a58655a4ea213f70a059a612e74d7615a3ce062524509c0037731"
+    },
+    {
+      "source_id": "dlg_npctextaudio_34b1a049f93be2b6b1e4",
+      "source_sha256": "11e8794d4d3e685fd74a7e2654b1913263c7577f01a19ea33455a7560e079a7c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_8a498d69ab2546d798c9",
+      "source_sha256": "62d707f6217a0bab67854b6f93d661a11641c4a019dafcf809327fb8e4f6f8e1"
+    },
+    {
+      "source_id": "dlg_npctextaudio_44ea82ab40d0967e161f",
+      "source_sha256": "8509d64f2bea951755b9d456ccf539dfc7ad941b23316f2db3afc99ebf0111d0"
+    },
+    {
+      "source_id": "dlg_npctextaudio_42eb062313dc2084af5d",
+      "source_sha256": "becebe05198cc9d4f00528fb7bceca7366570d3fe7c566af6116b7bf316e4919"
+    },
+    {
+      "source_id": "dlg_npctextaudio_c772fec39b170605a2f5",
+      "source_sha256": "6782b76a71c21dd434d8731ac05e6f4ecc4e567b62107f22a64fda8c249fc67f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fff8bd48cd3472c005c6",
+      "source_sha256": "8b710b1f32c8b18f3502748ff89e3c73d96a5e5e951b1ec5486bc27b30be4886"
+    },
+    {
+      "source_id": "dlg_npctextaudio_90e74e011528b4bdd0b8",
+      "source_sha256": "7a3e43dcebe52855180118757fdbbf7e07cd05605b3661ed643968ee47fce63d"
+    },
+    {
+      "source_id": "dlg_npctextaudio_2f1a170e3ecf299eed7d",
+      "source_sha256": "a0e11c1aa64be751d327ac7f4148ec3db4648fe8eede6b7fd2bde9cdce7995d6"
+    },
+    {
+      "source_id": "dlg_npctextaudio_281189e1e24eb26811c0",
+      "source_sha256": "70e3d290b656c0b151b617b2f5ca78f643a26306b46154b8e1b0d70c7ba8a5ab"
+    },
+    {
+      "source_id": "dlg_npctextaudio_bd5676a9865023bedbbd",
+      "source_sha256": "2906396c33364bab764b5b4a51e70d1e313d5440f2a8586a3f7e7629806ee668"
+    },
+    {
+      "source_id": "dlg_npctextaudio_d36d07b4b366ffa08c4d",
+      "source_sha256": "4ecf6bf7142dce47f83f5fd18916885ba092b503264fe165cd4a57cdb841bd94"
+    },
+    {
+      "source_id": "dlg_npctextaudio_6061aa2dd44da67d0163",
+      "source_sha256": "d1d84f823ebffd00813c614cddba7bf377b2c1259aa3f9874d082ca28f794bc0"
+    },
+    {
+      "source_id": "dlg_npctextaudio_7339cdf9c4a48f93f01f",
+      "source_sha256": "4d149f41d953e200f55e5e29f2c15da00c0865d97010cecd2b73efc72dc87cbf"
+    },
+    {
+      "source_id": "dlg_npctextaudio_785e510ffc6dd2a9bc63",
+      "source_sha256": "9fbe80e07ef75b31f2a47b7a293b5302adc0e075813ccc0f5a8de1373284ae0d"
+    },
+    {
+      "source_id": "dlg_npctextaudio_53e40dda563f9838a8b8",
+      "source_sha256": "a1ee51a2ba28a257628737b7e9409d5aa220912db574aaf4e6cab8125ccd77a8"
+    },
+    {
+      "source_id": "dlg_npctextaudio_7425e5692f11c2590a3a",
+      "source_sha256": "2a567a97f2d394f49bbfb3dd5b60b1df64059acf4e83dd74e417aee3c592ef03"
+    },
+    {
+      "source_id": "dlg_npctextaudio_dd671e9d9f628c701942",
+      "source_sha256": "057f6fd5f0f3a358a3925d436969e7acc3b37da1c4e5874a4e4c382a5a363d89"
+    },
+    {
+      "source_id": "dlg_npctextaudio_32fdda7270e69fce1c35",
+      "source_sha256": "b9214f963981415dde44b91946bb4bc8894046effc5db60d1f2beff1a3c60439"
+    },
+    {
+      "source_id": "dlg_npctextaudio_06c4a359e769a0004971",
+      "source_sha256": "f02e02b65dfe4f711ee95d99a53359aa77f97cb89fe58b97cff8c3850afab833"
+    },
+    {
+      "source_id": "dlg_npctextaudio_9408a20e6a7447a885c5",
+      "source_sha256": "42df1ff7c88d24d98485e5c5fabaa8b786f31f2952c98f89cc649965c03e5b9b"
+    },
+    {
+      "source_id": "dlg_npctextaudio_836851da5927e646a498",
+      "source_sha256": "a37b805f0483d90934e235906f4e996394b9cf84253a9cf6ba2aecbadafdf237"
+    },
+    {
+      "source_id": "dlg_npctextaudio_4a126a5170055fc5fd8e",
+      "source_sha256": "c53c523660503982e014e6dd89689040d0b23e8afbb86ac32da3f72f89c8c100"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fc70663467362963c971",
+      "source_sha256": "54091b7701ec7f47aceaca11ef2e2aae93ddc4b34b24485ee73e0e0952b913fe"
+    },
+    {
+      "source_id": "dlg_npctextaudio_c5657b6ecdd5e14d6299",
+      "source_sha256": "288d11f7996e4f42f8602309ececce0bc16a335528aa03938acd3280a6c3c8c8"
+    },
+    {
+      "source_id": "dlg_npctextaudio_30ebbe5cc5a85749d2c9",
+      "source_sha256": "d45c3e482683dc5c4556187b9ae6dd038c455448b83ec85b56505837381c0cb6"
+    },
+    {
+      "source_id": "dlg_npctextaudio_5aa2763224badff6702a",
+      "source_sha256": "6a315eb25acf78c2bce5bdb59da065f22017d02cfe89105d811fb893673f809a"
+    },
+    {
+      "source_id": "dlg_npctextaudio_cb6866470e4ee525a57b",
+      "source_sha256": "1d71c9fb42d86c2aeeaaf896b4a27497c9b41d018960b481eacb9e56cb31ef68"
+    },
+    {
+      "source_id": "dlg_npctextaudio_5e32138d2437af6705d0",
+      "source_sha256": "2a7f56e37acfb8cdcf104caf1e01a585119a9471bcd9fca20809f83974d0e6fa"
+    },
+    {
+      "source_id": "dlg_npctextaudio_0c44edf04fad4428bdb3",
+      "source_sha256": "19b219ca3a67eecc2d29855ad528b9cdf04b099c688f079b073fc0cd66e03789"
+    },
+    {
+      "source_id": "dlg_npctextaudio_a43ba9fa1fbebc488dad",
+      "source_sha256": "47dbbb13c82ccbfaa2e2033a2ff2f8b28ec352fd0990d74793ea4db77d5c07c6"
+    },
+    {
+      "source_id": "dlg_npctextaudio_675b99e134d0178394ad",
+      "source_sha256": "656201f335a5d5378cf01b1c2b90438240bc8cd5b54f61c92569ab8b61ca6d09"
+    },
+    {
+      "source_id": "dlg_npctextaudio_a6772640d7549a754cfe",
+      "source_sha256": "c116f683f4443701e97859d4ff7fdd3866a5eb0825d7b800997bde54863eec6a"
+    },
+    {
+      "source_id": "dlg_npctextaudio_e880d25992813c8829a4",
+      "source_sha256": "45b3bcddd059fe2ff3966e6cdcff8b9fa251fd364269828b4a744f7bc6f75e8b"
+    },
+    {
+      "source_id": "dlg_npctextaudio_b762d3abd737e5bc497f",
+      "source_sha256": "9a103d087de178a48adbf42d647976e0f740911cd08b5957d80dd6e251c2daaa"
+    },
+    {
+      "source_id": "dlg_npctextaudio_3d7143291df0a8bd00f3",
+      "source_sha256": "bc94283f1ebd28eefe6c6a5518671a6d626f43beb571bb1b07fb5f07a111d134"
+    },
+    {
+      "source_id": "dlg_npctextaudio_381989d35d4a69a93c1c",
+      "source_sha256": "df1ea6d794cbeb08d127f5f90816aa3673e2a830334abbd4fa2273ec1f3a67af"
+    },
+    {
+      "source_id": "dlg_npctextaudio_92a113b4c0881fad721e",
+      "source_sha256": "c96f37bcb33a9f6a8d3b1d37521c964aaa311d2d1faa6287243f6bb0a91f4dbc"
+    },
+    {
+      "source_id": "dlg_npctextaudio_c67a4aab371febba060b",
+      "source_sha256": "ac82738ebf90bdaaf5ae18dc461bcaad42239f8e6d42a22ef4621bda622b9a8e"
+    },
+    {
+      "source_id": "dlg_npctextaudio_3590cf19e122840a7dca",
+      "source_sha256": "af663e1a8ea4b3aef9107910738751c2733ec5a98eec50306b11f807d89cfa53"
+    },
+    {
+      "source_id": "dlg_npctextaudio_408f944c5a78f64a981a",
+      "source_sha256": "6bfbb820155a9040df958cd4469aa559f9f3852109c33d9debe8ddfb4ced1ef5"
+    },
+    {
+      "source_id": "dlg_npctextaudio_b40adbaadc16504f202e",
+      "source_sha256": "b91404680af48caf000355a0622448e9f5c05ec99c377c840686cc69ecd6cd48"
+    },
+    {
+      "source_id": "dlg_npctextaudio_76cfa8b2d5f7074e8d92",
+      "source_sha256": "0b1c3411fafb2ce6e79e1be4e5d349f460a331fca245d0d11f390afbb631157c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_6789bb4162a7a0fbd373",
+      "source_sha256": "6d264adf30a3096c3336e502b9d074ba8f08a3373435626ce89cb463b45d71eb"
+    },
+    {
+      "source_id": "dlg_npctextaudio_cb46bfe508f1ed1a6d95",
+      "source_sha256": "df6710757cec851536ae8ac4a7c6f7bffebad98282767cc50aa53637dcc8e6ac"
+    },
+    {
+      "source_id": "dlg_npctextaudio_dc05e54a58a1930eca1a",
+      "source_sha256": "6b9a4b6a6e33c567e0298642b00cc7498a23094f08a5cc54c167a3cc12763546"
+    },
+    {
+      "source_id": "dlg_npctextaudio_25d539d21dc13145d78a",
+      "source_sha256": "0e6d264890ec8c7e6482b4f0eee805e6d9f880ffc8baa39c7e47fe30f92cbec8"
+    },
+    {
+      "source_id": "dlg_npctextaudio_c95a0cb9cee312811182",
+      "source_sha256": "ed896a604eac4862d0fc46e2b8b5489a63e4f3f7c2c59764baff5d76d85f6305"
+    },
+    {
+      "source_id": "dlg_npctextaudio_119d21bca0436cdf41a9",
+      "source_sha256": "db30bfdf4dbe87d52578507613ac6d23acef0cf69973ffa61e23b676b22cb074"
+    },
+    {
+      "source_id": "dlg_npctextaudio_a78ab5d586550e5b2159",
+      "source_sha256": "82a3976397971ee3fc5c9d32f2a9266b500f554c662ee442885986762b4bd309"
+    },
+    {
+      "source_id": "dlg_npctextaudio_8a1fcb8b4a410f0bd07d",
+      "source_sha256": "70450bf6f4e23e79a0fd7c3d9f4751039b0a1a4e3f22c9c9d2994e4ce95789f7"
+    },
+    {
+      "source_id": "dlg_npctextaudio_a34ee4b33ee4946267a8",
+      "source_sha256": "852a2ee94166036f772f4b2b72081a4fdd8b5dcb9f4166fb257ae309a9b8ccf1"
+    },
+    {
+      "source_id": "dlg_npctextaudio_98a40dd55fef140dfdcc",
+      "source_sha256": "68cc43c9a60ec9731ce3ae680a9f36b29a019a2c150d65b51ad3142a6b0e6c1f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_5dc24d87cc665b995d1d",
+      "source_sha256": "8e359149bea85693bdc0aea32c290e7fd1d5e1ac7ca4f77187edaebe0f0afb92"
+    },
+    {
+      "source_id": "dlg_npctextaudio_f7a853ba32005c644241",
+      "source_sha256": "a5c2baadad49eb3e5fe35ad474abbee2f1b5ffde0389937a23df41638f2574f2"
+    },
+    {
+      "source_id": "dlg_npctextaudio_b82742366bdeae228ce6",
+      "source_sha256": "6c0c3e0f6c863e41f113488b7beb5a99fe80d41af407dec3e9db096b01725065"
+    },
+    {
+      "source_id": "dlg_npctextaudio_dd60cbb69b03a07cce1b",
+      "source_sha256": "0665fcf9014058a2ae7bcfe4e059620166c7444bac27328c4484a29d10df1c05"
+    },
+    {
+      "source_id": "dlg_npctextaudio_39b6438c3f2aa77f8ac3",
+      "source_sha256": "ea4956398a82845d3cb729277c9766c4e31f03487fabd35ae16879720e1cfd2f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_c641ccd62cc4d059ab90",
+      "source_sha256": "140db7947f94ec912f66ce14965fee5c418939e345e10301a1e43ff9688e2b31"
+    },
+    {
+      "source_id": "dlg_npctextaudio_3d8c4dd8f1cecfbc1e41",
+      "source_sha256": "65f5f12e571277c3fa8b6612f944e2aae8ab19cc4abd1fecf3d16613320d3a42"
+    },
+    {
+      "source_id": "dlg_npctextaudio_b7305b056a46713bb8fe",
+      "source_sha256": "d1245b76495bdb18ced83e154163cd569c05acba27ef7103a81d88bc9c40811f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_95a2c1e825cf9129d04e",
+      "source_sha256": "0df4b1cff42749d2d49977b92327e644fee57c0d413e5143535aee4038e106c0"
+    },
+    {
+      "source_id": "dlg_npctextaudio_75c318f970bd00c23fe6",
+      "source_sha256": "f5159327d777e41b817f90c52de2a5e88036d29108790060e78e0744d9ec8553"
+    },
+    {
+      "source_id": "dlg_npctextaudio_15d0e372a2c7958ebdbf",
+      "source_sha256": "7fd56825d00435dbffdba701d9f83d13b34e1cab85bee73321e47d7172f7daba"
+    },
+    {
+      "source_id": "dlg_npctextaudio_f92c6e5bd17b6778ca94",
+      "source_sha256": "33477f5dfc1e50da8155bac4e434a880733e15c534f24234573ef6effb63dafe"
+    },
+    {
+      "source_id": "dlg_npctextaudio_d979b2a71fdb7cf2d500",
+      "source_sha256": "22c4524b74ccd7f14098794b71eaa59791695a86958fa10c7f63320aa594afae"
+    },
+    {
+      "source_id": "dlg_npctextaudio_c039c6d75952727c8780",
+      "source_sha256": "f8d92661df2ac9e89b243623c6d0655ad1768fd6abd0ef5a14f7406555bba406"
+    },
+    {
+      "source_id": "dlg_npctextaudio_dd6538cdae068d9bf728",
+      "source_sha256": "569c81885234d97b6f99ccf4b00bcbea51ff33bbb9c5fea7c13c38e7a87e6767"
+    },
+    {
+      "source_id": "dlg_npctextaudio_cd8268fa52927673acee",
+      "source_sha256": "f46e447c25c84dbe26b3864560979a1280ec00454f260211289bffd76f2f07ca"
+    },
+    {
+      "source_id": "dlg_npctextaudio_12ecb36252486495554b",
+      "source_sha256": "15c1664b925caea06cae1ed82d90021a2edc3846485eab0956077f6db75744b3"
+    },
+    {
+      "source_id": "dlg_npctextaudio_dcdd8f66bd3050b66084",
+      "source_sha256": "f0ce862e8676ce16f0a780eb601067105dd0ad4ad6beab39efa1ab7c607a5edb"
+    },
+    {
+      "source_id": "dlg_npctextaudio_dc626e40423b1cd6a964",
+      "source_sha256": "9219683ca3822a16f22955a30f45faa9c830338265c4c77a05a7961fefd0b04f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_220e3a4c5719a7f0bb75",
+      "source_sha256": "467550c8f682cbecf0c3c3a5a2edf28c58161254b441ee31d8aa74af9d4b65cf"
+    },
+    {
+      "source_id": "dlg_npctextaudio_bc728c6ed3f3b2806d32",
+      "source_sha256": "6cca9c46c2b09ee89ccaef6cb758121770ced1495dd1cbd82d5589611d8e63ef"
+    },
+    {
+      "source_id": "dlg_npctextaudio_455de6da1c0f6d7de4fa",
+      "source_sha256": "0fcaed646ae012bbb09fe052d5e455e891f48d51562a471b787244549789864a"
+    },
+    {
+      "source_id": "dlg_npctextaudio_9deb2d36cdb58661d3e7",
+      "source_sha256": "07d559330bc5633759f16824b479e1c5e755968655c0ddbe03484683e26c14ed"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fea541272879a98f038d",
+      "source_sha256": "f1459b8169112e28ebc7642d8bc2657c4f43900cd4c34eb2eda3998ac571ade0"
+    },
+    {
+      "source_id": "dlg_npctextaudio_3eff043cc5956481ad32",
+      "source_sha256": "319c6aefcbc3938de9b61bf7fe53e7b8f2f4fb9fa15725ed348beab909c55ade"
+    },
+    {
+      "source_id": "dlg_npctextaudio_7d83ff5ca9c89616534c",
+      "source_sha256": "5726f9fac7a4dcefe85d8599dcfa713d77c6d867f320117daff8cb60c22e4f9a"
+    },
+    {
+      "source_id": "dlg_npctextaudio_24c31e5e182f51224ad1",
+      "source_sha256": "7312922b13ed465889ae94a49c868481b6cabdcf72fd03ba807b6dacffbb5e65"
+    },
+    {
+      "source_id": "dlg_npctextaudio_e458ae37773237ac62b6",
+      "source_sha256": "f277f1b91d596c03d679b68b3637a45ab127f6c80909d5323d3c20894685d35c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_ecc2716744f48aa2676f",
+      "source_sha256": "a908cfd3aa2f8bf9ac11a4d955d27085a5cc3e19fd196ec5872f0c990050f25d"
+    },
+    {
+      "source_id": "dlg_npctextaudio_bb4d082b1ab45eba5284",
+      "source_sha256": "5cd4777981b9c667a8ba4dec685e876aa74e90429ad00c5870d64c17414bb93c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_5d01c77a49e5b7d78002",
+      "source_sha256": "1a864a4be94a8543295232a12d75f515fc072c7fb667440a81fd635964ad2cc4"
+    },
+    {
+      "source_id": "dlg_npctextaudio_eb178ac0142e55791541",
+      "source_sha256": "3129fafa2e5f71e9f69b36c15d5795af67f19cea5fbd1918a985331a1f2eb73c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_04e92515e3dac3a2e2ff",
+      "source_sha256": "ee30adf47f1b0720b80ca0911cc334764d47f84cda737e32014a71bee477fd99"
+    },
+    {
+      "source_id": "dlg_npctextaudio_4da7aaa1cff88d536778",
+      "source_sha256": "048c3d1ccbe35526ba228854d1f7dbaa17e19534a5a9df991f0660bd0ce4db86"
+    },
+    {
+      "source_id": "dlg_npctextaudio_c1edfd41a52f027b3d5e",
+      "source_sha256": "c782fbc7f8ca0bde74f0a6f57c60cfa892d165066fe33bf363e42852a548e7f0"
+    },
+    {
+      "source_id": "dlg_npctextaudio_43d902aaea343f8c9567",
+      "source_sha256": "863b52d0419ea78652e266f46fcc2ce3dead18180a42f44ae3bb76e27788024e"
+    },
+    {
+      "source_id": "dlg_npctextaudio_6134bdd2b3bfe1c56146",
+      "source_sha256": "5a6644ca6f40f60e8782f3d0ec936e672d9cddb9df160f090cb923306577d4d4"
+    },
+    {
+      "source_id": "dlg_npctextaudio_28bbcd701ced08a0cb71",
+      "source_sha256": "d22539c9f4a4ebd81706c40eb729e19cb55c7e1ba575bf7b46589a3c8c61011d"
+    },
+    {
+      "source_id": "dlg_npctextaudio_1c738fe70353af7146a8",
+      "source_sha256": "6cdcb08d204436fb95111816d63636c731a4a4c38585d379c818ba439607bc9e"
+    },
+    {
+      "source_id": "dlg_npctextaudio_86b04a4d562be9b42edb",
+      "source_sha256": "6b7e40bd3d324b9e1b06a47e1baa9be1e84f52aae0421cb4e7ec7481a56e0b7e"
+    },
+    {
+      "source_id": "dlg_npctextaudio_cfe99073c48824eeedd0",
+      "source_sha256": "2a96074444579957572e69cf7f0a39afc5a63d4d7508cc7703c0a98ad6048f9c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_2ae71da662371e025c71",
+      "source_sha256": "0dd9e7c8de9157bbb2abe63186bfc1817d263cff55418d151d13bf5b3735b8de"
+    },
+    {
+      "source_id": "dlg_npctextaudio_a389e18213170a229ce1",
+      "source_sha256": "960104071030ea3a1e7c2751dfefde016b99f7263e8c938505a78af3d91b8bc5"
+    },
+    {
+      "source_id": "dlg_npctextaudio_91d5c3a0d7a8545b2670",
+      "source_sha256": "20daed4e7263b0598199c517f3175ee337135734faef55f28a4058da21049053"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fe37ae4188d526e17c18",
+      "source_sha256": "aa33b57dbab9b614caae5943f627c3776515c64687a290fee4656c497cde1781"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fcbccaee4e506b8b4e01",
+      "source_sha256": "f4fd2101d59feec17df7046b3bfbbf45d1e7c18095882fe9bc87b14390089856"
+    },
+    {
+      "source_id": "dlg_npctextaudio_249548fa7d721dbe8f68",
+      "source_sha256": "7459fabe10eef8dc87cae1e732ddd1c5e606232d5ce92958cdfea0103cc7b0e7"
+    },
+    {
+      "source_id": "dlg_npctextaudio_ab74ba1ef5daeb6227c6",
+      "source_sha256": "7908c20ffb9350625e30bf104b865389cfec00111c21aab6eaf874997497c433"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fb1a602012486eea8934",
+      "source_sha256": "2389d78bac8aa7d3731cf85d114988f11e510cdc93cc20d7535fe45131162ce4"
+    },
+    {
+      "source_id": "dlg_npctextaudio_b39eb729c4dc001434a8",
+      "source_sha256": "534fa94082d896055651a29e36beca51968d8833e9e4d8b5810596b52df9f293"
+    },
+    {
+      "source_id": "dlg_npctextaudio_3befa85111b7eae0fc84",
+      "source_sha256": "2b64a07aee5ac944ce04c3aef281805e92703f0c44181d68108b9be32257e598"
+    },
+    {
+      "source_id": "dlg_npctextaudio_0ffa038aad37bf16f73d",
+      "source_sha256": "509b8116529b8197f12dfd808aefb553f133566997cf877131142e3f9ebe0c10"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fb88bc002316e17a896a",
+      "source_sha256": "0d153c8168854ce6fbd9e417e50813c469e317a8b28297037e68d7bab8bc6f80"
+    },
+    {
+      "source_id": "dlg_npctextaudio_933ba42478739466d4b6",
+      "source_sha256": "fe7d4f4b89dfff40e86fbb5940e9c21d733a1d5a6b7f65a799c221e3f1eee438"
+    },
+    {
+      "source_id": "dlg_npctextaudio_ad279c133a360c7cd6a5",
+      "source_sha256": "3d0991829b75f0bb2c61ed49b83b24b64af28e2c1154680eaa6a288f35e64438"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fef838f3583d6776106c",
+      "source_sha256": "4adf890f48e587781e6555e9a9bc9c66ade0a8dedc6f7e6549ef4451fc73150c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_320e6f2ac81bbe749200",
+      "source_sha256": "1cb3afe5a6793bf0784fe49d3937535e8b019778a7e744ec78945e27644314d8"
+    },
+    {
+      "source_id": "dlg_npctextaudio_c4aba2a214f3f91f5d6e",
+      "source_sha256": "df851f050e2f18e61575df2f7bfa29e522337884f812bb3df946c9a73a7e8e2c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_fe1188acacff0774ff02",
+      "source_sha256": "57c00721d6783bde6e52f6add5a7e9f039651dc2126557323c594b597b5a7d9e"
+    },
+    {
+      "source_id": "dlg_npctextaudio_3689cce6d725dc779fb9",
+      "source_sha256": "ec6c2cd1666221e1d67a429a58187427c41d0d44633f6d3924df346b68b7ab2d"
+    },
+    {
+      "source_id": "dlg_npctextaudio_309c1820617c5093ee07",
+      "source_sha256": "051f7ac0c3f6ffc49605c966afa7b9010a8e67215f12b142ba4c9201d2c4b91d"
+    },
+    {
+      "source_id": "dlg_npctextaudio_1c6e2d1aec5e68aeb141",
+      "source_sha256": "3f1a5048e141b955d9bc136a75f35e5151fb1e1699c03a0456fb7f8dd11116c2"
+    },
+    {
+      "source_id": "dlg_npctextaudio_447d4227e7bf14f98990",
+      "source_sha256": "25111886b3cd1ac2090b88eceecd1d38391d519cd43b69a0ba43660a5d1a1249"
+    },
+    {
+      "source_id": "dlg_npctextaudio_cc1fa60325e4aa4b756f",
+      "source_sha256": "bf5f0c386312303f392ea899f91a6fa1cc5e31b55eb688a60733d49df6f46639"
+    },
+    {
+      "source_id": "dlg_npctextaudio_d6da645a9137e7708de3",
+      "source_sha256": "4248f588d606e7599adc18e126b82d13f6ca4b1bd685e960f70714758ef2be59"
+    },
+    {
+      "source_id": "dlg_npctextaudio_2b02d500866b668b5a8d",
+      "source_sha256": "1d61f07b745e9fa0fb8ea22bf5d29ff0009c2116dcb611513f2db6cb80934ff4"
+    },
+    {
+      "source_id": "dlg_npctextaudio_92d20b31af52dd8fd2fd",
+      "source_sha256": "2ce4d51f3c4a5aaac8b16be8091b3f7702a0e61b233c3ca9b9160d839b822d2b"
+    },
+    {
+      "source_id": "dlg_npctextaudio_ecee53c3c0221fc1ebf5",
+      "source_sha256": "f1e20a7a5a99d9cc54daf0018a41774d762c1eaa70f5401a92a4ccf32f285e4a"
+    },
+    {
+      "source_id": "dlg_npctextaudio_883251b5d0a2233ee776",
+      "source_sha256": "9414652e7c37937c3437dbb01f11fb3da8dc8fed2af6ea4310dfea4043d6a155"
+    },
+    {
+      "source_id": "dlg_npctextaudio_418ba70fbc7b763872b2",
+      "source_sha256": "31f2d06cfd831528a4ffef44db3c86be0450a98f56326e27c7ff3bde64173794"
+    },
+    {
+      "source_id": "dlg_npctextaudio_84baddf664a79004137e",
+      "source_sha256": "14d35cd3e2b40bc5a16a362f7a5eff6e4a8b04adc0bdc62d541f62d5316a6d1c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_d2b2e94db840061893ef",
+      "source_sha256": "b421f0c8a5063220bf41787dfdae9772f516e8db3a1fe9656a3478a6b0d16d77"
+    },
+    {
+      "source_id": "dlg_npctextaudio_77c55fd9605530008a9b",
+      "source_sha256": "b6b9018db1ec0fc0dbd42300f685b901321c6e5719f9ed6d3de55a25e508e499"
+    },
+    {
+      "source_id": "dlg_npctextaudio_497768dcaa658a46005a",
+      "source_sha256": "5dd72b70acc666c4cf3e7aef01d772c69dc2d8510e3ee2a028a69b5a70b2d9a5"
+    },
+    {
+      "source_id": "dlg_npctextaudio_2d58c5f49c9726ab0a87",
+      "source_sha256": "a6910fd2850142e57785bb8f2fe37abd44d82be94b5631a86464719b33925aa5"
+    },
+    {
+      "source_id": "dlg_npctextaudio_a53585b91a76a500ea7a",
+      "source_sha256": "caf1de8cf3589415c1b31cb7f3f2bc6255d34917251adc81e2efa65f5c5b765f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_1a0c647898d903f9652d",
+      "source_sha256": "58c0fa6a973ed56db4642ebffa556ae97aca6656706a1f9f12b4d5190eab709a"
+    },
+    {
+      "source_id": "dlg_npctextaudio_642afa661b11376cda94",
+      "source_sha256": "960f82787d77c610e9eec260ca3814b89a998388e3c8100683e896e8e1bb46e9"
+    },
+    {
+      "source_id": "dlg_npctextaudio_98ad504ea500d1b5dbd1",
+      "source_sha256": "ef61bbdcda42902e533e6498d841bd49849d4058e357597bf819920fd67d8f53"
+    },
+    {
+      "source_id": "dlg_npctextaudio_3702c596e352faa0ffb5",
+      "source_sha256": "229b1438469deb5dfeb48864927a19e9204976a776eff662363f7dd02466753f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_be58f356cb1eea7b724f",
+      "source_sha256": "fc2ff6304d793368e8842c9da9a7247c52f6f9215fe9a184b97680a7e0f53f5f"
+    },
+    {
+      "source_id": "dlg_npctextaudio_61aa5e9c8647f5d51dd8",
+      "source_sha256": "24ad209d1275be0e385f30195a68905dd5e76b01f52535314a2f1173c03f5e5c"
+    },
+    {
+      "source_id": "dlg_npctextaudio_2cebf381975110dbc065",
+      "source_sha256": "75ab8bca7b4c9630fe0cc1028a3b7ed4e9810227b63bf4ea655f2e18f6b163b0"
+    },
+    {
+      "source_id": "dlg_npctextaudio_7e43083300e7120316c9",
+      "source_sha256": "feb098c9207413917ec317749a6015e29521e095b8d034ceb62890135ad1a79a"
+    },
+    {
+      "source_id": "dlg_npctextaudio_f8eb61c8a343f139e376",
+      "source_sha256": "614ae59801f96e3c51595d754527b6eddc55126e971b2dc0e0e4c00ddaae6121"
+    },
+    {
+      "source_id": "dlg_npctextaudio_bd7b43ab4b78d26459cf",
+      "source_sha256": "4b128cd90b30077390555f9cf8be255945526ca41a24436115cdbf0cfc624209"
+    },
+    {
+      "source_id": "dlg_npctextaudio_437ba5e41ac3d12a7f83",
+      "source_sha256": "8504e06536b4868ef5d8db6b67c9812eab79c62d151a015ca9792949e69f014b"
+    },
+    {
+      "source_id": "dlg_npctextaudio_3b8d08bdf5ad843e97ef",
+      "source_sha256": "ce7901bb634e5ac076f6c2a895c9e35c98bf7fe688f8417d3444ea12ee0df5e9"
+    },
+    {
+      "source_id": "dlg_npctextaudio_5fdb402447d14deb2718",
+      "source_sha256": "af7522f7c49b8948a1f0330598b1c983e3b2f35796bdc80e22be8d00579ad954"
+    },
+    {
+      "source_id": "dlg_npctextaudio_c229f1cbbd5b070187c8",
+      "source_sha256": "3d19a3cc12cd262dad83364107d2ca787ebbc87dfecd2cf3bef764d18a8073d0"
+    },
+    {
+      "source_id": "dlg_npctextaudio_e67c70a027cc7326c3ce",
+      "source_sha256": "2b970f8398b39c4e5a49d7fe5b5cc7260ae2f9c1db48d29b6e8b913ff887ce37"
+    },
+    {
+      "source_id": "dlg_npctextaudio_0ab00655d5b9ed236fab",
+      "source_sha256": "355a6c15eb76df717b2e93a5489e81dde71d57ea6e2e21a3ff39f827ebca82c5"
+    },
+    {
+      "source_id": "dlg_npctextaudio_332c0593aaf10e0474a0",
+      "source_sha256": "07d86b4fa2409404561dddf4925e9a1eb101af610fefe918da3e687ea0f050ad"
+    }
+  ],
+  "exclusions": [
+    "Vendor/combat/callout lines",
+    "Hooded One Act 2/3/4 topics",
+    "Unknown or ambiguous speaker/topic context",
+    "Una song-selection comments and direct in-world short callouts"
+  ],
+  "baseline_ids": [
+    "dlg_npctextaudio_c5657b6ecdd5e14d6299",
+    "dlg_npctextaudio_30ebbe5cc5a85749d2c9",
+    "dlg_npctextaudio_5669a0f9bdcec22aba7d",
+    "dlg_npctextaudio_dcf5b32da6cfddbe0acb",
+    "dlg_npctextaudio_7bc29b6d00550cd0c2c6",
+    "dlg_npctextaudio_0b83f196920188fb833e",
+    "dlg_npctextaudio_fec04587570d8639e669",
+    "dlg_npctextaudio_005c2574c742a8d3c0b8",
+    "dlg_npctextaudio_08cb2266fdf7c7635614",
+    "dlg_npctextaudio_73589ca681a9d260d834",
+    "dlg_npctextaudio_e8a97f822abbe36370a9",
+    "dlg_npctextaudio_aa67074040f344406e17",
+    "dlg_npctextaudio_5e32138d2437af6705d0",
+    "dlg_npctextaudio_0c44edf04fad4428bdb3",
+    "dlg_npctextaudio_a43ba9fa1fbebc488dad",
+    "dlg_npctextaudio_675b99e134d0178394ad"
+  ],
+  "style": [
+    "Renly uses ta/con only in explicit adopted-child variants; generic strangers retain tôi/bạn.",
+    "Preserve Finn irony/denial and Una uncertainty; keep proper names usable with English labels.",
+    "The First Ones = Những Đấng Đầu Tiên; Corruption = Tha Hóa; the Seed = Hạt Giống; the Beast = Quái Thú."
+  ],
+  "terms": [
+    {
+      "source": "Grelwood",
+      "target": "Grelwood",
+      "case_sensitive": true
+    },
+    {
+      "source": "Freythorn",
+      "target": "Freythorn",
+      "case_sensitive": true
+    },
+    {
+      "source": "First Ones",
+      "target": "Những Đấng Đầu Tiên",
+      "case_sensitive": true
+    },
+    {
+      "source": "Eternals",
+      "target": "Eternal",
+      "case_sensitive": true
+    },
+    {
+      "source": "Corruption",
+      "target": "Tha Hóa",
+      "case_sensitive": true
+    },
+    {
+      "source": "Seed",
+      "target": "Hạt Giống",
+      "case_sensitive": true
+    },
+    {
+      "source": "Beast",
+      "target": "Quái Thú",
+      "case_sensitive": true
+    },
+    {
+      "source": "Hooded One",
+      "target": "Người Trùm Mũ",
+      "case_sensitive": true
+    }
+  ]
+}

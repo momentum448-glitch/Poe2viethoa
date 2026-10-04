@@ -1,118 +1,85 @@
-# Translation Factory — first milestone
+# Translation Factory — Act 1 pack
 
-Build: `0.5.0-alpha.1 / factory-20261004-01`.
+Build `0.5.0-alpha.2 / act1-20261004-01` có 196 trang trong 105 nhóm nguồn,
+180 trang mới qua 7 lô nội bộ, giữ nguyên 16 trang trước.
 
-The first milestone turns verified untranslated NPC pages into source-bound
-Vietnamese drafts, reviewed catalog entries and an offline runtime. The first
-batch adds seven Una/Renly pages to the nine-record Alpha baseline.
+## Dữ liệu và trạng thái
 
-## Data and review states
-
-`translations/glossary.json` defines project style and terms. Proper names keep
-their in-game spelling; NPCs use tôi/bạn. It is a project glossary, not an official
-Vietnamese localization reference.
-
-`translations/batches/*.json` stores Vietnamese work, source IDs/hashes, context,
-draft/review notes and the active catalog record's digest. English game transcripts
-remain in ignored `source_data/`. Prompt/review packets go to ignored `factory_reports/`.
-
-| State | Meaning | Runtime publication |
+| State | Ý nghĩa | Runtime |
 | --- | --- | --- |
-| draft | Proposed text requiring semantic review | Rejected |
-| reviewed | Explicit AI/author review with source/context and passing QA | Allowed in Alpha |
-| approved | Reviewed text with a recorded user QC result | Allowed; protected against downgrade |
+| draft | Nháp cần đọc nguồn/soát nghĩa | Không publish |
+| reviewed | AI/author đã soát toàn nguồn/context và QA đạt | Được dùng trong Alpha |
+| approved | Có dấu QC câu chữ của người dùng | Được dùng, chặn downgrade |
 
-Automatic QA does not judge every meaning or tone. The author must read complete
-source pages and neighboring pages before marking reviewed. The AI drafting step
-currently runs in chat from the local bundle; a bulk API translation client is not
-part of this milestone. Reviewed translation memory supplies same-speaker references;
-similar text never automatically becomes the translation of a different page.
+`translations/glossary.json` là style/terms nền; manifest thêm scope và terms pack.
+Renly ta/con chỉ trong biến thể con nuôi; người lạ tôi/bạn. Proper names giữ nhãn
+English. Các quyết định về sự chưa chắc, nói bỏ lửng và quan hệ phải dựa trên nguồn.
+Đây là glossary dự án, không phải bản Việt hóa chính thức.
 
-## Operator workflow
+Batches chỉ lưu VI/ID/hash/context/review notes và base catalog digest. Raw English
+ở ignored source_data/, review bundles ở ignored factory_reports/. QA source,
+placeholders/numbers, names, context, duplicates, drift/tampering không thay thế
+soát nghĩa. Fuzzy/TM chỉ gợi ý reference, không tự điền hoặc publish câu khác.
 
-Run commands from the repository root using the installed Python environment.
-On Windows the prefix is `.venv\Scripts\python.exe -X utf8 -m`.
-The examples use `python -X utf8 -m` for readability.
+## Chọn cả gói và tiếp tục lô dở
 
-1. Sync the pinned English corpus with `SOURCE_SYNC.bat` if it is absent/stale.
-   Snapshot changes require fresh batches/review; the factory validates the actual
-   corpus snapshot as well as the lock-file fingerprint.
-2. Select only exact fresh-source MISS pages from a user QC ZIP:
+Chạy từ root, prefix Windows là `.venv\Scripts\python.exe -X utf8 -m`;
+ví dụ dưới dùng `python -X utf8 -m`. Nếu thiếu nguồn, dùng `dev/SOURCE_SYNC.bat`.
 
-   ```bat
-   python -X utf8 -m tools.translation_factory prepare --batch-id my-batch --from-qc path-to-QC.zip --output translations/batches/my-batch.json
-   ```
+```bat
+python -X utf8 -m tools.translation_factory pack --manifest translations/manifests/act1_story.json --output-dir translations/batches --size 40
+python -X utf8 -m tools.translation_factory coverage --manifest translations/manifests/act1_story.json
+```
 
-   Repeat `--source-id ID` instead for explicit page selection or revision of an
-   existing translation. An existing batch file is never overwritten. Unresolved
-   or ambiguous OCR events are reported for manual inspection; fuzzy chat is excluded.
-3. Export a local source/context/glossary/TM bundle:
+Thêm `--speaker Una` hoặc `--topic Home_1` để lọc theo metadata nguồn; có thể lặp.
+Topic filter có suffix riêng để không đè lô toàn gói. Manifest giữ source ID/hash
+của từng page và hash/order/page_ids của nhóm gốc. Validator đối chiếu snapshot
+cache theo pin, không chỉ tin segment_count ở corpus đã dedupe. Thiếu/đảo Continue,
+source/context khác hoặc hash manifest đổi thì phải xử lý trước khi resume/review.
 
-   ```bat
-   python -X utf8 -m tools.translation_factory bundle --batch translations/batches/my-batch.json --output factory_reports/my-batch.md
-   ```
+Cỡ 40 là giới hạn lô; nhóm không bị cắt để đủ số. Lô cuối theo NPC có thể nhỏ hơn.
+Layout dùng baseline_ids bất biến trong manifest: publish lô trước không đổi tên
+hay selection các lô sau. Chạy lại pack resume lô đúng selection, không ghi đè VI.
+Coverage `complete_groups/groups` đếm nhóm nguồn/biến thể, không phải mục menu game.
 
-   The author reads it, fills `vi` and adds draft notes in the JSON. Keep the IDs,
-   hashes and page metadata from prepare. Preserve all meaning, relationships and
-   uncertainty; review against the entire source rather than a partial OCR fragment.
-4. Validate the proposed text:
+## Soạn, review và publish
 
-   ```bat
-   python -X utf8 -m tools.translation_factory qa --batch translations/batches/my-batch.json
-   ```
+```bat
+python -X utf8 -m tools.translation_factory bundle --batch translations/batches/my-batch.json --output factory_reports/my-batch.md
+python -X utf8 -m tools.translation_factory qa --batch translations/batches/my-batch.json
+python -X utf8 -m tools.translation_factory mark-reviewed --batch translations/batches/my-batch.json --reviewer AI_or_author --note "Read complete source/variants; explain choices."
+python -X utf8 -m tools.translation_factory publish --batch translations/batches/my-batch.json
+```
 
-   QA checks nonempty text, names, literal numbers/placeholders, markup, duplicate
-   IDs, source/context drift and editing after review. Errors block the next step;
-   length warnings require the author's attention. Return codes: 0 pass, 1 QA
-   errors, 2 command/input failure. Empty prepared drafts are expected to fail QA.
-5. After explicit semantic review, record the reviewer and notes:
+Người soạn đọc đủ source/Continue và mọi biến thể chứa shared page, rồi sửa `vi`
+và draft notes. Không sửa ID/hash/context hoặc tự đổi status. Bundle chứa glossary,
+style pack, neighboring original pages và same-speaker reviewed TM. AI drafting
+hiện thực hiện trong chat, chưa có bulk AI API client.
 
-   ```bat
-   python -X utf8 -m tools.translation_factory mark-reviewed --batch translations/batches/my-batch.json --reviewer AI_or_author --note "Source/context reviewed; describe decisions."
-   python -X utf8 -m tools.translation_factory publish --batch translations/batches/my-batch.json
-   ```
+QA trả 0 khi đạt, 1 khi có lỗi, 2 khi command/input hỏng. Draft rỗng không đạt;
+cảnh báo độ dài cần đọc từng trang. `mark-reviewed` chỉ sau soát nghĩa thực tế.
+Review digest bind source, VI, context, glossary/source lock và manifest. Catalog
+publish atomic, idempotent khi không đổi, chặn conflict trong thời gian review và
+chặn downgrade approved. Catalog editing/publish phải tuần tự.
 
-   This atomically merges the reviewed entries into `translations/dialogue_vi.json`.
-   Unrelated reviewed records remain intact; a conflicting edit made while the batch
-   was being reviewed blocks publication. Repeating publication of unchanged content
-   is idempotent. Operator writes are sequential; parallel catalog editing is not supported.
-6. Rebuild using `SETUP_ALPHA.bat` or `python -X utf8 -m tools.build_translation_db`.
-   Invalid hashes, malformed/duplicate entries and build failure preserve the previous
-   runtime DB. `RUN_ALPHA.bat` detects changed catalog data and prepares it automatically.
-7. The user runs panel **QC 60 giây**, reads the new pages and reports any wording,
-   clipping or font-size issues. The current panel still produces `QC_PHASE4_RESULT_*.zip`.
-   Once the user has passed those texts, record the human QC and republish:
+Build DB bằng `SETUP_ALPHA.bat` hoặc `python -X utf8 -m tools.build_translation_db`.
+Hash/source join lỗi giữ DB cũ. RUN_ALPHA phát hiện catalog mới và chuẩn bị lại.
+Sau human QC thật, dùng `approve --batch ... --reviewer ... --note ...`, rồi publish
+để promote cùng bản. Nội dung đã đổi cần lô review/approval mới.
 
-   ```bat
-   python -X utf8 -m tools.translation_factory approve --batch translations/batches/my-batch.json --reviewer user_QC --note "User confirmed the new pages in build X/session Y."
-   python -X utf8 -m tools.translation_factory publish --batch translations/batches/my-batch.json
-   ```
+Nếu chỉ bổ sung một tập MISS đã xác minh, đường chuẩn bị cũ vẫn có:
 
-   Approval can promote the already published reviewed batch. Changing approved
-   content requires a new revision batch and a new approval; old approval is not reused.
+```bat
+python -X utf8 -m tools.translation_factory prepare --batch-id my-batch --from-qc QC.zip --output translations/batches/my-batch.json
+```
 
-## First release checkpoint
+Lặp `--source-id ID` cho selection rõ hoặc revision. QC selection chỉ lấy exact
+fresh-source MISS duy nhất; chat/fuzzy/ambiguity không được thành dữ liệu tự động.
+Các batch nhỏ là đơn vị nội bộ; gom một chặng đủ lớn trước khi đưa source ZIP QC.
 
-Batch `qc-alpha3-20261004-01` is AI-reviewed, QA passes with 0 errors/warnings,
-and the runtime contains 16 records. The nine baseline records remain intact.
-All 102 tests pass, including real CLI exit-state checks, publication conflict/
-rollback, review tampering, human promotion and old-runtime preservation.
+## Kiểm chứng hiện tại
 
-Replaying three prior QC logs keeps all 22 prior High overlay decisions on their
-existing IDs. In Alpha.3 QC, all 15 emitted pages now match exactly, including
-the seven previously untranslated pages. That replay is matcher/build validation.
-
-Actual Windows QC `20261004_223644_671889` subsequently verifies every new page:
-13 High shows (11 exact and 2 correct fuzzy matches on older Una Home pages),
-12 unique proofs, no MISS or runtime errors. The seven new Vietnamese pages fit,
-cover English and preserve Continue. An older Renly proof has an exposed edge
-glyph and a long older Una page uses 14 px; both follow-ups are in the next milestone.
-This is technical/visual review, not a fabricated user wording approval. The
-seven entries therefore remain `reviewed` until the user confirms that acceptance.
-
-User pages: Una → Introduction / Renly (3 new pages), Renly → Fatherhood (4 pages).
-Hold each page 3–4 seconds, exercise Inventory, and check one existing Renly
-Introduction page. The current QC pack already covers these pages; another tiny
-release/QC cycle is not required to establish that coverage. Subsequent work now
-uses the larger [milestone and cleanup plan](ROADMAP_NEXT.md), with complete
-source/topic groups and internal drafting batches rather than only the latest MISS list.
+8 lô QA 0 lỗi/cảnh báo; 196 records; 128 tests đạt. Replay giữ 35 High cũ trên
+4 log và toàn bộ 196 nguồn exact đúng ID. 392 mẫu OCR noise không có High sai.
+16 entry cũ giữ nguyên. Native QC/font của build mới chưa có; xem
+[kết quả chặng và giới hạn](ROADMAP_NEXT.md). Không tự gắn approved cho 180 trang.

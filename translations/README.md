@@ -1,70 +1,22 @@
-# Vietnamese translation source
+# Dữ liệu Việt và provenance
 
-This directory stores **our Vietnamese translation work only**.
+Catalog hiện hành có **196 trang reviewed**: giữ 16 trang trước, thêm 180 qua
+7 lô Act 1. Una 64, Renly 71, Finn 30, The Hooded One 31. Manifest chứa 105 nhóm
+nguồn/biến thể với đầy đủ Continue, trang dùng chung chỉ dịch một lần.
 
-Raw English PoE2 dialogue is not committed here. It is reconstructed locally by:
+- `dialogue_vi.json`: catalog VI được publish vào runtime.
+- `glossary.json`: thuật ngữ/style nền, giữ nguyên để bảo toàn review lô cũ.
+- `manifests/act1_story.json`: phạm vi, nguồn/context/order, baseline và terms pack.
+- `batches/*.json`: nháp/reviewer/review notes/digest, giữ kể cả sau publish.
 
-```bat
-SOURCE_SYNC.bat
-```
+Raw English không commit. `dev/SOURCE_SYNC.bat` tải pin từ sources.lock.json vào
+ignored source_data/ rồi build runtime/translations.sqlite3. Không import dictionary
+của dự án cũ. ID ổn định theo nguồn đã chuẩn hóa; source change cần ID/review mới.
+Review bundles chứa English ở ignored factory_reports/, không đưa vào source ZIP.
 
-That command creates a gitignored source corpus under `source_data/`, then joins it with `dialogue_vi.json` and builds:
+`draft` không vào Normal runtime. `reviewed` là soát AI/author và QA; `approved`
+cần human QC câu chữ có ghi nhận. QA/match exact không tự chứng nhận nghĩa dịch.
+Source/VI/hash/context và manifest bind review. Đổi sau review bị chặn. Chín entry
+Alpha đầu giữ nguyên format cũ, bảy entry Factory trước và 180 mới có provenance.
 
-```text
-runtime/translations.sqlite3
-```
-
-## Why source and translation are separated
-
-`dialogue_vi.json` uses stable `source_id` values and does not duplicate the upstream English game corpus.
-
-Benefits:
-
-- raw upstream game text stays outside this public repository;
-- source snapshots can be refreshed independently;
-- Vietnamese work remains reviewable in Git;
-- a source text change naturally produces a new fingerprint/ID that needs review.
-
-## Translation entry
-
-```json
-{
-  "source_id": "dlg_npctextaudio_0123456789abcdefabcd",
-  "vi": "Bản dịch tiếng Việt.",
-  "status": "reviewed",
-  "review": "ai_alpha_2026-10-04"
-}
-```
-
-Statuses:
-
-- `draft`: not used by Normal runtime;
-- `reviewed`: allowed in Alpha runtime;
-- `approved`: human-QC locked translation.
-
-## Fresh-source policy
-
-Do not import the old project dictionary.
-
-Current source snapshots are pinned in `sources/sources.lock.json` and rebuilt through `tools/source_sync.py`.
-
-The initial Alpha Vietnamese entries were recreated from the fresh pinned 2026 source and real OCR evidence, not copied from the previous project corpus.
-
-## Translation Factory
-
-The current catalog has 16 reviewed entries: the nine Alpha baseline records
-plus seven pages from batch `batches/qc-alpha3-20261004-01.json`.
-
-- `glossary.json`: project terms and dialogue style;
-- `batches/*.json`: Vietnamese drafts/review provenance keyed by source ID;
-- `dialogue_vi.json`: published runtime catalog;
-- `factory_reports/` at the project root: ignored local English/VI prompt packets.
-
-New factory entries carry `source_sha256` and `vi_sha256`. The runtime builder
-rejects changed source/translation text rather than trusting an old review label.
-The original nine legacy entries remain intact. Batch review digests also protect
-the text, source/glossary pins and page context from changes after review.
-
-`reviewed` means explicit AI/author semantic review plus QA; `approved` records
-the user's QC. QA success alone never publishes drafts or claims semantic accuracy.
-See [the factory workflow](../docs/TRANSLATION_FACTORY.md) for commands.
+[Quy trình Factory](../docs/TRANSLATION_FACTORY.md) · [Nguồn và quyết định](../PROJECT_GUIDE.md)

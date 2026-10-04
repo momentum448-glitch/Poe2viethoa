@@ -29,6 +29,7 @@ from .replacement_overlay import (
 from .translation_store import TranslationStore
 from .runtime_lock import RuntimeLock
 from .version import build_info
+from .text_frame_guard import source_text_changed
 
 
 FOREGROUND_GRACE_SECONDS = 1.5
@@ -66,7 +67,9 @@ def frame_to_png(frame, path: Path) -> None:
 
 def package_session(root: Path, session: Path, *, mode: str = "qc") -> Path:
     prefix = "QC_PHASE4_RESULT" if mode == "qc_alpha" else "ALPHA_RESULT" if mode == "alpha" else "QC_PHASE3_RESULT"
-    zip_path = root / f"{prefix}_{session.name}.zip"
+    results = root / "results"
+    results.mkdir(parents=True, exist_ok=True)
+    zip_path = results / f"{prefix}_{session.name}.zip"
 
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
         for path in sorted(session.rglob("*")):
@@ -110,6 +113,7 @@ async def capture_overlay_proof(
     region,
     path: Path,
     game_window: GameWindowProbe,
+    *, reference=None, text_box=None,
 ) -> bool:
     """Capture one QC-only frame with the overlay visible.
 
@@ -131,10 +135,21 @@ async def capture_overlay_proof(
         if not game_window.is_game_foreground():
             return False
         frame_to_png(frame, path)
-        return True
     finally:
         if not overlay.set_capture_exclusion(True):
             raise OverlayCaptureError("Could not restore overlay capture exclusion.")
+    if reference is not None and text_box is not None:
+        # Allow DWM to apply the restored exclusion before sampling English.
+        overlay.pump()
+        await asyncio.sleep(0.04)
+        if not game_window.is_game_foreground():
+            path.unlink(missing_ok=True)
+            return False
+        latest = capture.grab(region)
+        if not game_window.is_game_foreground() or source_text_changed(reference, latest, text_box):
+            path.unlink(missing_ok=True)
+            return False
+    return True
 
 
 async def recognize_guarded(ocr, frame, *, is_foreground, should_stop, on_foreground_loss):
@@ -171,7 +186,7 @@ async def run(
     output_root: Path | None = None,
 ) -> tuple[Path, Path]:
     if sys.platform != "win32":
-        raise RuntimeError("Phase 3 probe is Windows-only.")
+        raise RuntimeError("Overlay runtime is Windows-only.")
 
     enable_per_monitor_dpi_awareness()
 
@@ -208,6 +223,7 @@ async def run(
         "unmatched": 0,
         "overlay_updates": 0,
         "overlay_clears": 0,
+        "stale_text_skips": 0,
         "overlay_proofs": 0,
         "ocr_errors": 0,
         "overlay_errors": 0,
@@ -255,7 +271,7 @@ async def run(
         report("starting", "Đang chuẩn bị OCR và overlay…", force=True)
         runtime_lock.acquire()
         if not db_path.exists():
-            raise RuntimeError(f"Translation DB not found: {db_path}. Run SOURCE_SYNC.bat first.")
+            raise RuntimeError(f"Translation DB not found: {db_path}. Run SETUP_ALPHA.bat first.")
         store = TranslationStore(db_path)
         matcher = DialogueMatcher(store)
         translations_loaded = len(matcher.records)
@@ -276,7 +292,7 @@ async def run(
             if not overlay.capture_exclusion_ok:
                 raise OverlayCaptureError(
                     "Windows could not exclude the overlay from screen capture. "
-                    "Phase 3 QC stopped to avoid OCR self-capture."
+                    "QC stopped to avoid OCR self-capture."
                 )
 
             write_json(
@@ -306,8 +322,7 @@ async def run(
             print(f"Translations loaded: {len(matcher.records)}")
             print()
             print("Hay mo mot topic Alpha:")
-            print("- Renly: Introduction / The Miller")
-            print("- Una: Home / Clearfell")
+            print("- Act 1: Una / Renly / Finn / The Hooded One")
             print()
             print("Khi match High, chu Anh se duoc che va thay bang chu Viet.")
             print("Alt+Tab se tam dung timer va an overlay.")
@@ -320,16 +335,19 @@ async def run(
             pause_announced = False
             overlay_visible = False
             current_source_id: str | None = None
+            displayed_frame = None
+            displayed_box = None
             proofed_ids: set[str] = set()
             resume_needs_reset = True
 
             def hide_overlay(*, reset_dedupe: bool = True) -> None:
-                nonlocal overlay_visible, current_source_id
+                nonlocal overlay_visible, current_source_id, displayed_frame, displayed_box
                 if overlay_visible:
                     overlay.clear()
                     stats["overlay_clears"] += 1
                 overlay_visible = False
                 current_source_id = None
+                displayed_frame = displayed_box = None
                 if reset_dedupe:
                     pipeline.stabilizer.reset()
 
@@ -377,7 +395,7 @@ async def run(
                         and time.monotonic() - wall_started >= FOREGROUND_START_TIMEOUT_SECONDS
                     ):
                         raise RuntimeError(
-                            "POE2 was not foreground within 300 seconds; Phase 3 QC cancelled."
+                            "POE2 was not foreground within 300 seconds; QC cancelled."
                         )
 
                     await asyncio.sleep(max(0.10, capture_interval))
@@ -416,6 +434,11 @@ async def run(
                     resume_needs_reset = True
                     continue
                 stats["captures"] += 1
+                if (overlay_visible and displayed_frame is not None and displayed_box is not None
+                        and source_text_changed(displayed_frame, frame, displayed_box)):
+                    hide_overlay()
+                    stabilizer.reset()
+                    stats["stale_text_skips"] += 1
                 decision = stabilizer.observe(frame.bgra)
 
                 if decision.should_ocr:
@@ -449,7 +472,20 @@ async def run(
                         overlay_info = None
                         overlay_action = "keep"
 
-                        if context.detected:
+                        stale_during_ocr = False
+                        if context.detected and context.dialogue_box is not None:
+                            latest = capture.grab(region)
+                            if not game_window.is_game_foreground():
+                                hide_overlay()
+                                resume_needs_reset = True
+                                continue
+                            stale_during_ocr = source_text_changed(frame, latest, context.dialogue_box)
+                        if stale_during_ocr:
+                            hide_overlay()
+                            stabilizer.reset()
+                            stats["stale_text_skips"] += 1
+                            overlay_action = "hide_changed_text"
+                        elif context.detected:
                             stats["dialogue_detected"] += 1
                             pipeline_decision = pipeline.process(
                                 context.text,
@@ -492,6 +528,7 @@ async def run(
                                         cover_color=cover,
                                     )
                                     overlay_visible = True
+                                    displayed_frame, displayed_box = frame, context.dialogue_box
                                     current_source_id = result.record.id
                                     overlay_action = "show"
                                     stats["overlay_updates"] += 1
@@ -507,6 +544,7 @@ async def run(
                                             region,
                                             proof_path,
                                             game_window,
+                                            reference=frame, text_box=context.dialogue_box,
                                         )
                                         if proof_captured:
                                             proofed_ids.add(result.record.id)
@@ -514,7 +552,8 @@ async def run(
                                         else:
                                             hide_overlay()
                                             resume_needs_reset = True
-                                            overlay_action = "hide_foreground"
+                                            overlay_action = "hide_stale_or_foreground"
+                                            stats["stale_text_skips"] += 1
                                             overlay_info = None
                                 else:
                                     stage = "overlay"
@@ -548,7 +587,7 @@ async def run(
                                     "reason": (
                                         pipeline_decision.reason
                                         if pipeline_decision
-                                        else "not_dialogue"
+                                        else "source_changed_during_ocr" if stale_during_ocr else "not_dialogue"
                                     ),
                                     "translation": translation_to_dict(
                                         pipeline_decision.translation
