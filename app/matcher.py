@@ -18,6 +18,7 @@ from .translation_store import TranslationStore
 class MatcherConfig:
     high_threshold: float = 90.0
     medium_threshold: float = 78.0
+    ambiguity_margin: float = 4.0
     max_candidates: int = 80
     debug_candidates: int = 5
 
@@ -119,7 +120,16 @@ class DialogueMatcher:
             )
 
         best = scored[0]
-        if best.score >= self.config.high_threshold:
+        runner_up = scored[1] if len(scored) > 1 else None
+        ambiguous = (
+            runner_up is not None
+            and best.score - runner_up.score < self.config.ambiguity_margin
+        )
+
+        # Normal mode only displays high-confidence results. A fuzzy result
+        # that is almost tied with another candidate is intentionally
+        # downgraded to medium so the overlay hides it instead of guessing.
+        if best.score >= self.config.high_threshold and not ambiguous:
             confidence = "high"
             matched = True
         elif best.score >= self.config.medium_threshold:
