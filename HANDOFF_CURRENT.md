@@ -4,7 +4,7 @@
 
 ## Current phase
 
-**Phase 4 — Local Alpha: normal Windows session clean, 60-second visual QC pending**
+**Phase 4 — Local Alpha: normal Windows sessions clean, 60-second visual QC pending**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
@@ -340,3 +340,35 @@ Next user checkpoint (supersedes the pre-release download steps above):
 3. Check a second normal Start/Stop and that mouse/keyboard input still works normally.
 
 Phase 4 remains CURRENT; full PASS/LOCKED awaits the Alpha visual/interaction QC.
+
+## Phase 4 second normal-session review — 2026-10-04 20:23 (+07)
+
+Archive: `ALPHA_RESULT_20261004_202018_804304.zip` (8,307 bytes; CRC passed).
+Same build/code fingerprint as the first Alpha session. The second real Windows
+normal run ended cleanly as **STOPPED**, without reported errors.
+
+- 181.56 active seconds / 195.51 wall seconds; 1,427 captures, 165 OCR calls.
+- 29 dialogue detections: 19 normal-right, 10 inventory-left.
+- 15 emitted texts, 14 duplicates suppressed, 10 High matches/overlay updates.
+- 9 exact matches at 100%; one correct fuzzy match at 99.11% recovered OCR
+  `infor` instead of `in for` in Renly / The Miller (event 74).
+- 5 untranslated texts correctly hidden: two Renly / Fatherhood_2, three Renly /
+  Clearfell, all exact normalized matches in the fresh corpus outside the Alpha DB.
+- 0 OCR/overlay/runtime errors or dropped entries; 35 transient foreground losses,
+  2 pauses; all 10 logged masks cover English completely and retain all Vietnamese text.
+
+Independently recounted summary totals, replayed every emitted match against the
+local matcher/DB, and verified the code fingerprint and logged geometry/text.
+This also confirms normal mode continues beyond 60 seconds. It does not prove a
+restart within the same panel process, direct interaction or visual appearance.
+
+The pack is **normal mode**, not panel QC: `mode=alpha`, `duration_seconds=null`,
+`screenshots_enabled=false`; three log/metadata/summary entries and zero proof images.
+Do not mark Phase 4 visual QC PASS from this archive or infer which button the user
+pressed. They may have sent a normal pack instead of an existing QC pack.
+
+Next user checkpoint: if QC was already run, find/send `QC_PHASE4_RESULT_*.zip`
+in the same extracted project folder. Otherwise reopen `RUN_ALPHA.bat` and choose
+**QC 60 giây**, the middle button between Bắt đầu and Dừng & tạo ZIP. Wait for QC
+hoàn tất after 60 active game seconds, then send its result ZIP. Keep the current
+build; no engine change or new download is required by this review.
