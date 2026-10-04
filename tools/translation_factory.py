@@ -47,7 +47,7 @@ def atomic_json(path: Path, value: object) -> None:
 def inputs(root: Path) -> tuple[dict, dict, list[dict]]:
     corpus = load_source_corpus(root / "source_data/dialogue_corpus.jsonl")
     if not corpus:
-        raise ValueError("Thiếu nguồn local. Chạy SOURCE_SYNC.bat trước.")
+        raise ValueError("Thiếu nguồn local. Chạy dev/SOURCE_SYNC.bat trước.")
     lock = json.loads((root / "sources/sources.lock.json").read_text(encoding="utf-8"))
     source_ref = lock["sources"]["poe2_en"]["ref"]
     context_ref = lock["sources"]["dialogue_context"]["ref"]
@@ -144,7 +144,8 @@ def prepare(root: Path, source_ids: list[str], batch_id: str, output: Path) -> d
 
 
 def review_digest(batch: dict, entry: dict) -> str:
-    return digest({**{k: batch.get(k) for k in ("batch_id", "source_lock_sha256", "glossary_sha256")},
+    extra = {"manifest_sha256": batch["manifest_sha256"]} if "manifest_sha256" in batch else {}
+    return digest({**extra, **{k: batch.get(k) for k in ("batch_id", "source_lock_sha256", "glossary_sha256")},
                    **{k: entry.get(k) for k in ("source_id", "source_sha256", "vi", "speaker", "topic",
                                                "segment_index", "segment_count")}})
 
@@ -169,6 +170,15 @@ def qa(root: Path, batch: dict) -> dict:
         if batch.get(key) != value:
             issue("batch", "stale_" + key, "Nguồn/glossary đã đổi; tạo và duyệt lại lô.")
     entries = batch.get("entries")
+    pack_terms = []
+    if "manifest_path" in batch:
+        path = (root / batch["manifest_path"]).resolve()
+        if not path.is_relative_to((root / "translations/manifests").resolve()) or not path.is_file():
+            issue("batch", "missing_manifest", "Thiếu manifest hợp lệ trong dự án.")
+        elif text_sha(path.read_text(encoding="utf-8")) != batch.get("manifest_sha256"):
+            issue("batch", "changed_manifest", "Phạm vi/thuật ngữ pack đã đổi sau khi tạo lô.")
+        else:
+            pack_terms = json.loads(path.read_text(encoding="utf-8")).get("terms", [])
     if not isinstance(entries, list) or not entries:
         issue("batch", "empty_batch", "Lô thiếu entries.")
         entries = []
@@ -205,7 +215,7 @@ def qa(root: Path, batch: dict) -> dict:
             issue(sid, "placeholders", "Thiếu/đổi placeholder của nguồn.")
         if Counter(NUMBERS.findall(source)) != Counter(NUMBERS.findall(vi)):
             issue(sid, "numbers", "Thiếu/đổi chữ số của nguồn.")
-        for term in glossary["terms"]:
+        for term in [*glossary["terms"], *pack_terms]:
             if contains(source, term["source"], case_sensitive=term.get("case_sensitive", False)):
                 if not contains(vi, term["target"]):
                     issue(sid, "glossary", f"Thiếu thuật ngữ: {term['target']}")
@@ -310,10 +320,24 @@ def render_bundle(root: Path, batch: dict) -> str:
              "Translate/review each complete page. Return only source_id and vi edits in the batch JSON.",
              "Do not change source hashes, context, or review state. Automatic QA is not semantic review.", "",
              "## Project style", *[f"- {s}" for s in glossary.get("style", [])], ""]
+    manifest = None
+    if batch.get("manifest_path"):
+        report = qa(root, batch)
+        if any(i["code"] in {"changed_manifest", "missing_manifest"} for i in report["issues"]):
+            raise ValueError("Manifest đã đổi; không tạo review bundle từ context khác.")
+        manifest = json.loads((root / batch["manifest_path"]).read_text(encoding="utf-8"))
+        lines += ["## Pack style", *[f"- {s}" for s in manifest.get("style", [])], ""]
     for entry in batch["entries"]:
         row = corpus[entry["source_id"]]
         lines += [f"## {entry['source_id']} — {row.get('speaker')} / {row.get('topic')}", "",
                   f"English: {row['source']}", "", f"Vietnamese: {entry['vi'] or '(draft needed)'}", ""]
+        if manifest:
+            for group in manifest["groups"]:
+                if entry["source_id"] in group["page_ids"]:
+                    lines += [f"Original variant: {group['speaker']} / {group['topic']} "
+                              f"(upstream {group['upstream_index']})"]
+                    for index, sid in enumerate(group["page_ids"]):
+                        lines += [f"Continue page {index + 1}: {corpus[sid]['source']}"]
         neighbors = [r for r in corpus.values() if row.get("topic") and row.get("speaker")
                      and r.get("speaker") == row["speaker"] and r.get("topic") == row["topic"]
                      and r.get("upstream_index") == row.get("upstream_index")
@@ -349,6 +373,14 @@ def main() -> None:
     create.add_argument("--source-id", action="append", default=[])
     create.add_argument("--from-qc", type=Path)
     create.add_argument("--output", type=Path, required=True)
+    pack = commands.add_parser("pack")
+    pack.add_argument("--manifest", type=Path, required=True)
+    pack.add_argument("--output-dir", type=Path, default=ROOT / "translations/batches")
+    pack.add_argument("--size", type=int, default=40)
+    pack.add_argument("--speaker", action="append")
+    pack.add_argument("--topic", action="append")
+    report_command = commands.add_parser("coverage")
+    report_command.add_argument("--manifest", type=Path, required=True)
     for name in ("qa", "bundle", "mark-reviewed", "approve", "publish"):
         command = commands.add_parser(name)
         command.add_argument("--batch", type=Path, required=True)
@@ -359,6 +391,14 @@ def main() -> None:
             command.add_argument("--note", required=True)
     args = parser.parse_args()
     try:
+        if args.command in {"pack", "coverage"}:
+            from tools.translation_pack import coverage, prepare_pack
+            manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+            result = (coverage(args.root, manifest) if args.command == "coverage" else
+                      prepare_pack(args.root, manifest, args.output_dir, size=args.size,
+                                   speakers=args.speaker, topics=args.topic))
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return
         if args.command == "prepare":
             source_ids = args.source_id
             if args.from_qc:

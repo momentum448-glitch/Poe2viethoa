@@ -49,7 +49,7 @@ class AlphaApp:
 
         label("POE2 VIỆT HÓA", font=("Segoe UI", 19, "bold"))
         label(f"Local Alpha {VERSION}", font=("Segoe UI", 10), pady=5)
-        label("Renly: Introduction / The Miller  •  Una: Home / Clearfell",
+        label("Act 1 • Una / Renly / Finn / The Hooded One",
               font=("Segoe UI", 10), pady=7)
 
         self.status = label("Sẵn sàng", font=("Segoe UI", 12, "bold"), pady=6)
@@ -72,6 +72,10 @@ class AlphaApp:
                                 font=("Segoe UI", 9), wraplength=560, justify="left", pady=7)
         self.open_button = ttk.Button(body, text="Mở file kết quả", style="Alpha.TButton", command=self.open_result, state="disabled")
         self.open_button.pack(anchor="w", pady=(2, 8))
+        self.cleanup_button = ttk.Button(body, text="Dọn kết quả cũ", style="Alpha.TButton", command=self.cleanup_results)
+        self.cleanup_button.pack(anchor="w", pady=(0, 8))
+        self.pin_button = ttk.Button(body, text="Ghim kết quả này", style="Alpha.TButton", command=self.pin_result, state="disabled")
+        self.pin_button.pack(anchor="w", pady=(0, 8))
         label("Bắt đầu sẽ thu nhỏ cửa sổ. Alt+Tab quay lại đây để Dừng.\n"
               "Chế độ chơi lưu log nhẹ; QC mới lưu ảnh vùng hội thoại.",
               font=("Segoe UI", 9), wraplength=560, justify="left", pady=7)
@@ -93,6 +97,10 @@ class AlphaApp:
         self.window.update_idletasks()
         width = min(self.window.winfo_screenwidth() - 60,
                     max(620, self.window.winfo_width(), self.body.winfo_reqwidth()))
+        for widget in self.body.winfo_children():
+            if "wraplength" in widget.keys() and int(widget.cget("wraplength")) > 0:
+                widget.configure(wraplength=max(300, width - 52))
+        self.window.update_idletasks()
         height = min(self.window.winfo_screenheight() - 80,
                      max(600, self.window.winfo_height(), self.body.winfo_reqheight()))
         self.window.geometry(f"{width}x{height}")
@@ -102,16 +110,20 @@ class AlphaApp:
         for name in ("LAST_ALPHA_RESULT.txt", "LAST_QC_RESULT.txt"):
             try:
                 for line in (self.root / name).read_text(encoding="utf-8").splitlines():
-                    candidate = self.root / Path(line.strip()).name
-                    if (candidate.name.startswith(("ALPHA_RESULT_", "QC_PHASE3_RESULT_", "QC_PHASE4_RESULT_"))
-                            and candidate.suffix == ".zip" and candidate.is_file()):
-                        candidates.append(candidate)
+                    name = line.strip().replace("\\", "/").rsplit("/", 1)[-1]
+                    for folder in (self.root / "results", self.root):
+                        candidate = folder / name
+                        if (candidate.name.startswith(("ALPHA_RESULT_", "QC_PHASE2_RESULT_", "QC_PHASE3_RESULT_", "QC_PHASE4_RESULT_"))
+                                and candidate.suffix == ".zip" and candidate.is_file()
+                                and not candidate.is_symlink() and not folder.is_symlink()):
+                            candidates.append(candidate)
             except OSError:
                 continue
         if candidates:
             self.archive = max(candidates, key=lambda p: p.stat().st_mtime)
             self.file_label.configure(text=f"Kết quả lần trước: {self.archive.name}")
             self.open_button.configure(state="normal")
+            self.pin_button.configure(state="normal")
 
     def start(self, mode: str) -> None:
         ready, message = self.ready_check(self.root)
@@ -130,6 +142,7 @@ class AlphaApp:
         self.archive = None
         self.last_error = ""
         self.open_button.configure(state="disabled")
+        self.pin_button.configure(state="disabled")
         self.play_button.configure(state="disabled")
         self.qc_button.configure(state="disabled")
         self.stop_button.configure(state="normal")
@@ -173,6 +186,7 @@ class AlphaApp:
                 self.archive = Path(path_text)
                 self.file_label.configure(text=f"File cần gửi: {self.archive.name}")
                 self.open_button.configure(state="normal")
+                self.pin_button.configure(state="normal")
             else:
                 self.file_label.configure(text="Chưa tạo được file ZIP. Chụp cửa sổ này để gửi lỗi.")
         self.fit_panel()
@@ -212,6 +226,36 @@ class AlphaApp:
             subprocess.Popen(["explorer.exe", "/select,", str(self.archive.resolve())])
         except OSError as exc:
             self.detail.configure(text=f"Không mở được Explorer: {exc}. File: {self.archive}")
+
+    def pin_result(self) -> None:
+        from tools.result_cleanup import pin_result
+        if self.archive is None:
+            return
+        try:
+            pin_result(self.root, self.archive.name)
+            self.detail.configure(text=f"Đã ghim {self.archive.name}. File này sẽ được giữ khi dọn kết quả.")
+        except (OSError, ValueError) as exc:
+            self.detail.configure(text=f"Chưa ghim được: {exc}")
+
+    def cleanup_results(self) -> None:
+        from tkinter import messagebox
+        from tools.result_cleanup import apply_cleanup, plan_cleanup
+        if self.controller.busy:
+            self.detail.configure(text="Dừng phiên hiện tại trước khi dọn kết quả.")
+            return
+        try:
+            plan = plan_cleanup(self.root)
+            if not plan["candidates"]:
+                self.detail.configure(text="Không có kết quả cũ cần dọn. Giữ 5 ZIP mới nhất, file gần nhất và file đã ghim.")
+                return
+            paths = "\n".join(c["path"] for c in plan["candidates"])
+            if messagebox.askyesno("Dọn kết quả cũ", f"Xóa {len(plan['candidates'])} ZIP cũ và bản chẩn đoán trùng đã kiểm tra:\n\n{paths}\n\n"
+                                   f"Thu hồi khoảng {plan['bytes'] / 1024**2:.1f} MB.\n"
+                                   "Giữ 5 ZIP mới nhất, file gần nhất và file đã ghim.", default="no", parent=self.window):
+                result = apply_cleanup(self.root, plan)
+                self.detail.configure(text=f"Đã dọn {len(result['deleted'])} ZIP cũ. Các kết quả cần giữ vẫn còn.")
+        except (OSError, ValueError, RuntimeError) as exc:
+            self.detail.configure(text=f"Chưa dọn được: {exc}")
 
     def close(self) -> None:
         self.closing = True

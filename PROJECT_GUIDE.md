@@ -1,181 +1,79 @@
 # POE2 Việt Hóa — Project Guide
 
-## North Star
+## Mục tiêu và quyết định đã chốt
 
-Xây một engine Việt hóa Path of Exile 2 chạy local trên Windows, bắt đầu bằng Story Dialogue và có thể mở rộng theo module sang Quest, Tutorial, UI, Skill/Passive, Item và Mechanics.
-
-## Nguyên tắc đã chốt
+Xây engine Việt hóa PoE2 local Windows, bắt đầu từ Story Dialogue, sau đó mở rộng
+sang Quest, Tutorial, UI, Skill/Passive, Item và Mechanics.
 
 - GitHub `momentum448-glitch/Poe2viethoa` là source of truth.
-- Runtime offline, dictionary-first; không dùng AI model để dịch trực tiếp trong lúc chơi.
-- Không đọc RAM, không injection/hooking, không tự động gửi input vào game.
-- Overlay Normal mode: **che text tiếng Anh và thay bằng tiếng Việt**.
-- Khi match không chắc chắn hoặc fuzzy mơ hồ: Normal mode không hiện.
-- Git chỉ giữ bản dịch Việt theo source_id; raw English source sync local vào thư mục gitignored.
-- Alpha cập nhật dữ liệu bằng release thủ công; updater để sau.
-- Python/source-first; đóng EXE sau khi Local Alpha ổn định.
-- Không dùng Remote Desktop để khôi phục source.
-- Không tái sử dụng dictionary/corpus cũ của dự án trước.
+- Runtime offline, dictionary-first. AI soạn dữ liệu trước khi chơi.
+- Không đọc RAM, injection/hooking hoặc tự động gửi input vào game.
+- Normal mode che tiếng Anh và thay bằng tiếng Việt; chỉ hiển thị match High
+  không mơ hồ. Câu ngoài catalog hoặc không chắc chắn giữ tiếng Anh.
+- Không dùng Remote Desktop; không nhập dictionary/corpus của dự án cũ.
+- Raw English/cache/runtime DB chỉ nằm local, gitignored. Git giữ VI và provenance.
+- Cập nhật Alpha bằng source ZIP thủ công; updater/EXE để sau khi Alpha ổn định.
 
-## Kiến trúc
+Foreground guard kiểm tra native PoE window class trước/sau capture và trong
+thời gian OCR chờ. Bộ nhận diện chọn đoạn với header/footer gần nhau, tránh
+chat ở cột khác. Matcher exact trước, fuzzy có ambiguity guard. Overlay Tk/Win32
+click-through, topmost, dùng `WDA_EXCLUDEFROMCAPTURE` để OCR không đọc chữ Việt.
+Nguồn đổi trong lúc OCR hoặc proof đang xử lý thì kết quả cũ bị loại.
 
-```text
-PoE2 screen
-  ↓
-Foreground guard
-  ↓
-Capture scheduler
-  ↓
-Windows OCR + bbox
-  ↓
-Dialogue context
-  ↓
-Text stabilizer
-  ↓
-Exact / fuzzy matcher + ambiguity guard
-  ↓
-Local runtime translation DB
-  ↓
-Replacement overlay
-```
+## Các chặng và phạm vi xác nhận
 
-## Roadmap
+| Phase | Trạng thái | Mốc |
+| --- | --- | --- |
+| 0. Signal/architecture | PASS | OCR-first |
+| 1. Capture/context | PASS/LOCKED | QC 20261004_163219 |
+| 2. Matching/fresh store | PASS/LOCKED | QC 20261004_175216 |
+| 3. Replacement overlay | Technical + visual PASS | QC 20261004_183317 |
+| 4. Local Alpha | PASS/LOCKED | Alpha.3 QC 212425 + người dùng xác nhận 21:46 (+07) |
+| 5. Translation Factory | CURRENT | 196 trang/105 nhóm nguồn; bản mới chờ QC Windows |
+| 6. Module tiếp theo | Chưa triển khai | Quest → Tutorial → UI → Skill/Passive → Item/Mechanics |
 
-### Phase 0 — Signal & architecture validation — PASS
-- OCR-first locked.
+Phase 4 đã xác nhận Continue/di chuyển/Alt+Tab bình thường trên cấu hình Windows,
+Python 3.12, 1920×1080 đã thử. Không mở rộng tuyên bố PASS sang DPI/máy khác.
+Baseline Alpha.3 có 9 trang; lô Factory đầu thêm 7 trang, đã có QC kỹ thuật/ảnh
+223644. QC đó còn một glyph nhỏ tại mép Renly cũ và Una Home dài ở 14 px.
+Bản Act 1 mới xử lý hai hướng này trong code; vẫn cần xác minh native, không
+khẳng định nguyên nhân glyph cũ đã được chứng minh.
 
-### Phase 1 — Core capture/context — PASS / LOCKED
-- foreground detection;
-- screen capture;
-- dialogue layout detection;
-- frame-change/stability gate;
-- Windows OCR + bbox;
-- diagnostics/QC packaging.
+## Chặng Act 1 hiện hành
 
-### Phase 2 — Dialogue matching + fresh translation store — PASS / LOCKED
-- fresh-source sync from pinned snapshots;
-- deterministic source IDs;
-- normalized dedupe;
-- exact/fuzzy matcher;
-- ambiguity guard;
-- JSON Vietnamese entries → local SQLite runtime;
-- 60-second real-game QC.
+`0.5.0-alpha.2 / act1-20261004-01` thêm 180 trang trong 7 lô nội bộ và giữ nguyên
+16 trang trước. Manifest chọn 105 nhóm nguồn với đủ trang Continue; trang trùng
+trong nhiều biến thể chỉ dịch một lần. Una 64, Renly 71, Finn 30, The Hooded One 31.
+Không lấy vendor/combat/callout, thoại Act khác hoặc context chưa rõ để tăng số lượng.
 
-Final real QC `20261004_175216`:
-- 54 OCR calls;
-- 16 dialogue detections;
-- 6 duplicates suppressed;
-- 5 High matches;
-- 0 errors;
-- 60.00 active seconds.
+Factory có selection theo manifest/NPC/topic, resume, thống kê coverage, bundle
+đầy đủ biến thể và thuật ngữ pack. `reviewed` là soát AI/author; `approved` cần dấu
+QC câu chữ của người dùng. QA cấu trúc và match exact không thay thế soát nghĩa.
 
-### Phase 3 — Replacement overlay — TECHNICAL + VISUAL QC PASS
-- OCR bbox → absolute screen placement;
-- mask/cover original English;
-- render/wrap Vietnamese;
-- click-through/topmost;
-- DPI handling;
-- foreground hide/show;
-- self-capture protection;
-- QC proof screenshots.
+Đã đạt 128 tests, 8 lô QA sạch, DB 196 records. Replay 4 QC giữ đúng 35 High cũ;
+392 mẫu OCR nhiễu không khớp High sai; 71 cặp ảnh cùng trang không bị guard báo đổi.
+Bố cục dùng DejaVu Sans trên Linux giữ đủ VI ở hai vị trí panel; đây không phải
+đo Segoe UI native. Bản phát hành cần QC Windows trước khi khóa chặng.
 
-Current proof uses a transparent Tk/Win32 topmost overlay and `WDA_EXCLUDEFROMCAPTURE` to keep the overlay out of runtime OCR captures.
+Hai entrypoint người dùng là RUN_ALPHA/SETUP_ALPHA. Normal play không giới hạn
+thời gian, log có giới hạn; QC giữ 60 giây foreground và lưu proof. Worker riêng
+giữ Stop/foreground responsive; lỗi vẫn đóng gói dữ liệu thu được.
+Kết quả mới vào `results/`; dọn thủ công có preview, retention và pin, không
+xóa dữ liệu offline hoặc file người dùng ngoài các kết quả của bản cài.
 
-Real Windows/PoE2 QC `20261004_183317` completed 60 active seconds with 6 exact/High
-overlay updates, 5 proof images and no OCR/overlay/runtime errors. Manual image
-review passed in normal-right and inventory-left layouts: English covered,
-Vietnamese readable, Continue unobstructed. OCR frames retained English while
-the overlay was visible; no self-capture loop was observed.
+## Nguồn và kiểm tra phân phối
 
-Validation applies to the tested 1920×1080 setup. Direct mouse/keyboard focus
-behavior, all foreground transitions and other DPI/presentation modes remain
-part of Phase 4 real-session testing. Three unmatched Renly segments are outside
-the nine-segment Alpha corpus; they correctly receive no replacement overlay.
+Pin English: `addohm/poe2-en-cn-dict@28d683c99600eb407b4e014ccaf8247532fb4607`.
+Pin context: `fireMCG/Exiled-Vault@b3dd7457aa4e7f126021b8d8577f38ef205490c7`.
+ID tạo từ nội dung nguồn đã chuẩn hóa; source/glossary/manifest/review digest
+bảo vệ thay đổi sau soát. Source refresh cần lô/review mới; không tái sử dụng
+phê duyệt cũ cho nội dung đã đổi.
 
-### Phase 4 — Local Alpha — PASS / LOCKED
-- `RUN_ALPHA.bat` checks local readiness, runs first-time setup when needed and opens the control panel;
-- `SETUP_ALPHA.bat` installs dependencies and builds the local DB atomically from pinned sources;
-- native Tk panel: Bắt đầu, QC 60 giây, Dừng & tạo ZIP, Mở file kết quả;
-- normal play is untimed and records bounded logs without screenshots;
-- QC still runs for 60 active foreground seconds and includes proof screenshots;
-- one worker process owns OCR/Tk overlay; Stop and foreground hiding remain responsive during pending OCR;
-- controller detects worker failures and packages available diagnostics; no game input is automated;
-- foreground capture requires the native PoE window class, never a browser/document title alone;
-- version/build ID and source fingerprint are recorded in every session;
-- passing baseline `0.4.0-alpha.3 / alpha-20261004-03`; Alpha.1 had two clean normal sessions and a completed 60-second technical/visual Renly QC;
-- Alpha.2's expanded capture passed visual Una/Renly QC; its larger ROI exposed a chat line falsely anchored by Continue in another column;
-- Alpha.3 associates each paragraph with a nearby footer/header before choosing it; the corrected context selection passed Windows QC;
-- the user confirmed Continue/movement/Alt+Tab work normally and declared PASS on 2026-10-04 at 21:46 (+07).
+Đã kiểm tra metadata hai repo upstream và [điều khoản GGG](https://www.pathofexile.com/legal/terms-of-use-and-privacy-policy)
+ngày 2026-10-04. Hai repo không khai báo license trong metadata; việc nguồn công
+khai không được xem là giấy phép cho nội dung game. Text/tên/nhân vật PoE2 thuộc
+GGG; dự án không tự nhận được GGG phê duyệt hoặc sở hữu IP game. Raw corpus không
+được đưa vào source ZIP/Git. Rà soát lại điều kiện khi thay đổi phạm vi/phân phối.
 
-Phase 4 is PASS/LOCKED for the tested Windows/1920×1080 setup. The baseline used nine translations.
-
-Latest real QC `20261004_212425_250828`, verified Alpha.3 fingerprint: 456 captures,
-53 OCR calls, 24 valid dialogue detections, 15 emitted texts, 9 duplicates,
-8 exact/High overlay updates at 100%, 7 readable proof images, no errors,
-60.00 active seconds / 61.02 wall seconds. All 24 detected texts match the fresh
-source; seven untranslated Una/Renly pages outside the reviewed DB stay hidden.
-All 29 rejected frames show topic menus, open-world/chat, waypoint or proclamation,
-consistent with the NPC Story Dialogue scope. The prior chat-selection defect
-does not recur; Una's short page is selected correctly beside chat. Four Una and
-three Renly proofs cover English and leave Continue visible; all eight logged
-masks preserve the full translation and cover the complete English OCR box.
-
-The ZIP has zero foreground transitions; direct operation/focus validation comes
-from the subsequent user confirmation, not an invented event trace.
-
-### Phase 5 — Translation Factory — CURRENT / FIRST BATCH QC VERIFIED
-- current build `0.5.0-alpha.1 / factory-20261004-01` with 16 reviewed translations;
-- `tools.translation_factory`: exact-source selection from QC MISS, batch creation,
-  local prompt/review bundle, QA, explicit semantic review, publication and human-QC approval;
-- project glossary/style in `translations/glossary.json`; batches bind source/glossary hashes,
-  exact source text, context/page metadata and the original catalog record;
-- translation memory uses reviewed/approved catalog entries as same-speaker references;
-  fuzzy similarity never fills or publishes a draft automatically;
-- AI drafting currently happens in chat from the local bundle; no bulk AI API integration;
-- QA checks source drift, names, placeholders, numeric literals, duplicates, review digests
-  and data changed after review; semantic review remains an explicit authoring step;
-- publish preserves existing entries, rejects conflicting catalog revisions/downgrades,
-  and writes atomically; runtime builds validate source/VI hashes and preserve an old DB on failure;
-- source refresh reuses pinned `tools.source_sync`; meaningful new IDs require new review.
-
-First batch `qc-alpha3-20261004-01`: 3 Una pages (Introduction_4 / Renly) and
-4 Renly Fatherhood_2 pages observed in Alpha.3 QC. Seven AI-reviewed pages passed
-QA with 0 errors/warnings and compile into the 16-record runtime. All 102 tests
-pass; replay of three real QC logs keeps all 22 prior High overlay decisions on
-the same IDs, and all seven latest MISS pages now resolve exactly at 100%.
-
-First-batch Windows QC `20261004_223644_671889` verifies the actual build fingerprint
-and all seven new pages. It completed 60 active seconds / 67.89 wall seconds:
-448 captures, 53 OCR calls, 32 detections, 13 High shows (11 exact and 2 correct
-fuzzy matches), 19 duplicates, 12 proof images, no MISS or OCR/overlay/runtime errors.
-The 2 fuzzy matches are existing Una Home pages with their final OCR line obscured
-by chat; manual source/image review confirms the correct page. All seven new
-pages are readable, cover English and leave Continue unobstructed in the observed layouts.
-
-Two follow-ups belong to the next larger milestone: a small exposed glyph at the
-right mask edge of an existing Renly Introduction proof, and the 14-pixel font on
-a long existing Una Home page. The exposed glyph's cause is not established;
-check mask bounds and changes between the OCR frame and proof capture before fixing it.
-The ZIP records one foreground pause; its 12 transient-loss counts are loop samples,
-not 12 distinct Alt+Tab actions. Event 33 was discarded during a foreground change,
-consistent with the guard; logging reports no dropped entries.
-
-Phase 5 remains CURRENT. The original nine entries are retained unchanged; the
-new seven remain `reviewed`, with no invented human wording approval. The user
-requested larger implementation batches and a cleanup plan. The proposed next
-deliverable is one Act 1 Story Dialogue pack targeting 180–220 reviewed pages in
-total across Una/Renly/Finn/The Hooded One, with factory scaling, layout follow-ups,
-regression checks and retirement of superseded files. Topic/source validation
-determines final eligible coverage; speaker totals include barks and other Acts.
-See [the next milestone](docs/ROADMAP_NEXT.md) for scope, exit checks and exact cleanup candidates.
-
-### Phase 6 — Additional modules
-Quest → Tutorial → UI → Skill/Passive → Item/Mechanics.
-
-## Fresh-source rule
-
-Do not recover or import the previous project dictionary.
-
-Raw upstream PoE2 text is reconstructed locally from pinned public snapshots listed in `sources/sources.lock.json`. Raw source/cache/runtime DB directories are gitignored.
-
-Before public distribution of a large translation corpus, re-check current upstream/GGG licensing and distribution constraints.
+[Chi tiết chặng](docs/ROADMAP_NEXT.md) · [Factory](docs/TRANSLATION_FACTORY.md) ·
+[ADR signal](docs/ADR_001_DIALOGUE_SIGNAL.md) · [ADR nguồn](docs/ADR_002_FRESH_SOURCE.md)

@@ -9,6 +9,8 @@ import unittest
 from unittest.mock import AsyncMock, Mock, patch
 from zipfile import ZipFile
 
+from PIL import Image, ImageDraw
+
 from app import session_runtime as probe
 from app.capture import CaptureRegion, CapturedFrame
 from app.frame_stabilizer import StabilizerDecision
@@ -24,7 +26,7 @@ CONTEXT = DialogueContext(True, "normal_right", 0.99, "Keeper", TEXT, Rect(10, 4
 NO_DIALOGUE = DialogueContext(False, "unknown", 0.0, None, "", None)
 
 
-class ProbeLifecycleTests(unittest.TestCase):
+class SessionLifecycleTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
@@ -69,7 +71,7 @@ class ProbeLifecycleTests(unittest.TestCase):
 
     def run_probe(self, *, seconds=0.35, db=None, overlay_error=None, **options):
         replacements = {
-            "__file__": str(self.root / "app" / "phase3_probe.py"),
+            "__file__": str(self.root / "app" / "session_runtime.py"),
             "enable_per_monitor_dpi_awareness": Mock(),
             "ScreenCapture": Mock(return_value=self.capture),
             "FrameStabilizer": Mock(return_value=self.stabilizer),
@@ -104,6 +106,45 @@ class ProbeLifecycleTests(unittest.TestCase):
         self.assertGreaterEqual(self.overlay.show_translation.call_count, 2)
         self.assertTrue(self.overlay.clear.called)
 
+    def painted_frame(self, *, changed=False):
+        image = Image.new("RGB", (64, 32), (16, 16, 16))
+        ImageDraw.Draw(image).rectangle((12 if not changed else 32, 5, 25 if not changed else 44, 10),
+                                        fill=(238, 228, 201))
+        return CapturedFrame(image.tobytes("raw", "BGRX"), 64, 32, self.region)
+
+    def test_page_changed_while_ocr_was_pending_never_displays_old_translation(self):
+        self.frame = self.painted_frame()
+
+        async def recognize(*args):
+            self.frame = self.painted_frame(changed=True)
+            return OcrResult(TEXT, [], 1.0)
+
+        self.ocr.recognize_bgra.side_effect = recognize
+        session, _, summary = self.run_probe(seconds=0.05)
+        self.overlay.show_translation.assert_not_called()
+        self.assertEqual(summary["stale_text_skips"], 1)
+        event = json.loads((session / "events.jsonl").read_text())
+        self.assertEqual(event["pipeline"]["reason"], "source_changed_during_ocr")
+
+    def test_page_changed_during_proof_discards_proof_and_hides_overlay(self):
+        self.frame = self.painted_frame()
+        original_grab = self.grab
+        count = 0
+
+        def grab(region):
+            nonlocal count
+            count += 1
+            if count == 4:  # raw, OCR guard, visible proof, excluded verification
+                self.frame = self.painted_frame(changed=True)
+            return original_grab(region)
+
+        self.capture.grab.side_effect = grab
+        session, _, summary = self.run_probe(seconds=0.05)
+        self.assertEqual(summary["overlay_proofs"], 0)
+        self.assertEqual(summary["stale_text_skips"], 1)
+        self.assertTrue(self.overlay.clear.called)
+        self.assertEqual(list((session / "overlay_proofs").iterdir()), [])
+
     def test_setup_failure_still_produces_a_zip_with_error_and_summary(self):
         _, archive, summary = self.run_probe(overlay_error=OverlayCaptureError("affinity failed"))
         self.assertEqual(summary["result"], "ERROR")
@@ -130,7 +171,7 @@ class ProbeLifecycleTests(unittest.TestCase):
         _, archive, summary = self.run_probe()
         self.assertEqual(summary["result"], "ERROR")
         self.assertEqual(summary["overlay_errors"], 1)
-        self.assertEqual(self.capture.grab.call_count, 2)  # raw game + QC-only proof
+        self.assertEqual(self.capture.grab.call_count, 3)  # raw + current-source guard + proof
         self.assertTrue(archive.exists())
 
     def test_ocr_error_clears_previous_translation_and_can_recover(self):

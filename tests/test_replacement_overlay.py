@@ -21,7 +21,7 @@ class OverlayGeometryTests(unittest.TestCase):
 
         rect = build_overlay_rect(box, region)
 
-        self.assertEqual(rect.left, 669)
+        self.assertEqual(rect.left, 661)
         self.assertEqual(rect.top, 490)
         self.assertGreaterEqual(rect.width, 471)
         self.assertLessEqual(rect.height, 108)
@@ -56,6 +56,15 @@ class OverlayGeometryTests(unittest.TestCase):
         with self.assertRaises(OverlayLayoutError):
             build_overlay_rect(Rect(115, 75, 470, 100), region,
                                continue_box=Rect(240, 170, 75, 15))
+
+    def test_measured_continue_space_is_available_for_long_translation(self):
+        region = CaptureRegion(230, 421, 1190, 486)
+        source = Rect(115, 75, 470, 80)
+        button = Rect(290, 245, 75, 15)
+        limited = build_overlay_rect(source, region)
+        expanded = build_overlay_rect(source, region, continue_box=button)
+        self.assertGreater(expanded.height, limited.height)
+        self.assertLess(expanded.bottom, region.top + button.y)
 
     def test_rgb_to_hex(self):
         self.assertEqual(rgb_to_hex((23, 19, 15)), "#17130f")
