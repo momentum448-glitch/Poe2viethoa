@@ -5,6 +5,7 @@ import asyncio
 import json
 import sys
 import time
+import zipfile
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -16,6 +17,9 @@ from .dialogue_context import DialogueContextDetector
 from .frame_stabilizer import FrameStabilizer
 from .game_window import GameWindowProbe
 from .ocr_windows import WindowsOcr
+
+
+FOREGROUND_GRACE_SECONDS = 1.5
 
 
 def append_jsonl(path: Path, payload: dict[str, Any]) -> None:
@@ -38,7 +42,24 @@ def frame_to_png(frame, path: Path) -> None:
     image.save(path)
 
 
-async def run(seconds: int, capture_interval: float) -> Path:
+def package_session(root: Path, session: Path) -> Path:
+    zip_path = root / f"QC_PHASE1_RESULT_{session.name}.zip"
+    if zip_path.exists():
+        zip_path.unlink()
+
+    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+        for path in sorted(session.rglob("*")):
+            if path.is_file():
+                zf.write(path, path.relative_to(session))
+
+    (root / "LAST_QC_RESULT.txt").write_text(
+        "FILE CAN GUI CHO CHATGPT:\n" + str(zip_path) + "\n",
+        encoding="utf-8",
+    )
+    return zip_path
+
+
+async def run(seconds: int, capture_interval: float) -> tuple[Path, Path]:
     root = Path(__file__).resolve().parents[1]
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     session = root / "diagnostics" / "phase1" / stamp
@@ -54,6 +75,8 @@ async def run(seconds: int, capture_interval: float) -> Path:
         "normal_right": 0,
         "inventory_left": 0,
         "ocr_errors": 0,
+        "foreground_transient_losses": 0,
+        "foreground_pauses": 0,
     }
 
     with ScreenCapture() as capture:
@@ -71,6 +94,7 @@ async def run(seconds: int, capture_interval: float) -> Path:
                 "python": sys.version,
                 "duration_seconds": seconds,
                 "capture_interval_seconds": capture_interval,
+                "foreground_grace_seconds": FOREGROUND_GRACE_SECONDS,
                 "monitor": monitor,
                 "capture_region": region.as_mss(),
                 "architecture": "OCR-first",
@@ -86,29 +110,46 @@ async def run(seconds: int, capture_interval: float) -> Path:
         print("Trong luc probe chay:")
         print("- noi chuyen 3-5 cau voi NPC story")
         print("- thu inventory dong va mo neu tien")
-        print("- de tool tu chay het thoi gian")
+        print("- de tool tu chay het 60 giay")
         print()
 
         deadline = time.monotonic() + seconds
         event_no = 0
         last_change_counted = False
-        game_was_foreground = False
+        game_active = False
+        last_game_seen_at: float | None = None
+        pause_announced = False
 
         while time.monotonic() < deadline:
             loop_started = time.monotonic()
-
+            now = time.monotonic()
             foreground = game_window.foreground()
-            if not foreground.is_poe2:
-                if game_was_foreground:
-                    print("[PAUSE] POE2 khong con o foreground.")
-                game_was_foreground = False
-                await asyncio.sleep(max(0.10, capture_interval))
-                continue
 
-            if not game_was_foreground:
-                print(f"[GAME] foreground: {foreground.title or foreground.class_name}")
-                stabilizer.reset()
-            game_was_foreground = True
+            if foreground.is_poe2:
+                last_game_seen_at = now
+                if not game_active:
+                    print(f"[GAME] foreground: {foreground.title or foreground.class_name}")
+                    stabilizer.reset()
+                    game_active = True
+                    pause_announced = False
+            else:
+                within_grace = (
+                    game_active
+                    and last_game_seen_at is not None
+                    and now - last_game_seen_at <= FOREGROUND_GRACE_SECONDS
+                )
+
+                if within_grace:
+                    stats["foreground_transient_losses"] += 1
+                else:
+                    if game_active:
+                        stats["foreground_pauses"] += 1
+                    game_active = False
+                    if not pause_announced:
+                        print("[PAUSE] POE2 khong o foreground. Cho game active lai...")
+                        pause_announced = True
+                    await asyncio.sleep(max(0.10, capture_interval))
+                    continue
 
             frame = capture.grab(region)
             stats["captures"] += 1
@@ -116,10 +157,14 @@ async def run(seconds: int, capture_interval: float) -> Path:
             now = time.monotonic()
             decision = stabilizer.observe(frame.bgra, now=now)
 
-            if decision.dirty_since_ocr and decision.changed_fraction > stabilizer.changed_fraction_threshold:
+            if (
+                decision.dirty_since_ocr
+                and decision.changed_fraction > stabilizer.changed_fraction_threshold
+            ):
                 if not last_change_counted:
                     stats["visual_changes"] += 1
                     last_change_counted = True
+
             if decision.reason in {"settled", "max_wait"}:
                 last_change_counted = False
 
@@ -140,7 +185,10 @@ async def run(seconds: int, capture_interval: float) -> Path:
                         if context.layout in stats:
                             stats[context.layout] += 1
 
-                    shot_name = f"{event_no:04d}_{datetime.now().strftime('%H%M%S_%f')[:-3]}.png"
+                    shot_name = (
+                        f"{event_no:04d}_"
+                        f"{datetime.now().strftime('%H%M%S_%f')[:-3]}.png"
+                    )
                     shot_path = screenshots / shot_name
                     frame_to_png(frame, shot_path)
 
@@ -158,10 +206,12 @@ async def run(seconds: int, capture_interval: float) -> Path:
                     }
 
                     if context.dialogue_box is not None:
-                        payload["dialogue"]["global_box"] = context.dialogue_box.translated(
-                            region.left,
-                            region.top,
-                        ).to_dict()
+                        payload["dialogue"]["global_box"] = (
+                            context.dialogue_box.translated(
+                                region.left,
+                                region.top,
+                            ).to_dict()
+                        )
 
                     append_jsonl(session / "events.jsonl", payload)
 
@@ -177,9 +227,8 @@ async def run(seconds: int, capture_interval: float) -> Path:
                             f"[{event_no:02d}] OCR, no dialogue "
                             f"({', '.join(context.reasons)})"
                         )
+
                 except Exception as exc:
-                    # Mark the frame as consumed so one bad frame does not loop OCR
-                    # continuously. A new screen change will make it dirty again.
                     stabilizer.mark_ocr()
                     stats["ocr_errors"] += 1
                     append_jsonl(
@@ -202,6 +251,7 @@ async def run(seconds: int, capture_interval: float) -> Path:
         "result": "PASS" if stats["dialogue_detected"] > 0 else "NEEDS_REVIEW",
     }
     write_json(session / "summary.json", summary)
+    zip_path = package_session(root, session)
 
     print()
     print("============================================================")
@@ -209,8 +259,9 @@ async def run(seconds: int, capture_interval: float) -> Path:
     print("============================================================")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     print(f"Evidence: {session}")
+    print(f"ZIP: {zip_path}")
 
-    return session
+    return session, zip_path
 
 
 def main() -> None:
