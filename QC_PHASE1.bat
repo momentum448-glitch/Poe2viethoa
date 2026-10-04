@@ -15,7 +15,7 @@ echo   - detector dialogue
 echo   - phan biet normal / inventory-open layout
 echo.
 echo Hay mo POE2 va dung gan NPC story.
-echo Tool se chay 90 giay va tu dong tao ZIP.
+echo Tool se chay 60 giay va tu dong tao ZIP.
 echo.
 pause
 
@@ -49,7 +49,7 @@ echo Neu tien, mo inventory trong mot phan cua hoi thoai.
 echo DE TOOL TU CHAY HET 90 GIAY.
 echo.
 
-".venv\Scripts\python.exe" -X utf8 -m app.phase1_probe --seconds 90
+".venv\Scripts\python.exe" -X utf8 -m app.phase1_probe --seconds 60
 if errorlevel 1 goto :fail
 
 for /f "delims=" %%D in ('powershell -NoProfile -Command "$d=Get-ChildItem -Directory 'diagnostics\phase1' -ErrorAction SilentlyContinue ^| Sort-Object LastWriteTime -Descending ^| Select-Object -First 1; if($d){$d.FullName}"') do set "LATEST=%%D"
