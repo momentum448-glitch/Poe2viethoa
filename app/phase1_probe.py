@@ -14,6 +14,7 @@ from PIL import Image
 from .capture import ScreenCapture
 from .dialogue_context import DialogueContextDetector
 from .frame_stabilizer import FrameStabilizer
+from .game_window import GameWindowProbe
 from .ocr_windows import WindowsOcr
 
 
@@ -61,6 +62,7 @@ async def run(seconds: int, capture_interval: float) -> Path:
         stabilizer = FrameStabilizer()
         ocr = WindowsOcr()
         detector = DialogueContextDetector(region.width, region.height)
+        game_window = GameWindowProbe()
 
         write_json(
             session / "metadata.json",
@@ -90,9 +92,24 @@ async def run(seconds: int, capture_interval: float) -> Path:
         deadline = time.monotonic() + seconds
         event_no = 0
         last_change_counted = False
+        game_was_foreground = False
 
         while time.monotonic() < deadline:
             loop_started = time.monotonic()
+
+            foreground = game_window.foreground()
+            if not foreground.is_poe2:
+                if game_was_foreground:
+                    print("[PAUSE] POE2 khong con o foreground.")
+                game_was_foreground = False
+                await asyncio.sleep(max(0.10, capture_interval))
+                continue
+
+            if not game_was_foreground:
+                print(f"[GAME] foreground: {foreground.title or foreground.class_name}")
+                stabilizer.reset()
+            game_was_foreground = True
+
             frame = capture.grab(region)
             stats["captures"] += 1
 
