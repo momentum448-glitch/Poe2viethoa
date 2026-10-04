@@ -82,7 +82,7 @@ async def run(seconds: int, capture_interval: float) -> tuple[Path, Path]:
     with ScreenCapture() as capture:
         monitor = capture.primary_monitor()
         region = capture.default_dialogue_region()
-        stabilizer = FrameStabilizer()
+        stabilizer = FrameStabilizer(max_wait_ms=900)
         ocr = WindowsOcr()
         detector = DialogueContextDetector(region.width, region.height)
         game_window = GameWindowProbe()
@@ -165,7 +165,7 @@ async def run(seconds: int, capture_interval: float) -> tuple[Path, Path]:
                     stats["visual_changes"] += 1
                     last_change_counted = True
 
-            if decision.reason in {"settled", "max_wait"}:
+            if decision.reason in {"settled", "dirty_deadline"}:
                 last_change_counted = False
 
             if decision.should_ocr:
