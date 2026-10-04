@@ -3,15 +3,16 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 
-VERSION = "0.4.0-alpha.3"
-BUILD_ID = "alpha-20261004-03"
+VERSION = "0.5.0-alpha.1"
+BUILD_ID = "factory-20261004-01"
 
 
 def build_info(root: Path) -> dict[str, str]:
     """Identify the actual source bundle, including downloads without a .git folder."""
     paths = list((root / "app").glob("*.py")) + list((root / "tools").glob("*.py"))
     paths += [root / "requirements.txt", root / "sources/sources.lock.json",
-              root / "translations/dialogue_vi.json"]
+              root / "translations/dialogue_vi.json", root / "translations/glossary.json"]
+    paths += list((root / "translations/batches").glob("*.json"))
     digest = hashlib.sha256()
     for path in sorted(paths):
         if path.is_file():

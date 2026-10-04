@@ -49,3 +49,22 @@ Do not import the old project dictionary.
 Current source snapshots are pinned in `sources/sources.lock.json` and rebuilt through `tools/source_sync.py`.
 
 The initial Alpha Vietnamese entries were recreated from the fresh pinned 2026 source and real OCR evidence, not copied from the previous project corpus.
+
+## Translation Factory
+
+The current catalog has 16 reviewed entries: the nine Alpha baseline records
+plus seven pages from batch `batches/qc-alpha3-20261004-01.json`.
+
+- `glossary.json`: project terms and dialogue style;
+- `batches/*.json`: Vietnamese drafts/review provenance keyed by source ID;
+- `dialogue_vi.json`: published runtime catalog;
+- `factory_reports/` at the project root: ignored local English/VI prompt packets.
+
+New factory entries carry `source_sha256` and `vi_sha256`. The runtime builder
+rejects changed source/translation text rather than trusting an old review label.
+The original nine legacy entries remain intact. Batch review digests also protect
+the text, source/glossary pins and page context from changes after review.
+
+`reviewed` means explicit AI/author semantic review plus QA; `approved` records
+the user's QC. QA success alone never publishes drafts or claims semantic accuracy.
+See [the factory workflow](../docs/TRANSLATION_FACTORY.md) for commands.

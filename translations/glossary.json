@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "version": "project-20261004-01",
+  "style": [
+    "Dùng tiếng Việt tự nhiên, giữ giọng kể và cảm xúc của nhân vật.",
+    "NPC xưng tôi, gọi người chơi là bạn; tránh tự thêm thông tin hoặc đổi quan hệ nhân vật.",
+    "Giữ tên riêng theo nhãn tiếng Anh trong game để người chơi đối chiếu được.",
+    "Giữ ranh giới từng trang hội thoại; dấu ba chấm thể hiện ngập ngừng hoặc câu tiếp diễn.",
+    "Bản nháp phải soát nghĩa với toàn bộ câu nguồn và các trang cùng chủ đề trước khi được reviewed.",
+    "QA tự động kiểm tra cấu trúc, không chứng minh bản dịch đúng nghĩa. Approved dành cho QC của người dùng."
+  ],
+  "terms": [
+    {"source": "Una", "target": "Una", "case_sensitive": true},
+    {"source": "Renly", "target": "Renly", "case_sensitive": true},
+    {"source": "Finn", "target": "Finn", "case_sensitive": true},
+    {"source": "Branoc", "target": "Branoc", "case_sensitive": true},
+    {"source": "Geonor", "target": "Geonor", "case_sensitive": true},
+    {"source": "Clearfell", "target": "Clearfell", "case_sensitive": true},
+    {"source": "Ogham", "target": "Ogham", "case_sensitive": true},
+    {"source": "Karui", "target": "Karui", "case_sensitive": true},
+    {"source": "Count", "target": "Bá tước", "case_sensitive": true}
+  ]
+}

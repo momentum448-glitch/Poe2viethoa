@@ -4,11 +4,11 @@
 
 ## Current phase
 
-**Phase 4 — Local Alpha: Alpha.3 technical/visual QC passed; interaction confirmation pending**
+**Phase 5 — Translation Factory: first milestone implemented; seven new pages awaiting in-game QC**
 
-Phase 1 and Phase 2 are **PASS / LOCKED**.
+Phase 1, Phase 2 and Phase 4 are **PASS / LOCKED** on the tested Windows setup.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
-Current build: **0.4.0-alpha.3 / alpha-20261004-03**.
+Current build: **0.5.0-alpha.1 / factory-20261004-01**.
 
 ## Locked product decisions
 
@@ -117,7 +117,8 @@ translations/dialogue_vi.json
 runtime/translations.sqlite3
 ```
 
-The Alpha corpus currently contains 9 reviewed Vietnamese segments.
+The current runtime catalog contains 16 reviewed Vietnamese segments: nine Alpha
+baseline pages plus seven from the first Translation Factory batch.
 
 ## Phase 3 implementation
 
@@ -547,3 +548,65 @@ Next checkpoint, superseding the previous 60-second download/QC request:
    Phase 5 Translation Factory from pinned source IDs, review states and glossary.
 
 This documentation checkpoint leaves the runtime fingerprint and nine translations unchanged.
+
+## Phase 4 closure and Phase 5 first milestone — 2026-10-04
+
+At 21:46 (+07), the user confirmed Continue/movement/Alt+Tab work normally,
+declared PASS and asked to continue. This closes the pending operation-result
+checkpoint. **Phase 4 is PASS/LOCKED** for the tested Windows/1920×1080 setup,
+using Alpha.3 technical/visual evidence plus the user's direct confirmation.
+The confirmation is reported human evidence, not an invented foreground event log.
+
+Implemented Translation Factory first milestone:
+- `tools/translation_factory.py`: prepare from explicit IDs or exact QC MISS,
+  source/context/TM bundle, QA, explicit semantic review, publish and user approval;
+- `translations/glossary.json`: project dialogue voice and preserved proper names;
+- `translations/batches/qc-alpha3-20261004-01.json`: seven source-bound Vietnamese
+  drafts, per-page drafting decisions, review notes/digests and pinned source/glossary;
+- `docs/TRANSLATION_FACTORY.md`: repeatable authoring/publication/revision workflow;
+- `app/translation_store.py`: rejects malformed/duplicate/status-invalid data and
+  changed source/VI hashes on factory entries; nine legacy records are retained intact;
+- `tools/build_translation_db.py`: temporary DB build and atomic replacement,
+  preserving an old DB if validation/build fails;
+- build fingerprint now includes glossary and batch JSON as well as code/catalog/pins.
+
+The local bundle supplies fresh English source pages, neighboring pages from the
+same upstream record, project style and same-speaker reviewed translation memory.
+AI drafting/review currently runs in chat; bulk AI API integration is not implemented.
+Automatic QA checks structural rules, not complete semantic accuracy. Reviewed
+pages may run in Alpha; approved records require the user's QC report and are
+protected from downgrade. Batch edits after review invalidate the recorded digest.
+Pinned corpus/glossary changes require new batch preparation/review rather than
+automatic fuzzy reuse. Factory operators write the catalog sequentially.
+
+First batch: **7 AI-reviewed pages**, selected from the Alpha.3 exact-source MISS
+events 5/17/19/40/41/42/43. Three Una pages: Introduction_4 and both Renly pages;
+four Renly Fatherhood_2 pages. The translations preserve the custody actor,
+Karui name, uncertainty about the child's origin, paternal worry and Una's tone.
+Draft notes record those choices. They are `reviewed`, awaiting human QC/approval.
+
+Validation completed:
+- **102 tests passed** on Linux/Python 3.12 (20 factory regressions plus 82 baseline tests);
+- CLI prepare/bundle/QA/review/publish exercised against the actual 25,062-page
+  pinned corpus; seven drafts passed QA with 0 errors and 0 warnings;
+- runtime build: 16 compiled/displayable records, 0 missing source, 0 skipped empty;
+- all nine baseline translation JSON records remain identical;
+- replay of Alpha.1/2/3 QC keeps all 22 prior High overlay decisions on the same IDs;
+- in latest Alpha.3 QC, all 15 emitted texts resolve exactly at 100%, including
+  all seven former MISS pages; the old Alpha.2 trade chat remains Low/unmatched;
+- compileall and Git diff checks pass; no raw corpus/report/runtime files are committed.
+
+Current build **0.5.0-alpha.1 / factory-20261004-01**; source fingerprint
+`e43b03f657bb70dda726a24f2948d31333e7c864e3a9f207576020604ac4bc76`.
+Actual Windows rendering of
+the seven new translations has not been observed yet; do not claim Phase 5 PASS
+from matcher replay or Linux tests. OCR/capture/overlay/panel logic remains at the
+passing Phase 4 implementation; this release adds factory/data/build validation.
+
+Next checkpoint: download the new source bundle, extract a fresh folder, run
+`RUN_ALPHA.bat`, select **QC 60 giây**. Exercise **Una → Introduction / Renly** and
+**Renly → Fatherhood**, each page held 3–4 seconds; change Inventory layout and
+check one existing Renly Introduction page. Send `QC_PHASE4_RESULT_*.zip` and
+language/readability feedback. Expect version `0.5.0-alpha.1` and 16 runtime records.
+After the user's new-page QC passes, approve/publish this batch using the factory
+workflow, then prepare the next batch from exact MISS pages observed during play.

@@ -4,19 +4,24 @@ Local-first Vietnamese localization engine for Path of Exile 2.
 
 ## Current phase
 
-**Phase 4 — Local Alpha: technical/visual QC passed; interaction confirmation pending**
+**Phase 5 — Translation Factory: first batch implemented, awaiting in-game text QC**
 
-Phase 1 and Phase 2 are **PASS / LOCKED**.
+Phase 1, Phase 2 and Phase 4 are **PASS / LOCKED** on the tested Windows setup.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
-Alpha build: **0.4.0-alpha.3 / alpha-20261004-03**.
+Current build: **0.5.0-alpha.1 / factory-20261004-01**.
 
 QC Alpha.3 `20261004_212425_250828`: 60 giây trong game, 8 lần hiện bản dịch
 khớp 100%, 0 lỗi OCR/overlay/runtime. Cả 7 ảnh Una/Renly đều rõ chữ, che đủ
 tiếng Anh và không đè Continue. Cả 24 lần nhận diện đều là lời thoại thật;
 không còn nhận nhầm chat trong phiên này. Bảy câu chưa dịch nằm ngoài bộ Alpha.
-Kỹ thuật và hình ảnh đã đạt trên cấu hình Windows/1920×1080 được thử. Phiên này
-không ghi nhận chuyển foreground; phần Continue/di chuyển và Alt+Tab cần anh
-xác nhận để chốt Phase 4. Tiếp tục dùng bản Alpha.3 hiện tại.
+Kỹ thuật và hình ảnh đã đạt trên cấu hình Windows/1920×1080 được thử. Người dùng
+xác nhận Continue/di chuyển/Alt+Tab bình thường và PASS lúc 21:46 ngày 2026-10-04.
+Phase 4 đã được chốt; các cấu hình/DPI khác chưa nằm trong phạm vi xác nhận này.
+
+Lô Factory đầu tiên thêm 7 đoạn Una/Renly từ các MISS đã xác minh, đưa bộ dịch
+lên **16 đoạn**. Lô đã được AI soát nghĩa và qua QA cấu trúc: 0 lỗi, 0 cảnh báo.
+Công cụ tạo nháp, glossary, gói nguồn/context, bộ nhớ bản dịch, duyệt và đưa vào
+catalog đã có; **102 kiểm thử đạt**. Bảy đoạn mới chờ QC chữ/hiển thị trong game.
 
 ## Chạy Local Alpha
 
@@ -38,12 +43,13 @@ Timer chỉ tính thời gian PoE2 ở foreground. QC thu ảnh vùng hội tho�
 **QC_PHASE4_RESULT_*.zip** và hiện tên file sau khi hoàn tất. Gửi ZIP đó lại trong chat.
 Nếu bấm Dừng trước đủ 60 giây, kết quả là `INTERRUPTED`, không phải PASS.
 
-Checkpoint còn lại: khi đang hiện tiếng Việt, bấm Continue/di chuyển và thử
-Alt+Tab ra rồi quay lại game. Overlay cần ẩn ngoài game và hiện lại khi trở về
-đoạn đã dịch. Báo kết quả thao tác; QC đã có đủ ảnh cho bản Alpha.3.
+QC lô mới: thử **Una → Introduction / Renly** và **Renly → Fatherhood**.
+Giữ mỗi trang 3–4 giây; thử mở/đóng Inventory, rồi xem lại một trang Renly
+Introduction đã dịch trước đó. Gửi `QC_PHASE4_RESULT_*.zip` như quy trình hiện tại.
 
-Bản Alpha vẫn có **9 đoạn hội thoại đã dịch**: Renly Introduction / The Miller,
-Una Home / Clearfell. Các câu ngoài bộ này giữ nguyên tiếng Anh.
+Bản mới có **16 đoạn hội thoại đã dịch**: Renly Introduction / The Miller /
+Fatherhood, Una Introduction / Home / Clearfell / Renly. Các câu ngoài bộ này
+giữ nguyên tiếng Anh. Factory đang ở lô đầu, chưa phải toàn bộ hội thoại PoE2.
 Nếu cần thiết lập lại, chạy **SETUP_ALPHA.bat**. Nếu không mở được bảng điều khiển,
 gửi `ALPHA_STARTUP_ERROR.txt` nếu file này được tạo.
 
@@ -74,6 +80,9 @@ Vietnamese translation
   ↓
 Replacement overlay
 ```
+
+Quy trình soạn/duyệt lô dịch nằm trong [docs/TRANSLATION_FACTORY.md](docs/TRANSLATION_FACTORY.md).
+AI soạn dữ liệu trong giai đoạn chuẩn bị; khi chơi, runtime dùng SQLite offline.
 
 ## Legacy Phase 3 QC
 
