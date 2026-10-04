@@ -4,125 +4,118 @@
 
 ## Current phase
 
-**Phase 1 — Core Capture + Dialogue Context**  
-Status: implemented, awaiting real-game QC.
+**Phase 2 — Dialogue Matching + Translation Store**
+
+Phase 1 is **PASS / LOCKED**.
 
 ## Locked decisions
 
 - Repository: `momentum448-glitch/Poe2viethoa`.
 - Goal: modular PoE2 Vietnamese localization engine, starting with Story Dialogue.
-- Architecture: **OCR-first**.
+- Dialogue architecture: **OCR-first**.
 - `Client.txt` is optional future context only, not a runtime dependency.
 - Runtime: local, offline, pretranslated data.
 - No RAM reading, injection, hooking, game-file modification, or automated game input.
 - Normal overlay target: cover English text and replace it with Vietnamese.
 - Uncertain matches: hidden in Normal mode; candidates may appear only in Debug mode.
-- Translation source stays reviewable in Git; runtime SQLite may be built later.
+- Translation source stays reviewable in Git; runtime SQLite can be generated as a build artifact.
 - Python first; packaged EXE after Local Alpha passes.
-- Current QC duration: **60 seconds**.
+- User-facing QC windows should default to **60 seconds** unless a shorter focused test is sufficient.
 
-## Evidence behind OCR-first
-
-Real QC at 1920×1080 showed:
-
-- Windows OCR captured at least 10 distinct Renly story-dialogue lines.
-- OCR returned usable word/line bounding boxes.
-- Both normal and inventory-open shifted layouts were readable.
-- OCR noise mainly came from nearby chat/UI and is addressable with panel/context filtering.
-- Repeated log probes did not produce a reliable `Client.txt` path on the test machine.
-
-Decision flow:
+## Phase 1 architecture — LOCKED
 
 ```text
-Screen
+PoE2 screen
   ↓
-Dialogue layout detector
+Foreground guard
   ↓
-Frame stability gate
+Dialogue capture ROI
   ↓
-Windows OCR + bounding boxes
+Frame stabilizer / bounded OCR scheduler
   ↓
-Text/context cleanup
+Windows OCR + word/line bbox
   ↓
+Dialogue context detector
+  ↓
+normal_right / inventory_left / not-dialogue
+```
+
+## Phase 1 final real QC
+
+Session: `20261004_163219`
+
+Results:
+
+- captures: **461**
+- visual changes: **54**
+- OCR calls: **53**
+- dialogue detections: **17**
+- normal-right detections: **7**
+- inventory-left detections: **10**
+- OCR errors: **0**
+- foreground transient losses: **0**
+- foreground pauses: **0**
+- elapsed: **60.06 s**
+- result: **PASS**
+
+Observed dialogue included multiple real Renly and Una story lines.
+
+Observed rejection behavior:
+
+- NPC topic-selection screens were not accepted as story dialogue;
+- non-dialogue world/UI text was rejected;
+- waypoint/proclamation screens were rejected;
+- unrelated lower-screen/UI text did not become dialogue output.
+
+OCR timing in this session was roughly ~15 ms per call on average.
+
+## Known Phase 1 behavior carried into Phase 2
+
+Animated game backgrounds can cause OCR to run again while the same dialogue sentence remains visible. In the final QC, some identical dialogue texts appeared 2–3 times.
+
+This is acceptable at the capture/OCR layer because:
+
+- OCR calls remain bounded to about ~1 Hz under continuous animation;
+- OCR cost is low;
+- no OCR exceptions occurred.
+
+Phase 2 must add a **Text Stabilizer / OCR cache** before matching so duplicate normalized dialogue does not trigger repeated matcher/overlay work.
+
+## Phase 2 target flow
+
+```text
+DialogueContext.text
+    ↓
+Text Stabilizer / dedupe
+    ↓
+Normalization
+    ↓
 Candidate index
-  ↓
-Exact → fuzzy matcher
-  ↓
-Translation
-  ↓
-Replacement overlay
+    ↓
+Exact match
+    ↓ fallback
+Fuzzy match
+    ↓
+Confidence policy
+    ↓
+Translation Store
+    ↓
+TranslationResult
 ```
 
-## Phase 1 implemented
+## Phase 2 first implementation tasks
 
-- `app/models.py`
-- `app/capture.py`
-- `app/frame_stabilizer.py`
-- `app/ocr_windows.py`
-- `app/dialogue_context.py`
-- `app/game_window.py`
-- `app/phase1_probe.py`
-- `tests/`
-- `QC_PHASE1.bat`
-
-Detector calibration includes:
-
-- reject NPC topic-selection UI;
-- reject ESC/menu sentence-shaped false positives;
-- exclude bottom chat noise;
-- require dialogue anchor: speaker and/or `Continue`;
-- preserve short wrapped tail lines;
-- classify normal vs inventory-open horizontal layouts.
-
-## Repository cleanup
-
-Obsolete Spike 001 scripts, log-only probes, old QC launchers, and their old setup/docs were removed. The only user-facing QC entry point is now:
-
-```text
-QC_PHASE1.bat
-```
+1. normalized-text dedupe with speaker/layout awareness;
+2. translation record schema;
+3. human-readable JSON source store;
+4. build step to runtime SQLite;
+5. candidate inverted index;
+6. exact-first matching;
+7. fuzzy fallback + confidence bands;
+8. unit tests using real OCR distortions observed in Phase 1.
 
 ## Next checkpoint
 
-User runs `QC_PHASE1.bat` and sends `QC_PHASE1_RESULT_*.zip`.
+Build Phase 2 against the real OCR evidence already collected.
 
-Pass criteria:
-
-1. no OCR activity while POE2 is not foreground;
-2. OCR calls are substantially fewer than captures;
-3. story lines are detected while topic/ESC/chat screens are rejected;
-4. normal and inventory-open layouts classify correctly;
-5. unchanged dialogue does not repeatedly trigger OCR;
-6. no recurring OCR exceptions.
-
-If Phase 1 passes: begin **Phase 2 — Dialogue Matching + Translation Store**.
-
-
-## Phase 1 QC attempt — 2026-10-04 15:22 local
-
-Observed from real QC screenshot:
-
-- unit tests: 6/6 pass;
-- captures: 396;
-- visual_changes: 1;
-- ocr_calls: 0;
-- dialogue_detected: 0;
-- result: NEEDS_REVIEW;
-- console showed repeated `[GAME] foreground` / `[PAUSE]` transitions;
-- post-run PowerShell `Compress-Archive` failed, so ZIP was not produced.
-
-Root causes:
-
-1. foreground guard was too sensitive to transient focus changes, causing repeated stabilizer resets before OCR could fire;
-2. QC packaging depended on fragile PowerShell path handling.
-
-Fixes now pushed:
-
-- foreground grace window = 1.5 seconds;
-- transient focus loss no longer resets the stabilizer;
-- POE2 window-class matching broadened;
-- Phase 1 probe packages its own result ZIP using Python `zipfile`;
-- PowerShell packaging was removed from `QC_PHASE1.bat`;
-- all visible instructions now consistently say 60 seconds.
-
-Next: rerun `QC_PHASE1.bat` from a fresh download and inspect `QC_PHASE1_RESULT_*.zip`.
+No additional Phase 1 QC is required.
