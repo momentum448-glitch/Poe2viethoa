@@ -215,7 +215,7 @@ async def run(seconds: int, capture_interval: float) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--seconds", type=int, default=90)
+    parser.add_argument("--seconds", type=int, default=60)
     parser.add_argument("--interval", type=float, default=0.12)
     args = parser.parse_args()
 
