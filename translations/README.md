@@ -1,38 +1,51 @@
-# Translation source data
+# Vietnamese translation source
 
-`dialogue.json` is the human-reviewable source for Story Dialogue translations.
+This directory stores **our Vietnamese translation work only**.
 
-Runtime code does not edit this file. A build step converts it into SQLite:
+Raw English PoE2 dialogue is not committed here. It is reconstructed locally by:
 
 ```bat
-.venv\Scripts\python.exe tools\build_translation_db.py
+SOURCE_SYNC.bat
 ```
 
-## Record shape
+That command creates a gitignored source corpus under `source_data/`, then joins it with `dialogue_vi.json` and builds:
+
+```text
+runtime/translations.sqlite3
+```
+
+## Why source and translation are separated
+
+`dialogue_vi.json` uses stable `source_id` values and does not duplicate the upstream English game corpus.
+
+Benefits:
+
+- raw upstream game text stays outside this public repository;
+- source snapshots can be refreshed independently;
+- Vietnamese work remains reviewable in Git;
+- a source text change naturally produces a new fingerprint/ID that needs review.
+
+## Translation entry
 
 ```json
 {
-  "id": "dialogue_example_001",
-  "source": "English source text",
-  "vi": "Bản dịch tiếng Việt",
-  "speaker": "NPC name or null",
-  "area": "Area name or null",
-  "type": "dialogue",
-  "status": "approved",
-  "aliases": []
+  "source_id": "dlg_npctextaudio_0123456789abcdefabcd",
+  "vi": "Bản dịch tiếng Việt.",
+  "status": "reviewed",
+  "review": "ai_alpha_2026-10-04"
 }
 ```
 
-Allowed status values:
+Statuses:
 
-- `draft`
-- `reviewed`
-- `approved`
+- `draft`: not used by Normal runtime;
+- `reviewed`: allowed in Alpha runtime;
+- `approved`: human-QC locked translation.
 
-Only `reviewed` and `approved` records are used by the normal runtime matcher.
+## Fresh-source policy
 
-## Current state
+Do not import the old project dictionary.
 
-The repository intentionally starts with an empty translation corpus. The previously translated Clearfell dataset should be imported only after the local source is recovered and normalized into this schema.
+Current source snapshots are pinned in `sources/sources.lock.json` and rebuilt through `tools/source_sync.py`.
 
-Do not commit extracted raw game corpora merely because they are technically available. Keep engine code, translation work, and raw third-party source assets conceptually separate.
+The initial Alpha Vietnamese entries were recreated from the fresh pinned 2026 source and real OCR evidence, not copied from the previous project corpus.
