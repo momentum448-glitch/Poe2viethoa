@@ -124,3 +124,47 @@ Replacement overlay
 
 Phase 0 signal validation is complete.
 Next: **Phase 1 — Core Capture + Dialogue Context**.
+
+
+## Phase 1 implementation — 2026-10-04
+
+### Implemented
+
+- `app/models.py`: shared Rect/OCR/DialogueContext models.
+- `app/capture.py`: MSS capture with a resolution-scaled dialogue ROI.
+- `app/frame_stabilizer.py`: sampled BGRA frame-change detector and settle gate.
+- `app/ocr_windows.py`: Windows Media OCR adapter returning line/word bounding boxes.
+- `app/dialogue_context.py`: dialogue cluster detector and normal/inventory layout classification.
+- `app/game_window.py`: Win32 foreground guard; capture pauses when PoE2 is not foreground.
+- `app/phase1_probe.py`: real Phase 1 diagnostic runner.
+- `tests/`: unit tests for frame stabilization and dialogue context.
+- `QC_PHASE1.bat`: one-click setup, tests, 90s real-game QC, automatic result ZIP.
+
+### Calibration performed from existing real QC evidence
+
+The dialogue detector was replayed conceptually against the existing Renly OCR evidence before requesting another user QC.
+
+Corrections made:
+
+- removed false positives from NPC topic-selection UI;
+- removed ESC/menu sentence-shaped false positives;
+- excluded global chat at the bottom of the capture ROI;
+- required a dialogue anchor: upper speaker label and/or `Continue`;
+- preserved short wrapped tail lines such as one-word/short sentence endings;
+- retained both observed horizontal layouts.
+
+### Current checkpoint
+
+Phase 1 source implementation is complete enough for real-game QC.
+
+Next action: user runs `QC_PHASE1.bat` and sends `QC_PHASE1_RESULT_*.zip`.
+
+Pass criteria:
+
+1. no OCR activity while POE2 is not foreground;
+2. OCR call count is substantially lower than capture count;
+3. real story lines are detected while topic/ESC/chat screens are rejected;
+4. normal and inventory-open layouts classify correctly;
+5. no repeated OCR loop on a completely unchanged dialogue frame.
+
+If pass: lock Phase 1 and begin Phase 2 — Dialogue Matching + Translation Store.
