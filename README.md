@@ -4,11 +4,11 @@ Local-first Vietnamese localization engine for Path of Exile 2.
 
 ## Current phase
 
-**Phase 1 — Core Capture + Dialogue Context**
+**Phase 2 — Dialogue Matching + Translation Store**
 
 Architecture decision from real QC: **OCR-first**.
 
-Current runtime probe includes:
+Phase 1 is locked after real-game QC. The current engine includes:
 
 - foreground POE2 guard;
 - screen capture via MSS;
@@ -80,3 +80,10 @@ run_tests.bat
 ## Current QC entry point
 
 Use only **`QC_PHASE1.bat`**. Obsolete spike/log-probe scripts have been removed from the repository.
+
+
+## Phase 1 final result
+
+Real-game QC passed with 461 captures, 53 OCR calls, 17 valid dialogue detections, both normal and inventory-open layouts, and zero OCR errors.
+
+Repeated OCR of the same visible sentence under animated backgrounds is intentionally handled next by the Phase 2 text-stabilizer/cache layer rather than by making screen capture brittle.
