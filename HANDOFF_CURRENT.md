@@ -4,9 +4,10 @@
 
 ## Current phase
 
-**Phase 3 — Replacement Overlay**
+**Phase 3 — Replacement Overlay: technical and visual QC PASS**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
+Next planned phase: **Phase 4 — Local Alpha packaging/runtime UX**.
 
 ## Locked product decisions
 
@@ -117,7 +118,7 @@ runtime/translations.sqlite3
 
 The Alpha corpus currently contains 9 reviewed Vietnamese segments.
 
-## Phase 3 implementation started
+## Phase 3 implementation
 
 Added:
 - `app/replacement_overlay.py`
@@ -170,53 +171,74 @@ Validation:
 - Native Windows/Tk/MSS/PoE2 integration and visual readability remain unverified
   until the next user QC pack. The automated tests use mocks for those platform boundaries.
 
-## Current open risks for Phase 3 QC
+## Phase 3 real-game QC — technical and visual PASS
 
-Must be verified on the real Windows/PoE2 session:
-1. Tk/Win32 overlay appears above the actual PoE2 presentation mode;
-2. click-through does not steal mouse/keyboard focus;
-3. physical-pixel coordinates align under the user's Windows DPI setting;
-4. `WDA_EXCLUDEFROMCAPTURE` works on the user's Windows 10 build with MSS;
-5. replacement mask blends acceptably with PoE2's textured dialogue panel;
-6. Vietnamese wrapping/font size is readable and does not cover the Continue button.
+Session: `20261004_183317`
+
+Evidence: `QC_PHASE3_RESULT_20261004_183317.zip`, supplied by the user and reviewed
+from its local attachment. SHA-256:
+`ee02f505ab3e7be7717c91646bc101bea9dae89da834496d74e854eb7cd272f6`.
+Raw logs/screenshots remain outside Git. The pack does not record a code revision.
+
+- platform: Windows, Python 3.12.10, 64-bit;
+- monitor: 1920×1080; OCR region: left 230, top 421, width 1190, height 270;
+- runtime translation records: 9;
+- captures: 467;
+- OCR calls: 53;
+- dialogue detections: 25 (normal-right 17, inventory-left 8);
+- text emitted: 9;
+- duplicates suppressed: 16;
+- matched High: 6, all exact at 100%; matched Medium: 0;
+- unmatched: 3;
+- overlay updates: 6; overlay clears: 2; unique proof screenshots: 5;
+- OCR / overlay / runtime errors: 0 / 0 / 0;
+- foreground transient losses: 24; foreground pauses: 2;
+- active game time: 60.00 s; wall time: 76.50 s;
+- automatic result: `TECHNICAL_PASS`; stop reason: `completed`.
+
+Manual review:
+1. All five proof images show the Vietnamese replacement above the real PoE2
+   dialogue panel. Normal-right and inventory-left placement are both represented.
+2. Vietnamese is complete and readable at 18–20 px, with no clipped text,
+   exposed English fragments or overlap with Continue. The dark mask is acceptable
+   for this Alpha proof, although its solid rectangle remains visible on the texture.
+3. All six logged masks contain the complete English OCR bounding box.
+4. The same Introduction segment moves from normal-right to inventory-left at
+   event 17 and triggers a fresh overlay update on `context_changed`.
+5. Later OCR screenshots at events 4 and 18 still show English while the overlay
+   is logged visible. Repeated detections remain exact/duplicates rather than
+   Vietnamese, supporting working capture exclusion and no observed self-capture loop.
+6. Menu transitions at events 10 and 25 log `hide_no_dialogue`. The three MISS
+   screenshots at events 43, 46 and 48 show real Renly dialogue, not unrelated UI;
+   each is absent from the nine-segment Alpha translations and logs `hide_unmatched`.
+
+The real Windows run and manual screenshot review pass the technical and visual
+checkpoint on this setup. This is not a claim of complete game localization.
+The nine reviewed segments are unchanged; no dictionary from the previous project
+was used.
+
+## Remaining validation scope
+
+- A screenshot pack cannot directly verify that mouse/keyboard focus remains
+  unaffected or establish the overlay state during every Alt+Tab transition.
+  The native styles are checked at setup; direct interaction remains a Phase 4
+  real-session check.
+- Other monitor arrangements, Windows DPI scales and PoE2 presentation modes
+  were not exercised by this session.
+- The tests for rapid Alt+Tab, reopening the same text and interrupted/error ZIP
+  packaging remain simulated; this real session completed normally.
 
 ## Next checkpoint
 
-User downloads a fresh repo copy and runs:
+**Phase 4 — Local Alpha packaging/runtime UX** is next, not implemented yet.
 
-```text
-QC_PHASE3.bat
-```
+- Separate normal play startup/stop from the 60-second QC launcher.
+- Keep runtime local/offline, foreground guarding and capture exclusion.
+- Make setup, runtime status and diagnostics understandable on Windows.
+- Test game input, dialogue/menu transitions and Alt+Tab in longer real sessions.
+- Keep Python/source-first packaging; build an EXE only after Local Alpha is stable.
+- Expand translations later from the pinned fresh sources, without lowering match
+  confidence to make untranslated lines display.
 
-Recommended Alpha topics:
-- Renly → Introduction
-- Renly → The Miller
-- Una → Home
-- Una → Clearfell
-
-Expected behavior:
-- when a High match is found, English dialogue text is covered and Vietnamese is shown;
-- Alt+Tab clears overlay and pauses the 60-second active timer;
-- game input remains unaffected.
-
-Expected output:
-
-```text
-QC_PHASE3_RESULT_YYYYMMDD_HHMMSS.zip
-```
-
-Phase 3 PASS requires:
-1. at least one High match;
-2. at least one visible overlay update;
-3. at least one QC overlay proof screenshot;
-4. OCR errors = 0;
-5. overlay errors = 0;
-6. runtime errors = 0 and the full 60 active seconds completed;
-7. no self-capture loop;
-8. visual placement/readability acceptable on real PoE2.
-
-The probe writes `TECHNICAL_PASS` when its automated checks pass, `NEEDS_REVIEW`
-for incomplete technical checks, and `ERROR`/`INTERRUPTED` for early termination.
-The project phase remains Phase 3 until real-game visual QC is accepted.
-
-If Phase 3 passes, proceed to **Phase 4 — Local Alpha packaging/runtime UX**.
+The reviewed implementation and QC record are on `fix/phase3-overlay-qc` in
+draft PR #1. `main` has not been updated by this QC review.

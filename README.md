@@ -4,9 +4,10 @@ Local-first Vietnamese localization engine for Path of Exile 2.
 
 ## Current phase
 
-**Phase 3 — Replacement Overlay**
+**Phase 3 — Replacement Overlay: technical and visual QC PASS**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
+Next planned phase: **Phase 4 — Local Alpha packaging/runtime UX**.
 
 Current flow:
 
@@ -74,9 +75,28 @@ Result labels:
 - `NEEDS_REVIEW`: the session completed but one or more technical checks did not pass.
 - `ERROR` / `INTERRUPTED`: the session failed or stopped early; send the partial result ZIP.
 
-Phase 3 needs Windows 10 build 19041 or newer for capture exclusion. Window
-stacking, click-through behavior, capture exclusion with MSS, and readability
-still need confirmation on the actual PoE2 session.
+Phase 3 needs Windows 10 build 19041 or newer for capture exclusion.
+
+## Phase 3 QC result
+
+Real Windows/PoE2 session `20261004_183317`: **technical and visual QC PASS**.
+
+- 60.00 active seconds; 76.50 seconds wall time;
+- 467 captures, 53 OCR calls, 25 dialogue detections;
+- 6 exact/High matches and overlay updates, 5 unique overlay proof images;
+- 16 duplicates suppressed; 3 untranslated dialogue segments correctly hidden;
+- 0 OCR, overlay or runtime errors.
+
+Manual review of all five proof images confirms readable Vietnamese, complete
+English coverage and an unobstructed Continue button in normal-right and
+inventory-left layouts. Subsequent OCR screenshots still contain English while
+the overlay is marked visible, with no observed self-capture loop. All six logged
+masks cover their complete English bounding boxes.
+
+This validates the tested 1920×1080 setup. The pack does not directly establish
+mouse/keyboard focus behavior, every Alt+Tab transition, or other DPI/presentation
+modes; retain those checks in Phase 4 real-session testing. The three MISS segments
+are real Renly dialogue outside the nine-segment Alpha corpus.
 
 ## Phase 2 QC result
 
