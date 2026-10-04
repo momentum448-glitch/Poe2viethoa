@@ -96,3 +96,33 @@ Pass criteria:
 6. no recurring OCR exceptions.
 
 If Phase 1 passes: begin **Phase 2 — Dialogue Matching + Translation Store**.
+
+
+## Phase 1 QC attempt — 2026-10-04 15:22 local
+
+Observed from real QC screenshot:
+
+- unit tests: 6/6 pass;
+- captures: 396;
+- visual_changes: 1;
+- ocr_calls: 0;
+- dialogue_detected: 0;
+- result: NEEDS_REVIEW;
+- console showed repeated `[GAME] foreground` / `[PAUSE]` transitions;
+- post-run PowerShell `Compress-Archive` failed, so ZIP was not produced.
+
+Root causes:
+
+1. foreground guard was too sensitive to transient focus changes, causing repeated stabilizer resets before OCR could fire;
+2. QC packaging depended on fragile PowerShell path handling.
+
+Fixes now pushed:
+
+- foreground grace window = 1.5 seconds;
+- transient focus loss no longer resets the stabilizer;
+- POE2 window-class matching broadened;
+- Phase 1 probe packages its own result ZIP using Python `zipfile`;
+- PowerShell packaging was removed from `QC_PHASE1.bat`;
+- all visible instructions now consistently say 60 seconds.
+
+Next: rerun `QC_PHASE1.bat` from a fresh download and inspect `QC_PHASE1_RESULT_*.zip`.
