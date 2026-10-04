@@ -4,9 +4,9 @@
 
 ## Current phase
 
-**Phase 2 — Dialogue Matching + Fresh Translation Store**
+**Phase 3 — Replacement Overlay**
 
-Phase 1 is **PASS / LOCKED**.
+Phase 1 and Phase 2 are **PASS / LOCKED**.
 
 ## Locked product decisions
 
@@ -20,11 +20,11 @@ Phase 1 is **PASS / LOCKED**.
 - Low-confidence and ambiguous fuzzy matches are hidden in Normal mode.
 - Translation source is reviewable in Git; generated runtime DB is local.
 - User-facing QC defaults to **60 seconds of active PoE2 foreground time**.
-- Phase 2 diagnostics must never capture/OCR another foreground application.
+- Diagnostics must not capture/OCR another foreground application.
 - **Do not use Remote Desktop for source recovery.**
 - **Do not use the previous project dictionary or old 208-line corpus.**
 
-## Phase 1 final QC — PASS
+## Phase 1 final QC — PASS / LOCKED
 
 Session: `20261004_163219`
 
@@ -40,51 +40,46 @@ Session: `20261004_163219`
 
 Real Renly/Una story lines were detected. Topic menus, waypoint/proclamation and unrelated UI were rejected.
 
-## Phase 2 implemented
+## Phase 2 final QC — PASS / LOCKED
 
-- `app/text_normalize.py`
-- `app/text_stabilizer.py`
-- `app/translation_models.py`
-- `app/translation_store.py`
-- `app/matcher.py`
-- `app/dialogue_pipeline.py`
-- `app/phase2_probe.py`
-- `tools/build_translation_db.py`
-- `tools/source_sync.py`
-- `SOURCE_SYNC.bat`
-- `QC_PHASE2.bat`
-- matcher/store/source-sync unit tests
+Session: `20261004_175216`
 
-Phase 2 hardening completed before live QC:
+- captures: 471
+- OCR calls: 54
+- dialogue detections: 16
+- text emitted: 10
+- duplicates suppressed: 6
+- matched High: 5
+- matched Medium: 0
+- unmatched: 5
+- normal-right: 4
+- inventory-left: 12
+- OCR errors: 0
+- foreground transient losses: 12
+- foreground pauses: 1
+- active game time: 60.00 s
+- wall time: 64.41 s
+- result: `PASS`
 
-- the 60-second QC budget now counts only while PoE2 is actually foreground;
-- Alt+Tab pauses the QC timer instead of silently consuming the session;
-- no screenshot/OCR is performed while another application is foreground, including the 1.5-second focus debounce window;
-- fuzzy matches with a high score but a near-tied runner-up are downgraded from High to Medium, so Normal mode hides them instead of guessing.
+Verified matched dialogue:
+- Renly / The Miller segment 1
+- Renly / The Miller segment 2
+- Renly / Introduction segment 1
+- Renly / Introduction segment 2
+- Renly / Introduction segment 3
 
-Matcher policy:
+All five matched at exact/high confidence 100%.
 
-```text
-OCR dialogue
-  ↓
-Text Stabilizer / dedupe
-  ↓
-Normalize
-  ↓
-Exact match
-  ↓ miss
-Inverted-token candidate index
-  ↓
-RapidFuzz fallback
-  ↓
-Top-candidate ambiguity guard
-  ↓
-High / Medium / Low confidence
-```
+The five MISS lines inspected in the QC pack were valid Renly dialogue not yet included in the nine-line Alpha translation corpus. They were not false-positive UI detections.
 
-## Fresh-source architecture
+Phase 2 behavior verified:
+- active-time timer pauses outside PoE2;
+- no OCR/runtime errors;
+- text dedupe suppresses repeated visible dialogue;
+- exact/high matches resolve to Vietnamese;
+- untranslated dialogue stays hidden rather than displaying a wrong translation.
 
-Old project data has been abandoned.
+## Fresh-source architecture — LOCKED
 
 Pinned source lock:
 
@@ -95,28 +90,22 @@ sources/sources.lock.json
 Primary English source:
 - `addohm/poe2-en-cn-dict`
 - pinned commit `28d683c99600eb407b4e014ccaf8247532fb4607`
-- uses `NPCTextAudio` and `NPCTalkDialogueTextAudio` English output
-- contains `<continue>` boundaries matching actual on-screen dialogue pages
+- uses `NPCTextAudio` and `NPCTalkDialogueTextAudio`
+- preserves `<continue>` on-screen page boundaries
 
 Optional speaker/topic enrichment:
 - `fireMCG/Exiled-Vault`
 - pinned commit `b3dd7457aa4e7f126021b8d8577f38ef205490c7`
-- 2026-09-30 snapshot
-- context enrichment is optional; source sync continues if this dependency is unavailable
 
-Raw upstream material is downloaded into gitignored `source_data/` and is not committed.
+Raw source is downloaded only into gitignored `source_data/`.
 
-Source segments receive deterministic IDs from table + normalized-English SHA-256 fingerprint.
-
-Committed Vietnamese file:
+Committed Vietnamese work:
 
 ```text
 translations/dialogue_vi.json
 ```
 
-It contains only `source_id + vi + review state`, not the upstream English corpus.
-
-Runtime build joins:
+Runtime build:
 
 ```text
 source_data/dialogue_corpus.jsonl
@@ -126,62 +115,71 @@ translations/dialogue_vi.json
 runtime/translations.sqlite3
 ```
 
-Build fails if a Vietnamese `source_id` no longer exists in the synced source corpus.
+The Alpha corpus currently contains 9 reviewed Vietnamese segments.
 
-## Fresh-source validation already performed
+## Phase 3 implementation started
 
-Nine unique Renly/Una dialogue segments captured by real Phase 1 OCR were checked against the pinned 2026 English source.
+Added:
+- `app/replacement_overlay.py`
+- `app/phase3_probe.py`
+- `tests/test_replacement_overlay.py`
+- `QC_PHASE3.bat`
 
-All 9 were found.
+Current Phase 3 proof design:
+- topmost Windows overlay;
+- click-through / no activation;
+- OCR bbox → absolute screen rectangle;
+- mask English text with a sampled dark panel color;
+- render Vietnamese using Segoe UI with pixel-width wrapping and font shrink;
+- per-monitor DPI awareness;
+- clear overlay when PoE2 loses foreground;
+- only High-confidence matches display;
+- unmatched/Medium/Low results hide the overlay;
+- use `SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE)` so runtime OCR does not read the Vietnamese overlay back into itself;
+- QC-only overlay proof screenshots temporarily allow capture without running OCR on those frames.
 
-Examples of matched source records included:
-- Renly introduction
-- Renly / The Miller
-- Una / Home
-- Una / Clearfell
+## Current open risks for Phase 3 QC
 
-The 2026 source correctly retains `<continue>` boundaries. This also fixed a truncation found in an older 2025 public dump, confirming the project should not rely on that older dump.
-
-## Fresh Alpha Vietnamese corpus
-
-Nine Vietnamese translations were recreated from the fresh source and Phase 1 evidence. They were not copied from the old project data.
-
-Current QC coverage:
-- Renly → Introduction
-- Renly → The Miller
-- Una → Home
-- Una → Clearfell
+Must be verified on the real Windows/PoE2 session:
+1. Tk/Win32 overlay appears above the actual PoE2 presentation mode;
+2. click-through does not steal mouse/keyboard focus;
+3. physical-pixel coordinates align under the user's Windows DPI setting;
+4. `WDA_EXCLUDEFROMCAPTURE` works on the user's Windows 10 build with MSS;
+5. replacement mask blends acceptably with PoE2's textured dialogue panel;
+6. Vietnamese wrapping/font size is readable and does not cover the Continue button.
 
 ## Next checkpoint
 
 User downloads a fresh repo copy and runs:
 
 ```text
-QC_PHASE2.bat
+QC_PHASE3.bat
 ```
 
-The launcher performs source sync, DB build and a 60-second end-to-end matcher QC.
+Recommended Alpha topics:
+- Renly → Introduction
+- Renly → The Miller
+- Una → Home
+- Una → Clearfell
 
-Runtime behavior during this QC:
-
-- the timer starts/counts only while PoE2 is foreground;
-- if the user Alt+Tabs away, the timer pauses;
-- another foreground application is never captured or OCRed.
+Expected behavior:
+- when a High match is found, English dialogue text is covered and Vietnamese is shown;
+- Alt+Tab clears overlay and pauses the 60-second active timer;
+- game input remains unaffected.
 
 Expected output:
 
 ```text
-QC_PHASE2_RESULT_YYYYMMDD_HHMMSS.zip
+QC_PHASE3_RESULT_YYYYMMDD_HHMMSS.zip
 ```
 
-Pass criteria:
+Phase 3 PASS requires:
+1. at least one High match;
+2. at least one visible overlay update;
+3. at least one QC overlay proof screenshot;
+4. OCR errors = 0;
+5. overlay errors = 0;
+6. no self-capture loop;
+7. visual placement/readability acceptable on real PoE2.
 
-1. source sync completes;
-2. all committed Alpha translation IDs resolve;
-3. runtime DB builds with 9 records;
-4. text dedupe suppresses repeated OCR of the same visible sentence;
-5. at least one Alpha dialogue produces a high-confidence Vietnamese match;
-6. ambiguous fuzzy results remain hidden from Normal mode;
-7. OCR/runtime errors = 0.
-
-If pass: lock Phase 2 and begin **Phase 3 — Replacement Overlay**.
+If Phase 3 passes, proceed to **Phase 4 — Local Alpha packaging/runtime UX**.
