@@ -15,14 +15,10 @@ class ForegroundWindow:
 
     @property
     def is_poe2(self) -> bool:
-        title = self.title.casefold().strip()
         cls = self.class_name.casefold().strip()
-        return (
-            cls == "poewindowclass"
-            or cls.startswith("poe")
-            or "path of exile 2" in title
-            or title == "path of exile"
-        )
+        # A browser/document can have exactly the game's title. Only the native
+        # game window classes qualify for capture; a title alone never does.
+        return cls in {"poewindowclass", "poe2windowclass"}
 
 
 class GameWindowProbe:

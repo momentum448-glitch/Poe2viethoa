@@ -4,11 +4,19 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
 
-from app.game_window import GameWindowProbe
+from app.game_window import ForegroundWindow, GameWindowProbe
 from app.win32 import configure_user32
 
 
 class Win32BoundaryTests(unittest.TestCase):
+    def test_browser_or_console_with_game_title_is_not_a_game_window(self):
+        for cls in ("Chrome_WidgetWin_1", "MozillaWindowClass", "ConsoleWindowClass", "", "poe-tool"):
+            self.assertFalse(ForegroundWindow(1, "Path of Exile 2", cls).is_poe2)
+
+    def test_native_game_class_is_recognized_without_relying_on_title(self):
+        self.assertTrue(ForegroundWindow(1, "", "POEWindowClass").is_poe2)
+        self.assertTrue(ForegroundWindow(1, "Path of Exile 2", "POE2WindowClass").is_poe2)
+
     def test_native_handles_are_pointer_sized_for_returns_and_arguments(self):
         user32 = configure_user32(Mock())
         for name in ("GetForegroundWindow", "GetAncestor"):

@@ -42,6 +42,11 @@ class WindowsOcr:
                 writer.close()
             except Exception:
                 pass
+            if bitmap is not None:
+                try:
+                    bitmap.close()
+                except Exception:
+                    pass
 
         lines: list[OcrLine] = []
         for raw_line in raw.lines:
