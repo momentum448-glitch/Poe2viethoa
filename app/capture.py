@@ -45,12 +45,13 @@ class ScreenCapture:
     def default_dialogue_region(self) -> CaptureRegion:
         monitor = self._sct.monitors[1]
 
-        # Wide enough to include both normal and inventory-open dialogue layouts,
-        # but excludes most of the minimap and bottom HUD.
+        # NPC panels can appear below Renly's central position (Una in the real
+        # Alpha QC). Include their complete paragraph and Continue control while
+        # keeping the bottom HUD outside the capture region.
         left = monitor["left"] + round(monitor["width"] * 0.12)
         top = monitor["top"] + round(monitor["height"] * 0.39)
         width = round(monitor["width"] * 0.62)
-        height = round(monitor["height"] * 0.25)
+        height = round(monitor["height"] * 0.45)
 
         return CaptureRegion(left, top, width, height)
 

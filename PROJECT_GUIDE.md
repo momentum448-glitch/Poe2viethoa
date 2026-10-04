@@ -102,9 +102,16 @@ the nine-segment Alpha corpus; they correctly receive no replacement overlay.
 - controller detects worker failures and packages available diagnostics; no game input is automated;
 - foreground capture requires the native PoE window class, never a browser/document title alone;
 - version/build ID and source fingerprint are recorded in every session;
-- source-first build `0.4.0-alpha.1 / alpha-20261004-01`; Windows launcher, Explorer selection, direct input and real PoE2 QC remain user-machine checks.
+- source-first build `0.4.0-alpha.2 / alpha-20261004-02`; Alpha.1 had two clean normal sessions and a completed 60-second technical/visual Renly QC;
+- Alpha.2 expands the capture height after the real QC showed Una's lower popup cut off; Windows validation of this change and direct input/focus remain pending.
 
 Phase 4 is not PASS/LOCKED yet. The nine-segment Alpha corpus remains unchanged.
+
+Latest real QC `20261004_202906_038009`: 468 captures, 53 OCR calls, 34 detected
+dialogues, 5 exact/High overlay updates and 5 readable proof images, no errors,
+60.00 active seconds / 64.05 wall seconds. All five Renly masks cover English and
+leave Continue visible in normal/inventory layouts. Events 49–50 expose a lower
+Una popup clipped by the old capture, so do not lock Phase 4 from the Renly pass.
 
 ### Phase 5 — Translation Factory
 - fresh-source refresh;

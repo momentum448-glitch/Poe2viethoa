@@ -8,7 +8,12 @@ Local-first Vietnamese localization engine for Path of Exile 2.
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
-Alpha build: **0.4.0-alpha.1 / alpha-20261004-01**.
+Alpha build: **0.4.0-alpha.2 / alpha-20261004-02**.
+
+QC Alpha.1 `20261004_202906_038009`: 60 giây trong game, 5 bản dịch khớp 100%,
+0 lỗi; cả 5 ảnh Renly đều rõ chữ, che đủ tiếng Anh và không đè Continue.
+Ảnh cuối phiên cho thấy hộp Una nằm thấp hơn vùng chụp cũ. Alpha.2 mở rộng
+vùng chụp xuống dưới để lấy đủ đoạn thoại và Continue; cần QC lại trên Windows.
 
 ## Chạy Local Alpha
 
@@ -29,6 +34,9 @@ kết quả lần trước được khôi phục khi mở lại bảng điều k
 Timer chỉ tính thời gian PoE2 ở foreground. QC thu ảnh vùng hội thoại, tạo
 **QC_PHASE4_RESULT_*.zip** và hiện tên file sau khi hoàn tất. Gửi ZIP đó lại trong chat.
 Nếu bấm Dừng trước đủ 60 giây, kết quả là `INTERRUPTED`, không phải PASS.
+
+QC Alpha.2: thử **Una → Home / Clearfell** và một đoạn Renly → Introduction /
+The Miller. Hộp Una cần hiện đủ nội dung và Continue trong ảnh vùng hội thoại.
 
 Bản Alpha vẫn có **9 đoạn hội thoại đã dịch**: Renly Introduction / The Miller,
 Una Home / Clearfell. Các câu ngoài bộ này giữ nguyên tiếng Anh.
