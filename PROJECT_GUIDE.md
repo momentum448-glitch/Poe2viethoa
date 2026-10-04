@@ -69,7 +69,7 @@ Final real QC `20261004_175216`:
 - 0 errors;
 - 60.00 active seconds.
 
-### Phase 3 — Replacement overlay — CURRENT
+### Phase 3 — Replacement overlay — TECHNICAL + VISUAL QC PASS
 - OCR bbox → absolute screen placement;
 - mask/cover original English;
 - render/wrap Vietnamese;
@@ -81,7 +81,18 @@ Final real QC `20261004_175216`:
 
 Current proof uses a transparent Tk/Win32 topmost overlay and `WDA_EXCLUDEFROMCAPTURE` to keep the overlay out of runtime OCR captures.
 
-### Phase 4 — Local Alpha
+Real Windows/PoE2 QC `20261004_183317` completed 60 active seconds with 6 exact/High
+overlay updates, 5 proof images and no OCR/overlay/runtime errors. Manual image
+review passed in normal-right and inventory-left layouts: English covered,
+Vietnamese readable, Continue unobstructed. OCR frames retained English while
+the overlay was visible; no self-capture loop was observed.
+
+Validation applies to the tested 1920×1080 setup. Direct mouse/keyboard focus
+behavior, all foreground transitions and other DPI/presentation modes remain
+part of Phase 4 real-session testing. Three unmatched Renly segments are outside
+the nine-segment Alpha corpus; they correctly receive no replacement overlay.
+
+### Phase 4 — Local Alpha — NEXT
 - setup/run UX;
 - diagnostics;
 - real-session testing;

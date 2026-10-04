@@ -20,6 +20,7 @@ from .game_window import GameWindowProbe
 from .matcher import DialogueMatcher
 from .ocr_windows import WindowsOcr
 from .replacement_overlay import (
+    OverlayCaptureError,
     ReplacementOverlay,
     build_overlay_rect,
     enable_per_monitor_dpi_awareness,
@@ -97,24 +98,32 @@ async def capture_overlay_proof(
     capture: ScreenCapture,
     region,
     path: Path,
-) -> None:
+    game_window: GameWindowProbe,
+) -> bool:
     """Capture one QC-only frame with the overlay visible.
 
     Runtime capture exclusion stays enabled at all other times. For this proof
     image only, affinity is temporarily disabled and no OCR is run on the frame.
     """
 
-    if not overlay.set_capture_exclusion(False):
-        raise RuntimeError("Could not temporarily disable overlay capture exclusion.")
+    if not game_window.is_game_foreground():
+        return False
 
     try:
+        if not overlay.set_capture_exclusion(False):
+            raise OverlayCaptureError("Could not temporarily disable overlay capture exclusion.")
         overlay.pump()
         await asyncio.sleep(0.08)
+        if not game_window.is_game_foreground():
+            return False
         frame = capture.grab(region)
+        if not game_window.is_game_foreground():
+            return False
         frame_to_png(frame, path)
+        return True
     finally:
         if not overlay.set_capture_exclusion(True):
-            raise RuntimeError("Could not restore overlay capture exclusion.")
+            raise OverlayCaptureError("Could not restore overlay capture exclusion.")
 
 
 async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Path, Path]:
@@ -124,11 +133,6 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
     enable_per_monitor_dpi_awareness()
 
     root = Path(__file__).resolve().parents[1]
-    if not db_path.exists():
-        raise RuntimeError(
-            f"Translation DB not found: {db_path}. Run SOURCE_SYNC.bat first."
-        )
-
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     session = root / "diagnostics" / "phase3" / stamp
     screenshots = session / "screenshots"
@@ -153,14 +157,27 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
         "overlay_proofs": 0,
         "ocr_errors": 0,
         "overlay_errors": 0,
+        "runtime_errors": 0,
         "foreground_transient_losses": 0,
         "foreground_pauses": 0,
     }
 
-    store = TranslationStore(db_path)
+    write_json(session / "metadata.json", {
+        "started_at": datetime.now().isoformat(timespec="seconds"),
+        "python": sys.version,
+        "duration_seconds": seconds,
+        "duration_policy": "active PoE2 foreground time only",
+        "capture_policy": "never capture another foreground application",
+    })
+    store: TranslationStore | None = None
     overlay: ReplacementOverlay | None = None
+    stop_reason = "completed"
+    stage = "setup"
 
     try:
+        if not db_path.exists():
+            raise RuntimeError(f"Translation DB not found: {db_path}. Run SOURCE_SYNC.bat first.")
+        store = TranslationStore(db_path)
         matcher = DialogueMatcher(store)
         pipeline = DialogueTranslationPipeline(matcher)
 
@@ -171,10 +188,11 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
             ocr = WindowsOcr()
             detector = DialogueContextDetector(region.width, region.height)
             game_window = GameWindowProbe()
+            stage = "overlay"
             overlay = ReplacementOverlay(monitor)
 
             if not overlay.capture_exclusion_ok:
-                raise RuntimeError(
+                raise OverlayCaptureError(
                     "Windows could not exclude the overlay from screen capture. "
                     "Phase 3 QC stopped to avoid OCR self-capture."
                 )
@@ -215,17 +233,29 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
             first_game_seen_at: float | None = None
             last_game_seen_at: float | None = None
             pause_announced = False
-            no_dialogue_streak = 0
             overlay_visible = False
             current_source_id: str | None = None
             proofed_ids: set[str] = set()
+            resume_needs_reset = True
+
+            def hide_overlay(*, reset_dedupe: bool = True) -> None:
+                nonlocal overlay_visible, current_source_id
+                if overlay_visible:
+                    overlay.clear()
+                    stats["overlay_clears"] += 1
+                overlay_visible = False
+                current_source_id = None
+                if reset_dedupe:
+                    pipeline.stabilizer.reset()
 
             while active_elapsed < seconds:
                 loop_started = time.monotonic()
                 now = loop_started
+                stage = "foreground"
                 foreground = game_window.foreground()
 
                 if not foreground.is_poe2:
+                    resume_needs_reset = True
                     within_grace = (
                         game_active
                         and last_game_seen_at is not None
@@ -239,11 +269,7 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                             stats["foreground_pauses"] += 1
                         game_active = False
 
-                    if overlay_visible and overlay is not None:
-                        overlay.clear()
-                        overlay_visible = False
-                        current_source_id = None
-                        stats["overlay_clears"] += 1
+                    hide_overlay()
 
                     if not pause_announced:
                         print("[PAUSE] POE2 khong o foreground. Timer/overlay tam dung...")
@@ -264,17 +290,28 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                     first_game_seen_at = now
 
                 last_game_seen_at = now
-                if not game_active:
+                if not game_active or resume_needs_reset:
                     print(f"[GAME] foreground: {foreground.title or foreground.class_name}")
                     stabilizer.reset()
                     pipeline.stabilizer.reset()
                     game_active = True
                     pause_announced = False
-                    no_dialogue_streak = 0
+                    resume_needs_reset = False
 
+                stage = "overlay"
                 overlay.pump()
 
+                # Pumping Tk may dispatch pending events after the first check.
+                if not game_window.is_game_foreground():
+                    hide_overlay()
+                    resume_needs_reset = True
+                    continue
+                stage = "capture"
                 frame = capture.grab(region)
+                if not game_window.is_game_foreground():
+                    hide_overlay()
+                    resume_needs_reset = True
+                    continue
                 stats["captures"] += 1
                 decision = stabilizer.observe(frame.bgra)
 
@@ -286,6 +323,7 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                     frame_to_png(frame, raw_path)
 
                     try:
+                        stage = "ocr"
                         ocr_result = await ocr.recognize_bgra(
                             frame.bgra,
                             frame.width,
@@ -294,13 +332,19 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                         stabilizer.mark_ocr()
                         stats["ocr_calls"] += 1
 
+                        # OCR yields to Windows; never render after an Alt+Tab.
+                        if not game_window.is_game_foreground():
+                            hide_overlay()
+                            resume_needs_reset = True
+                            continue
+
+                        stage = "matching"
                         context = detector.detect(ocr_result.lines)
                         pipeline_decision = None
                         overlay_info = None
                         overlay_action = "keep"
 
                         if context.detected:
-                            no_dialogue_streak = 0
                             stats["dialogue_detected"] += 1
                             pipeline_decision = pipeline.process(
                                 context.text,
@@ -326,7 +370,16 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                                     and result.record is not None
                                     and context.dialogue_box is not None
                                 ):
-                                    rect = build_overlay_rect(context.dialogue_box, region)
+                                    stage = "overlay"
+                                    continue_boxes = [
+                                        line.box for line in ocr_result.lines
+                                        if line.box is not None
+                                        and line.text.strip().casefold() == "continue"
+                                        and line.box.y >= context.dialogue_box.bottom
+                                        and abs(line.box.cx - context.dialogue_box.cx) < context.dialogue_box.w
+                                    ]
+                                    continue_box = min(continue_boxes, key=lambda box: box.y, default=None)
+                                    rect = build_overlay_rect(context.dialogue_box, region, continue_box=continue_box)
                                     cover = estimate_cover_color(frame, context.dialogue_box)
                                     overlay_info = overlay.show_translation(
                                         rect,
@@ -339,37 +392,40 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                                     stats["overlay_updates"] += 1
 
                                     if result.record.id not in proofed_ids:
-                                        proofed_ids.add(result.record.id)
+                                        stage = "proof"
                                         proof_path = overlay_proofs / (
                                             f"{event_no:04d}_{result.record.id}.png"
                                         )
-                                        await capture_overlay_proof(
+                                        proof_captured = await capture_overlay_proof(
                                             overlay,
                                             capture,
                                             region,
                                             proof_path,
+                                            game_window,
                                         )
-                                        stats["overlay_proofs"] += 1
+                                        if proof_captured:
+                                            proofed_ids.add(result.record.id)
+                                            stats["overlay_proofs"] += 1
+                                        else:
+                                            hide_overlay()
+                                            resume_needs_reset = True
+                                            overlay_action = "hide_foreground"
+                                            overlay_info = None
                                 else:
-                                    if overlay_visible:
-                                        overlay.clear()
-                                        overlay_visible = False
-                                        current_source_id = None
-                                        stats["overlay_clears"] += 1
+                                    stage = "overlay"
+                                    hide_overlay(reset_dedupe=False)
                                     overlay_action = "hide_unmatched"
                             else:
                                 if pipeline_decision.reason == "duplicate":
                                     stats["duplicates_suppressed"] += 1
                                     overlay_action = "keep_duplicate"
                         else:
-                            no_dialogue_streak += 1
-                            if no_dialogue_streak >= 2 and overlay_visible:
-                                overlay.clear()
-                                overlay_visible = False
-                                current_source_id = None
-                                stats["overlay_clears"] += 1
-                                overlay_action = "hide_no_dialogue"
+                            # A static menu may never trigger a second OCR call.
+                            stage = "overlay"
+                            hide_overlay()
+                            overlay_action = "hide_no_dialogue"
 
+                        stage = "logging"
                         append_jsonl(
                             session / "events.jsonl",
                             {
@@ -426,12 +482,18 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                                     f"{context.text[:80]}"
                                 )
 
+                    except OverlayCaptureError:
+                        # Continuing would risk reading the overlay back into OCR.
+                        raise
                     except Exception as exc:
                         stabilizer.mark_ocr()
-                        if "overlay" in type(exc).__name__.casefold() or "capture exclusion" in str(exc).casefold():
+                        if stage in {"overlay", "proof"}:
                             stats["overlay_errors"] += 1
-                        else:
+                        elif stage == "ocr":
                             stats["ocr_errors"] += 1
+                        else:
+                            stats["runtime_errors"] += 1
+                        hide_overlay()
 
                         append_jsonl(
                             session / "errors.jsonl",
@@ -439,28 +501,58 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
                                 "time": datetime.now().isoformat(timespec="milliseconds"),
                                 "type": type(exc).__name__,
                                 "message": str(exc),
+                                "stage": stage,
                             },
                         )
                         print(f"[ERROR] {type(exc).__name__}: {exc}")
 
                 elapsed = time.monotonic() - loop_started
-                await asyncio.sleep(max(0.02, capture_interval - elapsed))
-                active_elapsed += time.monotonic() - loop_started
+                await asyncio.sleep(max(0.0, min(seconds - active_elapsed, capture_interval - elapsed)))
+                if game_window.is_game_foreground():
+                    active_elapsed = min(seconds, active_elapsed + time.monotonic() - loop_started)
+                else:
+                    hide_overlay()
+                    resume_needs_reset = True
 
+    except (asyncio.CancelledError, KeyboardInterrupt):
+        stop_reason = "interrupted"
+        print("[STOP] QC dung som. Dang dong goi ket qua da thu...")
+    except Exception as exc:
+        stop_reason = "error"
+        stats["overlay_errors" if stage in {"overlay", "proof"} else "runtime_errors"] += 1
+        append_jsonl(session / "errors.jsonl", {
+            "time": datetime.now().isoformat(timespec="milliseconds"),
+            "type": type(exc).__name__, "message": str(exc), "stage": stage,
+            "fatal": True,
+        })
+        print(f"[ERROR] {type(exc).__name__}: {exc}")
     finally:
-        if overlay is not None:
-            overlay.close()
-        store.close()
+        for resource in (overlay, store):
+            if resource is not None:
+                try:
+                    resource.close()
+                except Exception as exc:
+                    stats["runtime_errors"] += 1
+                    stop_reason = "error"
+                    append_jsonl(session / "errors.jsonl", {
+                        "type": type(exc).__name__, "message": str(exc),
+                        "stage": "cleanup", "fatal": True,
+                    })
 
     result_status = (
-        "PASS"
+        "TECHNICAL_PASS"
         if stats["matched_high"] > 0
         and stats["overlay_updates"] > 0
         and stats["overlay_proofs"] > 0
         and stats["ocr_errors"] == 0
         and stats["overlay_errors"] == 0
+        and stats["runtime_errors"] == 0
+        and stop_reason == "completed"
+        and active_elapsed >= seconds
         else "NEEDS_REVIEW"
     )
+    if stop_reason != "completed":
+        result_status = "INTERRUPTED" if stop_reason == "interrupted" else "ERROR"
 
     summary = {
         **stats,
@@ -468,6 +560,8 @@ async def run(seconds: int, capture_interval: float, db_path: Path) -> tuple[Pat
         "active_seconds": round(active_elapsed, 2),
         "elapsed_seconds": round(time.monotonic() - wall_started, 2),
         "result": result_status,
+        "stop_reason": stop_reason,
+        "visual_qc_required": True,
     }
     write_json(session / "summary.json", summary)
     zip_path = package_session(root, session)
@@ -496,7 +590,10 @@ def main() -> None:
     if sys.platform != "win32":
         raise SystemExit("Phase 3 probe is Windows-only.")
 
-    asyncio.run(run(max(10, args.seconds), max(0.05, args.interval), args.db))
+    session, _ = asyncio.run(run(max(10, args.seconds), max(0.05, args.interval), args.db))
+    result = json.loads((session / "summary.json").read_text(encoding="utf-8"))["result"]
+    if result in {"ERROR", "INTERRUPTED"}:
+        raise SystemExit(130 if result == "INTERRUPTED" else 1)
 
 
 if __name__ == "__main__":
