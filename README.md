@@ -4,10 +4,36 @@ Local-first Vietnamese localization engine for Path of Exile 2.
 
 ## Current phase
 
-**Phase 3 — Replacement Overlay: technical and visual QC PASS**
+**Phase 4 — Local Alpha: implemented, awaiting Windows/PoE2 QC**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
-Next planned phase: **Phase 4 — Local Alpha packaging/runtime UX**.
+Phase 3 technical and visual QC passed on session `20261004_183317`.
+Alpha build: **0.4.0-alpha.1 / alpha-20261004-01**.
+
+## Chạy Local Alpha
+
+1. Giải nén bản mới vào một thư mục, rồi mở **RUN_ALPHA.bat**.
+2. Lần đầu tool tự thiết lập thư viện và dữ liệu từ nguồn đã pin; bước này cần mạng.
+   Python 3.10+ cần được cài sẵn, bản đã QC dùng Python 3.12. Các lần chạy sau dùng dữ liệu offline.
+3. Chọn **Bắt đầu** để chơi. Cửa sổ điều khiển thu nhỏ; chuyển sang PoE2.
+   Chế độ này chạy đến khi bấm Dừng, không tự kết thúc sau 60 giây.
+4. Alt+Tab quay lại bảng điều khiển, bấm **Dừng & tạo ZIP** để dừng và xuất log.
+   **Mở file kết quả** mở Explorer và chọn file cần gửi.
+
+Chế độ chơi tạo `ALPHA_RESULT_*.zip` với log nhẹ, không lưu ảnh. Log sự kiện
+được giới hạn 4 MiB và log lỗi 1 MiB mỗi phiên; tổng bộ đếm vẫn tiếp tục cập nhật.
+Không tự xóa các kết quả cũ. Đóng cửa sổ điều khiển cũng yêu cầu dừng phiên;
+kết quả lần trước được khôi phục khi mở lại bảng điều khiển.
+
+Để QC bản Alpha, chọn **QC 60 giây** trong bảng điều khiển, rồi chuyển sang game.
+Timer chỉ tính thời gian PoE2 ở foreground. QC thu ảnh vùng hội thoại, tạo
+**QC_PHASE4_RESULT_*.zip** và hiện tên file sau khi hoàn tất. Gửi ZIP đó lại trong chat.
+Nếu bấm Dừng trước đủ 60 giây, kết quả là `INTERRUPTED`, không phải PASS.
+
+Bản Alpha vẫn có **9 đoạn hội thoại đã dịch**: Renly Introduction / The Miller,
+Una Home / Clearfell. Các câu ngoài bộ này giữ nguyên tiếng Anh.
+Nếu cần thiết lập lại, chạy **SETUP_ALPHA.bat**. Nếu không mở được bảng điều khiển,
+gửi `ALPHA_STARTUP_ERROR.txt` nếu file này được tạo.
 
 Current flow:
 
@@ -37,7 +63,7 @@ Vietnamese translation
 Replacement overlay
 ```
 
-## Current QC
+## Legacy Phase 3 QC
 
 Download/extract a fresh repo copy, open PoE2, then run:
 

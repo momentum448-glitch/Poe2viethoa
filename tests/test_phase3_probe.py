@@ -9,7 +9,7 @@ import unittest
 from unittest.mock import AsyncMock, Mock, patch
 from zipfile import ZipFile
 
-from app import phase3_probe as probe
+from app import session_runtime as probe
 from app.capture import CaptureRegion, CapturedFrame
 from app.frame_stabilizer import StabilizerDecision
 from app.game_window import ForegroundWindow
@@ -56,7 +56,8 @@ class ProbeLifecycleTests(unittest.TestCase):
         self.game_window = Mock()
         self.game_window.is_game_foreground.side_effect = lambda: self.is_game()
         self.game_window.foreground.side_effect = lambda: ForegroundWindow(
-            1, "Path of Exile 2" if self.is_game() else "Other app", "",
+            1, "Path of Exile 2" if self.is_game() else "Other app",
+            "POEWindowClass" if self.is_game() else "OtherApp",
         )
 
     def grab(self, region):
@@ -66,7 +67,7 @@ class ProbeLifecycleTests(unittest.TestCase):
     async def sleep(self, seconds):
         self.clock.now += max(0.001, seconds)
 
-    def run_probe(self, *, seconds=0.35, db=None, overlay_error=None):
+    def run_probe(self, *, seconds=0.35, db=None, overlay_error=None, **options):
         replacements = {
             "__file__": str(self.root / "app" / "phase3_probe.py"),
             "enable_per_monitor_dpi_awareness": Mock(),
@@ -84,7 +85,7 @@ class ProbeLifecycleTests(unittest.TestCase):
             stack.enter_context(patch.object(probe.time, "monotonic", lambda: self.clock.now))
             stack.enter_context(patch.object(probe.asyncio, "sleep", self.sleep))
             stack.enter_context(redirect_stdout(io.StringIO()))
-            session, archive = asyncio.run(probe.run(seconds, 0.12, db or self.db))
+            session, archive = asyncio.run(probe.run(seconds, 0.12, db or self.db, **options))
         summary = json.loads((session / "summary.json").read_text(encoding="utf-8"))
         return session, archive, summary
 
@@ -189,6 +190,85 @@ class ProbeLifecycleTests(unittest.TestCase):
         _, _, summary = self.run_probe()
         self.assertGreater(calls[0], 1)
         self.assertEqual(summary["result"], "TECHNICAL_PASS")
+
+    def test_alpha_runs_until_stop_without_images_or_affinity_toggling(self):
+        reports = []
+        session, archive, summary = self.run_probe(
+            seconds=None, mode="alpha", should_stop=lambda: self.clock.now >= 1.0,
+            on_status=reports.append,
+        )
+        self.assertEqual(summary["result"], "STOPPED")
+        self.assertGreaterEqual(summary["active_seconds"], 1.0)
+        self.assertGreater(summary["overlay_updates"], 0)
+        self.assertFalse((session / "screenshots").exists())
+        self.assertFalse(self.overlay.set_capture_exclusion.called)
+        self.assertTrue(archive.name.startswith("ALPHA_RESULT_"))
+        with ZipFile(archive) as z:
+            self.assertTrue({"metadata.json", "summary.json", "events.jsonl"} <= set(z.namelist()))
+            self.assertFalse(any(name.endswith(".png") for name in z.namelist()))
+        self.assertTrue((self.root / "LAST_ALPHA_RESULT.txt").exists())
+        self.assertTrue(any(r["state"] == "running" for r in reports))
+
+    def test_alpha_can_wait_more_than_300_seconds_for_game_and_still_stop(self):
+        self.is_game = lambda: False
+
+        async def long_wait(seconds):
+            self.clock.now += 60.0
+
+        self.sleep = long_wait
+        _, _, summary = self.run_probe(seconds=None, mode="alpha",
+                                       should_stop=lambda: self.clock.now >= 360.0)
+        self.assertEqual(summary["result"], "STOPPED")
+        self.assertEqual(summary["active_seconds"], 0)
+        self.assertEqual(self.capture.grab.call_count, 0)
+
+    def test_stop_during_pending_ocr_cancels_it_and_closes_overlay(self):
+        stop = [False]
+        cancelled = [False]
+
+        async def pending(*args):
+            stop[0] = True
+            # Advance the fixture clock so asyncio's polling timeout can fire.
+            self.clock.now += 0.2
+            try:
+                await asyncio.Future()
+            finally:
+                cancelled[0] = True
+
+        self.ocr.recognize_bgra.side_effect = pending
+        _, archive, summary = self.run_probe(seconds=None, mode="alpha", should_stop=lambda: stop[0])
+        self.assertEqual(summary["result"], "STOPPED")
+        self.assertTrue(cancelled[0])
+        self.assertTrue(self.overlay.close.called)
+        self.assertTrue(archive.exists())
+
+    def test_alpha_logs_are_bounded_and_dropped_entries_are_counted(self):
+        with patch.object(probe, "ALPHA_EVENT_LOG_LIMIT", 10):
+            session, _, summary = self.run_probe(seconds=None, mode="alpha",
+                                               should_stop=lambda: self.clock.now >= 1.0)
+        self.assertGreater(summary["log_entries_dropped"], 0)
+        self.assertFalse((session / "events.jsonl").exists())
+
+    def test_alpha_native_setup_failure_is_an_error_not_normal_stop(self):
+        _, archive, summary = self.run_probe(seconds=None, mode="alpha",
+                                            overlay_error=OverlayCaptureError("affinity failed"))
+        self.assertEqual(summary["result"], "ERROR")
+        self.assertEqual(summary["last_error"], "affinity failed")
+        self.assertTrue(archive.exists())
+
+    def test_panel_qc_uses_phase4_archive_and_records_build_identity(self):
+        session, archive, summary = self.run_probe(mode="qc_alpha")
+        self.assertEqual(summary["result"], "TECHNICAL_PASS")
+        self.assertTrue(archive.name.startswith("QC_PHASE4_RESULT_"))
+        meta = json.loads((session / "metadata.json").read_text(encoding="utf-8"))
+        self.assertEqual(meta["build_id"], summary["build_id"])
+        self.assertEqual(len(meta["code_sha256"]), 64)
+
+    def test_stopping_qc_early_does_not_report_pass(self):
+        _, archive, summary = self.run_probe(mode="qc_alpha", should_stop=lambda: self.clock.now >= 0.12)
+        self.assertEqual(summary["result"], "INTERRUPTED")
+        self.assertEqual(summary["stop_reason"], "stopped")
+        self.assertTrue(archive.exists())
 
 
 class ProofCaptureTests(unittest.TestCase):

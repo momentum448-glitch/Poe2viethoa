@@ -92,11 +92,19 @@ behavior, all foreground transitions and other DPI/presentation modes remain
 part of Phase 4 real-session testing. Three unmatched Renly segments are outside
 the nine-segment Alpha corpus; they correctly receive no replacement overlay.
 
-### Phase 4 — Local Alpha — NEXT
-- setup/run UX;
-- diagnostics;
-- real-session testing;
-- packaging.
+### Phase 4 — Local Alpha — CURRENT / IMPLEMENTED, WINDOWS QC PENDING
+- `RUN_ALPHA.bat` checks local readiness, runs first-time setup when needed and opens the control panel;
+- `SETUP_ALPHA.bat` installs dependencies and builds the local DB atomically from pinned sources;
+- native Tk panel: Bắt đầu, QC 60 giây, Dừng & tạo ZIP, Mở file kết quả;
+- normal play is untimed and records bounded logs without screenshots;
+- QC still runs for 60 active foreground seconds and includes proof screenshots;
+- one worker process owns OCR/Tk overlay; Stop and foreground hiding remain responsive during pending OCR;
+- controller detects worker failures and packages available diagnostics; no game input is automated;
+- foreground capture requires the native PoE window class, never a browser/document title alone;
+- version/build ID and source fingerprint are recorded in every session;
+- source-first build `0.4.0-alpha.1 / alpha-20261004-01`; Windows launcher, Explorer selection, direct input and real PoE2 QC remain user-machine checks.
+
+Phase 4 is not PASS/LOCKED yet. The nine-segment Alpha corpus remains unchanged.
 
 ### Phase 5 — Translation Factory
 - fresh-source refresh;

@@ -4,10 +4,11 @@
 
 ## Current phase
 
-**Phase 3 — Replacement Overlay: technical and visual QC PASS**
+**Phase 4 — Local Alpha: implementation ready, Windows/PoE2 QC pending**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
-Next planned phase: **Phase 4 — Local Alpha packaging/runtime UX**.
+Phase 3 technical and visual QC passed on session `20261004_183317`.
+Current build: **0.4.0-alpha.1 / alpha-20261004-01**.
 
 ## Locked product decisions
 
@@ -168,8 +169,9 @@ Validation:
 - Replayed all 16 detected dialogue bounding boxes from latest user QC
   `20261004_175216`: 16/16 masks cover the complete English bounding box.
 - No Remote Desktop and no previous project dictionary/corpus were used.
-- Native Windows/Tk/MSS/PoE2 integration and visual readability remain unverified
-  until the next user QC pack. The automated tests use mocks for those platform boundaries.
+- At pre-QC review time, native integration/readability remained unverified.
+  The subsequent real-game QC below supplied that evidence on the tested setup.
+  Automated native-boundary tests still use mocks.
 
 ## Phase 3 real-game QC — technical and visual PASS
 
@@ -230,15 +232,61 @@ was used.
 
 ## Next checkpoint
 
-**Phase 4 — Local Alpha packaging/runtime UX** is next, not implemented yet.
+The user authorized continuing after Phase 3 QC. PR #1 was merged into `main`
+at `f98e354ff868e4d2bbd073a37507c512b9a28efb`.
 
-- Separate normal play startup/stop from the 60-second QC launcher.
-- Keep runtime local/offline, foreground guarding and capture exclusion.
-- Make setup, runtime status and diagnostics understandable on Windows.
-- Test game input, dialogue/menu transitions and Alt+Tab in longer real sessions.
-- Keep Python/source-first packaging; build an EXE only after Local Alpha is stable.
-- Expand translations later from the pinned fresh sources, without lowering match
-  confidence to make untranslated lines display.
+## Phase 4 implementation — ready for Windows QC
 
-The reviewed implementation and QC record are on `fix/phase3-overlay-qc` in
-draft PR #1. `main` has not been updated by this QC review.
+- `app/session_runtime.py` is the shared capture/context/matching/overlay engine;
+  `app/phase3_probe.py` remains a compatible standalone QC CLI.
+- `app/alpha_app.py` provides the native Tk control panel; `app/alpha_controller.py`
+  spawns one overlay worker, polls status without blocking the panel, requests
+  graceful Stop and recovers diagnostics on a worker crash/forced stop.
+- Normal play is untimed. Stopping creates `ALPHA_RESULT_*.zip`, without images.
+  Event/error logs are bounded to 4/1 MiB; dropped event entries are counted.
+- Panel QC runs 60 active PoE2 foreground seconds and creates
+  `QC_PHASE4_RESULT_*.zip` with raw OCR/proof images. Stopping early is INTERRUPTED.
+- Runtime remains offline and High-confidence-only. No hooks, memory reads,
+  game-file edits or automated mouse/keyboard input were added.
+- Foreground guarding now requires `POEWindowClass` / `POE2WindowClass`.
+  A browser, console or document titled Path of Exile 2 cannot qualify for capture.
+- Pending OCR is polled for Stop/foreground loss and times out after 8 seconds;
+  stale OCR from a foreground loss is discarded even if the game returns.
+- Windows OCR bitmap/writer resources are explicitly closed on success/failure.
+- `app/runtime_lock.py` prevents overlapping workers in the same installation;
+  the OS releases its lock on process exit. A lingering lock file is not a stale lock.
+- `RUN_ALPHA.bat` does a network-free local readiness check. First run uses
+  `SETUP_ALPHA.bat` / `tools/alpha_setup.py` to install dependencies, sync the pinned
+  source if needed and replace the runtime DB only after a successful build.
+- Setup stamps track Python, requirements, source lock and translations. Normal
+  startup performs no downloads when local readiness passes.
+- Closing the panel requests Stop and waits for resource cleanup. Existing
+  result pointers are restored on the next launch; new sessions use unique names.
+- Every diagnostic pack records version, build ID and SHA-256 of actual code/data
+  files, including GitHub ZIP downloads with no `.git` directory.
+
+Validation:
+- All 73 automated tests passed on Linux/Python 3.12. They cover normal/paused Stop, pending OCR cancellation/timeout,
+  foreground loss during OCR, normal/QC result labels, bounded logs, crash recovery,
+  worker restart, real spawned-worker failure return, lock release, offline readiness,
+  atomic DB failure preservation and browser-title rejection, plus previous tests.
+- Reconstructed the pinned fresh source locally: 25,062 corpus segments; built
+  the unchanged 9 reviewed Vietnamese runtime records. Linux validation mocks
+  Windows package/platform checks; native Windows dependency installation is pending.
+- Native Tk control-panel start/stop/QC/status/restart behavior was exercised
+  under Linux Xvfb with a simulated worker. This does not validate Windows styling,
+  batch launch, Explorer or the actual OCR/overlay worker in PoE2.
+- No Remote Desktop and no old project dictionary/corpus were used.
+
+Next user checkpoint:
+1. Download/extract the new source ZIP and open `RUN_ALPHA.bat`.
+2. Try normal Bắt đầu, Alt+Tab, Dừng & tạo ZIP, and start again. Check that game
+   mouse/keyboard input remains unaffected and no stale overlay is retained.
+3. Run panel QC 60 giây on the Alpha topics, including normal/inventory layouts
+   and a foreground switch while Vietnamese is visible.
+4. Use Mở file kết quả and send `QC_PHASE4_RESULT_*.zip` back to the project chat.
+
+Phase 4 remains CURRENT, not PASS/LOCKED, until this Windows/PoE2 checkpoint.
+Python/source-first packaging remains the plan; build an EXE after Local Alpha
+is stable. Translation expansion is a later checkpoint, using the pinned fresh
+sources without lowering confidence to display untranslated lines.
