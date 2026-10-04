@@ -4,11 +4,11 @@
 
 ## Current phase
 
-**Phase 4 — Local Alpha: Renly technical/visual QC passed; Una capture fix awaiting Windows QC**
+**Phase 4 — Local Alpha: Una/Renly visual QC passed; local context-anchor fix awaiting Windows QC**
 
 Phase 1 and Phase 2 are **PASS / LOCKED**.
 Phase 3 technical and visual QC passed on session `20261004_183317`.
-Current build: **0.4.0-alpha.2 / alpha-20261004-02**.
+Current build: **0.4.0-alpha.3 / alpha-20261004-03**.
 
 ## Locked product decisions
 
@@ -428,3 +428,62 @@ Next checkpoint (supersedes previous QC requests):
 Phase 4 remains CURRENT / FIX IMPLEMENTED / WINDOWS QC PENDING. The Renly visual
 checkpoint is passed on Alpha.1; full Alpha locking and translation expansion
 wait for validation of the observed Una crop fix.
+
+## Phase 4 Alpha.2 review and local anchor fix — 2026-10-04
+
+Archive: `QC_PHASE4_RESULT_20261004_205252_628160.zip` (59,850,354 bytes; CRC passed).
+SHA-256: `2e310472b94ea3ea8243648734ffc9be502a3fb7cf2d56140bd71217644f8306`.
+Metadata identifies Alpha.2 with the expected code fingerprint, Windows/Python
+3.12.10, native `POEWindowClass`, 1920×1080 and ROI (230,421,1190,486).
+52 raw screenshots, 7 overlay proofs, 3 logs/metadata files; 9 reviewed DB records.
+Automatic result **TECHNICAL_PASS**, completed after 60 active seconds / 61.08 wall seconds.
+
+- 454 captures, 52 OCR calls, 38 reported detections, 14 emitted texts, 24 duplicates;
+- 9 High matches/overlay updates: 7 exact at 100%, 2 correct fuzzy matches at
+  95.90% and 95.96% despite missing OCR text inside the paragraph;
+- 2 Medium results correctly hidden, 3 unmatched texts, 3 overlay clears;
+- 0 OCR/overlay/runtime errors, foreground losses/pauses or dropped log entries.
+
+Independently recounted event-derived counters, replayed all 14 emitted matches
+against the reviewed DB, and checked all 9 English-mask rectangles/full wrapped
+Vietnamese strings. All seven proofs were visually reviewed: Una at events
+7/24/31/37 and Renly at 49/51/52. Vietnamese is readable and complete, English is
+covered, and Continue is unobstructed. Una appears in both normal-right and
+inventory-left layouts; the expanded ROI contains the full lower popup/footer.
+Raw frames 8/25/50 retain English while the overlay is logged visible, supporting
+capture exclusion in these samples. The Una capture fix has passed this checkpoint.
+
+Two real untranslated Una texts are exact normalized fresh-source matches outside
+the nine-record DB: event 4 / Introduction_4 (`dlg_npctextaudio_73589ca681a9d260d834`)
+and event 17 / Renly (`dlg_npctextaudio_e8a97f822abbe36370a9`). Event 20 is different:
+a global-chat trade message at ROI x=7/y=316 was selected over Una's short story
+paragraph at the right. The detector used a global Continue flag, so Una's footer
+incorrectly anchored chat in another column. Low match score 31.67 prevented an
+overlay, but this is a real context-selection defect; do not lock Phase 4 yet.
+
+Fix in **0.4.0-alpha.3 / alpha-20261004-03**:
+- associate Continue with each paragraph using horizontal overlap and a bounded
+  gap below the paragraph; reject a footer above, far below or in another column;
+- select an anchored paragraph before an unanchored high-scoring text cluster;
+- associate speaker labels locally; permit a lower Una header when its paragraph
+  has a local Continue, retaining the upper-third guard for speaker-only fallback;
+- five new regressions and a strengthened Una speaker assertion; the observed
+  chat case and four other assertions failed on Alpha.2 before the fix;
+- **all 82 tests passed** on Linux/Python 3.12; compileall and diff checks passed;
+- code fingerprint: `660079cb57bcbfa72906fc0bf613b50650dc43c57b55602aede601f35387e1da`.
+
+The observed event is reproduced using its logged chat text/box and representative
+header/paragraph/footer geometry from the PNG. The ZIP does not preserve all raw
+OCR line boxes; no claim is made that its entire Windows OCR result was replayed.
+Matching thresholds, nine translations and expanded capture geometry are unchanged.
+
+Next checkpoint (supersedes earlier download/QC instructions): download Alpha.3,
+extract a fresh folder, run `RUN_ALPHA.bat` and choose **QC 60 giây**. Exercise Una
+Home / Clearfell and Renly Introduction / The Miller with Inventory open/closed;
+keep existing chat visible if present, without sending messages. Hold each page
+3–4 seconds and try Alt+Tab while Vietnamese is visible. Send `QC_PHASE4_RESULT_*.zip`
+and confirm mouse/keyboard input still works normally.
+
+Phase 4 remains CURRENT / CONTEXT FIX IMPLEMENTED / WINDOWS QC PENDING. Una and
+Renly visual checkpoints passed; the new local anchor selection, direct interaction
+and foreground-transition behavior still need the next real Windows session.

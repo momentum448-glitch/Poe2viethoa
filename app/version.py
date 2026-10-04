@@ -3,8 +3,8 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 
-VERSION = "0.4.0-alpha.2"
-BUILD_ID = "alpha-20261004-02"
+VERSION = "0.4.0-alpha.3"
+BUILD_ID = "alpha-20261004-03"
 
 
 def build_info(root: Path) -> dict[str, str]:

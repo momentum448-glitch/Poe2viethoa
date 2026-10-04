@@ -69,7 +69,7 @@ class DialogueContextDetector:
 
     def detect(self, lines: list[OcrLine]) -> DialogueContext:
         indexed: list[tuple[int, OcrLine]] = []
-        continue_present = False
+        continue_boxes: list[Rect] = []
 
         for i, line in enumerate(lines):
             text = _clean(line.text)
@@ -78,9 +78,10 @@ class DialogueContextDetector:
 
             lower = text.casefold()
             if lower == "continue":
-                # Strong story-dialogue cue observed in the real Spike 001 frames.
+                # Associate this footer with its paragraph, rather than
+                # letting it confirm unrelated text elsewhere in the capture.
                 if line.box.cy < self.capture_height * 0.90:
-                    continue_present = True
+                    continue_boxes.append(line.box)
                 continue
 
             # Bottom of the ROI can contain global chat. Keep it out before any
@@ -171,9 +172,62 @@ class DialogueContextDetector:
             length_bonus = min(1.0, chars / 90.0)
             return 0.45 * length_bonus + 0.35 * coherence + 0.20 * line_bonus
 
-        best = max(groups, key=score_group)
-        score = score_group(best)
+        def group_anchors(group: list[tuple[int, OcrLine]]) -> tuple[str | None, bool]:
+            boxes = [line.box for _, line in group if line.box]
+            paragraph = _union(boxes)
+            if paragraph is None:
+                return None, False
 
+            horizontal_margin = max(36.0, self.capture_width * 0.04)
+            footer_gap_limit = max(
+                self.capture_height * 0.25,
+                median(box.h for box in boxes) * 7.0,
+            )
+            continue_present = any(
+                -3 <= cue.y - paragraph.bottom <= footer_gap_limit
+                and paragraph.x - horizontal_margin <= cue.cx
+                <= paragraph.right + horizontal_margin
+                for cue in continue_boxes
+            )
+
+            speaker_candidates: list[tuple[float, str]] = []
+            for _, line in indexed:
+                if line.box is None:
+                    continue
+                text_candidate = _clean(line.text)
+                if not text_candidate or _looks_like_sentence(text_candidate):
+                    continue
+                if len(_WORD_RE.findall(text_candidate)) > 5:
+                    continue
+
+                # Lower Una popups put the header below the original upper-third
+                # gate. Only relax that gate inside a locally confirmed panel;
+                # short chat lines must not become speaker-only anchors.
+                if not continue_present and line.box.cy > self.capture_height * 0.33:
+                    continue
+
+                gap = paragraph.y - line.box.bottom
+                if -3 <= gap <= self.capture_height * 0.15:
+                    if (
+                        paragraph.x - horizontal_margin <= line.box.cx
+                        <= paragraph.right + horizontal_margin
+                    ):
+                        speaker_candidates.append((abs(gap), text_candidate))
+
+            speaker = (
+                min(speaker_candidates, key=lambda x: x[0])[1]
+                if speaker_candidates else None
+            )
+            return speaker, continue_present
+
+        candidates = [(group, *group_anchors(group)) for group in groups]
+        anchored_candidates = [item for item in candidates if item[1] or item[2]]
+        # A long unanchored chat line must not beat a shorter NPC paragraph.
+        best, speaker, continue_present = max(
+            anchored_candidates or candidates,
+            key=lambda item: score_group(item[0]),
+        )
+        score = score_group(best)
         best_boxes = [line.box for _, line in best if line.box]
         text = " ".join(_clean(line.text) for _, line in best)
         dialogue_box = _union(best_boxes)
@@ -188,31 +242,6 @@ class DialogueContextDetector:
             if center_x < self.capture_width * 0.48
             else "normal_right"
         )
-
-        speaker = None
-        if dialogue_box is not None:
-            speaker_candidates: list[tuple[float, str]] = []
-            for _, line in indexed:
-                if line.box is None:
-                    continue
-                text_candidate = _clean(line.text)
-                if not text_candidate or _looks_like_sentence(text_candidate):
-                    continue
-                if len(_WORD_RE.findall(text_candidate)) > 5:
-                    continue
-
-                # Real Spike 001 speaker labels sit in the upper third of the ROI.
-                # This excludes topic/menu labels such as "The Devourer".
-                if line.box.cy > self.capture_height * 0.33:
-                    continue
-
-                gap = dialogue_box.y - line.box.bottom
-                if -3 <= gap <= self.capture_height * 0.15:
-                    if abs(line.box.cx - dialogue_box.cx) <= self.capture_width * 0.25:
-                        speaker_candidates.append((abs(gap), text_candidate))
-
-            if speaker_candidates:
-                speaker = min(speaker_candidates, key=lambda x: x[0])[1]
 
         confidence = min(0.99, score)
         reasons = [
