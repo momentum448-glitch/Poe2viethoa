@@ -5,6 +5,5 @@ diagnostics/
 *.log
 .DS_Store
 Thumbs.db
-QC_RESULT_*.zip
-QC_LOG_RESULT_*.zip
 QC_PHASE1_RESULT_*.zip
+LAST_QC_RESULT.txt
