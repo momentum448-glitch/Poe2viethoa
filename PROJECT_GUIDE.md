@@ -44,20 +44,31 @@ Xây một engine Việt hóa Path of Exile 2 chạy local trên Windows, bắt 
           Replacement Overlay
 ```
 
-Kiến trúc trên **chưa khóa** ở nhánh log/OCR cho Dialogue. Spike 001 quyết định.
+### Dialogue signal decision — LOCKED
+
+Spike 001 + 001B–001C đã chốt **OCR-first** cho Story Dialogue.
+
+- OCR là nguồn text chính.
+- Screen/layout context là nguồn context chính.
+- `Client.txt` không phải runtime dependency.
+- Nếu sau này tìm được log ổn định, log chỉ được thêm như optional context adapter; engine không được phụ thuộc vào nó.
+
+Lý do: real QC đã chứng minh Windows OCR đọc tốt nhiều câu story của Renly với bounding box ổn định ở cả normal và inventory-open layouts, trong khi nhiều probe độc lập không tìm được một `Client.txt` đáng tin cậy trên máy test.
 
 ## Roadmap
 
 ### Phase 0 — Signal & architecture validation
-- Spike 001: Client.txt + OCR + layout evidence.
-- Chốt Log-first / OCR-first / Hybrid cho Dialogue.
+- Spike 001: Client.txt + OCR + layout evidence. **PASS**
+- Dialogue signal architecture: **OCR-first — LOCKED**.
 
 ### Phase 1 — Core capture/context
-- game focus/window detection;
+- game/window presence detection;
 - screen capture;
+- dialogue-panel/layout detection;
 - frame-change/stability gate;
-- log tailer;
-- diagnostics.
+- OCR adapter + bounding boxes;
+- diagnostics/evidence capture.
+- optional log adapter may be explored later, but is not on the critical path.
 
 ### Phase 2 — Dialogue v0.1
 - Clearfell dataset;
