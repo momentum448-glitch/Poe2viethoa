@@ -292,11 +292,19 @@ def main() -> int:
     print("[1/4] Downloading pinned English source tables...")
     source_rows = fetch_source_tables(lock, force=args.force)
 
-    print("[2/4] Downloading/extracting current dialogue context snapshot...")
-    vault_dir = ensure_vault(lock, force=args.force)
+    context_error = None
+    context_index: dict[str, list[dict[str, str]]] = {}
+    vault_records = 0
 
-    print("[3/4] Building speaker/topic context index...")
-    context_index, vault_records = build_context_index(vault_dir)
+    print("[2/4] Downloading/extracting dialogue context snapshot (optional)...")
+    try:
+        vault_dir = ensure_vault(lock, force=args.force)
+        print("[3/4] Building speaker/topic context index...")
+        context_index, vault_records = build_context_index(vault_dir)
+    except Exception as exc:
+        context_error = f"{type(exc).__name__}: {exc}"
+        print(f"[WARN] Context enrichment unavailable: {context_error}")
+        print("[WARN] Continuing with English source only.")
 
     print("[4/4] Building local source corpus...")
     source_ref = lock["sources"]["poe2_en"]["ref"]
@@ -314,6 +322,7 @@ def main() -> int:
         "source_ref": source_ref,
         "context_ref": context_ref,
         "vault_transcript_records": vault_records,
+        "context_error": context_error,
         **stats,
         "corpus_path": str(CORPUS_PATH.relative_to(ROOT)),
     }
