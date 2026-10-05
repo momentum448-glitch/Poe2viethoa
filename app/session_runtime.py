@@ -12,11 +12,12 @@ from typing import Any, Callable
 
 from PIL import Image
 
-from .capture import ScreenCapture
+from .capture import ScreenCapture, crop_frame
 from .dialogue_context import DialogueContextDetector
 from .dialogue_pipeline import DialogueTranslationPipeline
+from .dialogue_tracking import absolute_box, position_was_proofed, proof_key, tracking_region
 from .frame_stabilizer import FrameStabilizer
-from .game_window import GameWindowProbe
+from .game_window import ForegroundWindow, GameWindowProbe
 from .matcher import DialogueMatcher
 from .ocr_windows import WindowsOcr
 from .replacement_overlay import (
@@ -113,7 +114,7 @@ async def capture_overlay_proof(
     region,
     path: Path,
     game_window: GameWindowProbe,
-    *, reference=None, text_box=None,
+    *, reference=None, text_box=None, window: ForegroundWindow | None = None,
 ) -> bool:
     """Capture one QC-only frame with the overlay visible.
 
@@ -121,7 +122,8 @@ async def capture_overlay_proof(
     image only, affinity is temporarily disabled and no OCR is run on the frame.
     """
 
-    if not game_window.is_game_foreground():
+    is_current = (lambda: game_window.is_current(window)) if window else game_window.is_game_foreground
+    if not is_current():
         return False
 
     try:
@@ -129,10 +131,10 @@ async def capture_overlay_proof(
             raise OverlayCaptureError("Could not temporarily disable overlay capture exclusion.")
         overlay.pump()
         await asyncio.sleep(0.08)
-        if not game_window.is_game_foreground():
+        if not is_current():
             return False
         frame = capture.grab(region)
-        if not game_window.is_game_foreground():
+        if not is_current():
             return False
         frame_to_png(frame, path)
     finally:
@@ -142,11 +144,11 @@ async def capture_overlay_proof(
         # Allow DWM to apply the restored exclusion before sampling English.
         overlay.pump()
         await asyncio.sleep(0.04)
-        if not game_window.is_game_foreground():
+        if not is_current():
             path.unlink(missing_ok=True)
             return False
         latest = capture.grab(region)
-        if not game_window.is_game_foreground() or source_text_changed(reference, latest, text_box):
+        if not is_current() or source_text_changed(reference, latest, text_box):
             path.unlink(missing_ok=True)
             return False
     return True
@@ -214,6 +216,9 @@ async def run(
 
     stats = {
         "captures": 0,
+        "discovery_ocr_calls": 0,
+        "tracking_ocr_calls": 0,
+        "popup_reacquisitions": 0,
         "ocr_calls": 0,
         "dialogue_detected": 0,
         "text_emitted": 0,
@@ -280,11 +285,11 @@ async def run(
         pipeline = DialogueTranslationPipeline(matcher)
 
         with ScreenCapture() as capture:
-            monitor = capture.primary_monitor()
-            region = capture.default_dialogue_region()
+            monitor = capture.desktop_monitor()
+            viewport = region = None
             stabilizer = FrameStabilizer(max_wait_ms=900)
             ocr = WindowsOcr()
-            detector = DialogueContextDetector(region.width, region.height)
+            known_speakers = {record.speaker for record in matcher.records if record.speaker}
             game_window = GameWindowProbe()
             stage = "overlay"
             overlay = ReplacementOverlay(monitor)
@@ -304,9 +309,10 @@ async def run(
                     "capture_interval_seconds": capture_interval,
                     "foreground_grace_seconds": FOREGROUND_GRACE_SECONDS,
                     "duration_policy": "active PoE2 foreground time only",
-                    "capture_policy": "overlay excluded from OCR capture",
+                    "capture_policy": "foreground game client only; overlay excluded from OCR",
+                    "dialogue_position_policy": "full-client discovery, measured popup tracking; reacquire on change",
                     "monitor": monitor,
-                    "capture_region": region.as_mss(),
+                    "capture_region": None,
                     "runtime_translation_records": len(matcher.records),
                     "overlay_capture_exclusion": overlay.capture_exclusion_ok,
                     "overlay_mode": "topmost / click-through / replacement mask",
@@ -337,7 +343,7 @@ async def run(
             current_source_id: str | None = None
             displayed_frame = None
             displayed_box = None
-            proofed_ids: set[str] = set()
+            proofed_positions: set[tuple[str, int, int]] = set()
             resume_needs_reset = True
 
             def hide_overlay(*, reset_dedupe: bool = True) -> None:
@@ -401,12 +407,27 @@ async def run(
                     await asyncio.sleep(max(0.10, capture_interval))
                     continue
 
+                next_viewport = capture.game_region(foreground.client_region)
+                if next_viewport is None:
+                    hide_overlay()
+                    resume_needs_reset = True
+                    report("waiting", "Đang chờ vùng hiển thị PoE2 hợp lệ.")
+                    await asyncio.sleep(max(0.10, capture_interval))
+                    continue
+                if viewport != next_viewport:
+                    if viewport is not None:
+                        stats["popup_reacquisitions"] += 1
+                    hide_overlay()
+                    viewport = region = next_viewport
+                    stabilizer.reset()
+
                 if first_game_seen_at is None:
                     first_game_seen_at = now
                     metadata_path = session / "metadata.json"
                     metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
                     metadata["game_window"] = {"class_name": foreground.class_name,
                                                "title": foreground.title}
+                    metadata["capture_region"] = viewport.as_mss()
                     write_json(metadata_path, metadata)
 
                 last_game_seen_at = now
@@ -414,6 +435,7 @@ async def run(
                     print(f"[GAME] foreground: {foreground.title or foreground.class_name}")
                     stabilizer.reset()
                     pipeline.stabilizer.reset()
+                    region = viewport
                     game_active = True
                     pause_announced = False
                     resume_needs_reset = False
@@ -423,13 +445,14 @@ async def run(
                 report("running", "Đang theo dõi hội thoại trong PoE2.")
 
                 # Pumping Tk may dispatch pending events after the first check.
-                if not game_window.is_game_foreground():
+                is_current = lambda: game_window.is_current(foreground)
+                if not is_current():
                     hide_overlay()
                     resume_needs_reset = True
                     continue
                 stage = "capture"
                 frame = capture.grab(region)
-                if not game_window.is_game_foreground():
+                if not is_current():
                     hide_overlay()
                     resume_needs_reset = True
                     continue
@@ -439,6 +462,12 @@ async def run(
                     hide_overlay()
                     stabilizer.reset()
                     stats["stale_text_skips"] += 1
+                    if region != viewport:
+                        region = viewport
+                        stats["popup_reacquisitions"] += 1
+                        continue
+                # Keep sampled comparison work close to the old small-ROI budget.
+                stabilizer.sample_stride = max(8, region.width * region.height // 65000)
                 decision = stabilizer.observe(frame.bgra)
 
                 if decision.should_ocr:
@@ -451,31 +480,45 @@ async def run(
 
                     try:
                         stage = "ocr"
+                        capture_mode = "discovery" if region == viewport else "tracking"
                         ocr_result, foreground_lost = await recognize_guarded(
-                            ocr, frame, is_foreground=game_window.is_game_foreground,
+                            ocr, frame, is_foreground=is_current,
                             should_stop=should_stop, on_foreground_loss=foreground_lost_during_ocr,
                         )
                         stabilizer.mark_ocr()
                         stats["ocr_calls"] += 1
+                        stats[f"{capture_mode}_ocr_calls"] += 1
 
                         # OCR yields to Windows; never render after an Alt+Tab.
                         if should_stop():
                             raise asyncio.CancelledError()
-                        if foreground_lost or not game_window.is_game_foreground():
+                        if foreground_lost or not is_current():
                             hide_overlay()
                             resume_needs_reset = True
                             continue
 
                         stage = "matching"
+                        detector = DialogueContextDetector(region.width, region.height,
+                                                           known_speakers=known_speakers)
                         context = detector.detect(ocr_result.lines)
+                        position = None
+                        if context.dialogue_box is not None:
+                            screen_box = absolute_box(context.dialogue_box, region)
+                            position = (screen_box.x, screen_box.y)
+                            # Crop coordinates must not change the dedupe's layout.
+                            context.layout = ("inventory_left" if screen_box.cx <
+                                              viewport.left + viewport.width * 0.48 else "normal_right")
+                            context.reasons = [reason for reason in context.reasons
+                                               if not reason.startswith("layout=")] + [f"layout={context.layout}"]
                         pipeline_decision = None
                         overlay_info = None
                         overlay_action = "keep"
+                        proof_relative_path = None
 
                         stale_during_ocr = False
                         if context.detected and context.dialogue_box is not None:
                             latest = capture.grab(region)
-                            if not game_window.is_game_foreground():
+                            if not is_current():
                                 hide_overlay()
                                 resume_needs_reset = True
                                 continue
@@ -491,6 +534,7 @@ async def run(
                                 context.text,
                                 speaker=context.speaker,
                                 layout=context.layout,
+                                position=position,
                             )
 
                             if pipeline_decision.emit:
@@ -512,15 +556,8 @@ async def run(
                                     and context.dialogue_box is not None
                                 ):
                                     stage = "overlay"
-                                    continue_boxes = [
-                                        line.box for line in ocr_result.lines
-                                        if line.box is not None
-                                        and line.text.strip().casefold() == "continue"
-                                        and line.box.y >= context.dialogue_box.bottom
-                                        and abs(line.box.cx - context.dialogue_box.cx) < context.dialogue_box.w
-                                    ]
-                                    continue_box = min(continue_boxes, key=lambda box: box.y, default=None)
-                                    rect = build_overlay_rect(context.dialogue_box, region, continue_box=continue_box)
+                                    rect = build_overlay_rect(context.dialogue_box, region,
+                                                              continue_box=context.continue_box)
                                     cover = estimate_cover_color(frame, context.dialogue_box)
                                     overlay_info = overlay.show_translation(
                                         rect,
@@ -533,7 +570,8 @@ async def run(
                                     overlay_action = "show"
                                     stats["overlay_updates"] += 1
 
-                                    if is_qc and result.record.id not in proofed_ids:
+                                    key = proof_key(result.record.id, context.dialogue_box, region)
+                                    if is_qc and not position_was_proofed(key, proofed_positions):
                                         stage = "proof"
                                         proof_path = overlay_proofs / (
                                             f"{event_no:04d}_{result.record.id}.png"
@@ -545,10 +583,12 @@ async def run(
                                             proof_path,
                                             game_window,
                                             reference=frame, text_box=context.dialogue_box,
+                                            window=foreground,
                                         )
                                         if proof_captured:
-                                            proofed_ids.add(result.record.id)
+                                            proofed_positions.add(key)
                                             stats["overlay_proofs"] += 1
+                                            proof_relative_path = proof_path.relative_to(session).as_posix()
                                         else:
                                             hide_overlay()
                                             resume_needs_reset = True
@@ -576,6 +616,9 @@ async def run(
                                 "event": event_no,
                                 "time": datetime.now().isoformat(timespec="milliseconds"),
                                 "screenshot": str(raw_path.relative_to(session)) if is_qc else None,
+                                "capture_region": region.as_mss(),
+                                "capture_mode": capture_mode,
+                                "ocr": ocr_result.to_dict() if is_qc else None,
                                 "frame_gate": {
                                     "reason": decision.reason,
                                     "changed_fraction": round(decision.changed_fraction, 6),
@@ -599,6 +642,7 @@ async def run(
                                     "action": overlay_action,
                                     "visible": overlay_visible,
                                     "current_source_id": current_source_id,
+                                    "proof": proof_relative_path,
                                     "render": (
                                         overlay_info.to_dict()
                                         if overlay_info is not None
@@ -610,6 +654,19 @@ async def run(
                         )
                         if not logged:
                             stats["log_entries_dropped"] += 1
+
+                        if overlay_visible and displayed_frame is not None and region == viewport:
+                            next_region = tracking_region(context, region, viewport)
+                            if next_region != region:
+                                displayed_frame = crop_frame(displayed_frame, next_region)
+                                displayed_box = displayed_box.translated(region.left - next_region.left,
+                                                                         region.top - next_region.top)
+                                region = next_region
+                                stabilizer.reset()
+                        elif not overlay_visible and region != viewport:
+                            region = viewport
+                            stabilizer.reset()
+                            stats["popup_reacquisitions"] += 1
 
                         if context.detected and pipeline_decision:
                             result = pipeline_decision.translation
@@ -642,6 +699,8 @@ async def run(
                         else:
                             stats["runtime_errors"] += 1
                         hide_overlay()
+                        region = viewport
+                        stabilizer.reset()
 
                         append_jsonl(
                             session / "errors.jsonl",

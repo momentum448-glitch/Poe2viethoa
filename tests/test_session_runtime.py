@@ -13,9 +13,10 @@ from PIL import Image, ImageDraw
 
 from app import session_runtime as probe
 from app.capture import CaptureRegion, CapturedFrame
+from app.dialogue_context import DialogueContextDetector as RealContextDetector
 from app.frame_stabilizer import StabilizerDecision
 from app.game_window import ForegroundWindow
-from app.models import DialogueContext, OcrResult, Rect
+from app.models import DialogueContext, OcrLine, OcrResult, Rect
 from app.replacement_overlay import OverlayCaptureError, OverlayRenderInfo
 from app.translation_models import TranslationRecord
 from app.translation_store import build_sqlite
@@ -46,8 +47,9 @@ class SessionLifecycleTests(unittest.TestCase):
         self.capture = Mock()
         self.capture.__enter__ = Mock(return_value=self.capture)
         self.capture.__exit__ = Mock(return_value=False)
-        self.capture.primary_monitor.return_value = {"left": 0, "top": 0, "width": 64, "height": 32}
-        self.capture.default_dialogue_region.return_value = self.region
+        self.capture.desktop_monitor.return_value = {"left": 0, "top": 0, "width": 64, "height": 32}
+        self.capture.game_region.side_effect = lambda client: client
+        self.game_region = self.region
         self.capture.grab.side_effect = self.grab
         self.ocr = Mock()
         self.ocr.recognize_bgra = AsyncMock(return_value=OcrResult(TEXT, [], 1.0))
@@ -59,12 +61,15 @@ class SessionLifecycleTests(unittest.TestCase):
         self.game_window.is_game_foreground.side_effect = lambda: self.is_game()
         self.game_window.foreground.side_effect = lambda: ForegroundWindow(
             1, "Path of Exile 2" if self.is_game() else "Other app",
-            "POEWindowClass" if self.is_game() else "OtherApp",
+            "POEWindowClass" if self.is_game() else "OtherApp", self.game_region,
         )
+
+        self.game_window.is_current.side_effect = lambda expected: (
+            self.is_game() and self.game_region == expected.client_region)
 
     def grab(self, region):
         self.assertTrue(self.is_game(), "Capture must never run over another foreground app")
-        return self.frame
+        return probe.crop_frame(self.frame, region)
 
     async def sleep(self, seconds):
         self.clock.now += max(0.001, seconds)
@@ -90,6 +95,94 @@ class SessionLifecycleTests(unittest.TestCase):
             session, archive = asyncio.run(probe.run(seconds, 0.12, db or self.db, **options))
         summary = json.loads((session / "summary.json").read_text(encoding="utf-8"))
         return session, archive, summary
+
+    def moving_scene(self, position_at):
+        self.region = self.game_region = CaptureRegion(180, 60, 1280, 720)
+        self.capture.desktop_monitor.return_value = {"left": -1920, "top": 0, "width": 3840, "height": 1080}
+        self.last_region = self.region
+        self.ocr_size = (1280, 720)
+
+        def grab(region):
+            self.assertTrue(self.is_game())
+            viewport = self.game_region
+            image = Image.new("RGB", (viewport.width, viewport.height), (16, 16, 16))
+            x, y = position_at(self.clock.now)
+            ImageDraw.Draw(image).rectangle((x + 3, y + 52, x + 90, y + 64), fill=(238, 228, 201))
+            self.last_region = region
+            frame = CapturedFrame(image.tobytes("raw", "BGRX"), viewport.width, viewport.height, viewport)
+            return probe.crop_frame(frame, region)
+
+        async def recognize(bgra, width, height):
+            self.ocr_size = (width, height)
+            x, y = position_at(self.clock.now)
+            x += self.game_region.left - self.last_region.left
+            y += self.game_region.top - self.last_region.top
+            lines = [OcrLine("Keeper", Rect(x + 75, y, 70, 22)),
+                     OcrLine(TEXT, Rect(x, y + 48, 200, 20)),
+                     OcrLine("Continue", Rect(x + 60, y + 140, 80, 20))]
+            return OcrResult(TEXT, lines, 1.0)
+
+        self.capture.grab.side_effect = grab
+        self.ocr.recognize_bgra.side_effect = recognize
+        self.detector.detect.side_effect = lambda lines: RealContextDetector(
+            *self.ocr_size, known_speakers={"Keeper"}).detect(lines)
+        return recognize
+
+    def test_discovery_then_tracking_preserves_absolute_position_and_reference(self):
+        self.moving_scene(lambda now: (780, 100))
+        session, _, summary = self.run_probe(seconds=0.70)
+        self.assertEqual(summary["result"], "TECHNICAL_PASS")
+        self.assertEqual(self.overlay.show_translation.call_count, 1)
+        self.assertEqual(summary["stale_text_skips"], 0)
+        self.assertGreater(summary["tracking_ocr_calls"], 0)
+        events = [json.loads(line) for line in (session / "events.jsonl").read_text().splitlines()]
+        self.assertEqual(events[0]["capture_region"], self.region.as_mss())
+        for event in events:
+            box, region = event["dialogue"]["dialogue_box"], event["capture_region"]
+            self.assertEqual((region["left"] + box["x"], region["top"] + box["y"]), (960, 208))
+            self.assertEqual(event["dialogue"]["layout"], "normal_right")
+            self.assertTrue(event["ocr"]["lines"])
+
+    def test_same_page_in_a_new_corner_reacquires_and_creates_a_second_proof(self):
+        self.moving_scene(lambda now: (780, 100) if now < .23 else (1010, 460))
+        session, _, summary = self.run_probe(seconds=0.70)
+        self.assertEqual(summary["result"], "TECHNICAL_PASS")
+        self.assertEqual(self.overlay.show_translation.call_count, 2)
+        self.assertEqual(summary["overlay_proofs"], 2)
+        self.assertGreaterEqual(summary["popup_reacquisitions"], 1)
+        self.assertGreaterEqual(self.overlay.clear.call_count, 1)
+        events = [json.loads(line) for line in (session / "events.jsonl").read_text().splitlines()]
+        shows = [e for e in events if e["overlay"]["action"] == "show"]
+        self.assertEqual([e["overlay"]["current_source_id"] for e in shows], ["dlg_test", "dlg_test"])
+        self.assertTrue(all(e["overlay"]["proof"] for e in shows))
+        self.assertGreater(shows[1]["overlay"]["render"]["rect"]["top"],
+                           shows[0]["overlay"]["render"]["rect"]["top"] + 300)
+
+    def test_window_move_during_ocr_discards_old_coordinates_before_rendering(self):
+        recognize = self.moving_scene(lambda now: (780, 100))
+        first = True
+
+        async def move(bgra, width, height):
+            nonlocal first
+            result = await recognize(bgra, width, height)
+            if first:
+                first = False
+                self.game_region = CaptureRegion(300, 60, 1280, 720)
+            return result
+
+        self.ocr.recognize_bgra.side_effect = move
+        _, _, summary = self.run_probe(seconds=.70)
+        self.assertEqual(summary["result"], "TECHNICAL_PASS")
+        self.assertEqual(self.overlay.show_translation.call_count, 1)
+        rect = self.overlay.show_translation.call_args.args[0]
+        self.assertEqual(rect.left, 300 + 780 - 18)
+
+    def test_native_game_with_unavailable_client_bounds_waits_without_capturing(self):
+        self.game_region = None
+        _, _, summary = self.run_probe(seconds=None, mode="alpha", should_stop=lambda: self.clock.now > .2)
+        self.assertEqual(summary["result"], "STOPPED")
+        self.capture.grab.assert_not_called()
+        self.overlay.show_translation.assert_not_called()
 
     def test_fast_alt_tab_restores_the_same_translation_before_dedupe_timeout(self):
         self.is_game = lambda: not (0.115 <= self.clock.now < 0.235)

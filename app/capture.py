@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import Any
 
 import mss
+from PIL import Image
 
 
 @dataclass(frozen=True)
@@ -12,6 +13,14 @@ class CaptureRegion:
     top: int
     width: int
     height: int
+
+    @property
+    def right(self) -> int:
+        return self.left + self.width
+
+    @property
+    def bottom(self) -> int:
+        return self.top + self.height
 
     def as_mss(self) -> dict[str, int]:
         return {
@@ -30,8 +39,22 @@ class CapturedFrame:
     region: CaptureRegion
 
 
+def crop_frame(frame: CapturedFrame, region: CaptureRegion) -> CapturedFrame:
+    """Rebase a captured reference without taking another screen shot."""
+    if not (region.width > 0 and region.height > 0
+            and frame.region.left <= region.left < region.right <= frame.region.right
+            and frame.region.top <= region.top < region.bottom <= frame.region.bottom):
+        raise ValueError("The tracking crop must be inside its captured frame.")
+    if region == frame.region:
+        return frame
+    image = Image.frombytes("RGBA", (frame.width, frame.height), frame.bgra, "raw", "BGRA")
+    x, y = region.left - frame.region.left, region.top - frame.region.top
+    cropped = image.crop((x, y, x + region.width, y + region.height))
+    return CapturedFrame(cropped.tobytes("raw", "BGRA"), region.width, region.height, region)
+
+
 class ScreenCapture:
-    """MSS screen capture with resolution-scaled dialogue ROI."""
+    """Capture the visible game client; popup tracking uses a measured crop."""
 
     def __init__(self) -> None:
         self._sct = mss.mss()
@@ -42,18 +65,21 @@ class ScreenCapture:
     def primary_monitor(self) -> dict[str, Any]:
         return dict(self._sct.monitors[1])
 
-    def default_dialogue_region(self) -> CaptureRegion:
-        monitor = self._sct.monitors[1]
+    def desktop_monitor(self) -> dict[str, Any]:
+        # MSS index 0 is the virtual desktop, including negative monitor origins.
+        # The transparent overlay must also cover a game on a secondary monitor.
+        return dict(self._sct.monitors[0])
 
-        # NPC panels can appear below Renly's central position (Una in the real
-        # Alpha QC). Include their complete paragraph and Continue control while
-        # keeping the bottom HUD outside the capture region.
-        left = monitor["left"] + round(monitor["width"] * 0.12)
-        top = monitor["top"] + round(monitor["height"] * 0.39)
-        width = round(monitor["width"] * 0.62)
-        height = round(monitor["height"] * 0.45)
-
-        return CaptureRegion(left, top, width, height)
+    def game_region(self, client: CaptureRegion | None) -> CaptureRegion | None:
+        if client is None or client.width <= 0 or client.height <= 0:
+            return None
+        desktop = CaptureRegion(**{k: self._sct.monitors[0][k]
+                                   for k in ("left", "top", "width", "height")})
+        left, top = max(client.left, desktop.left), max(client.top, desktop.top)
+        right, bottom = min(client.right, desktop.right), min(client.bottom, desktop.bottom)
+        if right <= left or bottom <= top:
+            return None
+        return CaptureRegion(left, top, right - left, bottom - top)
 
     def grab(self, region: CaptureRegion) -> CapturedFrame:
         shot = self._sct.grab(region.as_mss())

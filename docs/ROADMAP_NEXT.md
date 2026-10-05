@@ -1,7 +1,10 @@
 # Chặng Act 1 Story Dialogue và dọn dự án
 
 Ngày: 2026-10-04. Người dùng đã cho thực thi trọn chặng.
-**Đã triển khai: 0.5.0-alpha.2 / act1-20261004-01; chờ QC native Windows.**
+**Đã triển khai Act 1: 0.5.0-alpha.2 / act1-20261004-01.**
+Runtime hiện hành **0.5.0-alpha.3 / popup-20261005-01** sửa vị trí NPC;
+[báo cáo hai QC 2026-10-05](QC_POPUP_20261005.md). Các số liệu dưới đây là mốc
+chặng Alpha.2; native proofs mới xác nhận Home 19 px, bản sửa Alpha.3 chờ QC.
 Mục tiêu 180–220 trang đã đạt bằng 196 trang có nguồn; không tăng bằng bark/vendor.
 
 ## Kết quả

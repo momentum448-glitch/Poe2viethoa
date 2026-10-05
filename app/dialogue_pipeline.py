@@ -33,11 +33,13 @@ class DialogueTranslationPipeline:
         speaker: str | None = None,
         area: str | None = None,
         layout: str | None = None,
+        position: tuple[float, float] | None = None,
     ) -> PipelineDecision:
         stable = self.stabilizer.observe(
             text,
             speaker=speaker,
             layout=layout,
+            position=position,
         )
 
         if not stable.emit:

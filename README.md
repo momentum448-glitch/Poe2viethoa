@@ -1,8 +1,9 @@
 # POE2 Việt Hóa
 
 Overlay Việt hóa hội thoại Path of Exile 2, chạy local trên Windows.
-**0.5.0-alpha.2 / act1-20261004-01** có **196 trang Story Dialogue Act 1**
-đã soát nghĩa, tăng 180 trang và giữ nguyên 16 trang của bản trước.
+**0.5.0-alpha.3 / popup-20261005-01** có **196 trang Story Dialogue Act 1**
+đã soát nghĩa. Bản này sửa tìm và theo hộp thoại khi nó đổi vị trí theo hướng
+người chơi tiếp cận NPC; bộ dịch giữ đủ 196 trang.
 
 | NPC | Trang trong bộ chạy |
 | --- | ---: |
@@ -26,7 +27,7 @@ AI chỉ dùng trong giai đoạn soạn và soát bản dịch.
 3. Chọn **Bắt đầu**, chuyển sang PoE2. Chế độ chơi chạy đến khi bấm Dừng.
 4. Alt+Tab quay lại panel, bấm **Dừng & tạo ZIP**, rồi **Mở file kết quả**.
 
-**QC 60 giây** tính thời gian PoE2 ở foreground, lưu ảnh vùng hội thoại và tạo
+**QC 60 giây** tính thời gian PoE2 ở foreground, lưu ảnh vùng quét và hội thoại và tạo
 `results/QC_PHASE4_RESULT_*.zip`. Chế độ chơi tạo `results/ALPHA_RESULT_*.zip`
 với log nhẹ, không lưu ảnh. Panel đọc được con trỏ kết quả cũ ở root.
 Nếu bấm Dừng sớm, QC là `INTERRUPTED`. `TECHNICAL_PASS` vẫn cần xem ảnh và
@@ -37,7 +38,8 @@ QC bản này theo hai phiên, tùy topic anh đã mở trong game:
 - Una / Renly: ưu tiên Home, Fatherhood, các trang dài và Introduction cũ.
 - Finn / The Hooded One: chọn các topic Act 1 đang có; thử trang ngắn và dài.
 
-Giữ mỗi trang 3–4 giây, thử mở/đóng Inventory và Alt+Tab. Gửi ZIP kết quả trong
+Thử tiếp cận **cùng một NPC từ nhiều hướng**, đóng/mở lại cùng topic, thử
+Inventory, Una ở vị trí thấp và Alt+Tab. Giữ mỗi trang 3–4 giây. Gửi ZIP kết quả trong
 chat. Nếu NPC/topic chưa mở, thử phần đang có và tiếp tục chơi thường để tìm
 MISS. Nếu panel không mở, gửi `ALPHA_STARTUP_ERROR.txt` khi file này được tạo.
 
@@ -45,17 +47,25 @@ MISS. Nếu panel không mở, gửi `ALPHA_STARTUP_ERROR.txt` khi file này đ�
 
 - Factory chọn/resume theo manifest, NPC hoặc topic; giữ đầy đủ trang Continue
   kể cả trang bị dedupe trong corpus. Bản soát có glossary/context và review digest.
+- Tìm hộp thoại trên toàn cửa sổ game rồi theo vùng đã nhận diện. Khi popup
+  chuyển chỗ hoặc đóng, lớp cũ ẩn và tool tìm lại; cùng câu ở vị trí mới vẫn
+  được cập nhật. Nhận diện tên NPC/Continue theo khoảng cách địa phương,
+  tách cột chat; bỏ giới hạn dải màn hình cũ. QC ghi tọa độ và proof theo vị trí.
 - Runtime bỏ kết quả nếu nguồn đổi trong lúc OCR xử lý, ẩn bản dịch khi glyph
   đổi và kiểm tra lại nguồn sau khi chụp proof. Nới mép che chữ, dùng khoảng
   trống đã đo phía trên Continue cho câu dài; cỡ chữ tối đa 22 px.
 - Bỏ launcher/probe Phase 2/3 cũ; giữ kiểm thử shared runtime. Công cụ phát
   triển chuyển vào `dev/`; tài liệu hiện hành được rút gọn.
-- **128 kiểm thử đạt**, 8 lô QA không lỗi/cảnh báo, DB đủ 196 records. Replay
+- **149 kiểm thử đạt**, 8 lô QA không lỗi/cảnh báo, DB đủ 196 records. Replay
   4 log QC giữ đúng 35 High cũ; 392 mẫu lỗi OCR không có High khớp sai trang.
 
-Bản mới chưa được QC native Windows. Kiểm tra font Linux là kiểm tra bố cục
-bổ sung, không thay thế Segoe UI/PoE2 trên máy người dùng. Cần kiểm tra lại vệt
-mép Renly cũ và Una Home dài; nguyên nhân vệt cũ chưa được chứng minh.
+Hai QC Alpha.2 mới có 18 High, 16 native proofs; Una Home đã dùng 19 px.
+Ảnh/log xác nhận lỗi bỏ qua Una thấp và ba mask Renly bị dính chat. Bản sửa
+Alpha.3 chưa QC native Windows; test góc/cạnh, chuyển vị trí, crop và guard đã
+đạt. Replay 97 ảnh bằng OCR phụ giữ đúng 18/18 High cũ; không thay cho chạy game.
+
+Ba câu Finn chưa nằm trong bộ dịch được ghi vào chặng bổ sung nguồn/context;
+chúng vẫn giữ English. [Báo cáo QC và sửa vị trí](docs/QC_POPUP_20261005.md).
 Phase 4 vẫn PASS/LOCKED trên cấu hình đã thử; Phase 5 ở CURRENT.
 
 ## Dọn kết quả cũ
