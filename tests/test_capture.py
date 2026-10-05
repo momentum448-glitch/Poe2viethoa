@@ -2,38 +2,49 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from app.capture import ScreenCapture
+from PIL import Image
+
+from app.capture import CaptureRegion, CapturedFrame, ScreenCapture, crop_frame
 
 
 class DialogueCaptureTests(unittest.TestCase):
-    def region_for(self, monitor):
-        with patch("app.capture.mss.mss", return_value=SimpleNamespace(monitors=[{}, monitor])):
-            return ScreenCapture().default_dialogue_region()
+    def capture_for(self, desktop):
+        with patch("app.capture.mss.mss", return_value=SimpleNamespace(monitors=[desktop, desktop])):
+            return ScreenCapture()
 
-    def test_lower_npc_paragraph_and_continue_fit_inside_capture(self):
-        region = self.region_for({"left": 0, "top": 0, "width": 1920, "height": 1080})
-        # A lower popup starts at the Una header seen in QC event 49; allow a
-        # multi-line paragraph and its footer below the old 691px capture edge.
-        for x, y, width, height in ((915, 625, 100, 26), (915, 665, 476, 120), (1150, 820, 100, 26)):
-            with self.subTest(rect=(x, y, width, height)):
-                self.assertLessEqual(region.left, x)
-                self.assertLessEqual(region.top, y)
-                self.assertGreaterEqual(region.left + region.width, x + width)
-                self.assertGreaterEqual(region.top + region.height, y + height)
-        self.assertLess(region.top + region.height, 970)  # bottom game HUD
-
-    def test_lower_popup_coverage_scales_with_monitor_size_and_origin(self):
-        for width, height, left, top in ((1366, 768, 0, 0), (1920, 1080, -1920, 80), (2560, 1440, 0, -1440)):
+    def test_discovery_covers_the_entire_game_including_all_four_corners(self):
+        for width, height, left, top in ((1366, 768, 0, 0), (1920, 1080, -1920, 80),
+                                         (2560, 1440, 0, -1440)):
             with self.subTest(size=(width, height), origin=(left, top)):
-                region = self.region_for({"left": left, "top": top, "width": width, "height": height})
-                self.assertLessEqual(region.left, left + width * 0.47)
-                self.assertGreaterEqual(region.left + region.width, left + width * 0.73)
-                self.assertLessEqual(region.top, top + height * 0.58)
-                self.assertGreaterEqual(region.top + region.height, top + height * 0.79)
-                self.assertGreaterEqual(region.left, left)
-                self.assertGreaterEqual(region.top, top)
-                self.assertLessEqual(region.left + region.width, left + width)
-                self.assertLess(region.top + region.height, top + height * 0.90)
+                client = CaptureRegion(left, top, width, height)
+                capture = self.capture_for(client.as_mss())
+                self.assertEqual(capture.game_region(client), client)
+                self.assertEqual(capture.desktop_monitor(), client.as_mss())
+
+    def test_windowed_discovery_does_not_include_the_surrounding_desktop(self):
+        desktop = CaptureRegion(-1920, -200, 3840, 1280)
+        capture = self.capture_for(desktop.as_mss())
+        client = CaptureRegion(250, 130, 1280, 720)
+        self.assertEqual(capture.game_region(client), client)
+        self.assertEqual(capture.game_region(CaptureRegion(-2000, 0, 900, 700)),
+                         CaptureRegion(-1920, 0, 820, 700))
+
+    def test_unknown_minimized_and_offscreen_client_bounds_never_fall_back_to_screen(self):
+        capture = self.capture_for(CaptureRegion(0, 0, 1920, 1080).as_mss())
+        for client in (None, CaptureRegion(0, 0, 0, 0), CaptureRegion(2000, 0, 1280, 720)):
+            self.assertIsNone(capture.game_region(client))
+
+    def test_tracking_reference_crop_keeps_the_exact_bgra_pixels_and_origin(self):
+        pixels = bytes(range(128))
+        original = CapturedFrame(pixels, 8, 4, CaptureRegion(-1920, 80, 8, 4))
+        region = CaptureRegion(-1918, 81, 4, 2)
+        cropped = crop_frame(original, region)
+        expected = b"".join(pixels[start:start + 16] for start in (40, 72))
+        self.assertEqual(cropped.bgra, expected)
+        self.assertEqual((cropped.width, cropped.height, cropped.region), (4, 2, region))
+        self.assertIs(crop_frame(original, original.region), original)
+        with self.assertRaises(ValueError):
+            crop_frame(original, CaptureRegion(-1921, 80, 8, 4))
 
 
 if __name__ == "__main__":

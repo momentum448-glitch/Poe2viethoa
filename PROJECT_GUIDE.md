@@ -15,8 +15,8 @@ sang Quest, Tutorial, UI, Skill/Passive, Item và Mechanics.
 - Cập nhật Alpha bằng source ZIP thủ công; updater/EXE để sau khi Alpha ổn định.
 
 Foreground guard kiểm tra native PoE window class trước/sau capture và trong
-thời gian OCR chờ. Bộ nhận diện chọn đoạn với header/footer gần nhau, tránh
-chat ở cột khác. Matcher exact trước, fuzzy có ambiguity guard. Overlay Tk/Win32
+thời gian OCR chờ. Discovery phủ toàn client game, sau đó theo crop của popup; không dùng dải y
+hay vị trí cố định. Bộ nhận diện chọn header/footer địa phương và tách cột chat. Matcher exact trước, fuzzy có ambiguity guard. Overlay Tk/Win32
 click-through, topmost, dùng `WDA_EXCLUDEFROMCAPTURE` để OCR không đọc chữ Việt.
 Nguồn đổi trong lúc OCR hoặc proof đang xử lý thì kết quả cũ bị loại.
 
@@ -29,15 +29,16 @@ Nguồn đổi trong lúc OCR hoặc proof đang xử lý thì kết quả cũ b
 | 2. Matching/fresh store | PASS/LOCKED | QC 20261004_175216 |
 | 3. Replacement overlay | Technical + visual PASS | QC 20261004_183317 |
 | 4. Local Alpha | PASS/LOCKED | Alpha.3 QC 212425 + người dùng xác nhận 21:46 (+07) |
-| 5. Translation Factory | CURRENT | 196 trang/105 nhóm nguồn; bản mới chờ QC Windows |
+| 5. Translation Factory | CURRENT | 196 trang/105 nhóm nguồn; Alpha.3 sửa vị trí chờ QC Windows |
 | 6. Module tiếp theo | Chưa triển khai | Quest → Tutorial → UI → Skill/Passive → Item/Mechanics |
 
 Phase 4 đã xác nhận Continue/di chuyển/Alt+Tab bình thường trên cấu hình Windows,
 Python 3.12, 1920×1080 đã thử. Không mở rộng tuyên bố PASS sang DPI/máy khác.
 Baseline Alpha.3 có 9 trang; lô Factory đầu thêm 7 trang, đã có QC kỹ thuật/ảnh
 223644. QC đó còn một glyph nhỏ tại mép Renly cũ và Una Home dài ở 14 px.
-Bản Act 1 mới xử lý hai hướng này trong code; vẫn cần xác minh native, không
-khẳng định nguyên nhân glyph cũ đã được chứng minh.
+Hai QC 2026-10-05 Alpha.2 xác nhận Home mới 19 px. Có mask Renly dính chat và
+Una thấp bị gate vị trí loại. Alpha.3 đã sửa code, vẫn cần QC native; nguyên
+nhân glyph ở QC 223644 riêng chưa được chứng minh.
 
 ## Chặng Act 1 hiện hành
 
@@ -50,10 +51,15 @@ Factory có selection theo manifest/NPC/topic, resume, thống kê coverage, bun
 đầy đủ biến thể và thuật ngữ pack. `reviewed` là soát AI/author; `approved` cần dấu
 QC câu chữ của người dùng. QA cấu trúc và match exact không thay thế soát nghĩa.
 
-Đã đạt 128 tests, 8 lô QA sạch, DB 196 records. Replay 4 QC giữ đúng 35 High cũ;
+Đã đạt 149 tests, 8 lô QA sạch, DB 196 records. Replay 4 QC giữ đúng 35 High cũ;
 392 mẫu OCR nhiễu không khớp High sai; 71 cặp ảnh cùng trang không bị guard báo đổi.
 Bố cục dùng DejaVu Sans trên Linux giữ đủ VI ở hai vị trí panel; đây không phải
 đo Segoe UI native. Bản phát hành cần QC Windows trước khi khóa chặng.
+
+Runtime hiện hành `0.5.0-alpha.3 / popup-20261005-01` giữ bộ 196 trang. Test
+bao gồm góc/cạnh, cùng câu chuyển chỗ, tọa độ client và cửa sổ di chuyển trong
+OCR; crop/rebase reference cùng vị trí thực tế. QC có OCR geometry và proof ở
+mỗi vị trí. [Chi tiết hai QC và sửa lỗi](docs/QC_POPUP_20261005.md).
 
 Hai entrypoint người dùng là RUN_ALPHA/SETUP_ALPHA. Normal play không giới hạn
 thời gian, log có giới hạn; QC giữ 60 giây foreground và lưu proof. Worker riêng

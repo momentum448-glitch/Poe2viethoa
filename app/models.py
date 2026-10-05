@@ -81,6 +81,8 @@ class DialogueContext:
     dialogue_box: Rect | None
     source_line_indexes: list[int] = field(default_factory=list)
     reasons: list[str] = field(default_factory=list)
+    speaker_box: Rect | None = None
+    continue_box: Rect | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -92,4 +94,6 @@ class DialogueContext:
             "dialogue_box": self.dialogue_box.to_dict() if self.dialogue_box else None,
             "source_line_indexes": self.source_line_indexes,
             "reasons": self.reasons,
+            "speaker_box": self.speaker_box.to_dict() if self.speaker_box else None,
+            "continue_box": self.continue_box.to_dict() if self.continue_box else None,
         }

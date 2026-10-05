@@ -17,6 +17,8 @@ def configure_user32(user32):
     """Use pointer-sized HWNDs; ctypes otherwise defaults to 32-bit integers."""
     signatures = {
         "GetForegroundWindow": ([], wintypes.HWND),
+        "GetClientRect": ([wintypes.HWND, ctypes.POINTER(wintypes.RECT)], wintypes.BOOL),
+        "ClientToScreen": ([wintypes.HWND, ctypes.POINTER(wintypes.POINT)], wintypes.BOOL),
         "GetAncestor": ([wintypes.HWND, wintypes.UINT], wintypes.HWND),
         "GetWindowTextLengthW": ([wintypes.HWND], ctypes.c_int),
         "GetWindowTextW": (

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import time
+from PIL import Image
 
 from .models import OcrLine, OcrResult, OcrWord, Rect
 
@@ -16,6 +17,9 @@ class WindowsOcr:
         from winrt.windows.media.ocr import OcrEngine
 
         self._engine = OcrEngine.try_create_from_user_profile_languages()
+        self._max_dimension = int(OcrEngine.max_image_dimension)
+        if self._max_dimension <= 0:
+            raise RuntimeError("Windows OCR returned an invalid image dimension limit.")
         if self._engine is None:
             raise RuntimeError(
                 "Windows OCR is unavailable. Install the English OCR language capability."
@@ -26,6 +30,18 @@ class WindowsOcr:
         from winrt.windows.storage.streams import DataWriter
 
         started = time.perf_counter()
+        original_width, original_height = width, height
+        if max(width, height) > self._max_dimension:
+            # Whole-client discovery may exceed the engine limit on 4K displays.
+            # Restore all word coordinates to the captured physical-pixel frame.
+            scale = self._max_dimension / max(width, height)
+            resized = Image.frombytes("RGBA", (width, height), bgra, "raw", "BGRA").resize(
+                (max(1, int(width * scale)), max(1, int(height * scale))),
+                Image.Resampling.LANCZOS,
+            )
+            width, height = resized.size
+            bgra = resized.tobytes("raw", "BGRA")
+        scale_x, scale_y = original_width / width, original_height / height
         writer = DataWriter()
         bitmap = None
         try:
@@ -59,10 +75,10 @@ class WindowsOcr:
             for raw_word in raw_line.words:
                 rect = raw_word.bounding_rect
                 box = Rect(
-                    float(rect.x),
-                    float(rect.y),
-                    float(rect.width),
-                    float(rect.height),
+                    float(rect.x) * scale_x,
+                    float(rect.y) * scale_y,
+                    float(rect.width) * scale_x,
+                    float(rect.height) * scale_y,
                 )
                 words.append(OcrWord(raw_word.text, box))
                 xs.append(box.x)

@@ -1,7 +1,7 @@
 import unittest
 
 from app.dialogue_context import DialogueContextDetector
-from app.models import OcrLine, Rect
+from app.models import OcrLine, OcrWord, Rect
 
 
 def line(text, x, y, w=420, h=24):
@@ -9,6 +9,107 @@ def line(text, x, y, w=420, h=24):
 
 
 class DialogueContextDetectorTests(unittest.TestCase):
+    def test_same_dialogue_is_detected_at_corners_edges_and_center_on_multiple_resolutions(self):
+        text = ["We have sheltered here since the bridge fell.",
+                "The river will be safer when the storm passes."]
+        for width, height in ((1366, 768), (1920, 1080), (2560, 1440), (3840, 2160)):
+            scale = height / 1080
+            panel_width, panel_height = 520 * scale, 210 * scale
+            for x in (4 * scale, (width - panel_width) / 2, width - panel_width - 4 * scale):
+                for y in (4 * scale, (height - panel_height) / 2, height - panel_height - 4 * scale):
+                    with self.subTest(resolution=(width, height), position=(x, y)):
+                        lines = [line("Una", x + 210 * scale, y, 55 * scale, 22 * scale),
+                                 line(text[0], x, y + 48 * scale, 460 * scale, 20 * scale),
+                                 line(text[1], x, y + 70 * scale, 450 * scale, 20 * scale),
+                                 line("Continue", x + 195 * scale, y + 170 * scale, 85 * scale, 20 * scale)]
+                        ctx = DialogueContextDetector(width, height).detect(lines)
+                        self.assertTrue(ctx.detected)
+                        self.assertEqual(ctx.text, " ".join(text))
+                        self.assertEqual(ctx.speaker, "Una")
+                        self.assertEqual(ctx.continue_box, lines[3].box)
+                        self.assertEqual(ctx.speaker_box, lines[0].box)
+
+    def test_chat_above_and_left_of_renly_is_not_part_of_the_paragraph(self):
+        # QC 070347 events 6/9/12: x=282 chat was merged into x=460 dialogue.
+        lines = [line("time to gamble", 282, 33, 102, 16),
+                 line("Renly", 670, 32, 59, 22),
+                 line("We will shelter here until the storm passes.", 460, 88, 470, 20),
+                 line("I can mend the bridge when the river falls.", 460, 110, 446, 20),
+                 line("Continue", 657, 208, 79, 20)]
+        ctx = DialogueContextDetector(1190, 486).detect(lines)
+        self.assertTrue(ctx.detected)
+        self.assertEqual(ctx.speaker, "Renly")
+        self.assertEqual(ctx.source_line_indexes, [2, 3])
+        self.assertEqual(ctx.dialogue_box.x, 460)
+        self.assertEqual(ctx.dialogue_box.y, 88)
+        self.assertNotIn("gamble", ctx.text)
+
+    def test_arbitrary_short_chat_cannot_replace_finn_as_the_speaker(self):
+        lines = [line("Finn", 271, 119, 43, 22),
+                 line("what", 0, 147, 38, 16),
+                 line("The bridge is gone and our supplies are low.", 56, 174, 470, 20),
+                 line("We must find another way across the river.", 56, 196, 450, 20),
+                 line("Continue", 252, 307, 80, 20)]
+        ctx = DialogueContextDetector(1190, 486).detect(lines)
+        self.assertEqual(ctx.speaker, "Finn")
+        self.assertNotIn("what", ctx.text)
+        ctx = DialogueContextDetector(1190, 486).detect(lines[1:])
+        self.assertTrue(ctx.detected)  # local footer still anchors the body
+        self.assertIsNone(ctx.speaker)
+
+    def test_word_geometry_splits_a_chat_line_joined_to_dialogue_by_ocr(self):
+        words = [OcrWord("chat", Rect(10, 80, 35, 20)),
+                 OcrWord("from", Rect(48, 80, 35, 20)),
+                 OcrWord("players", Rect(86, 80, 55, 20))]
+        x = 450
+        for text in "The old bridge has fallen.".split():
+            words.append(OcrWord(text, Rect(x, 80, len(text) * 8, 20)))
+            x += len(text) * 8 + 8
+        lines = [line("Renly", 620, 30, 65, 22),
+                 OcrLine("chat from players The old bridge has fallen.", Rect(10, 80, x - 10, 20), words),
+                 line("Continue", 620, 160, 80, 20)]
+        ctx = DialogueContextDetector(1920, 1080).detect(lines)
+        self.assertTrue(ctx.detected)
+        self.assertEqual(ctx.text, "The old bridge has fallen.")
+        self.assertEqual(ctx.dialogue_box.x, 450)
+
+    def test_interleaved_ocr_order_does_not_split_the_correct_column(self):
+        lines = [line("Renly", 700, 40, 80, 22),
+                 line("We have sheltered here since the bridge fell.", 500, 90, 460, 20),
+                 line("Anyone wants to trade some spare equipment?", 20, 104, 390, 16),
+                 line("The river will be safer when the storm passes.", 500, 112, 465, 20),
+                 line("Continue", 700, 200, 80, 20)]
+        ctx = DialogueContextDetector(1920, 1080).detect(lines)
+        self.assertEqual(ctx.source_line_indexes, [1, 3])
+        self.assertNotIn("equipment", ctx.text)
+
+    def test_an_outlier_word_height_does_not_leave_the_first_or_last_english_line_outside_the_mask(self):
+        first = "We have sheltered here since the bridge fell."
+        last = "The river will be safer when the storm passes."
+        words = []
+        x = 450
+        for i, text in enumerate(first.split()):
+            box = Rect(x, 79 if i == 0 else 88, len(text) * 8, 42 if i == 0 else 20)
+            words.append(OcrWord(text, box))
+            x += len(text) * 8 + 8
+        lines = [line("Renly", 650, 32, 70, 24),
+                 OcrLine(first, Rect(450, 79, x - 450, 42), words),
+                 line(last, 450, 110, 430, 20),
+                 line("Continue", 650, 208, 80, 20)]
+        ctx = DialogueContextDetector(1920, 1080).detect(lines)
+        self.assertEqual(ctx.text, first + " " + last)
+        self.assertEqual(ctx.source_line_indexes, [1, 2])
+        self.assertLessEqual(ctx.dialogue_box.y, 88)
+        self.assertGreaterEqual(ctx.dialogue_box.bottom, 130)
+
+    def test_hooded_one_header_is_not_mistaken_for_a_sentence(self):
+        lines = [line("The Hooded One", 170, 20, 150, 22),
+                 line("The river will be safer when the storm passes.", 40, 70, 440, 20),
+                 line("Continue", 195, 150, 90, 20)]
+        ctx = DialogueContextDetector(1920, 1080).detect(lines)
+        self.assertEqual(ctx.speaker, "The Hooded One")
+        self.assertEqual(ctx.source_line_indexes, [1])
+
     def test_detects_normal_right_dialogue(self):
         detector = DialogueContextDetector(1200, 270)
         lines = [

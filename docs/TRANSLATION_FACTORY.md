@@ -1,6 +1,6 @@
 # Translation Factory — Act 1 pack
 
-Build `0.5.0-alpha.2 / act1-20261004-01` có 196 trang trong 105 nhóm nguồn,
+Bộ dữ liệu từ `0.5.0-alpha.2 / act1-20261004-01` (runtime hiện hành Alpha.3) có 196 trang trong 105 nhóm nguồn,
 180 trang mới qua 7 lô nội bộ, giữ nguyên 16 trang trước.
 
 ## Dữ liệu và trạng thái
